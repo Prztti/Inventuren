@@ -46,7 +46,7 @@ export default function AvatarWidget({ lang = "en" }) {
           animation: "slideUp 0.2s ease-out",
         }}>
           <iframe
-            src={`${AVATAR_URL}/embed?lang=${lang}`}
+            src={`${AVATAR_URL}/embed?lang=${lang}&v=3`}
             width="100%"
             height="100%"
             style={{ border: "none", display: "block" }}
