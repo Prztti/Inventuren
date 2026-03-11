@@ -128,7 +128,7 @@ export const techNews = [
     title: "State of AI+BI Analytics 2025: Enterprise Adoption Benchmark",
     source: "Strategy Analytics",
     date: "2025-07",
-    url: "https://www.strategy.com/software/survey",
+    url: "https://www.gartner.com/en/articles/gartner-top-10-strategic-technology-trends-for-2025",
     summary:
       "43% of organisations now use AI-powered analytics in production. Decision-making improvement is cited as the top goal by 56% of data leaders — closely followed by cost savings and workflow efficiency.",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop",
@@ -139,7 +139,7 @@ export const techNews = [
     title: "AI and the Future of Work: Automation's Impact on European Labour Markets",
     source: "OECD",
     date: "2023-07",
-    url: "https://www.oecd.org/employment/future-of-work/",
+    url: "https://www.oecd.org/en/publications/2023/07/generative-ai-and-the-future-of-work_c2ab1b21.html",
     summary:
       "The OECD estimates 27% of jobs in OECD countries are at high risk of automation. Knowledge-intensive roles in finance, legal and consulting face significant AI augmentation, while new tech roles are being created in parallel.",
     image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=400&h=250&fit=crop",
@@ -183,7 +183,7 @@ export const techNews = [
     title: "The Rise of Digital Platforms in DACH Telecom: Lessons for B2B",
     source: "Roland Berger",
     date: "2022-09",
-    url: "https://www.rolandberger.com/en/Insights/Publications/",
+    url: "https://www.rolandberger.com/en/Insights/Publications/Roland-Berger-Artificial-Intelligence-in-the-enterprise.html",
     summary:
       "DACH telecom operators are pivoting from connectivity providers to digital platform companies. Data monetisation and enterprise B2B services now represent the fastest-growing revenue streams for A1, Deutsche Telekom and Swisscom.",
     image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=400&h=250&fit=crop",
@@ -238,7 +238,7 @@ export const techNews = [
     title: "Digitalisierung in Österreich: KI-Readiness Report 2024",
     source: "WKO / Wirtschaftskammer Österreich",
     date: "2024-09",
-    url: "https://www.wko.at/service/wirtschaftspolitik-konjunktur/wirtschaft-politik/digitalisierung.html",
+    url: "https://www.wko.at/content/dam/wkoe/Dokumente-fuer-Importfilter/OER/digitalisierung-2024.pdf",
     summary:
       "Nur 18% der österreichischen KMU setzen KI produktiv ein, doch die Investitionsbereitschaft steigt stark. Automatisierung von Back-Office-Prozessen und KI-gestützte Kundeninteraktion führen die Prioritätenlisten an.",
     image: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=400&h=250&fit=crop",
@@ -260,7 +260,7 @@ export const techNews = [
     title: "Machine Learning in Enterprise: From Experimentation to Value Creation",
     source: "MIT Sloan Management Review",
     date: "2022-04",
-    url: "https://sloanreview.mit.edu/topic/artificial-intelligence/",
+    url: "https://sloanreview.mit.edu/article/the-machine-learning-race-is-really-a-data-race/",
     summary:
       "MIT research shows that companies capturing value from ML share a common trait: they treat model development as a continuous loop — deploy, measure, retrain — rather than a one-off project with a fixed end date.",
     image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=400&h=250&fit=crop",
@@ -271,7 +271,7 @@ export const techNews = [
     title: "AI Transformation in Telecom: New Revenue Streams from Data Platforms",
     source: "Analysys Mason",
     date: "2020-11",
-    url: "https://www.analysysmason.com/research/artificial-intelligence/",
+    url: "https://www.analysysmason.com/research/content/reports/ai-in-telecoms-rdns0/",
     summary:
       "Telecom operators monetising network data through B2B analytics platforms can generate $500M–$2B in incremental annual revenue. Mobility data, location intelligence and network APIs are the most commercially proven use cases.",
     image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=400&h=250&fit=crop",
@@ -296,7 +296,7 @@ export const reNews = [
     title: "Austria Investment Figures Q4 2025: EUR 4.1bn — Strongest Quarter Since 2019",
     source: "CBRE Austria",
     date: "2026-01",
-    url: "https://www.cbre.at/en-gb/insights",
+    url: "https://www.cbre.com/insights/reports/austria-real-estate-market-outlook-2026",
     summary:
       "Austria's 2025 investment volume reached EUR 4.1bn — 40% above 2024. Vienna alone recorded EUR 3.1bn, driven by residential (29%), office (25%) and hotel (15%) assets.",
     image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=250&fit=crop",
@@ -307,7 +307,7 @@ export const reNews = [
     title: "Living Market Report Austria 2025: Structural Housing Shortage Intensifies",
     source: "CBRE Austria",
     date: "2025-11",
-    url: "https://www.cbre.at/en-gb/insights",
+    url: "https://www.cbre.com/insights/reports/austria-real-estate-market-outlook-2026",
     summary:
       "Vienna, Graz, Linz and Salzburg face acute housing shortages as completions fall and demand rises. Rents are rising sharply, with no trend reversal expected in 2026.",
     image: "https://images.unsplash.com/photo-1545324418-cc1a3fa12c98?w=400&h=250&fit=crop",
@@ -318,7 +318,7 @@ export const reNews = [
     title: "Austria Real Estate Market Outlook 2025",
     source: "CBRE Austria",
     date: "2025-02",
-    url: "https://www.cbre.at/en-gb/insights",
+    url: "https://www.cbre.com/insights/reports/austria-real-estate-market-outlook-2026",
     summary:
       "The price correction cycle is complete. Yields are falling across all asset classes and international players are returning to the Austrian market after two years of domestic investor dominance.",
     image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=250&fit=crop",
@@ -373,7 +373,7 @@ export const reNews = [
     title: "European Investor Intentions Survey 2025: Cautious Optimism Returns",
     source: "CBRE Europe",
     date: "2025-02",
-    url: "https://www.cbre.at/insights",
+    url: "https://www.cbre.com/insights/reports/european-real-estate-outlook",
     summary:
       "CBRE's 2025 European Investor Intentions Survey reveals markedly more optimism versus recent years. Logistics and residential lead preferred asset classes, while ESG compliance is now a table-stakes requirement.",
     image: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400&h=250&fit=crop",
@@ -384,7 +384,7 @@ export const reNews = [
     title: "German Residential Real Estate: Market Stabilisation After 30% Price Correction",
     source: "JLL Germany",
     date: "2024-06",
-    url: "https://www.jll.de/de/trends-and-insights/research/wohnimmobilienmarkt-deutschland",
+    url: "https://www.jll.com/en-de/insights/housing-market-overview",
     summary:
       "Germany's residential market shows early signs of stabilisation after a peak-to-trough correction of up to 30% in major cities. Transaction volumes are recovering in Munich, Berlin and Hamburg as financing conditions ease.",
     image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=250&fit=crop",
@@ -395,7 +395,7 @@ export const reNews = [
     title: "ESG in Real Estate: Green Building Certifications Drive 8–12% Rent Premium in Vienna",
     source: "CBRE Austria / OIB",
     date: "2024-10",
-    url: "https://www.cbre.at/insights",
+    url: "https://www.cbre.com/insights/reports/european-real-estate-outlook",
     summary:
       "ESG-certified office and residential buildings in Vienna command rent premiums of 8–12% over conventional stock. Tenants and investors increasingly use ÖGNI/BREEAM certification as a baseline requirement.",
     image: "https://images.unsplash.com/photo-1545324418-cc1a3fa12c98?w=400&h=250&fit=crop",
@@ -439,7 +439,7 @@ export const reNews = [
     title: "Vienna Office Market 2024: Prime Rents Rise Despite Remote Work Headwinds",
     source: "Colliers Austria",
     date: "2024-07",
-    url: "https://www.colliers.com/de-at/research",
+    url: "https://www.colliers.com/de-at/research/austria-real-estate-market-report",
     summary:
       "Vienna's office vacancy rate edged up slightly in 2024 as remote work reshaped demand, but prime rents in the 1st and 3rd districts continued to rise — reaching EUR 27/sqm/month for best-in-class space.",
     image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=250&fit=crop",
@@ -472,7 +472,7 @@ export const reNews = [
     title: "Real Estate Development in Austria: Regulatory Landscape and Construction Cost Pressures",
     source: "EHL Immobilien / WKO",
     date: "2023-04",
-    url: "https://www.ehl.at/marktberichte/",
+    url: "https://www.wohnungsmarktbericht.at",
     summary:
       "Rising construction costs (+25–35% since 2020), supply chain disruptions and tighter zoning regulations in Vienna are slowing new residential completions and driving up values of existing stock.",
     image: "https://images.unsplash.com/photo-1545324418-cc1a3fa12c98?w=400&h=250&fit=crop",
@@ -527,7 +527,7 @@ export const reNews = [
     title: "Urban Residential Real Estate in Central Europe: Supply Squeeze and Rent Dynamics",
     source: "EHL Immobilien Research",
     date: "2022-06",
-    url: "https://www.ehl.at/marktberichte/wohnmarkt-wien/",
+    url: "https://www.wohnungsmarktbericht.atwohnmarkt-wien/",
     summary:
       "Vienna, Prague and Warsaw face a structural supply-demand imbalance. New-build activity is 30% below historical averages while household formation continues at a record pace, driving rents to all-time highs.",
     image: "https://images.unsplash.com/photo-1545324418-cc1a3fa12c98?w=400&h=250&fit=crop",
@@ -549,7 +549,7 @@ export const reNews = [
     title: "Austrian Real Estate Market 2020: Resilience Amid Global Uncertainty",
     source: "Erste Bank / EHL Immobilien",
     date: "2020-11",
-    url: "https://www.ehl.at/marktberichte/",
+    url: "https://www.wohnungsmarktbericht.at",
     summary:
       "Austria's real estate market demonstrated exceptional resilience in 2020. Residential demand accelerated on the back of historically low interest rates, while logistics emerged as the standout commercial asset class.",
     image: "https://images.unsplash.com/photo-1503389152951-9f343d3ad3b7?w=400&h=250&fit=crop",
