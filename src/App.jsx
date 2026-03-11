@@ -1,11 +1,17 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import AvatarWidget from "./AvatarWidget";
 import NewsSection from "./NewsSection";
+import Timeline from "./Timeline";
+import ContactForm from "./ContactForm";
+import PartnerLogos from "./PartnerLogos";
+import InVenturesView from "./InVenturesView";
+import LegalModal from "./LegalModal";
 
 const C = {
   bg:"#F5F4F1",surface:"#ECEAE6",surfaceAlt:"#E4E2DD",
   border:"rgba(0,0,0,0.06)",
   silver:"#8A96A3",silverText:"#6B7D8C",silverSoft:"rgba(138,150,163,0.1)",
+  teal:"#8A96A3",tealText:"#6B7D8C",tealSoft:"rgba(138,150,163,0.1)",
   gold:"#9A7B42",goldText:"#B8924E",goldSoft:"rgba(154,123,66,0.12)",
   white:"#1A1A1A",dim:"#6B7280",muted:"#8A919A",
   cream:"#FFFFFF",warm:"#F7F6F3",dark:"#1A1A1A",
@@ -55,7 +61,7 @@ en:{
   re:{
     heroP:"Over EUR 450M in transactions across residential, commercial and hospitality. Deal structuring, project leadership and hands-on execution — from sale to acquisition.",
     ctaA:"Explore Real Estate",ctaB:"Services",
-    stats:[{v:"EUR 450M+",l:"Transaction Record"},{v:"25+",l:"Years Experience"},{v:"EU & MENA",l:"Transaction Reach"},{v:"6",l:"Asset Classes"}],
+    stats:[{v:"€600m+",l:"Transaction volume advised"},{v:"€35m+",l:"VC & growth capital mobilised"},{v:"€12m+",l:"Research grants secured"},{v:"20+",l:"Years cross-sector expertise"},{v:"40+",l:"Projects in DACH & MENA"},{v:"6",l:"Industry verticals"}],
     fP1:"Lawyer and serial CEO with over 25 years of real estate and hospitality experience. Transaction record exceeding EUR 450 million across residential, commercial and hotel portfolios.",
     fP2:"Trusted advisor and project lead for institutional investors, family offices and developers across Austria, MENA and beyond. Active network partner with EPI Immobilien Group and leading Austrian hospitality operators.",
     secLabel:"Focus Areas",
@@ -88,7 +94,7 @@ en:{
   tech:{
     heroP:"Strategic sparring, AI-driven enterprise transformation and disruptive Agentic AI implementation. OPEX reduction and new revenue streams — measurable within 6 to 9 months.",
     ctaA:"Discover AI Transformation",ctaB:"Services",
-    stats:[{v:"EUR 200M+",l:"Transaction Record"},{v:"EU & Asia",l:"Markets"},{v:"6",l:"Sectors"},{v:"20+",l:"Years as CEO"}],
+    stats:[{v:"€600m+",l:"Transaction volume advised"},{v:"€35m+",l:"VC & growth capital mobilised"},{v:"€12m+",l:"Research grants secured"},{v:"20+",l:"Years cross-sector expertise"},{v:"40+",l:"Projects in DACH & MENA"},{v:"6",l:"Industry verticals"}],
     fP1:"Lawyer, startup founder and serial CEO with over 25 years of operational experience. Transaction record exceeding EUR 200 million across six sectors — from telecom to real estate, hospitality, science and social impact.",
     fP2:"Commissioned in 2015 as a pioneer by Deutsche Telekom and A1 Group to develop new digital revenue streams. Founder and CEO of Geolad GmbH — a multinational telecom data platform with 30+ employees and partners across EU and Asia.",
     secLabel:"Sectors",
@@ -162,7 +168,7 @@ de:{
   re:{
     heroP:"Über EUR 450 Mio. in Transaktionen in Wohn-, Gewerbe- und Hospitality-Immobilien. Deal-Strukturierung, Projektleitung und operative Umsetzung — vom Verkauf bis zum Ankauf.",
     ctaA:"Real Estate entdecken",ctaB:"Leistungen",
-    stats:[{v:"EUR 450M+",l:"Transaction Record"},{v:"25+",l:"Jahre Erfahrung"},{v:"EU & MENA",l:"Transaktionsraum"},{v:"6",l:"Asset-Klassen"}],
+    stats:[{v:"€600m+",l:"Beratenes Transaktionsvolumen"},{v:"€35m+",l:"Mobilisiertes VC-Kapital"},{v:"€12m+",l:"Forschungsförderungen"},{v:"20+",l:"Jahre Expertise"},{v:"40+",l:"Projekte in DACH & MENA"},{v:"6",l:"Industrie-Vertikale"}],
     fP1:"Jurist und Mehrfach-CEO mit über 25 Jahren Immobilien- und Hospitality-Erfahrung. Transaction Record von über EUR 450 Mio. in Wohn-, Gewerbe- und Hotel-Portfolios.",
     fP2:"Vertrauenspartner und Projektleiter für institutionelle Investoren, Family Offices und Developer. Aktiver Netzwerkpartner der EPI Immobilien Group und führender österreichischer Hospitality-Operators.",
     secLabel:"Schwerpunkte",
@@ -195,7 +201,7 @@ de:{
   tech:{
     heroP:"Strategisches Sparring, AI-gestützte Unternehmenstransformation und disruptive Agentic-AI-Implementierung. OPEX-Reduktion und neue Revenue Streams – messbar innerhalb von 6 bis 9 Monaten.",
     ctaA:"AI-Transformation entdecken",ctaB:"Leistungen",
-    stats:[{v:"EUR 200M+",l:"Transaction Record"},{v:"EU & Asien",l:"Märkte"},{v:"6",l:"Sektoren"},{v:"20+",l:"Jahre als CEO"}],
+    stats:[{v:"€600m+",l:"Beratenes Transaktionsvolumen"},{v:"€35m+",l:"Mobilisiertes VC-Kapital"},{v:"€12m+",l:"Forschungsförderungen"},{v:"20+",l:"Jahre Expertise"},{v:"40+",l:"Projekte in DACH & MENA"},{v:"6",l:"Industrie-Vertikale"}],
     fP1:"Jurist, Startup-Founder und Mehrfach-CEO mit über 25 Jahren operativer Erfahrung. Transaction Record von über 200 Mio. EUR über sechs Branchen hinweg.",
     fP2:"Bereits 2015 als Pionier von der Deutschen Telekom und A1 Group beauftragt, neue digitale Revenue Streams zu entwickeln. Gründer der Geolad GmbH – Telekom-Datenplattform mit 30+ Mitarbeitern und Partnern in EU und Asien.",
     secLabel:"Sektoren",
@@ -269,7 +275,7 @@ cn:{
   re:{
     heroP:"超过4.5亿欧元的住宅、商业和酒店地产交易记录。交易结构设计、项目领导和实际执行——从销售到收购。",
     ctaA:"了解房地产业务",ctaB:"服务内容",
-    stats:[{v:"4.5亿欧元+",l:"交易记录"},{v:"25+",l:"年经验"},{v:"欧盟与中东北非",l:"交易覆盖"},{v:"6",l:"资产类别"}],
+    stats:[{v:"€600m+",l:"顾问交易总额"},{v:"€35m+",l:"动员的VC资本"},{v:"€12m+",l:"研究资助"},{v:"20+",l:"跨行业专业经验"},{v:"40+",l:"DACH & MENA项目"},{v:"6",l:"行业板块"}],
     fP1:"法律专家及连续CEO，拥有超过25年的房地产和酒店业经验。交易记录超过4.5亿欧元。",
     fP2:"为机构投资者、家族办公室和开发商提供可信赖的顾问和项目领导服务。EPI不动产集团及奥地利领先酒店运营商的活跃网络合作伙伴。",
     secLabel:"重点领域",
@@ -302,7 +308,7 @@ cn:{
   tech:{
     heroP:"战略顾问、AI转型与实施以及运营公司建设。运营成本优化与新收入来源——6至9个月内可衡量成果。",
     ctaA:"了解AI转型方案",ctaB:"服务内容",
-    stats:[{v:"2亿欧元+",l:"交易记录"},{v:"欧盟与亚洲",l:"市场覆盖"},{v:"6",l:"行业领域"},{v:"20+",l:"CEO经验"}],
+    stats:[{v:"€600m+",l:"顾问交易总额"},{v:"€35m+",l:"动员的VC资本"},{v:"€12m+",l:"研究资助"},{v:"20+",l:"跨行业专业经验"},{v:"40+",l:"DACH & MENA项目"},{v:"6",l:"行业板块"}],
     fP1:"法律专家、连续创业者及多次担任CEO，拥有超过25年的运营经验。横跨六大行业的交易记录超过2亿欧元。",
     fP2:"2015年受德国电信和A1集团委托，率先开发新数字收入来源。Geolad GmbH创始人兼CEO——30+员工，合作伙伴遍布欧洲和亚洲。",
     secLabel:"行业领域",
@@ -381,6 +387,7 @@ export default function App(){
   },[]);
   const[scrolled,setScrolled]=useState(false);
   const[menuOpen,setMenuOpen]=useState(false);
+  const[legalModal,setLegalModal]=useState(null);
   const mob=useIsMobile();
   const t=TX[lang];
   const tc=track?TC[track]:TC.tech;
@@ -546,6 +553,8 @@ body{overflow-x:hidden;background:#F5F4F1}
       </div>
     </div>
   </div>
+  {/* Timeline — Company Track Record */}
+  <Timeline lang={lang} />
 </section>
 )}
 
@@ -725,6 +734,8 @@ body{overflow-x:hidden;background:#F5F4F1}
   <R><Label color={tc.a}>{t.networkLabel}</Label></R>
   <R delay={0.04}><H2D>{t.networkTitle}</H2D></R>
   <R delay={0.08}><p style={{fontFamily:F,fontSize:15,color:C.dim,lineHeight:1.8,maxWidth:600,marginBottom:44}}>{t.networkP}</p></R>
+  <R delay={0.1}><PartnerLogos lang={lang} /></R>
+  <div style={{height:40}}/>
   <R delay={0.12}>
     <div style={{display:"grid",gridTemplateColumns:mob?"1fr 1fr":"repeat(5,1fr)",gap:12,marginBottom:32}}>
       {t.clusters[track].map((cl,i)=>(
@@ -793,29 +804,31 @@ body{overflow-x:hidden;background:#F5F4F1}
   <NewsSection track={track} lang={lang} />
 </section>
 
+{/* INVENTURES VIEW — Thought Leadership */}
+<InVenturesView lang={lang} />
+
 {/* CONTACT */}
 <section id="kontakt" style={{background:C.cream,padding:mob?"48px 20px":"88px 40px"}}>
 <div style={{maxWidth:1060,margin:"0 auto"}}>
-  <div style={{display:"grid",gridTemplateColumns:mob?"1fr":"1fr 1fr",gap:mob?24:48}}>
-    <R>
-      <div>
-        <Label color={tc.a}>{t.cLabel}</Label>
-        <h2 style={{fontFamily:F,fontSize:"clamp(26px,3vw,38px)",fontWeight:300,color:C.dark,marginBottom:16,letterSpacing:"-0.02em"}}>{t.cTitle}</h2>
-        <p style={{fontFamily:F,fontSize:15,color:"#6B7280",lineHeight:1.75,maxWidth:380}}>{t.cP}</p>
-      </div>
+  <R><Label color={tc.a}>{t.cLabel}</Label></R>
+  <R delay={0.04}><h2 style={{fontFamily:F,fontSize:"clamp(26px,3vw,38px)",fontWeight:300,color:C.dark,marginBottom:12,letterSpacing:"-0.02em"}}>{t.cTitle}</h2></R>
+  <R delay={0.08}><p style={{fontFamily:F,fontSize:15,color:"#6B7280",lineHeight:1.75,maxWidth:480,marginBottom:40}}>{t.cP}</p></R>
+  <div style={{display:"grid",gridTemplateColumns:mob?"1fr":"1fr 1fr",gap:mob?32:60,alignItems:"start"}}>
+    <R delay={0.1}>
+      <ContactForm lang={lang} accentColor={tc.a} accentTextColor={tc.at} />
     </R>
-    <R delay={0.08}>
+    <R delay={0.18}>
       <div>
-        <div style={{display:"flex",flexDirection:"column",gap:16,marginTop:4}}>
+        <div style={{display:"flex",flexDirection:"column",gap:14,marginBottom:28}}>
           {[{l:"Web",v:"inventures.at",h:"https://inventures.at"},{l:"E-Mail",v:"info@inventures.at",h:"mailto:info@inventures.at"},{l:"Location",v:t.loc,h:null}].map((c,i)=>(
             <div key={i} style={{display:"flex",justifyContent:"space-between",alignItems:"center",paddingBottom:14,borderBottom:"1px solid #EAE8E4"}}>
               <span style={{fontFamily:F,fontSize:10,letterSpacing:2,textTransform:"uppercase",color:"#6B7280",fontWeight:500}}>{c.l}</span>
-              {c.h?<a href={c.h} style={{fontFamily:F,fontSize:15,color:C.dark,textDecoration:"none",fontWeight:500,transition:"color 0.2s"}} onMouseEnter={e=>e.target.style.color=tc.a} onMouseLeave={e=>e.target.style.color=C.dark}>{c.v}</a>
-                :<span style={{fontFamily:F,fontSize:15,color:C.dark,fontWeight:500}}>{c.v}</span>}
+              {c.h?<a href={c.h} style={{fontFamily:F,fontSize:14,color:C.dark,textDecoration:"none",fontWeight:500,transition:"color 0.2s"}} onMouseEnter={e=>e.target.style.color=tc.a} onMouseLeave={e=>e.target.style.color=C.dark}>{c.v}</a>
+                :<span style={{fontFamily:F,fontSize:14,color:C.dark,fontWeight:500}}>{c.v}</span>}
             </div>
           ))}
         </div>
-        <div style={{marginTop:28}}>
+        <div>
           <span style={{fontFamily:F,fontSize:10,letterSpacing:2,textTransform:"uppercase",color:"#6B7280",fontWeight:500,display:"block",marginBottom:6}}>Legal Entity</span>
           <p style={{fontFamily:F,fontSize:13,color:C.dark,lineHeight:1.6,margin:0}}>{t.ent}<br/><span style={{color:"#9CA3AF"}}>{t.entSub}</span></p>
         </div>
@@ -828,26 +841,48 @@ body{overflow-x:hidden;background:#F5F4F1}
 </>)}
 
 {/* FOOTER */}
-<footer style={{background:`linear-gradient(180deg, #F0EEE9 0%, #F5F3EF 100%)`,padding:mob?"20px":"28px 40px",borderTop:`1px solid ${C.border}`}}>
-<div style={{maxWidth:1060,margin:"0 auto",padding:mob?"0 20px":"0",display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:8}}>
-  <div style={{display:"flex",flexDirection:"column"}}>
-    <div style={{display:"flex",alignItems:"baseline",gap:4}}>
-      <span style={{fontFamily:F,fontSize:12,fontWeight:700,color:C.goldText,letterSpacing:2.5}}>INVENTURES</span>
-      <span style={{fontFamily:F,fontSize:8,letterSpacing:1.5,color:C.goldText}}>.at</span>
+<footer style={{background:`linear-gradient(180deg, #F0EEE9 0%, #F5F3EF 100%)`,padding:mob?"24px 20px":"32px 40px",borderTop:`1px solid ${C.border}`}}>
+<div style={{maxWidth:1060,margin:"0 auto",display:"flex",flexDirection:"column",gap:16}}>
+  <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:12}}>
+    <div style={{display:"flex",flexDirection:"column"}}>
+      <div style={{display:"flex",alignItems:"baseline",gap:4}}>
+        <span style={{fontFamily:F,fontSize:12,fontWeight:700,color:C.goldText,letterSpacing:2.5}}>INVENTURES</span>
+        <span style={{fontFamily:F,fontSize:8,letterSpacing:1.5,color:C.goldText}}>.at</span>
+      </div>
+      <span style={{fontFamily:F,fontSize:8,color:C.dim,letterSpacing:1,marginTop:2}}>{t.ent}</span>
     </div>
-    <span style={{fontFamily:F,fontSize:8,color:C.dim,letterSpacing:1,marginTop:2}}>{t.ent}</span>
+    {!track && (
+      <div style={{display:"flex",gap:8}}>
+        <button onClick={()=>setTrack("re")} style={{fontFamily:F,fontSize:9,letterSpacing:1.5,textTransform:"uppercase",color:C.goldText,background:C.goldSoft,border:"none",padding:"4px 10px",cursor:"pointer"}}>Real Estate</button>
+        <button onClick={()=>setTrack("tech")} style={{fontFamily:F,fontSize:9,letterSpacing:1.5,textTransform:"uppercase",color:C.tealText,background:C.tealSoft,border:"none",padding:"4px 10px",cursor:"pointer"}}>Tech & AI</button>
+      </div>
+    )}
+    <span style={{fontFamily:F,fontSize:10,color:C.dim}}>2006–2026 {t.ent}</span>
   </div>
-  {!track && (
-    <div style={{display:"flex",gap:8}}>
-      <button onClick={()=>setTrack("re")} style={{fontFamily:F,fontSize:9,letterSpacing:1.5,textTransform:"uppercase",color:C.goldText,background:C.goldSoft,border:"none",padding:"4px 10px",cursor:"pointer"}}>Real Estate</button>
-      <button onClick={()=>setTrack("tech")} style={{fontFamily:F,fontSize:9,letterSpacing:1.5,textTransform:"uppercase",color:C.tealText,background:C.tealSoft,border:"none",padding:"4px 10px",cursor:"pointer"}}>Tech & AI</button>
+  {/* Footer links row */}
+  <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:12,paddingTop:12,borderTop:`1px solid ${C.border}`}}>
+    {/* Legal links */}
+    <div style={{display:"flex",gap:20,alignItems:"center"}}>
+      <button onClick={()=>setLegalModal("imprint")} style={{fontFamily:F,fontSize:10,letterSpacing:1.2,textTransform:"uppercase",color:C.dim,background:"none",border:"none",cursor:"pointer",padding:0,transition:"color 0.2s"}} onMouseEnter={e=>e.target.style.color=C.goldText} onMouseLeave={e=>e.target.style.color=C.dim}>Impressum</button>
+      <button onClick={()=>setLegalModal("privacy")} style={{fontFamily:F,fontSize:10,letterSpacing:1.2,textTransform:"uppercase",color:C.dim,background:"none",border:"none",cursor:"pointer",padding:0,transition:"color 0.2s"}} onMouseEnter={e=>e.target.style.color=C.goldText} onMouseLeave={e=>e.target.style.color=C.dim}>Datenschutz</button>
     </div>
-  )}
-  <span style={{fontFamily:F,fontSize:10,color:C.dim}}>2006–2026 {t.ent}</span>
+    {/* Social links */}
+    <div style={{display:"flex",gap:16,alignItems:"center"}}>
+      <a href="#" style={{display:"flex",alignItems:"center",gap:6,textDecoration:"none",color:C.dim,transition:"color 0.2s"}} onMouseEnter={e=>e.currentTarget.style.color=C.goldText} onMouseLeave={e=>e.currentTarget.style.color=C.dim}>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        <span style={{fontFamily:F,fontSize:10,letterSpacing:0.8}}>LinkedIn — under reconstruction</span>
+      </a>
+      <a href="#" style={{display:"flex",alignItems:"center",gap:6,textDecoration:"none",color:C.dim,transition:"color 0.2s"}} onMouseEnter={e=>e.currentTarget.style.color=C.goldText} onMouseLeave={e=>e.currentTarget.style.color=C.dim}>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        <span style={{fontFamily:F,fontSize:10,letterSpacing:0.8}}>X / Twitter — under reconstruction</span>
+      </a>
+    </div>
+  </div>
 </div>
 </footer>
 
 <AvatarWidget lang={lang} />
+{legalModal && <LegalModal type={legalModal} onClose={()=>setLegalModal(null)} />}
 </div>
   );
 }
