@@ -488,6 +488,7 @@ body{overflow-x:hidden;background:#F5F4F1}
 {/* ── LANDING ── */}
 {!track && (
 <section style={{minHeight:"100vh",display:"flex",flexDirection:"column",background:C.bg,overflow:"hidden",position:"relative"}}>
+  <div style={{position:"absolute",inset:0,background:`url('/images/hero-landing.jpg') center/cover no-repeat`,opacity:0.12}}/>
   <div style={{position:"absolute",inset:0,opacity:0.025,backgroundImage:`radial-gradient(${C.teal} 0.4px, transparent 0.4px)`,backgroundSize:"32px 32px"}}/>
   {/* Claim header */}
   <div style={{position:"relative",zIndex:2,textAlign:"center",padding:mob?"90px 20px 32px":"100px 40px 40px",animation:"fadeUp 0.7s ease both"}}>
@@ -507,11 +508,11 @@ body{overflow-x:hidden;background:#F5F4F1}
   <div className="split-grid" style={{display:"grid",gridTemplateColumns:"1fr 1fr",flex:1,gap:mob?12:20,padding:mob?"0 12px 24px":"0 40px 48px",maxWidth:1200,margin:"0 auto",width:"100%",position:"relative",zIndex:2}}>
     {/* Tech Card — LEFT */}
     <div className="track-card split-card" onClick={()=>setTrack("tech")} style={{cursor:"pointer",background:`url('/images/hero-tech.jpg') center/cover no-repeat`,border:`1px solid rgba(138,150,163,0.2)`,padding:mob?"32px 24px":"52px 44px",display:"flex",flexDirection:"column",justifyContent:"space-between",minHeight:mob?"auto":480,position:"relative",overflow:"hidden"}}>
-      <div style={{position:"absolute",inset:0,background:"linear-gradient(145deg,rgba(30,35,42,0.82) 0%,rgba(20,25,32,0.65) 60%,rgba(15,20,28,0.75) 100%)",zIndex:0}}/>
+      <div style={{position:"absolute",inset:0,background:"linear-gradient(145deg,rgba(28,34,42,0.46) 0%,rgba(18,24,30,0.22) 60%,rgba(14,19,26,0.34) 100%)",zIndex:0}}/>
 
       <div style={{position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg, ${C.silver}, ${C.silverText})`}}/>
       <div style={{position:"absolute",bottom:"-20%",left:"-10%",width:"50%",height:"80%",background:`radial-gradient(ellipse, rgba(138,150,163,0.08) 0%, transparent 60%)`,pointerEvents:"none"}}/>
-      <div>
+      <div style={{position:"relative",zIndex:1,textShadow:"0 1px 10px rgba(0,0,0,0.22)"}}>
         <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:28}}>
           <div style={{width:20,height:1,background:C.silver}}/>
           <span style={{fontFamily:F,fontSize:9,letterSpacing:3,textTransform:"uppercase",color:C.silverText,fontWeight:600}}>{t.since15}</span>
@@ -533,11 +534,11 @@ body{overflow-x:hidden;background:#F5F4F1}
     </div>
     {/* RE Card — RIGHT */}
     <div className="track-card split-card" onClick={()=>setTrack("re")} style={{cursor:"pointer",background:`url('/images/hero-re.jpg') center/cover no-repeat`,border:`1px solid rgba(154,123,66,0.18)`,padding:mob?"32px 24px":"52px 44px",display:"flex",flexDirection:"column",justifyContent:"space-between",minHeight:mob?"auto":480,position:"relative",overflow:"hidden"}}>
-      <div style={{position:"absolute",inset:0,background:"linear-gradient(145deg,rgba(35,25,10,0.78) 0%,rgba(45,32,12,0.62) 60%,rgba(30,20,8,0.72) 100%)",zIndex:0}}/>
+      <div style={{position:"absolute",inset:0,background:"linear-gradient(145deg,rgba(40,29,10,0.38) 0%,rgba(52,36,12,0.18) 60%,rgba(36,24,10,0.28) 100%)",zIndex:0}}/>
 
       <div style={{position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg, ${C.gold}, ${C.goldText})`}}/>
       <div style={{position:"absolute",bottom:"-20%",right:"-10%",width:"50%",height:"80%",background:`radial-gradient(ellipse, rgba(154,123,66,0.08) 0%, transparent 60%)`,pointerEvents:"none"}}/>
-      <div>
+      <div style={{position:"relative",zIndex:1,textShadow:"0 1px 10px rgba(0,0,0,0.22)"}}>
         <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:28}}>
           <div style={{width:20,height:1,background:C.gold}}/>
           <span style={{fontFamily:F,fontSize:9,letterSpacing:3,textTransform:"uppercase",color:C.goldText,fontWeight:600}}>{t.since06}</span>
@@ -640,13 +641,18 @@ body{overflow-x:hidden;background:#F5F4F1}
       </div>
     </R>
     <R delay={0.16}>
-      <div style={{display:"flex",flexDirection:"column",gap:5}}>
-        {td.sec.map((s,i)=>(
-          <div key={i} style={{padding:"11px 16px",background:"#fff",border:"1px solid #EAE8E4",transition:"all 0.2s",cursor:"default"}} onMouseEnter={e=>{e.currentTarget.style.borderColor=tc.a;e.currentTarget.style.transform="translateX(2px)"}} onMouseLeave={e=>{e.currentTarget.style.borderColor="#EAE8E4";e.currentTarget.style.transform="translateX(0)"}}>
-            <div style={{fontFamily:F,fontSize:10,letterSpacing:2,textTransform:"uppercase",color:tc.a,fontWeight:700,marginBottom:2}}>{s}</div>
-            <div style={{fontFamily:F,fontSize:12,color:"#6B7280"}}>{td.secDetail[i]}</div>
-          </div>
-        ))}
+      <div style={{display:"flex",flexDirection:"column",gap:18}}>
+        <div style={{background:"#fff",border:"1px solid #EAE8E4",overflow:"hidden"}}>
+          <img src="/images/team-photo.jpg" alt="InVentures team" style={{width:"100%",height:mob?220:300,objectFit:"cover",display:"block"}} />
+        </div>
+        <div style={{display:"flex",flexDirection:"column",gap:5}}>
+          {td.sec.map((s,i)=>(
+            <div key={i} style={{padding:"11px 16px",background:"#fff",border:"1px solid #EAE8E4",transition:"all 0.2s",cursor:"default"}} onMouseEnter={e=>{e.currentTarget.style.borderColor=tc.a;e.currentTarget.style.transform="translateX(2px)"}} onMouseLeave={e=>{e.currentTarget.style.borderColor="#EAE8E4";e.currentTarget.style.transform="translateX(0)"}}>
+              <div style={{fontFamily:F,fontSize:10,letterSpacing:2,textTransform:"uppercase",color:tc.a,fontWeight:700,marginBottom:2}}>{s}</div>
+              <div style={{fontFamily:F,fontSize:12,color:"#6B7280"}}>{td.secDetail[i]}</div>
+            </div>
+          ))}
+        </div>
       </div>
     </R>
   </div>
@@ -683,7 +689,12 @@ body{overflow-x:hidden;background:#F5F4F1}
 <div style={{maxWidth:1060,margin:"0 auto",position:"relative",zIndex:1}}>
   <R><Label color={tc.a}>{td.tLabel}</Label></R>
   <R delay={0.04}><H2D>{td.tTitle}</H2D></R>
-  <R delay={0.08}><p style={{fontFamily:F,fontSize:15,color:C.dim,lineHeight:1.8,maxWidth:600,marginBottom:44}}>{td.tP}</p></R>
+  <R delay={0.08}><p style={{fontFamily:F,fontSize:15,color:C.dim,lineHeight:1.8,maxWidth:600,marginBottom:30}}>{td.tP}</p></R>
+  <R delay={0.1}>
+    <div style={{marginBottom:30,border:`1px solid ${C.border}`,overflow:"hidden",background:"#fff"}}>
+      <img src={track==="tech"?"/images/article-ai-disruption.jpg":"/images/article-re-residential.jpg"} alt="" style={{width:"100%",height:mob?220:320,objectFit:"cover",display:"block"}} />
+    </div>
+  </R>
   <div style={{display:"grid",gridTemplateColumns:mob?"1fr":"1fr 1fr",gap:16,marginBottom:40}}>
     <R delay={0.12}>
       <div style={{padding:"28px 24px",border:`1px solid ${C.border}`,background:"#EAEAE6",height:"100%"}}>
