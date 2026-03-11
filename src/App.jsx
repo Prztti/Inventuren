@@ -641,21 +641,30 @@ body{overflow-x:hidden;background:#F5F4F1}
       </div>
     </R>
     <R delay={0.16}>
-      <div style={{display:"flex",flexDirection:"column",gap:18}}>
-        <div style={{background:"#fff",border:"1px solid #EAE8E4",overflow:"hidden"}}>
-          <img src="/images/team-photo-real.jpg" alt="InVentures team" style={{width:"100%",height:mob?220:300,objectFit:"cover",display:"block"}} />
-        </div>
-        <div style={{display:"flex",flexDirection:"column",gap:5}}>
-          {td.sec.map((s,i)=>(
-            <div key={i} style={{padding:"11px 16px",background:"#fff",border:"1px solid #EAE8E4",transition:"all 0.2s",cursor:"default"}} onMouseEnter={e=>{e.currentTarget.style.borderColor=tc.a;e.currentTarget.style.transform="translateX(2px)"}} onMouseLeave={e=>{e.currentTarget.style.borderColor="#EAE8E4";e.currentTarget.style.transform="translateX(0)"}}>
-              <div style={{fontFamily:F,fontSize:10,letterSpacing:2,textTransform:"uppercase",color:tc.a,fontWeight:700,marginBottom:2}}>{s}</div>
-              <div style={{fontFamily:F,fontSize:12,color:"#6B7280"}}>{td.secDetail[i]}</div>
-            </div>
-          ))}
-        </div>
+      <div style={{display:"flex",flexDirection:"column",gap:5}}>
+        {td.sec.map((s,i)=>(
+          <div key={i} style={{padding:"11px 16px",background:"#fff",border:"1px solid #EAE8E4",transition:"all 0.2s",cursor:"default"}} onMouseEnter={e=>{e.currentTarget.style.borderColor=tc.a;e.currentTarget.style.transform="translateX(2px)"}} onMouseLeave={e=>{e.currentTarget.style.borderColor="#EAE8E4";e.currentTarget.style.transform="translateX(0)"}}>
+            <div style={{fontFamily:F,fontSize:10,letterSpacing:2,textTransform:"uppercase",color:tc.a,fontWeight:700,marginBottom:2}}>{s}</div>
+            <div style={{fontFamily:F,fontSize:12,color:"#6B7280"}}>{td.secDetail[i]}</div>
+          </div>
+        ))}
       </div>
     </R>
   </div>
+</div>
+</section>
+
+{/* TEAM */}
+<section style={{background:"#F0EEE9",padding:mob?"48px 20px":"72px 40px",borderTop:`1px solid ${C.border}`}}>
+<div style={{maxWidth:1060,margin:"0 auto"}}>
+  <R><Label color={tc.a}>{lang==="de"?"Team":lang==="cn"?"团队":"Team"}</Label></R>
+  <R delay={0.04}><h2 style={{fontFamily:F,fontSize:"clamp(24px,3vw,36px)",fontWeight:300,color:C.dark,marginBottom:12,letterSpacing:"-0.02em"}}>{lang==="de"?"Menschen, die InVentures tragen":lang==="cn"?"推动 InVentures 的团队":"The People Behind InVentures"}</h2></R>
+  <R delay={0.08}><p style={{fontFamily:F,fontSize:15,color:C.dim,lineHeight:1.8,maxWidth:620,marginBottom:28}}>{lang==="de"?"Ein interdisziplinäres Team aus Real-Estate-, Tech-, Data- und Advisory-Hintergründen — mit unternehmerischem Blick und operativer Nähe zum Markt.":lang==="cn"?"一个跨房地产、科技、数据与咨询背景的跨学科团队。":"An interdisciplinary team across real estate, technology, data and advisory — combining strategic perspective with operating proximity to the market."}</p></R>
+  <R delay={0.12}>
+    <div style={{background:"#fff",border:`1px solid ${C.border}`,overflow:"hidden"}}>
+      <img src="/images/team-photo-real.jpg" alt="InVentures team" style={{width:"100%",height:mob?240:440,objectFit:"cover",display:"block"}} />
+    </div>
+  </R>
 </div>
 </section>
 
