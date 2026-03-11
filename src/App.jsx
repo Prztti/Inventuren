@@ -414,10 +414,10 @@ body{overflow-x:hidden;background:#F5F4F1}
   <div style={{display:"flex",alignItems:"center",gap:16}}>
     <a href="#" onClick={e=>{e.preventDefault();setTrack(null);}} style={{textDecoration:"none",display:"flex",flexDirection:"column"}}>
       <div style={{display:"flex",alignItems:"baseline",gap:4}}>
-        <span style={{fontFamily:F,fontSize:15,fontWeight:700,color:C.white,letterSpacing:2.5}}>INVENTURES</span>
-        <span style={{fontFamily:F,fontSize:9,letterSpacing:1.5,color:C.dim}}>.at</span>
+        <span style={{fontFamily:F,fontSize:15,fontWeight:700,color:C.goldText,letterSpacing:2.5}}>INVENTURES</span>
+        <span style={{fontFamily:F,fontSize:9,letterSpacing:1.5,color:C.goldText}}>.at</span>
       </div>
-      <span style={{fontFamily:F,fontSize:7.5,letterSpacing:1.5,color:C.dim,textTransform:"uppercase",marginTop:1}}>InVentures GmbH</span>
+      <span style={{fontFamily:F,fontSize:7.5,letterSpacing:1.5,color:C.gold,textTransform:"uppercase",marginTop:1}}>InVentures GmbH</span>
     </a>
     {track && (
       <div style={{display:"flex",alignItems:"center",gap:6,padding:"3px 10px",background:tc.as,borderRadius:2}}>
@@ -471,7 +471,7 @@ body{overflow-x:hidden;background:#F5F4F1}
   {/* Claim header */}
   <div style={{position:"relative",zIndex:2,textAlign:"center",padding:mob?"90px 20px 32px":"100px 40px 40px",animation:"fadeUp 0.7s ease both"}}>
     <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:8,marginBottom:16}}>
-      <span style={{fontFamily:F,fontSize:9,letterSpacing:3,textTransform:"uppercase",color:C.dim,fontWeight:500}}>InVentures GmbH · Vienna</span>
+      <span style={{fontFamily:F,fontSize:9,letterSpacing:3,textTransform:"uppercase",color:C.goldText,fontWeight:500}}>InVentures GmbH · Vienna</span>
       <div style={{width:32,height:1,background:C.silver,opacity:0.4}}/>
     </div>
     <h1 style={{fontFamily:F,fontSize:mob?"clamp(28px,8vw,52px)":"clamp(36px,5vw,64px)",fontWeight:300,color:C.dark,letterSpacing:"-0.025em",lineHeight:1.1}}>
@@ -549,6 +549,7 @@ body{overflow-x:hidden;background:#F5F4F1}
     <line x1="700" y1="0" x2="1200" y2="500" stroke={tc.a} strokeWidth="0.4"/>
   </svg>
   <div style={{maxWidth:1060,margin:"0 auto",padding:mob?"100px 20px 48px":"140px 40px 80px",position:"relative",width:"100%",zIndex:1}}>
+    <R><button onClick={()=>{setTrack(null);window.scrollTo({top:0,behavior:"smooth"});}} style={{fontFamily:F,fontSize:11,letterSpacing:1,color:tc.at,background:"none",border:`1px solid ${tc.a}40`,borderRadius:2,cursor:"pointer",padding:"6px 14px",marginBottom:28,display:"inline-flex",alignItems:"center",gap:6,transition:"all 0.2s"}} onMouseEnter={e=>{e.currentTarget.style.background=tc.as;e.currentTarget.style.borderColor=tc.a;}} onMouseLeave={e=>{e.currentTarget.style.background="none";e.currentTarget.style.borderColor=`${tc.a}40`;}}><span style={{fontSize:13}}>←</span>{lang==="de"?"Zurück zur Übersicht":lang==="cn"?"返回总览":"Back to overview"}</button></R>
     <R><div style={{display:"flex",alignItems:"center",gap:8,marginBottom:14}}><div style={{width:24,height:1,background:tc.a}}/><span style={{fontFamily:F,fontSize:9,letterSpacing:3,textTransform:"uppercase",color:tc.at,fontWeight:600}}>{track==="re"?t.since06:t.since15}</span></div></R>
     <R delay={0.08}><h1 style={{fontFamily:F,fontSize:"clamp(32px,4.5vw,58px)",fontWeight:300,color:C.dark,lineHeight:1.15,marginBottom:24,maxWidth:760,letterSpacing:"-0.025em"}}>
       <span style={{color:C.dark,fontWeight:300}}>Deep Analysis.</span><br/>
@@ -813,8 +814,8 @@ body{overflow-x:hidden;background:#F5F4F1}
 <div style={{maxWidth:1060,margin:"0 auto",padding:mob?"0 20px":"0",display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:8}}>
   <div style={{display:"flex",flexDirection:"column"}}>
     <div style={{display:"flex",alignItems:"baseline",gap:4}}>
-      <span style={{fontFamily:F,fontSize:12,fontWeight:700,color:C.white,letterSpacing:2.5}}>INVENTURES</span>
-      <span style={{fontFamily:F,fontSize:8,letterSpacing:1.5,color:C.dim}}>.at</span>
+      <span style={{fontFamily:F,fontSize:12,fontWeight:700,color:C.goldText,letterSpacing:2.5}}>INVENTURES</span>
+      <span style={{fontFamily:F,fontSize:8,letterSpacing:1.5,color:C.goldText}}>.at</span>
     </div>
     <span style={{fontFamily:F,fontSize:8,color:C.dim,letterSpacing:1,marginTop:2}}>{t.ent}</span>
   </div>
