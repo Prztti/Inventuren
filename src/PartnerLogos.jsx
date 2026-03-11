@@ -97,8 +97,21 @@ function LogoTile({ logo }) {
   );
 }
 
-export default function PartnerLogos({ lang = "en" }) {
+export default function PartnerLogos({ lang = "en", compact = false }) {
   const tx = txTitles[lang] || txTitles.en;
+
+  if (compact) return (
+    <div style={{ padding: "24px 40px", borderTop: "1px solid #EAE8E4", borderBottom: "1px solid #EAE8E4", background: "#F5F4F1" }}>
+      <div style={{ maxWidth: 1060, margin: "0 auto", display: "flex", alignItems: "center", gap: 32, flexWrap: "wrap", justifyContent: "center" }}>
+        <span style={{ fontFamily: "'Neue Haas Grotesk Display Pro', Inter, sans-serif", fontSize: 9, letterSpacing: 2.5, textTransform: "uppercase", color: "rgba(26,26,26,0.35)", whiteSpace: "nowrap" }}>
+          {lang === "de" ? "Ausgewählte Partner" : "Selected Partners"}
+        </span>
+        {logos.map((logo, i) => (
+          <LogoTile key={i} logo={logo} />
+        ))}
+      </div>
+    </div>
+  );
 
   return (
     <div>

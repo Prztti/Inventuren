@@ -5,6 +5,7 @@ import Timeline from "./Timeline";
 import ContactForm from "./ContactForm";
 import PartnerLogos from "./PartnerLogos";
 import InVenturesView from "./InVenturesView";
+import TrackArticle from "./TrackArticle";
 import LegalModal from "./LegalModal";
 
 const C = {
@@ -555,6 +556,8 @@ body{overflow-x:hidden;background:#F5F4F1}
   </div>
   {/* Timeline — Company Track Record */}
   <Timeline lang={lang} />
+  {/* Logo trust-bar below timeline on landing */}
+  {!track && <R><PartnerLogos lang={lang} compact={true} /></R>}
 </section>
 )}
 
@@ -803,6 +806,9 @@ body{overflow-x:hidden;background:#F5F4F1}
 <section id="news">
   <NewsSection track={track} lang={lang} />
 </section>
+
+{/* TRACK ARTICLE — AI or RE specific thought leadership */}
+<TrackArticle track={track} lang={lang} />
 
 {/* INVENTURES VIEW — Thought Leadership */}
 <InVenturesView lang={lang} />
