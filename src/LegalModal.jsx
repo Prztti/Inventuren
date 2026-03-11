@@ -104,7 +104,7 @@ function Impressum() {
         <Field label="Adresse">Garbergasse 14/7, 1060 Wien, Österreich</Field>
         <Field label="Firmenbuchnummer">FN 342972 x beim Handelsgericht Wien</Field>
         <Field label="UID-Nummer">ATU65716433</Field>
-        <Field label="Geschäftsführung">David [●] — Geschäftsführer</Field>
+        <Field label="Geschäftsführung">Mag. David Brainin — Geschäftsführer</Field>
         <Field label="E-Mail"><A href="mailto:info@inventures.at">info@inventures.at</A></Field>
         <Field label="Website">inventures.at</Field>
       </Section>
