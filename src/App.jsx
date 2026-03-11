@@ -533,7 +533,7 @@ body{overflow-x:hidden;background:#F5F4F1}
       </div>
     </div>
     {/* RE Card — RIGHT */}
-    <div className="track-card split-card" onClick={()=>setTrack("re")} style={{cursor:"pointer",background:`url('/images/hero-re-vienna-zinshaus.jpg') center/cover no-repeat`,border:`1px solid rgba(154,123,66,0.18)`,padding:mob?"32px 24px":"52px 44px",display:"flex",flexDirection:"column",justifyContent:"space-between",minHeight:mob?"auto":480,position:"relative",overflow:"hidden"}}>
+    <div className="track-card split-card" onClick={()=>setTrack("re")} style={{cursor:"pointer",background:`url('/images/hero-re.jpg') center/cover no-repeat`,border:`1px solid rgba(154,123,66,0.18)`,padding:mob?"32px 24px":"52px 44px",display:"flex",flexDirection:"column",justifyContent:"space-between",minHeight:mob?"auto":480,position:"relative",overflow:"hidden"}}>
       <div style={{position:"absolute",inset:0,background:"linear-gradient(145deg,rgba(40,29,10,0.38) 0%,rgba(52,36,12,0.18) 60%,rgba(36,24,10,0.28) 100%)",zIndex:0}}/>
 
       <div style={{position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg, ${C.gold}, ${C.goldText})`}}/>
@@ -692,7 +692,7 @@ body{overflow-x:hidden;background:#F5F4F1}
   <R delay={0.08}><p style={{fontFamily:F,fontSize:15,color:C.dim,lineHeight:1.8,maxWidth:600,marginBottom:30}}>{td.tP}</p></R>
   <R delay={0.1}>
     <div style={{marginBottom:30,border:`1px solid ${C.border}`,overflow:"hidden",background:"#fff"}}>
-      <img src={track==="tech"?"/images/article-ai-disruption.jpg":"/images/hero-re-vienna-zinshaus.jpg"} alt="" style={{width:"100%",height:mob?220:320,objectFit:"cover",display:"block"}} />
+      <img src={track==="tech"?"/images/article-ai-disruption.jpg":"/images/hero-re-vienna-zinshaus.jpg"} alt="" style={{width:"100%",height:mob?220:320,objectFit:"cover",objectPosition:track==="re"?"center 35%":"center",display:"block"}} />
     </div>
   </R>
   <div style={{display:"grid",gridTemplateColumns:mob?"1fr":"1fr 1fr",gap:16,marginBottom:40}}>
