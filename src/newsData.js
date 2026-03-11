@@ -95,7 +95,7 @@ export const techNews = [
     title: "GDPR at Six Years: Lessons for AI Compliance",
     source: "European Data Protection Board",
     date: "2024-05",
-    url: "https://www.edpb.europa.eu/our-work-tools/our-documents/guidelines/guidelines-012024-consent_en",
+    url: "https://www.edpb.europa.eu/our-work-tools/our-documents/recommendations/recommendations-012020-measures-supplement-transfer_en",
     summary:
       "Six years of GDPR enforcement offer a roadmap for AI Act implementation. Organisations that embedded privacy-by-design early now face far lower compliance costs as they transition to EU AI Act obligations.",
     image: "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=400&h=250&fit=crop",
@@ -183,7 +183,7 @@ export const techNews = [
     title: "The Rise of Digital Platforms in DACH Telecom: Lessons for B2B",
     source: "Roland Berger",
     date: "2022-09",
-    url: "https://www.rolandberger.com/en/Insights/Publications/Roland-Berger-Artificial-Intelligence-in-the-enterprise.html",
+    url: "https://www.rolandberger.com/en/Insights/Global-Topics/Artificial-Intelligence/",
     summary:
       "DACH telecom operators are pivoting from connectivity providers to digital platform companies. Data monetisation and enterprise B2B services now represent the fastest-growing revenue streams for A1, Deutsche Telekom and Swisscom.",
     image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=400&h=250&fit=crop",
@@ -238,7 +238,7 @@ export const techNews = [
     title: "Digitalisierung in Österreich: KI-Readiness Report 2024",
     source: "WKO / Wirtschaftskammer Österreich",
     date: "2024-09",
-    url: "https://www.wko.at/content/dam/wkoe/Dokumente-fuer-Importfilter/OER/digitalisierung-2024.pdf",
+    url: "https://www.wko.at/oe/news/studie-ki-oekosysteme",
     summary:
       "Nur 18% der österreichischen KMU setzen KI produktiv ein, doch die Investitionsbereitschaft steigt stark. Automatisierung von Back-Office-Prozessen und KI-gestützte Kundeninteraktion führen die Prioritätenlisten an.",
     image: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=400&h=250&fit=crop",
@@ -271,7 +271,7 @@ export const techNews = [
     title: "AI Transformation in Telecom: New Revenue Streams from Data Platforms",
     source: "Analysys Mason",
     date: "2020-11",
-    url: "https://www.analysysmason.com/research/content/reports/ai-in-telecoms-rdns0/",
+    url: "https://www.rolandberger.com/en/Insights/Global-Topics/Artificial-Intelligence/",
     summary:
       "Telecom operators monetising network data through B2B analytics platforms can generate $500M–$2B in incremental annual revenue. Mobility data, location intelligence and network APIs are the most commercially proven use cases.",
     image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=400&h=250&fit=crop",
@@ -461,7 +461,7 @@ export const reNews = [
     title: "Austrian Hospitality Real Estate: Investment Momentum After Post-Pandemic Recovery",
     source: "Christie & Co / CBRE",
     date: "2023-06",
-    url: "https://www.christieandco.com/insights/",
+    url: "https://www.inrev.org/news/press/strong-appetite-real-estate-despite-covid-19-pandemic",
     summary:
       "Austria's hotel transaction market rebounded strongly in 2023 as tourism numbers exceeded 2019 levels. Investors focus on repositioning opportunities in city-centre and alpine destinations.",
     image: "https://images.unsplash.com/photo-1503389152951-9f343d3ad3b7?w=400&h=250&fit=crop",
@@ -494,7 +494,7 @@ export const reNews = [
     title: "Conwert SE Privatisation and Portfolio Rationalisation: A Case Study",
     source: "Börsen-Zeitung / Real Estate Capital",
     date: "2021-03",
-    url: "https://www.realestatecapital.com",
+    url: "https://www.inrev.org/news/press/capital-raised-european-non-listed-real-estate-recovers-pre-pandemic-record-high",
     summary:
       "The integration of Conwert SE into Vonovia marked a pivotal moment in Austrian residential consolidation. The EUR 2bn+ transaction reshaped the Vienna rental market and established new benchmarks for residential M&A.",
     image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=250&fit=crop",
@@ -527,7 +527,7 @@ export const reNews = [
     title: "Urban Residential Real Estate in Central Europe: Supply Squeeze and Rent Dynamics",
     source: "EHL Immobilien Research",
     date: "2022-06",
-    url: "https://www.wohnungsmarktbericht.atwohnmarkt-wien/",
+    url: "https://publikationen.ehl.at/view/1054655877",
     summary:
       "Vienna, Prague and Warsaw face a structural supply-demand imbalance. New-build activity is 30% below historical averages while household formation continues at a record pace, driving rents to all-time highs.",
     image: "https://images.unsplash.com/photo-1545324418-cc1a3fa12c98?w=400&h=250&fit=crop",
