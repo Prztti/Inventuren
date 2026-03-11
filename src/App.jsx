@@ -643,7 +643,7 @@ body{overflow-x:hidden;background:#F5F4F1}
     <R delay={0.16}>
       <div style={{display:"flex",flexDirection:"column",gap:18}}>
         <div style={{background:"#fff",border:"1px solid #EAE8E4",overflow:"hidden"}}>
-          <img src="/images/team-photo.jpg" alt="InVentures team" style={{width:"100%",height:mob?220:300,objectFit:"cover",display:"block"}} />
+          <img src="/images/team-photo-real.jpg" alt="InVentures team" style={{width:"100%",height:mob?220:300,objectFit:"cover",display:"block"}} />
         </div>
         <div style={{display:"flex",flexDirection:"column",gap:5}}>
           {td.sec.map((s,i)=>(
@@ -692,7 +692,7 @@ body{overflow-x:hidden;background:#F5F4F1}
   <R delay={0.08}><p style={{fontFamily:F,fontSize:15,color:C.dim,lineHeight:1.8,maxWidth:600,marginBottom:30}}>{td.tP}</p></R>
   <R delay={0.1}>
     <div style={{marginBottom:30,border:`1px solid ${C.border}`,overflow:"hidden",background:"#fff"}}>
-      <img src={track==="tech"?"/images/article-ai-disruption.jpg":"/images/article-re-residential.jpg"} alt="" style={{width:"100%",height:mob?220:320,objectFit:"cover",display:"block"}} />
+      <img src={track==="tech"?"/images/article-ai-disruption.jpg":"/images/article-re-residential-real.jpg"} alt="" style={{width:"100%",height:mob?220:320,objectFit:"cover",display:"block"}} />
     </div>
   </R>
   <div style={{display:"grid",gridTemplateColumns:mob?"1fr":"1fr 1fr",gap:16,marginBottom:40}}>
