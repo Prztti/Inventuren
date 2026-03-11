@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import AvatarWidget from "./AvatarWidget";
+import NewsSection from "./NewsSection";
 
 const C = {
   bg:"#F5F4F1",surface:"#ECEAE6",surfaceAlt:"#E4E2DD",
@@ -24,7 +25,7 @@ en:{
     tech:{label:"Tech & AI",sub:"AI Transformation · Implementation · Accelerator"},
     re:{label:"Real Estate &\nHospitality",sub:"Sale & Acquisition · Transactions · Project Leadership"},
   },
-  nav:["Profile","Partners","Services","Network","Process","Contact"],
+  nav:["Profile","Partners","Services","Network","Process","News","Contact"],
   partnerTitle:"Clients & Partners",fo:"+ undisclosed Family Offices",
   fLabel:"Founder",
   fQ:"Thinking like a lawyer. Acting like an entrepreneur. Executing with high Impact.",
@@ -131,7 +132,7 @@ de:{
     tech:{label:"Tech & AI",sub:"AI-Transformation · Implementierung · Accelerator"},
     re:{label:"Real Estate &\nHospitality",sub:"Verkauf & Ankauf · Transaktionen · Projektleitung"},
   },
-  nav:["Profil","Partner","Leistungen","Netzwerk","Prozess","Kontakt"],
+  nav:["Profil","Partner","Leistungen","Netzwerk","Prozess","News","Kontakt"],
   partnerTitle:"Kunden & Partner",fo:"+ undisclosed Family Offices",
   fLabel:"Gründer",
   fQ:"Juristisch denkend. Unternehmerisch handelnd. Mit hohem Impact umsetzend.",
@@ -238,7 +239,7 @@ cn:{
     tech:{label:"技术与AI",sub:"AI转型 · 实施 · 加速器"},
     re:{label:"房地产与\n酒店业",sub:"销售与收购 · 交易 · 项目领导"},
   },
-  nav:["创始人","合作伙伴","服务","网络","流程","联系"],
+  nav:["创始人","合作伙伴","服务","网络","流程","新闻","联系"],
   partnerTitle:"客户与合作伙伴",fo:"+ 非公开家族办公室",
   fLabel:"创始人",
   fQ:"以法律思维思考。以企业家方式行动。以高成效付诸实施。",
@@ -338,7 +339,7 @@ cn:{
 },
 };
 
-const anchors=["profil","partner","leistungen","netzwerk","prozess","kontakt"];
+const anchors=["profil","partner","leistungen","netzwerk","prozess","news","kontakt"];
 const partnersRE=["Wiener Privatbank SE","EPI Immobilien Group","Akkadia Immobilien","Conwert SE","Trimmobilien Gruppe","Arcotel Hotels","Plaza Group","Ibis Group","Raiffeisen Bank International","DSC Rechtsanwälte","Herbst Kinsky RAe","Uniqa Versicherung","Stadt Wien"];
 const partnersTech=["Deutsche Telekom","A1 Group","Orange","Zain Group","Viettel","Huawei","Ericsson","European Stroke Organisation","SFU Wien","Donau Universitaet Krems","Raiffeisen Bank International","Wiener Privatbank SE","Uniqa Versicherung","Lansky & Partner RAe","ORF","Integrationshaus Wien"];
 
@@ -785,6 +786,11 @@ body{overflow-x:hidden;background:#F5F4F1}
     </div>
   </R>
 </div>
+</section>
+
+{/* NEWS */}
+<section id="news">
+  <NewsSection track={track} lang={lang} />
 </section>
 
 {/* CONTACT */}
