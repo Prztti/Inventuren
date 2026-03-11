@@ -101,10 +101,10 @@ function Impressum() {
 
       <Section title="Angaben gemäß § 5 E-Commerce-Gesetz (ECG)">
         <Field label="Unternehmen">InVentures GmbH</Field>
-        <Field label="Adresse">Wiedner Hauptstraße 63, 1045 Wien, Österreich</Field>
-        <Field label="Firmenbuchnummer">FN [●] beim Handelsgericht Wien</Field>
-        <Field label="UID-Nummer">ATU[●]</Field>
-        <Field label="Geschäftsführung">[●]</Field>
+        <Field label="Adresse">Garbergasse 14/7, 1060 Wien, Österreich</Field>
+        <Field label="Firmenbuchnummer">FN 342972 x beim Handelsgericht Wien</Field>
+        <Field label="UID-Nummer">ATU65716433</Field>
+        <Field label="Geschäftsführung">David [●] — Geschäftsführer</Field>
         <Field label="E-Mail"><A href="mailto:info@inventures.at">info@inventures.at</A></Field>
         <Field label="Website">inventures.at</Field>
       </Section>
@@ -185,7 +185,7 @@ function Datenschutz() {
       <Section title="1. Verantwortlicher (Art. 4 Nr. 7 DSGVO)">
         <P>
           <strong>InVentures GmbH</strong><br />
-          Wiedner Hauptstraße 63, 1045 Wien, Österreich<br />
+          Garbergasse 14/7, 1060 Wien, Österreich<br />
           E-Mail: <A href="mailto:info@inventures.at">info@inventures.at</A><br />
           Website: inventures.at
         </P>
