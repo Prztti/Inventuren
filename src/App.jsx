@@ -508,11 +508,11 @@ body{overflow-x:hidden;background:#F5F4F1}
   <div className="split-grid" style={{display:"grid",gridTemplateColumns:"1fr 1fr",flex:1,gap:mob?12:20,padding:mob?"0 12px 24px":"0 40px 48px",maxWidth:1200,margin:"0 auto",width:"100%",position:"relative",zIndex:2}}>
     {/* Tech Card — LEFT */}
     <div className="track-card split-card" onClick={()=>setTrack("tech")} style={{cursor:"pointer",background:`url('/images/hero-tech.jpg') center/cover no-repeat`,border:`1px solid rgba(138,150,163,0.2)`,padding:mob?"32px 24px":"52px 44px",display:"flex",flexDirection:"column",justifyContent:"space-between",minHeight:mob?"auto":480,position:"relative",overflow:"hidden"}}>
-      <div style={{position:"absolute",inset:0,background:"linear-gradient(145deg,rgba(28,34,42,0.46) 0%,rgba(18,24,30,0.22) 60%,rgba(14,19,26,0.34) 100%)",zIndex:0}}/>
+      <div style={{position:"absolute",inset:0,background:"linear-gradient(90deg, rgba(16,20,26,0.78) 0%, rgba(18,24,30,0.58) 38%, rgba(18,24,30,0.30) 70%, rgba(18,24,30,0.22) 100%)",zIndex:0}}/>
 
       <div style={{position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg, ${C.silver}, ${C.silverText})`}}/>
       <div style={{position:"absolute",bottom:"-20%",left:"-10%",width:"50%",height:"80%",background:`radial-gradient(ellipse, rgba(138,150,163,0.08) 0%, transparent 60%)`,pointerEvents:"none"}}/>
-      <div style={{position:"relative",zIndex:1,textShadow:"0 1px 10px rgba(0,0,0,0.22)"}}>
+      <div style={{position:"relative",zIndex:1,textShadow:"0 1px 10px rgba(0,0,0,0.22)",background:"linear-gradient(180deg, rgba(10,14,18,0.18) 0%, rgba(10,14,18,0.08) 100%)",backdropFilter:"blur(2px)",padding:"12px 12px 10px 12px",margin:"-12px -12px 0 -12px"}}>
         <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:28}}>
           <div style={{width:20,height:1,background:C.silver}}/>
           <span style={{fontFamily:F,fontSize:9,letterSpacing:3,textTransform:"uppercase",color:C.silverText,fontWeight:600}}>{t.since15}</span>
@@ -534,11 +534,11 @@ body{overflow-x:hidden;background:#F5F4F1}
     </div>
     {/* RE Card — RIGHT */}
     <div className="track-card split-card" onClick={()=>setTrack("re")} style={{cursor:"pointer",background:`url('/images/hero-re.jpg') center/cover no-repeat`,border:`1px solid rgba(154,123,66,0.18)`,padding:mob?"32px 24px":"52px 44px",display:"flex",flexDirection:"column",justifyContent:"space-between",minHeight:mob?"auto":480,position:"relative",overflow:"hidden"}}>
-      <div style={{position:"absolute",inset:0,background:"linear-gradient(145deg,rgba(40,29,10,0.38) 0%,rgba(52,36,12,0.18) 60%,rgba(36,24,10,0.28) 100%)",zIndex:0}}/>
+      <div style={{position:"absolute",inset:0,background:"linear-gradient(90deg, rgba(38,24,10,0.76) 0%, rgba(50,34,12,0.54) 38%, rgba(50,34,12,0.28) 70%, rgba(50,34,12,0.18) 100%)",zIndex:0}}/>
 
       <div style={{position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg, ${C.gold}, ${C.goldText})`}}/>
       <div style={{position:"absolute",bottom:"-20%",right:"-10%",width:"50%",height:"80%",background:`radial-gradient(ellipse, rgba(154,123,66,0.08) 0%, transparent 60%)`,pointerEvents:"none"}}/>
-      <div style={{position:"relative",zIndex:1,textShadow:"0 1px 10px rgba(0,0,0,0.22)"}}>
+      <div style={{position:"relative",zIndex:1,textShadow:"0 1px 10px rgba(0,0,0,0.22)",background:"linear-gradient(180deg, rgba(26,16,6,0.16) 0%, rgba(26,16,6,0.06) 100%)",backdropFilter:"blur(2px)",padding:"12px 12px 10px 12px",margin:"-12px -12px 0 -12px"}}>
         <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:28}}>
           <div style={{width:20,height:1,background:C.gold}}/>
           <span style={{fontFamily:F,fontSize:9,letterSpacing:3,textTransform:"uppercase",color:C.goldText,fontWeight:600}}>{t.since06}</span>
