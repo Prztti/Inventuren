@@ -810,9 +810,6 @@ body{overflow-x:hidden;background:#F5F4F1}
 {/* TRACK ARTICLE — AI or RE specific thought leadership */}
 <TrackArticle track={track} lang={lang} />
 
-{/* INVENTURES VIEW — Thought Leadership */}
-<InVenturesView lang={lang} />
-
 {/* CONTACT */}
 <section id="kontakt" style={{background:C.cream,padding:mob?"48px 20px":"88px 40px"}}>
 <div style={{maxWidth:1060,margin:"0 auto"}}>
