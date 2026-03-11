@@ -687,7 +687,7 @@ body{overflow-x:hidden;background:#F5F4F1}
   <R delay={0.08}><p style={{fontFamily:F,fontSize:15,color:C.dim,lineHeight:1.8,maxWidth:600,marginBottom:30}}>{td.tP}</p></R>
   <R delay={0.1}>
     <div style={{marginBottom:30,border:`1px solid ${C.border}`,overflow:"hidden",background:"#fff"}}>
-      <img src={track==="tech"?"/images/article-ai-disruption.jpg":"/images/hero-re-vienna-zinshaus.jpg"} alt="" style={{width:"100%",height:mob?220:320,objectFit:"cover",objectPosition:track==="re"?"center 35%":"center",display:"block"}} />
+      <img src={track==="tech"?"/images/article-ai-disruption.jpg":"/images/re-expertise-reference.jpg"} alt="" style={{width:"100%",height:mob?220:320,objectFit:"cover",objectPosition:track==="re"?"center 72%":"center",filter:track==="re"?"brightness(1.04) contrast(1.02) saturate(0.92)":"none",display:"block"}} />
     </div>
   </R>
   <div style={{display:"grid",gridTemplateColumns:mob?"1fr":"1fr 1fr",gap:16,marginBottom:40}}>
