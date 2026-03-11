@@ -3,7 +3,9 @@ import { useState } from "react";
 const AVATAR_URL = "https://inventures-avatar.vercel.app";
 const gold = "#9A7B42";
 
+// Widget temporarily disabled — uncomment return null below to re-enable
 export default function AvatarWidget({ lang = "en" }) {
+  return null; // DISABLED
   const [open, setOpen] = useState(false);
 
   return (
