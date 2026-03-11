@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import AvatarWidget from "./AvatarWidget";
 
 const C = {
@@ -367,7 +367,17 @@ const Dot=({color})=><div style={{width:4,height:4,borderRadius:"50%",background
 
 export default function App(){
   const[lang,setLang]=useState("en");
-  const[track,setTrack]=useState(null);
+  const[track,setTrack_]=useState(()=>{
+    // Restore track from URL hash on load
+    const h=window.location.hash.replace("#","");
+    return (h==="tech"||h==="re")?h:null;
+  });
+  const setTrack=useCallback((t)=>{
+    setTrack_(t);
+    if(t){window.history.pushState({track:t},"",`#${t}`);}
+    else{window.history.pushState({track:null},"",window.location.pathname);}
+    window.scrollTo({top:0,behavior:"smooth"});
+  },[]);
   const[scrolled,setScrolled]=useState(false);
   const[menuOpen,setMenuOpen]=useState(false);
   const mob=useIsMobile();
@@ -376,7 +386,9 @@ export default function App(){
   const td=track?t[track]:null;
 
   useEffect(()=>{const h=()=>setScrolled(window.scrollY>40);window.addEventListener("scroll",h);return()=>window.removeEventListener("scroll",h);},[]);
-  useEffect(()=>{if(track){window.scrollTo({top:0,behavior:"instant"});}setMenuOpen(false);},[track]);
+  // Browser back/forward support
+  useEffect(()=>{const h=(e)=>{const t=e.state?.track||null;setTrack_(t);window.scrollTo({top:0,behavior:"smooth"});};window.addEventListener("popstate",h);return()=>window.removeEventListener("popstate",h);},[]);
+  useEffect(()=>{setMenuOpen(false);},[track]);
 
   const partners=track==="re"?partnersRE:track==="tech"?partnersTech:[...partnersTech,...partnersRE];
 
@@ -549,7 +561,7 @@ body{overflow-x:hidden;background:#F5F4F1}
     <line x1="700" y1="0" x2="1200" y2="500" stroke={tc.a} strokeWidth="0.4"/>
   </svg>
   <div style={{maxWidth:1060,margin:"0 auto",padding:mob?"100px 20px 48px":"140px 40px 80px",position:"relative",width:"100%",zIndex:1}}>
-    <R><button onClick={()=>{setTrack(null);window.scrollTo({top:0,behavior:"smooth"});}} style={{fontFamily:F,fontSize:11,letterSpacing:1,color:tc.at,background:"none",border:`1px solid ${tc.a}40`,borderRadius:2,cursor:"pointer",padding:"6px 14px",marginBottom:28,display:"inline-flex",alignItems:"center",gap:6,transition:"all 0.2s"}} onMouseEnter={e=>{e.currentTarget.style.background=tc.as;e.currentTarget.style.borderColor=tc.a;}} onMouseLeave={e=>{e.currentTarget.style.background="none";e.currentTarget.style.borderColor=`${tc.a}40`;}}><span style={{fontSize:13}}>←</span>{lang==="de"?"Zurück zur Übersicht":lang==="cn"?"返回总览":"Back to overview"}</button></R>
+    <R><button onClick={()=>setTrack(null)} style={{fontFamily:F,fontSize:11,letterSpacing:1,color:tc.at,background:"none",border:`1px solid ${tc.a}40`,borderRadius:2,cursor:"pointer",padding:"6px 14px",marginBottom:28,display:"inline-flex",alignItems:"center",gap:6,transition:"all 0.2s"}} onMouseEnter={e=>{e.currentTarget.style.background=tc.as;e.currentTarget.style.borderColor=tc.a;}} onMouseLeave={e=>{e.currentTarget.style.background="none";e.currentTarget.style.borderColor=`${tc.a}40`;}}><span style={{fontSize:13}}>←</span>{lang==="de"?"Zurück zur Übersicht":lang==="cn"?"返回总览":"Back to overview"}</button></R>
     <R><div style={{display:"flex",alignItems:"center",gap:8,marginBottom:14}}><div style={{width:24,height:1,background:tc.a}}/><span style={{fontFamily:F,fontSize:9,letterSpacing:3,textTransform:"uppercase",color:tc.at,fontWeight:600}}>{track==="re"?t.since06:t.since15}</span></div></R>
     <R delay={0.08}><h1 style={{fontFamily:F,fontSize:"clamp(32px,4.5vw,58px)",fontWeight:300,color:C.dark,lineHeight:1.15,marginBottom:24,maxWidth:760,letterSpacing:"-0.025em"}}>
       <span style={{color:C.dark,fontWeight:300}}>Deep Analysis.</span><br/>
