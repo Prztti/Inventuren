@@ -515,20 +515,20 @@ body{overflow-x:hidden;background:#F5F4F1}
       <div style={{position:"relative",zIndex:1,textShadow:"0 1px 10px rgba(0,0,0,0.22)",background:"linear-gradient(180deg, rgba(10,14,18,0.18) 0%, rgba(10,14,18,0.08) 100%)",backdropFilter:"blur(2px)",padding:"12px 12px 10px 12px",margin:"-12px -12px 0 -12px"}}>
         <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:28}}>
           <div style={{width:20,height:1,background:C.silver}}/>
-          <span style={{fontFamily:F,fontSize:9,letterSpacing:3,textTransform:"uppercase",color:C.silverText,fontWeight:600}}>{t.since15}</span>
+          <span style={{fontFamily:F,fontSize:9,letterSpacing:3,textTransform:"uppercase",color:"rgba(255,255,255,0.92)",fontWeight:600,background:"rgba(8,12,18,0.34)",padding:"4px 8px",borderRadius:2}}>{t.since15}</span>
         </div>
-        <h2 style={{fontFamily:F,fontSize:mob?"clamp(22px,5vw,38px)":"clamp(26px,3.5vw,44px)",fontWeight:300,color:"rgba(255,255,255,0.95)",lineHeight:1.15,letterSpacing:"-0.02em",marginBottom:20}}>{t.tracks.tech.label}</h2>
-        <p style={{fontFamily:F,fontSize:13,color:"rgba(255,255,255,0.62)",lineHeight:1.7,maxWidth:340}}>{t.tracks.tech.sub}</p>
+        <h2 style={{fontFamily:F,fontSize:mob?"clamp(22px,5vw,38px)":"clamp(26px,3.5vw,44px)",fontWeight:300,color:"#FFFFFF",lineHeight:1.15,letterSpacing:"-0.02em",marginBottom:20,textShadow:"0 2px 18px rgba(0,0,0,0.45)"}}>{t.tracks.tech.label}</h2>
+        <p style={{fontFamily:F,fontSize:13,color:"rgba(255,255,255,0.86)",lineHeight:1.7,maxWidth:340,textShadow:"0 1px 10px rgba(0,0,0,0.35)"}}>{t.tracks.tech.sub}</p>
       </div>
       <div>
         <div style={{display:"flex",flexWrap:"wrap",gap:6,marginBottom:28}}>
           {["AI Transformation","OPEX Reduction","GDPR/AI Act","Accelerator"].map(tag=>(
-            <span key={tag} style={{fontFamily:F,fontSize:9,letterSpacing:0.8,textTransform:"uppercase",fontWeight:600,padding:"3px 8px",background:"rgba(138,150,163,0.12)",color:C.silverText}}>{tag}</span>
+            <span key={tag} style={{fontFamily:F,fontSize:9,letterSpacing:0.8,textTransform:"uppercase",fontWeight:700,padding:"5px 9px",background:"rgba(9,14,22,0.52)",border:"1px solid rgba(255,255,255,0.14)",color:"rgba(255,255,255,0.94)",borderRadius:2}}>{tag}</span>
           ))}
         </div>
         <div style={{display:"flex",alignItems:"center",gap:10}}>
-          <span style={{fontFamily:F,fontSize:12,fontWeight:600,color:C.silver,letterSpacing:0.5}}>{lang==="de"?"Tech & AI entdecken":lang==="cn"?"了解技术与AI":"Explore Tech & AI"}</span>
-          <span style={{color:C.silver,fontSize:16}}>→</span>
+          <span style={{fontFamily:F,fontSize:12,fontWeight:700,color:"#FFFFFF",letterSpacing:0.5,background:"rgba(8,12,18,0.42)",padding:"8px 12px",borderRadius:2}}>{lang==="de"?"Tech & AI entdecken":lang==="cn"?"了解技术与AI":"Explore Tech & AI"}</span>
+          <span style={{color:"#FFFFFF",fontSize:16,textShadow:"0 1px 8px rgba(0,0,0,0.35)"}}>→</span>
         </div>
       </div>
     </div>
@@ -541,20 +541,20 @@ body{overflow-x:hidden;background:#F5F4F1}
       <div style={{position:"relative",zIndex:1,textShadow:"0 1px 10px rgba(0,0,0,0.22)",background:"linear-gradient(180deg, rgba(26,16,6,0.16) 0%, rgba(26,16,6,0.06) 100%)",backdropFilter:"blur(2px)",padding:"12px 12px 10px 12px",margin:"-12px -12px 0 -12px"}}>
         <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:28}}>
           <div style={{width:20,height:1,background:C.gold}}/>
-          <span style={{fontFamily:F,fontSize:9,letterSpacing:3,textTransform:"uppercase",color:C.goldText,fontWeight:600}}>{t.since06}</span>
+          <span style={{fontFamily:F,fontSize:9,letterSpacing:3,textTransform:"uppercase",color:"rgba(255,255,255,0.92)",fontWeight:600,background:"rgba(30,18,6,0.34)",padding:"4px 8px",borderRadius:2}}>{t.since06}</span>
         </div>
-        <h2 style={{fontFamily:F,fontSize:mob?"clamp(22px,5vw,38px)":"clamp(26px,3.5vw,44px)",fontWeight:300,color:"rgba(255,255,255,0.95)",lineHeight:1.15,letterSpacing:"-0.02em",whiteSpace:"pre-line",marginBottom:20}}>{t.tracks.re.label}</h2>
-        <p style={{fontFamily:F,fontSize:13,color:"rgba(255,255,255,0.62)",lineHeight:1.7,maxWidth:340}}>{t.tracks.re.sub}</p>
+        <h2 style={{fontFamily:F,fontSize:mob?"clamp(22px,5vw,38px)":"clamp(26px,3.5vw,44px)",fontWeight:300,color:"#FFFFFF",lineHeight:1.15,letterSpacing:"-0.02em",whiteSpace:"pre-line",marginBottom:20,textShadow:"0 2px 18px rgba(0,0,0,0.45)"}}>{t.tracks.re.label}</h2>
+        <p style={{fontFamily:F,fontSize:13,color:"rgba(255,255,255,0.86)",lineHeight:1.7,maxWidth:340,textShadow:"0 1px 10px rgba(0,0,0,0.35)"}}>{t.tracks.re.sub}</p>
       </div>
       <div>
         <div style={{display:"flex",flexWrap:"wrap",gap:6,marginBottom:28}}>
           {["Sale & Acquisition","Transactions","Project Mgmt","Hospitality"].map(tag=>(
-            <span key={tag} style={{fontFamily:F,fontSize:9,letterSpacing:0.8,textTransform:"uppercase",fontWeight:600,padding:"3px 8px",background:"rgba(154,123,66,0.1)",color:C.goldText}}>{tag}</span>
+            <span key={tag} style={{fontFamily:F,fontSize:9,letterSpacing:0.8,textTransform:"uppercase",fontWeight:700,padding:"5px 9px",background:"rgba(28,18,8,0.48)",border:"1px solid rgba(255,255,255,0.14)",color:"rgba(255,255,255,0.94)",borderRadius:2}}>{tag}</span>
           ))}
         </div>
         <div style={{display:"flex",alignItems:"center",gap:10}}>
-          <span style={{fontFamily:F,fontSize:12,fontWeight:600,color:C.gold,letterSpacing:0.5}}>{lang==="de"?"Real Estate entdecken":lang==="cn"?"了解房地产":"Explore Real Estate"}</span>
-          <span style={{color:C.gold,fontSize:16}}>→</span>
+          <span style={{fontFamily:F,fontSize:12,fontWeight:700,color:"#FFFFFF",letterSpacing:0.5,background:"rgba(30,18,6,0.42)",padding:"8px 12px",borderRadius:2}}>{lang==="de"?"Real Estate entdecken":lang==="cn"?"了解房地产":"Explore Real Estate"}</span>
+          <span style={{color:"#FFFFFF",fontSize:16,textShadow:"0 1px 8px rgba(0,0,0,0.35)"}}>→</span>
         </div>
       </div>
     </div>
