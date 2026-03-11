@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import AvatarWidget from "./AvatarWidget";
 
 const C = {
   bg:"#F5F4F1",surface:"#ECEAE6",surfaceAlt:"#E4E2DD",
@@ -827,6 +828,7 @@ body{overflow-x:hidden;background:#F5F4F1}
 </div>
 </footer>
 
+<AvatarWidget lang={lang} />
 </div>
   );
 }
