@@ -26,6 +26,11 @@ function AIArticle({ lang }) {
   const isDE = lang === "de";
   return (
     <div>
+      {/* Hero image */}
+      <div style={{ width: "100%", height: 300, marginBottom: 40, overflow: "hidden", borderRadius: 2, position: "relative" }}>
+        <img src="/images/article-ai-disruption.jpg" alt="" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 60%)" }} />
+      </div>
       <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
         <div style={{ width: 24, height: 1, background: C.silver }} />
         <span style={{ fontFamily: F, fontSize: 9, letterSpacing: 3, textTransform: "uppercase", color: C.silver, fontWeight: 600 }}>
@@ -116,6 +121,11 @@ function REArticle({ lang }) {
   const isDE = lang === "de";
   return (
     <div>
+      {/* Hero image — hotel/RE */}
+      <div style={{ width: "100%", height: 300, marginBottom: 40, overflow: "hidden", borderRadius: 2, position: "relative" }}>
+        <img src="/images/article-re-hotel.jpg" alt="" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 60%)" }} />
+      </div>
       <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
         <div style={{ width: 24, height: 1, background: C.gold }} />
         <span style={{ fontFamily: F, fontSize: 9, letterSpacing: 3, textTransform: "uppercase", color: C.gold, fontWeight: 600 }}>

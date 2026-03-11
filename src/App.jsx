@@ -506,7 +506,9 @@ body{overflow-x:hidden;background:#F5F4F1}
   {/* Split cards — Tech first, RE second */}
   <div className="split-grid" style={{display:"grid",gridTemplateColumns:"1fr 1fr",flex:1,gap:mob?12:20,padding:mob?"0 12px 24px":"0 40px 48px",maxWidth:1200,margin:"0 auto",width:"100%",position:"relative",zIndex:2}}>
     {/* Tech Card — LEFT */}
-    <div className="track-card split-card" onClick={()=>setTrack("tech")} style={{cursor:"pointer",background:`linear-gradient(145deg, #EFEFEF 0%, #E6E7E9 60%, #DDDFE2 100%)`,border:`1px solid rgba(138,150,163,0.2)`,padding:mob?"32px 24px":"52px 44px",display:"flex",flexDirection:"column",justifyContent:"space-between",minHeight:mob?"auto":480,position:"relative",overflow:"hidden"}}>
+    <div className="track-card split-card" onClick={()=>setTrack("tech")} style={{cursor:"pointer",background:`url('/images/hero-tech.jpg') center/cover no-repeat`,border:`1px solid rgba(138,150,163,0.2)`,padding:mob?"32px 24px":"52px 44px",display:"flex",flexDirection:"column",justifyContent:"space-between",minHeight:mob?"auto":480,position:"relative",overflow:"hidden"}}>
+      <div style={{position:"absolute",inset:0,background:"linear-gradient(145deg,rgba(30,35,42,0.82) 0%,rgba(20,25,32,0.65) 60%,rgba(15,20,28,0.75) 100%)",zIndex:0}}/>
+
       <div style={{position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg, ${C.silver}, ${C.silverText})`}}/>
       <div style={{position:"absolute",bottom:"-20%",left:"-10%",width:"50%",height:"80%",background:`radial-gradient(ellipse, rgba(138,150,163,0.08) 0%, transparent 60%)`,pointerEvents:"none"}}/>
       <div>
@@ -514,8 +516,8 @@ body{overflow-x:hidden;background:#F5F4F1}
           <div style={{width:20,height:1,background:C.silver}}/>
           <span style={{fontFamily:F,fontSize:9,letterSpacing:3,textTransform:"uppercase",color:C.silverText,fontWeight:600}}>{t.since15}</span>
         </div>
-        <h2 style={{fontFamily:F,fontSize:mob?"clamp(22px,5vw,38px)":"clamp(26px,3.5vw,44px)",fontWeight:300,color:C.dark,lineHeight:1.15,letterSpacing:"-0.02em",marginBottom:20}}>{t.tracks.tech.label}</h2>
-        <p style={{fontFamily:F,fontSize:13,color:C.dim,lineHeight:1.7,maxWidth:340}}>{t.tracks.tech.sub}</p>
+        <h2 style={{fontFamily:F,fontSize:mob?"clamp(22px,5vw,38px)":"clamp(26px,3.5vw,44px)",fontWeight:300,color:"rgba(255,255,255,0.95)",lineHeight:1.15,letterSpacing:"-0.02em",marginBottom:20}}>{t.tracks.tech.label}</h2>
+        <p style={{fontFamily:F,fontSize:13,color:"rgba(255,255,255,0.62)",lineHeight:1.7,maxWidth:340}}>{t.tracks.tech.sub}</p>
       </div>
       <div>
         <div style={{display:"flex",flexWrap:"wrap",gap:6,marginBottom:28}}>
@@ -530,7 +532,9 @@ body{overflow-x:hidden;background:#F5F4F1}
       </div>
     </div>
     {/* RE Card — RIGHT */}
-    <div className="track-card split-card" onClick={()=>setTrack("re")} style={{cursor:"pointer",background:`linear-gradient(145deg, #F5F0E8 0%, #EDE5D5 60%, #E8DEC8 100%)`,border:`1px solid rgba(154,123,66,0.18)`,padding:mob?"32px 24px":"52px 44px",display:"flex",flexDirection:"column",justifyContent:"space-between",minHeight:mob?"auto":480,position:"relative",overflow:"hidden"}}>
+    <div className="track-card split-card" onClick={()=>setTrack("re")} style={{cursor:"pointer",background:`url('/images/hero-re.jpg') center/cover no-repeat`,border:`1px solid rgba(154,123,66,0.18)`,padding:mob?"32px 24px":"52px 44px",display:"flex",flexDirection:"column",justifyContent:"space-between",minHeight:mob?"auto":480,position:"relative",overflow:"hidden"}}>
+      <div style={{position:"absolute",inset:0,background:"linear-gradient(145deg,rgba(35,25,10,0.78) 0%,rgba(45,32,12,0.62) 60%,rgba(30,20,8,0.72) 100%)",zIndex:0}}/>
+
       <div style={{position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg, ${C.gold}, ${C.goldText})`}}/>
       <div style={{position:"absolute",bottom:"-20%",right:"-10%",width:"50%",height:"80%",background:`radial-gradient(ellipse, rgba(154,123,66,0.08) 0%, transparent 60%)`,pointerEvents:"none"}}/>
       <div>
@@ -538,8 +542,8 @@ body{overflow-x:hidden;background:#F5F4F1}
           <div style={{width:20,height:1,background:C.gold}}/>
           <span style={{fontFamily:F,fontSize:9,letterSpacing:3,textTransform:"uppercase",color:C.goldText,fontWeight:600}}>{t.since06}</span>
         </div>
-        <h2 style={{fontFamily:F,fontSize:mob?"clamp(22px,5vw,38px)":"clamp(26px,3.5vw,44px)",fontWeight:300,color:C.dark,lineHeight:1.15,letterSpacing:"-0.02em",whiteSpace:"pre-line",marginBottom:20}}>{t.tracks.re.label}</h2>
-        <p style={{fontFamily:F,fontSize:13,color:C.dim,lineHeight:1.7,maxWidth:340}}>{t.tracks.re.sub}</p>
+        <h2 style={{fontFamily:F,fontSize:mob?"clamp(22px,5vw,38px)":"clamp(26px,3.5vw,44px)",fontWeight:300,color:"rgba(255,255,255,0.95)",lineHeight:1.15,letterSpacing:"-0.02em",whiteSpace:"pre-line",marginBottom:20}}>{t.tracks.re.label}</h2>
+        <p style={{fontFamily:F,fontSize:13,color:"rgba(255,255,255,0.62)",lineHeight:1.7,maxWidth:340}}>{t.tracks.re.sub}</p>
       </div>
       <div>
         <div style={{display:"flex",flexWrap:"wrap",gap:6,marginBottom:28}}>
