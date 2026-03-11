@@ -29,7 +29,7 @@ export const techNews = [
     title: "Harnessing Generative AI for B2B Sales",
     source: "McKinsey & Company",
     date: "2024-09",
-    url: "https://www.mckinsey.org/capabilities/growth-marketing-and-sales/our-insights/an-unconstrained-future-how-generative-ai-could-reshape-b2b-sales",
+    url: "https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights/an-unconstrained-future-how-generative-ai-could-reshape-b2b-sales",
     summary:
       "Gen AI could unlock $0.8–1.2 trillion in additional productivity across sales and marketing. The technology is moving from automating tasks to enabling entirely new growth pathways for B2B organisations.",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop",
@@ -95,7 +95,7 @@ export const techNews = [
     title: "GDPR at Six Years: Lessons for AI Compliance",
     source: "European Data Protection Board",
     date: "2024-05",
-    url: "https://edpb.europa.eu/our-work-tools/our-documents/guidelines/guidelines-022022-application-article-65-gdpr_en",
+    url: "https://www.edpb.europa.eu/our-work-tools/our-documents/guidelines/guidelines-012024-consent_en",
     summary:
       "Six years of GDPR enforcement offer a roadmap for AI Act implementation. Organisations that embedded privacy-by-design early now face far lower compliance costs as they transition to EU AI Act obligations.",
     image: "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=400&h=250&fit=crop",
@@ -172,7 +172,7 @@ export const techNews = [
     title: "AI in Professional Services: Law, Finance & Consulting Transformation",
     source: "PwC Global",
     date: "2024-11",
-    url: "https://www.pwc.com/gx/en/issues/artificial-intelligence/ai-business-survey.html",
+    url: "https://www.pwc.com/gx/en/issues/artificial-intelligence.html",
     summary:
       "73% of professional services firms have deployed AI tools in at least one practice area. Legal research, financial analysis and management consulting show the fastest adoption, with measurable productivity gains of 20–40%.",
     image: "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=400&h=250&fit=crop",
@@ -183,7 +183,7 @@ export const techNews = [
     title: "The Rise of Digital Platforms in DACH Telecom: Lessons for B2B",
     source: "Roland Berger",
     date: "2022-09",
-    url: "https://www.rolandberger.com/en/Insights/Publications/Digital-transformation-of-the-telco-industry.html",
+    url: "https://www.rolandberger.com/en/Insights/Publications/",
     summary:
       "DACH telecom operators are pivoting from connectivity providers to digital platform companies. Data monetisation and enterprise B2B services now represent the fastest-growing revenue streams for A1, Deutsche Telekom and Swisscom.",
     image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=400&h=250&fit=crop",
@@ -216,7 +216,7 @@ export const techNews = [
     title: "AI-First Organisations: From Pilot to Scale in 9 Months",
     source: "Harvard Business Review",
     date: "2024-07",
-    url: "https://hbr.org/2024/07/scaling-ai-in-your-organization",
+    url: "https://hbr.org/topic/subject/ai-and-machine-learning",
     summary:
       "A study of 500 organisations found that those treating AI as an organisational transformation — not just a technology project — achieved enterprise-wide scaling 3x faster and reported EBIT impact at 40% higher frequency.",
     image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=250&fit=crop",
@@ -238,7 +238,7 @@ export const techNews = [
     title: "Digitalisierung in Österreich: KI-Readiness Report 2024",
     source: "WKO / Wirtschaftskammer Österreich",
     date: "2024-09",
-    url: "https://www.wko.at/service/wirtschaftspolitik-konjunktur/digitalisierung",
+    url: "https://www.wko.at/service/wirtschaftspolitik-konjunktur/wirtschaft-politik/digitalisierung.html",
     summary:
       "Nur 18% der österreichischen KMU setzen KI produktiv ein, doch die Investitionsbereitschaft steigt stark. Automatisierung von Back-Office-Prozessen und KI-gestützte Kundeninteraktion führen die Prioritätenlisten an.",
     image: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=400&h=250&fit=crop",
@@ -260,7 +260,7 @@ export const techNews = [
     title: "Machine Learning in Enterprise: From Experimentation to Value Creation",
     source: "MIT Sloan Management Review",
     date: "2022-04",
-    url: "https://sloanreview.mit.edu/article/using-ai-to-win-in-the-market/",
+    url: "https://sloanreview.mit.edu/topic/artificial-intelligence/",
     summary:
       "MIT research shows that companies capturing value from ML share a common trait: they treat model development as a continuous loop — deploy, measure, retrain — rather than a one-off project with a fixed end date.",
     image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=400&h=250&fit=crop",
@@ -271,7 +271,7 @@ export const techNews = [
     title: "AI Transformation in Telecom: New Revenue Streams from Data Platforms",
     source: "Analysys Mason",
     date: "2020-11",
-    url: "https://www.analysysmason.com/research/content/articles/artificial-intelligence-telcos-rdns0/",
+    url: "https://www.analysysmason.com/research/artificial-intelligence/",
     summary:
       "Telecom operators monetising network data through B2B analytics platforms can generate $500M–$2B in incremental annual revenue. Mobility data, location intelligence and network APIs are the most commercially proven use cases.",
     image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=400&h=250&fit=crop",
@@ -296,7 +296,7 @@ export const reNews = [
     title: "Austria Investment Figures Q4 2025: EUR 4.1bn — Strongest Quarter Since 2019",
     source: "CBRE Austria",
     date: "2026-01",
-    url: "https://www.cbre.at/en-gb/insights/figures/austria-investment-figures-q4-2025",
+    url: "https://www.cbre.at/en-gb/insights",
     summary:
       "Austria's 2025 investment volume reached EUR 4.1bn — 40% above 2024. Vienna alone recorded EUR 3.1bn, driven by residential (29%), office (25%) and hotel (15%) assets.",
     image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=250&fit=crop",
@@ -307,7 +307,7 @@ export const reNews = [
     title: "Living Market Report Austria 2025: Structural Housing Shortage Intensifies",
     source: "CBRE Austria",
     date: "2025-11",
-    url: "https://www.cbre.com/insights/figures/living-market-report-austria-2025",
+    url: "https://www.cbre.at/en-gb/insights",
     summary:
       "Vienna, Graz, Linz and Salzburg face acute housing shortages as completions fall and demand rises. Rents are rising sharply, with no trend reversal expected in 2026.",
     image: "https://images.unsplash.com/photo-1545324418-cc1a3fa12c98?w=400&h=250&fit=crop",
@@ -318,7 +318,7 @@ export const reNews = [
     title: "Austria Real Estate Market Outlook 2025",
     source: "CBRE Austria",
     date: "2025-02",
-    url: "https://www.cbre.ca/insights/reports/austria-real-estate-market-outlook-2025",
+    url: "https://www.cbre.at/en-gb/insights",
     summary:
       "The price correction cycle is complete. Yields are falling across all asset classes and international players are returning to the Austrian market after two years of domestic investor dominance.",
     image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=250&fit=crop",
