@@ -60,9 +60,9 @@ en:{
   cP:"For strategic enquiries, partnership opportunities or accelerator applications.",
   loc:"Vienna, Austria",ent:"InVentures GmbH",entSub:"formerly Inside Holding & Real Estate GmbH (est. 2010)",
   re:{
-    heroP:"Over EUR 450M in transactions across residential, commercial and hospitality. Deal structuring, project leadership and hands-on execution — from sale to acquisition.",
+    heroP:"Over EUR 600M in transactions across residential, commercial and hospitality. Deal structuring, project leadership and hands-on execution — from sale to acquisition.",
     ctaA:"Explore Real Estate",ctaB:"Services",
-    stats:[{v:"€600m+",l:"Transaction volume advised"},{v:"€35m+",l:"VC & growth capital mobilised"},{v:"€12m+",l:"Research grants secured"},{v:"20+",l:"Years cross-sector expertise"},{v:"40+",l:"Projects in DACH & MENA"},{v:"6",l:"Industry verticals"}],
+    stats:[{v:"€600m+",l:"Transaction volume advised"},{v:"€45m+",l:"VC & growth capital mobilised"},{v:"€12m+",l:"Research grants secured"},{v:"20+",l:"Years cross-sector expertise"},{v:"40+",l:"Projects in DACH & MENA"},{v:"6",l:"Industry verticals"}],
     fP1:"Lawyer and serial CEO with over 25 years of real estate and hospitality experience. Transaction record exceeding EUR 450 million across residential, commercial and hotel portfolios.",
     fP2:"Trusted advisor and project lead for institutional investors, family offices and developers across Austria, MENA and beyond. Active network partner with EPI Immobilien Group and leading Austrian hospitality operators.",
     secLabel:"Focus Areas",
@@ -95,7 +95,7 @@ en:{
   tech:{
     heroP:"Strategic sparring, AI-driven enterprise transformation and disruptive Agentic AI implementation. OPEX reduction and new revenue streams — measurable within 6 to 9 months.",
     ctaA:"Discover AI Transformation",ctaB:"Services",
-    stats:[{v:"€600m+",l:"Transaction volume advised"},{v:"€35m+",l:"VC & growth capital mobilised"},{v:"€12m+",l:"Research grants secured"},{v:"20+",l:"Years cross-sector expertise"},{v:"40+",l:"Projects in DACH & MENA"},{v:"6",l:"Industry verticals"}],
+    stats:[{v:"€600m+",l:"Transaction volume advised"},{v:"€45m+",l:"VC & growth capital mobilised"},{v:"€12m+",l:"Research grants secured"},{v:"20+",l:"Years cross-sector expertise"},{v:"40+",l:"Projects in DACH & MENA"},{v:"6",l:"Industry verticals"}],
     fP1:"Lawyer, startup founder and serial CEO with over 25 years of operational experience. Transaction record exceeding EUR 600 million across six sectors — from telecom to real estate, hospitality, science and social impact.",
     fP2:"Commissioned in 2015 as a pioneer by Deutsche Telekom and A1 Group to develop new digital revenue streams. Founder and CEO of Geolad GmbH — a multinational telecom data platform with 30+ employees and partners across EU and Asia.",
     fP3:"In-depth knowledge of GDPR and EU AI Act in theory and enterprise practice.",
@@ -169,9 +169,9 @@ de:{
   cP:"Für strategische Anfragen, Partnerschaftsmöglichkeiten oder Accelerator-Bewerbungen.",
   loc:"Wien, Österreich",ent:"InVentures GmbH",entSub:"vormals Inside Holding & Real Estate GmbH (gegr. 2010)",
   re:{
-    heroP:"Über EUR 450 Mio. in Transaktionen in Wohn-, Gewerbe- und Hospitality-Immobilien. Deal-Strukturierung, Projektleitung und operative Umsetzung — vom Verkauf bis zum Ankauf.",
+    heroP:"Über EUR 600 Mio. in Transaktionen in Wohn-, Gewerbe- und Hospitality-Immobilien. Deal-Strukturierung, Projektleitung und operative Umsetzung — vom Verkauf bis zum Ankauf.",
     ctaA:"Real Estate entdecken",ctaB:"Leistungen",
-    stats:[{v:"€600m+",l:"Beratenes Transaktionsvolumen"},{v:"€35m+",l:"Mobilisiertes VC-Kapital"},{v:"€12m+",l:"Forschungsförderungen"},{v:"20+",l:"Jahre Expertise"},{v:"40+",l:"Projekte in DACH & MENA"},{v:"6",l:"Industrie-Vertikale"}],
+    stats:[{v:"€600m+",l:"Beratenes Transaktionsvolumen"},{v:"€45m+",l:"Mobilisiertes VC-Kapital"},{v:"€12m+",l:"Forschungsförderungen"},{v:"20+",l:"Jahre Expertise"},{v:"40+",l:"Projekte in DACH & MENA"},{v:"6",l:"Industrie-Vertikale"}],
     fP1:"Jurist und Mehrfach-CEO mit über 25 Jahren Immobilien- und Hospitality-Erfahrung. Transaction Record von über EUR 450 Mio. in Wohn-, Gewerbe- und Hotel-Portfolios.",
     fP2:"Vertrauenspartner und Projektleiter für institutionelle Investoren, Family Offices und Developer. Aktiver Netzwerkpartner der EPI Immobilien Group und führender österreichischer Hospitality-Operators.",
     secLabel:"Schwerpunkte",
@@ -204,7 +204,7 @@ de:{
   tech:{
     heroP:"Strategisches Sparring, AI-gestützte Unternehmenstransformation und disruptive Agentic-AI-Implementierung. OPEX-Reduktion und neue Revenue Streams – messbar innerhalb von 6 bis 9 Monaten.",
     ctaA:"AI-Transformation entdecken",ctaB:"Leistungen",
-    stats:[{v:"€600m+",l:"Beratenes Transaktionsvolumen"},{v:"€35m+",l:"Mobilisiertes VC-Kapital"},{v:"€12m+",l:"Forschungsförderungen"},{v:"20+",l:"Jahre Expertise"},{v:"40+",l:"Projekte in DACH & MENA"},{v:"6",l:"Industrie-Vertikale"}],
+    stats:[{v:"€600m+",l:"Beratenes Transaktionsvolumen"},{v:"€45m+",l:"Mobilisiertes VC-Kapital"},{v:"€12m+",l:"Forschungsförderungen"},{v:"20+",l:"Jahre Expertise"},{v:"40+",l:"Projekte in DACH & MENA"},{v:"6",l:"Industrie-Vertikale"}],
     fP1:"Jurist, Startup-Founder und Mehrfach-CEO mit über 25 Jahren operativer Erfahrung. Transaction Record von über 600 Mio. EUR über sechs Branchen hinweg.",
     fP2:"Bereits 2015 als Pionier von der Deutschen Telekom und A1 Group beauftragt, neue digitale Revenue Streams zu entwickeln. Gründer der Geolad GmbH – Telekom-Datenplattform mit 30+ Mitarbeitern und Partnern in EU und Asien.",
     fP3:"Fundierte Kenntnisse in DSGVO sowie EU AI Act in Theorie und Enterprise-Praxis.",
@@ -280,7 +280,7 @@ cn:{
   re:{
     heroP:"超过4.5亿欧元的住宅、商业和酒店地产交易记录。交易结构设计、项目领导和实际执行——从销售到收购。",
     ctaA:"了解房地产业务",ctaB:"服务内容",
-    stats:[{v:"€600m+",l:"顾问交易总额"},{v:"€35m+",l:"动员的VC资本"},{v:"€12m+",l:"研究资助"},{v:"20+",l:"跨行业专业经验"},{v:"40+",l:"DACH & MENA项目"},{v:"6",l:"行业板块"}],
+    stats:[{v:"€600m+",l:"顾问交易总额"},{v:"€45m+",l:"动员的VC资本"},{v:"€12m+",l:"研究资助"},{v:"20+",l:"跨行业专业经验"},{v:"40+",l:"DACH & MENA项目"},{v:"6",l:"行业板块"}],
     fP1:"法律专家及连续CEO，拥有超过25年的房地产和酒店业经验。交易记录超过4.5亿欧元。",
     fP2:"为机构投资者、家族办公室和开发商提供可信赖的顾问和项目领导服务。EPI不动产集团及奥地利领先酒店运营商的活跃网络合作伙伴。",
     secLabel:"重点领域",
@@ -313,7 +313,7 @@ cn:{
   tech:{
     heroP:"战略顾问、AI转型与实施以及运营公司建设。运营成本优化与新收入来源——6至9个月内可衡量成果。",
     ctaA:"了解AI转型方案",ctaB:"服务内容",
-    stats:[{v:"€600m+",l:"顾问交易总额"},{v:"€35m+",l:"动员的VC资本"},{v:"€12m+",l:"研究资助"},{v:"20+",l:"跨行业专业经验"},{v:"40+",l:"DACH & MENA项目"},{v:"6",l:"行业板块"}],
+    stats:[{v:"€600m+",l:"顾问交易总额"},{v:"€45m+",l:"动员的VC资本"},{v:"€12m+",l:"研究资助"},{v:"20+",l:"跨行业专业经验"},{v:"40+",l:"DACH & MENA项目"},{v:"6",l:"行业板块"}],
     fP1:"法律专家、连续创业者及多次担任CEO，拥有超过25年的运营经验。横跨六大行业的交易记录超过2亿欧元。",
     fP2:"2015年受德国电信和A1集团委托，率先开发新数字收入来源。Geolad GmbH创始人兼CEO——30+员工，合作伙伴遍布欧洲和亚洲。",
     secLabel:"行业领域",
