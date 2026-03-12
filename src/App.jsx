@@ -605,7 +605,7 @@ body{overflow-x:hidden;background:#F5F4F1}
       </div>
       {!mob && track==="tech" && (
         <R delay={0.2}>
-          <div style={{display:"flex",justifyContent:"center",alignItems:"flex-end",height:"100%"}}>
+          <div style={{display:"flex",justifyContent:"center",alignItems:"flex-start",marginTop:"-80px"}}>
             <img src="/images/ai-hero-visual.jpg" alt="Deep Analysis. Fast Execution. High Impact."
               style={{
                 width:320,height:420,objectFit:"contain",
