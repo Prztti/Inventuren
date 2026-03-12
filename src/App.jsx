@@ -74,7 +74,7 @@ en:{
     opex:["Strategic market and feasibility analysis","Full due diligence process: legal, financial, technical and commercial","Financing and equity structuring advisory","Stakeholder management and negotiation leadership","Regulatory and zoning process coordination"],
     revT:"Sale, Acquisition & Project Leadership",
     rev:["Buy-side and sell-side mandate management","Project development oversight from concept to handover","Hospitality repositioning and brand advisory","Cross-border deal sourcing (EU, MENA)","Distressed asset advisory and restructuring"],
-    kpis:[{v:"EUR 450M+",l:"transaction record across asset classes"},{v:"25+",l:"years of real estate advisory & execution"},{v:"EU & MENA",l:"transaction reach across markets"}],
+    kpis:[{v:"EUR 600M+",l:"transaction record across asset classes"},{v:"25+",l:"years of real estate advisory & execution"},{v:"CEE & Spain",l:"transaction reach across markets"}],
     sLabel:"Services",sTitle:"What we do in Real Estate & Hospitality",
     serv:[
       {n:"01",t:"Transaction Advisory",d:"Buy-side and sell-side mandate execution. Market analysis, full due diligence (legal, financial, technical), structuring, negotiation and successful closing.",tags:["Acquisitions","Sales","Due Diligence"]},
@@ -183,7 +183,7 @@ de:{
     opex:["Strategische Markt- und Machbarkeitsanalyse","Vollständiger Due-Diligence-Prozess: rechtlich, finanziell, technisch und kaufmännisch","Finanzierungs- und Eigenkapitalstrukturierung","Stakeholder-Management und Verhandlungsführung","Behörden- und Widmungsprozesskoordination"],
     revT:"Verkauf, Ankauf & Projektleitung",
     rev:["Buy-Side und Sell-Side Mandatsführung","Projektentwicklungssteuerung von der Planung bis zur Übergabe","Hospitality-Repositionierung und Markenberatung","Grenzüberschreitendes Deal-Sourcing (EU, MENA)","Advisory bei distressed Assets und Restrukturierung"],
-    kpis:[{v:"EUR 450M+",l:"Transaction Record über Asset-Klassen"},{v:"25+",l:"Jahre Immobilienberatung & Execution"},{v:"EU & MENA",l:"Transaktionsraum über Märkte"}],
+    kpis:[{v:"EUR 600M+",l:"Transaction Record über Asset-Klassen"},{v:"25+",l:"Jahre Immobilienberatung & Execution"},{v:"CEE & Spanien",l:"Transaktionsraum über Märkte"}],
     sLabel:"Leistungen",sTitle:"Was wir im Bereich Real Estate & Hospitality tun",
     serv:[
       {n:"01",t:"Transaktions-Advisory",d:"Buy-Side und Sell-Side Mandatsbetreuung. Marktanalyse, vollständige Due Diligence (rechtlich, finanziell, technisch), Strukturierung, Verhandlung und erfolgreiches Closing.",tags:["Ankauf","Verkauf","Due Diligence"]},
