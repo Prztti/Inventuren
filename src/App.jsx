@@ -96,8 +96,9 @@ en:{
     heroP:"Strategic sparring, AI-driven enterprise transformation and disruptive Agentic AI implementation. OPEX reduction and new revenue streams — measurable within 6 to 9 months.",
     ctaA:"Discover AI Transformation",ctaB:"Services",
     stats:[{v:"€600m+",l:"Transaction volume advised"},{v:"€35m+",l:"VC & growth capital mobilised"},{v:"€12m+",l:"Research grants secured"},{v:"20+",l:"Years cross-sector expertise"},{v:"40+",l:"Projects in DACH & MENA"},{v:"6",l:"Industry verticals"}],
-    fP1:"Lawyer, startup founder and serial CEO with over 25 years of operational experience. Transaction record exceeding EUR 600 million across six sectors — from telecom to real estate, hospitality, science and social impact. In-depth knowledge of GDPR and EU AI Act in theory and enterprise practice.",
+    fP1:"Lawyer, startup founder and serial CEO with over 25 years of operational experience. Transaction record exceeding EUR 600 million across six sectors — from telecom to real estate, hospitality, science and social impact.",
     fP2:"Commissioned in 2015 as a pioneer by Deutsche Telekom and A1 Group to develop new digital revenue streams. Founder and CEO of Geolad GmbH — a multinational telecom data platform with 30+ employees and partners across EU and Asia.",
+    fP3:"In-depth knowledge of GDPR and EU AI Act in theory and enterprise practice.",
     secLabel:"Sectors",
     sec:["Telecom & Data","Real Estate","Science & Education","Legal","Hospitality","Social Impact"],
     secDetail:["Deutsche Telekom, A1 Group, Orange, Zain, Viettel, Huawei, Ericsson","Conwert SE, Arcotel Hotels, Trimmobilien Gruppe","European Stroke Organisation, SFU Wien, Donau Universitaet Krems","Lansky & Partner RAe, Prader Rechtsanwaelte","Arcotel Hotels, Plaza Group, Ibis Group","Integrationshaus Wien, ORF, Red Bull, Verein vidid"],
@@ -203,8 +204,9 @@ de:{
     heroP:"Strategisches Sparring, AI-gestützte Unternehmenstransformation und disruptive Agentic-AI-Implementierung. OPEX-Reduktion und neue Revenue Streams – messbar innerhalb von 6 bis 9 Monaten.",
     ctaA:"AI-Transformation entdecken",ctaB:"Leistungen",
     stats:[{v:"€600m+",l:"Beratenes Transaktionsvolumen"},{v:"€35m+",l:"Mobilisiertes VC-Kapital"},{v:"€12m+",l:"Forschungsförderungen"},{v:"20+",l:"Jahre Expertise"},{v:"40+",l:"Projekte in DACH & MENA"},{v:"6",l:"Industrie-Vertikale"}],
-    fP1:"Jurist, Startup-Founder und Mehrfach-CEO mit über 25 Jahren operativer Erfahrung. Transaction Record von über 600 Mio. EUR über sechs Branchen hinweg. Fundierte Kenntnisse in DSGVO sowie EU AI Act in Theorie und Enterprise-Praxis.",
+    fP1:"Jurist, Startup-Founder und Mehrfach-CEO mit über 25 Jahren operativer Erfahrung. Transaction Record von über 600 Mio. EUR über sechs Branchen hinweg.",
     fP2:"Bereits 2015 als Pionier von der Deutschen Telekom und A1 Group beauftragt, neue digitale Revenue Streams zu entwickeln. Gründer der Geolad GmbH – Telekom-Datenplattform mit 30+ Mitarbeitern und Partnern in EU und Asien.",
+    fP3:"Fundierte Kenntnisse in DSGVO sowie EU AI Act in Theorie und Enterprise-Praxis.",
     secLabel:"Sektoren",
     sec:["Telekom & Data","Immobilien","Science & Education","Legal","Hospitality","Social Impact"],
     secDetail:["Deutsche Telekom, A1 Group, Orange, Zain, Viettel, Huawei, Ericsson","Conwert SE, Arcotel Hotels, Trimmobilien Gruppe","European Stroke Organisation, SFU Wien, Donau Universitaet Krems","Lansky & Partner RAe, Prader Rechtsanwaelte","Arcotel Hotels, Plaza Group, Ibis Group","Integrationshaus Wien, ORF, Red Bull, Verein vidid"],
@@ -659,7 +661,8 @@ body{overflow-x:hidden;background:#F5F4F1}
     <R delay={0.08}>
       <div>
         <p style={{fontFamily:F,fontSize:15,color:C.dark,lineHeight:1.8,marginBottom:16}}>{td.fP1}</p>
-        <p style={{fontFamily:F,fontSize:15,color:C.dark,lineHeight:1.8,marginBottom:24}}>{td.fP2}</p>
+        <p style={{fontFamily:F,fontSize:15,color:C.dark,lineHeight:1.8,marginBottom:16}}>{td.fP2}</p>
+        {td.fP3 && <p style={{fontFamily:F,fontSize:15,color:C.dark,lineHeight:1.8,marginBottom:24}}>{td.fP3}</p>}
         <div style={{padding:"16px 20px",borderLeft:`2px solid ${tc.a}`,background:C.warm}}>
           <p style={{fontFamily:F,fontSize:15,fontStyle:"italic",color:C.dark,lineHeight:1.6,margin:0}}>{t.fQ}</p>
         </div>
