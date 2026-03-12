@@ -10,23 +10,23 @@ const muted = "#8A919A";
 const events = [
   {
     year: "2005",
-    en: { title: "Portfolio Expansion — Trimm Real Estate Group", desc: "Co-investment in a Vienna residential portfolio expansion alongside the Trimm Immobilien Gruppe, marking the first significant co-investment mandate." },
-    de: { title: "Beteiligung & Skalierung Trimm Immobilien Gruppe", desc: "Co-Investment im Rahmen einer Portfolioerweiterung der Trimm Immobilien Gruppe Wien — erstes bedeutendes Co-Investment-Mandat." },
+    en: { title: "Portfolio Expansion — Trimmobilien Real Estate Group", desc: "Co-investment in a Vienna residential portfolio expansion alongside the Trimmobilien Real Estate Group, marking the first significant co-investment mandate." },
+    de: { title: "Beteiligung & Skalierung Trimmobilien Real Estate Group", desc: "Co-Investment im Rahmen einer Portfolioerweiterung der Trimmobilien Real Estate Group Wien — erstes bedeutendes Co-Investment-Mandat." },
   },
   {
     year: "2007",
-    en: { title: "Co-Investment — UNIQA Institutional Real Estate Package", desc: "Participated in a €600m institutional real estate package alongside UNIQA Group, spanning residential and commercial assets across Austria." },
-    de: { title: "Co-Investment UNIQA Immobilienpaket", desc: "Beteiligung an einem institutionellen Immobilienpaket von 600 Mio. EUR gemeinsam mit der UNIQA Group — Wohn- und Gewerbeimmobilien in ganz Österreich." },
+    en: { title: "Co-Investment alongside Conwert SE", desc: "Strategic co-investment alongside Conwert SE in a residential and commercial real estate portfolio across Austria and CEE, deepening institutional network." },
+    de: { title: "Co-Investment neben Conwert SE", desc: "Strategisches Co-Investment neben der Conwert SE in ein Wohn- und Gewerbeimmobilienportfolio in Österreich und CEE — Vertiefung des institutionellen Netzwerks." },
   },
   {
     year: "2009",
-    en: { title: "International Real Estate Desk — Lansky Ganzger + Partner", desc: "Established and led the International Real Estate Practice at Austria's premier law firm, structuring cross-border transactions for CEE and MENA clients." },
-    de: { title: "International Real Estate Desk bei Lansky Ganzger + Partner", desc: "Aufbau und Leitung der International Real Estate Practice in Österreichs führender Anwaltskanzlei — grenzüberschreitende Transaktionen für CEE- und MENA-Mandanten." },
+    en: { title: "International Real Estate Desk — Austria's Prominent Law Firm", desc: "Established and led the International Real Estate Desk at Austria's prominent law firm, structuring cross-border transactions for CEE and MENA clients." },
+    de: { title: "International Real Estate Desk bei österreichischer Spitzenanwaltskanzlei", desc: "Aufbau und Leitung des International Real Estate Desk in Österreichs führender Anwaltskanzlei — Strukturierung grenzüberschreitender Transaktionen für CEE- und MENA-Mandanten." },
   },
   {
-    year: "2010",
-    en: { title: "Wohnimpuls Partnership & LKW Walter Advisory", desc: "Strategic partnership with Wohnimpuls Bauträger on multiple residential projects; concurrently advised LKW Walter Group on real estate strategy and HQ expansion." },
-    de: { title: "Kooperation Wohnimpuls Bauträger", desc: "Strategische Partnerschaft mit Wohnimpuls für mehrere Wohnbauprojekte; zeitgleich Beratung der LKW Walter Gruppe zu Immobilienstrategie und Hauptquartier-Expansion." },
+    year: "2012",
+    en: { title: "Wohnimpuls Partnership", desc: "Strategic partnership with Wohnimpuls Bauträger on multiple residential development projects across Vienna and Austria." },
+    de: { title: "Kooperation Wohnimpuls Bauträger", desc: "Strategische Partnerschaft mit Wohnimpuls Bauträger für mehrere Wohnbauprojekte in Wien und Österreich." },
   },
   {
     year: "2013",
@@ -35,8 +35,8 @@ const events = [
   },
   {
     year: "2015",
-    en: { title: "First Telecom Data Hub Mandate", desc: "Awarded the first engagement for the development of a Telecom Science Data Hub — a pioneering B2B platform monetising network data for enterprise clients." },
-    de: { title: "Erstes Telco-Data-Hub-Mandat", desc: "Erste Beauftragung zur Entwicklung eines Telecom Science Data Hubs — einer wegweisenden B2B-Plattform zur Monetarisierung von Netzwerkdaten für Unternehmenskunden." },
+    en: { title: "First Telecom Data Hub Infrastructure Mandate — Deutsche Telekom", desc: "Awarded the first engagement for the development of a Telecom Science Data Hub infrastructure — a pioneering B2B platform monetising network data for enterprise clients, anchored by Deutsche Telekom." },
+    de: { title: "Erstes Telco-Data-Hub-Infrastrukturmandat — Deutsche Telekom", desc: "Erste Beauftragung zur Entwicklung einer Telecom Science Data Hub Infrastruktur — wegweisende B2B-Plattform zur Monetarisierung von Netzwerkdaten für Unternehmenskunden, verankert durch Deutsche Telekom." },
   },
   {
     year: "2017",
@@ -50,8 +50,8 @@ const events = [
   },
   {
     year: "2019",
-    en: { title: "EU Horizon Research Grant", desc: "Secured first EU Horizon research co-funding for AI-assisted urban mobility analytics — first €2.3m in public research grants, establishing the research funding track." },
-    de: { title: "EU-Horizon-Forschungsförderung", desc: "Erste EU-Horizon-Forschungskofinanzierung für KI-gestützte städtische Mobilitätsanalytik gesichert — erste 2,3 Mio. EUR an öffentlichen Forschungsgeldern." },
+    en: { title: "geolad CEO Handover & US IP Spin-Off Focus", desc: "Transitioned geolad operational leadership to a dedicated commercial CEO, enabling a strategic shift towards IP spin-offs and technology licensing opportunities in the US market." },
+    de: { title: "geolad CEO-Übergabe & Fokus auf US IP-Spin-Offs", desc: "Übergabe der operativen geolad-Führung an einen dedizierten Vermarktungs-CEO — strategische Neuausrichtung auf IP-Spin-Offs und Technologielizenzierungsmöglichkeiten im US-Markt." },
   },
   {
     year: "2020",
@@ -64,24 +64,19 @@ const events = [
     de: { title: "PropTech-Portfolioeinstieg", desc: "Erste direkte PropTech-Beteiligung an einer Wiener KI-gestützten Property-Management-Plattform — Seed-Runde gemeinsam mit österreichischen und deutschen Family Offices geleitet." },
   },
   {
-    year: "2022",
-    en: { title: "MENA Capital Bridge", desc: "Established structured access to Gulf Cooperation Council sovereign and family office capital for European real estate — first GCC-to-AT deal closed Q4 2022." },
-    de: { title: "MENA Capital Bridge", desc: "Strukturierter Zugang zu souveränem und Family-Office-Kapital aus dem Golfkooperationsrat für europäische Immobilien geschaffen — erster GCC-zu-AT-Deal im Q4 2022 abgeschlossen." },
-  },
-  {
     year: "2023",
-    en: { title: "AI Advisory Practice — Formal Launch", desc: "Launched InVentures AI Advisory — supporting B2B clients in AI strategy, EU AI Act readiness and data monetisation across DACH and CEE markets." },
-    de: { title: "AI Advisory Practice — offizieller Start", desc: "Start der InVentures AI Advisory — Begleitung von B2B-Kunden in KI-Strategie, EU-AI-Act-Readiness und Datenmonetarisierung in DACH und CEE." },
+    en: { title: "MENA Capital Bridge", desc: "Established structured access to Gulf Cooperation Council sovereign and family office capital for European real estate — first GCC-to-AT deal closed Q4 2023." },
+    de: { title: "MENA Capital Bridge", desc: "Strukturierter Zugang zu souveränem und Family-Office-Kapital aus dem Golfkooperationsrat für europäische Immobilien geschaffen — erster GCC-zu-AT-Deal im Q4 2023 abgeschlossen." },
   },
   {
     year: "2024",
-    en: { title: "InVentures GmbH — Relaunch", desc: "Rebranded and restructured as InVentures GmbH, consolidating 20 years of cross-sector expertise into a focused AI × Real Estate advisory platform." },
-    de: { title: "InVentures GmbH Relaunch", desc: "Rebranding und Restrukturierung als InVentures GmbH — 20 Jahre branchenübergreifende Expertise in einer fokussierten AI × Real Estate Advisory-Plattform konsolidiert." },
+    en: { title: "inventures.at — Platform Launch", desc: "Launch of inventures.at — InVentures' digital-first client interface for AI strategy, PropTech advisory and cross-border investment mandates." },
+    de: { title: "inventures.at — Platform Launch", desc: "Launch von inventures.at — InVentures' digitale Mandatsplattform für KI-Strategie, PropTech-Advisory und grenzüberschreitende Investitionsprojekte." },
   },
   {
     year: "2025",
-    en: { title: "inventures.at — Platform Launch", desc: "Launch of inventures.at — InVentures' digital-first client interface for AI strategy, PropTech advisory and cross-border investment mandates." },
-    de: { title: "inventures.at — Platform Launch", desc: "Launch von inventures.at — InVentures' digitale Mandatsplattform für KI-Strategie, PropTech-Advisory und grenzüberschreitende Investitionsprojekte." },
+    en: { title: "InVentures GmbH — Relaunch", desc: "Rebranded and restructured as InVentures GmbH, consolidating 20 years of cross-sector expertise into a focused AI × Real Estate advisory platform." },
+    de: { title: "InVentures GmbH Relaunch", desc: "Rebranding und Restrukturierung als InVentures GmbH — 20 Jahre branchenübergreifende Expertise in einer fokussierten AI × Real Estate Advisory-Plattform konsolidiert." },
   },
 ];
 
@@ -92,16 +87,15 @@ const txTitles = {
 };
 
 export default function Timeline({ lang = "en" }) {
-  const [expanded, setExpanded] = useState(null);
   const tx = txTitles[lang] || txTitles.en;
 
   return (
-    <section style={{ background: "linear-gradient(175deg, #F5F4F1 0%, #EDEBE6 50%, #F2F0EB 100%)", padding: "80px 0", position: "relative", overflow: "hidden" }}>
+    <section style={{ background: "linear-gradient(175deg, #F5F4F1 0%, #EDEBE6 50%, #F2F0EB 100%)", padding: "72px 0", position: "relative", overflow: "hidden" }}>
       <div style={{ position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", width: 1, height: "100%", background: `linear-gradient(to bottom, transparent, ${gold}33, ${gold}55, ${gold}33, transparent)`, pointerEvents: "none" }} />
 
       <div style={{ maxWidth: 1060, margin: "0 auto", padding: "0 40px" }}>
         {/* Header */}
-        <div style={{ textAlign: "center", marginBottom: 64 }}>
+        <div style={{ textAlign: "center", marginBottom: 48 }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, marginBottom: 12 }}>
             <div style={{ width: 24, height: 1, background: gold }} />
             <span style={{ fontFamily: F, fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: goldText, fontWeight: 600 }}>{tx.label}</span>
@@ -115,8 +109,7 @@ export default function Timeline({ lang = "en" }) {
         <div style={{ position: "relative" }}>
           {events.map((ev, i) => {
             const isLeft = i % 2 === 0;
-            const isExpanded = expanded === i;
-            const entry = lang === "de" ? ev.de : lang === "cn" ? ev.en : ev.en; // CN fallback to EN
+            const entry = lang === "de" ? ev.de : ev.en;
 
             return (
               <div
@@ -125,84 +118,63 @@ export default function Timeline({ lang = "en" }) {
                   display: "grid",
                   gridTemplateColumns: "1fr 56px 1fr",
                   gap: 0,
-                  marginBottom: 8,
+                  marginBottom: 6,
                   alignItems: "start",
                 }}
               >
                 {/* Left content */}
-                <div style={{ padding: "0 32px 0 0", textAlign: "right", paddingTop: 10 }}>
-                  {isLeft ? (
-                    <TimelineCard entry={entry} ev={ev} isExpanded={isExpanded} onToggle={() => setExpanded(isExpanded ? null : i)} goldText={goldText} gold={gold} dark={dark} dim={dim} muted={muted} F={F} align="right" />
-                  ) : null}
+                <div style={{ padding: "0 28px 0 0", textAlign: "right", paddingTop: 8 }}>
+                  {isLeft ? <TimelineCard entry={entry} isLast={i === events.length - 1} goldText={goldText} gold={gold} dark={dark} dim={dim} F={F} align="right" /> : null}
                 </div>
 
                 {/* Center spine */}
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "center", position: "relative" }}>
-                  {/* Year badge */}
                   <div style={{
-                    width: 48, height: 48, borderRadius: "50%",
+                    width: 44, height: 44, borderRadius: "50%",
                     background: i === events.length - 1 ? gold : "#fff",
                     border: `2px solid ${gold}`,
                     display: "flex", alignItems: "center", justifyContent: "center",
-                    flexShrink: 0, zIndex: 1, position: "relative",
+                    flexShrink: 0, zIndex: 1,
                     boxShadow: "0 2px 8px rgba(154,123,66,0.15)",
                   }}>
                     <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, color: i === events.length - 1 ? "#fff" : goldText, letterSpacing: 0.5 }}>{ev.year}</span>
                   </div>
                   {i < events.length - 1 && (
-                    <div style={{ width: 1, flex: 1, minHeight: 40, background: `linear-gradient(to bottom, ${gold}44, ${gold}22)`, marginTop: 2 }} />
+                    <div style={{ width: 1, flex: 1, minHeight: 24, background: `linear-gradient(to bottom, ${gold}44, ${gold}22)`, marginTop: 2 }} />
                   )}
                 </div>
 
                 {/* Right content */}
-                <div style={{ padding: "0 0 0 32px", paddingTop: 10 }}>
-                  {!isLeft ? (
-                    <TimelineCard entry={entry} ev={ev} isExpanded={isExpanded} onToggle={() => setExpanded(isExpanded ? null : i)} goldText={goldText} gold={gold} dark={dark} dim={dim} muted={muted} F={F} align="left" />
-                  ) : null}
+                <div style={{ padding: "0 0 0 28px", paddingTop: 8 }}>
+                  {!isLeft ? <TimelineCard entry={entry} isLast={i === events.length - 1} goldText={goldText} gold={gold} dark={dark} dim={dim} F={F} align="left" /> : null}
                 </div>
               </div>
             );
           })}
         </div>
-
-        {/* Mobile layout override via CSS injection */}
-        <style>{`
-          @media(max-width:768px){
-            .tl-grid{display:block!important}
-            .tl-left{display:none!important}
-            .tl-right{padding-left:16px!important;padding-right:0!important}
-            .tl-spine{width:40px!important}
-          }
-        `}</style>
       </div>
     </section>
   );
 }
 
-function TimelineCard({ entry, isExpanded, onToggle, goldText, gold, dark, dim, F, align }) {
+function TimelineCard({ entry, isLast, goldText, gold, dark, dim, F, align }) {
+  const [hovered, setHovered] = useState(false);
   return (
     <div
-      onClick={onToggle}
       style={{
-        cursor: "pointer",
-        padding: "14px 16px",
-        background: isExpanded ? "#fff" : "transparent",
-        border: `1px solid ${isExpanded ? gold + "44" : "transparent"}`,
-        transition: "all 0.25s",
+        padding: "12px 14px",
+        background: hovered ? "#fff" : "rgba(255,255,255,0.6)",
+        border: `1px solid ${hovered ? gold + "55" : gold + "22"}`,
+        transition: "all 0.2s",
         textAlign: align,
+        borderLeft: align === "left" ? `2px solid ${gold}44` : undefined,
+        borderRight: align === "right" ? `2px solid ${gold}44` : undefined,
       }}
-      onMouseEnter={e => { e.currentTarget.style.background = "#fff"; e.currentTarget.style.borderColor = gold + "33"; }}
-      onMouseLeave={e => { if (!isExpanded) { e.currentTarget.style.background = "transparent"; e.currentTarget.style.borderColor = "transparent"; } }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
-      <h4 style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: dark, marginBottom: 4, lineHeight: 1.4 }}>{entry.title}</h4>
-      {isExpanded && (
-        <p style={{ fontFamily: F, fontSize: 12, color: dim, lineHeight: 1.65, marginTop: 6 }}>{entry.desc}</p>
-      )}
-      {!isExpanded && (
-        <span style={{ fontFamily: F, fontSize: 10, color: goldText, letterSpacing: 0.5 }}>
-          {align === "right" ? "→" : "←"}
-        </span>
-      )}
+      <h4 style={{ fontFamily: F, fontSize: 12, fontWeight: 600, color: isLast ? goldText : dark, marginBottom: 5, lineHeight: 1.35 }}>{entry.title}</h4>
+      <p style={{ fontFamily: F, fontSize: 11, color: dim, lineHeight: 1.6, margin: 0 }}>{entry.desc}</p>
     </div>
   );
 }
