@@ -4,53 +4,43 @@ const F = "'DM Sans',sans-serif";
 const gold = "#9A7B42";
 const goldText = "#B8924E";
 
-const logos = [
-  {
-    name: "A1 Group",
-    url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/A1_Telekom_Austria_logo.svg/200px-A1_Telekom_Austria_logo.svg.png",
-  },
-  {
-    name: "Orange",
-    url: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Orange_logo.svg/200px-Orange_logo.svg.png",
-  },
-  {
-    name: "Huawei",
-    url: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Huawei_Logo.svg/200px-Huawei_Logo.svg.png",
-  },
-  {
-    name: "Ericsson",
-    url: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Ericsson_logo_2023.svg/200px-Ericsson_logo_2023.svg.png",
-  },
-  {
-    name: "UNIQA",
-    url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/UNIQA_logo.svg/200px-UNIQA_logo.svg.png",
-  },
-  {
-    name: "Deutsche Telekom",
-    url: null,
-  },
-  {
-    name: "Viettel",
-    url: null,
-  },
-  {
-    name: "Zain Group",
-    url: null,
-  },
+const logosTech = [
+  { name: "A1 Group", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/A1_Telekom_Austria_logo.svg/200px-A1_Telekom_Austria_logo.svg.png" },
+  { name: "Orange", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Orange_logo.svg/200px-Orange_logo.svg.png" },
+  { name: "Huawei", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Huawei_Logo.svg/200px-Huawei_Logo.svg.png" },
+  { name: "Ericsson", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Ericsson_logo_2023.svg/200px-Ericsson_logo_2023.svg.png" },
+  { name: "UNIQA", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/UNIQA_logo.svg/200px-UNIQA_logo.svg.png" },
+  { name: "Deutsche Telekom", url: null },
+  { name: "Viettel", url: null },
+  { name: "Zain Group", url: null },
+];
+
+const logosRE = [
+  { name: "Wiener Privatbank SE", url: null },
+  { name: "EPI Immobilien Group", url: null },
+  { name: "EPI Hospitality", url: null },
+  { name: "Uniqa Versicherung", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/UNIQA_logo.svg/200px-UNIQA_logo.svg.png" },
+  { name: "Arcotel Hotels", url: null },
+  { name: "Ibis Group", url: null },
+  { name: "Herbst Kinsky RAe", url: null },
+  { name: "Raiffeisen Bank International", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Raiffeisen_Bank_International_2020.svg/200px-Raiffeisen_Bank_International_2020.svg.png" },
 ];
 
 const txTitles = {
   en: {
     title: "Selected Partners & Ecosystem",
-    sub: "A curated network of institutional investors, telcos, technology leaders and advisory firms across DACH, MENA and Asia Pacific.",
+    sub: "A curated network of institutional investors, real estate groups, hospitality operators and advisory firms across Austria, CEE and Spain.",
+    subTech: "A curated network of institutional investors, telcos, technology leaders and advisory firms across DACH and Asia Pacific.",
   },
   de: {
     title: "Ausgewählte Partner & Ökosystem",
-    sub: "Ein kuratiertes Netzwerk aus institutionellen Investoren, Telekommunikationsunternehmen, Technologieführern und Beratungsunternehmen in DACH, MENA und dem asiatisch-pazifischen Raum.",
+    sub: "Ein kuratiertes Netzwerk aus institutionellen Investoren, Immobiliengruppen, Hospitality-Operatoren und Beratungsunternehmen in Österreich, CEE und Spanien.",
+    subTech: "Ein kuratiertes Netzwerk aus institutionellen Investoren, Telekommunikationsunternehmen, Technologieführern und Beratungsunternehmen in DACH und dem asiatisch-pazifischen Raum.",
   },
   cn: {
     title: "精选合作伙伴与生态系统",
-    sub: "涵盖DACH、中东北非及亚太地区的机构投资者、电信公司、技术领导者和咨询公司的精英网络。",
+    sub: "涵盖奥地利、中东欧及西班牙的机构投资者、房地产集团、酒店运营商和咨询公司的精英网络。",
+    subTech: "涵盖DACH及亚太地区的机构投资者、电信公司、技术领导者和咨询公司的精英网络。",
   },
 };
 
@@ -97,8 +87,10 @@ function LogoTile({ logo }) {
   );
 }
 
-export default function PartnerLogos({ lang = "en", compact = false }) {
+export default function PartnerLogos({ lang = "en", compact = false, track = "tech" }) {
   const tx = txTitles[lang] || txTitles.en;
+  const logos = track === "re" ? logosRE : logosTech;
+  const sub = track === "re" ? tx.sub : (tx.subTech || tx.sub);
 
   if (compact) return (
     <div style={{ padding: "24px 40px", borderTop: "1px solid #EAE8E4", borderBottom: "1px solid #EAE8E4", background: "#F5F4F1" }}>
@@ -119,7 +111,7 @@ export default function PartnerLogos({ lang = "en", compact = false }) {
         fontFamily: F, fontSize: 14, color: "#6B7280",
         lineHeight: 1.75, maxWidth: 580, marginBottom: 32,
       }}>
-        {tx.sub}
+        {sub}
       </p>
       <div style={{
         display: "grid",

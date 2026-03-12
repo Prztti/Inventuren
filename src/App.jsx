@@ -781,7 +781,7 @@ body{overflow-x:hidden;background:#F5F4F1}
   <R><Label color={tc.a}>{t.networkLabel}</Label></R>
   <R delay={0.04}><H2D>{t.networkTitle}</H2D></R>
   <R delay={0.08}><p style={{fontFamily:F,fontSize:15,color:C.dim,lineHeight:1.8,maxWidth:600,marginBottom:44}}>{t.networkP}</p></R>
-  <R delay={0.1}><PartnerLogos lang={lang} /></R>
+  <R delay={0.1}><PartnerLogos lang={lang} track={track||"tech"} /></R>
   <div style={{height:40}}/>
   <R delay={0.12}>
     <div style={{display:"grid",gridTemplateColumns:mob?"1fr 1fr":"repeat(5,1fr)",gap:12,marginBottom:32}}>
