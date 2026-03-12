@@ -250,9 +250,14 @@ export default function NewsSection({ track, lang }) {
   ];
 
   const [activeFilter, setActiveFilter] = useState("all");
+  const [page, setPage] = useState(0);
+  const PAGE_SIZE = 4;
   const filtered = articles.filter(
     FILTERS.find((f) => f.key === activeFilter).test
   );
+  const visible = filtered.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE);
+  const hasNext = (page + 1) * PAGE_SIZE < filtered.length;
+  const hasPrev = page > 0;
 
   return (
     <div
@@ -318,7 +323,7 @@ export default function NewsSection({ track, lang }) {
             return (
               <button
                 key={f.key}
-                onClick={() => setActiveFilter(f.key)}
+                onClick={() => { setActiveFilter(f.key); setPage(0); }}
                 style={{
                   fontFamily: F,
                   fontSize: 10,
@@ -356,23 +361,51 @@ export default function NewsSection({ track, lang }) {
         {filtered.length === 0 ? (
           <p style={{ fontFamily: F, fontSize: 13, color: C.dim }}>{lx.noResults}</p>
         ) : (
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: mob ? "1fr" : "repeat(2, 1fr)",
-              gap: mob ? 16 : 20,
-            }}
-          >
-            {filtered.map((article) => (
-              <NewsCard
-                key={article.id}
-                article={article}
-                tc={tc}
-                lx={lx}
-                mob={mob}
-              />
-            ))}
-          </div>
+          <>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: mob ? "1fr" : "repeat(2, 1fr)",
+                gap: mob ? 16 : 20,
+              }}
+            >
+              {visible.map((article) => (
+                <NewsCard
+                  key={article.id}
+                  article={article}
+                  tc={tc}
+                  lx={lx}
+                  mob={mob}
+                />
+              ))}
+            </div>
+            {/* Pagination row */}
+            <div style={{display:"flex",justifyContent:"flex-end",alignItems:"center",gap:8,marginTop:20}}>
+              {hasPrev && (
+                <button
+                  onClick={() => setPage(p => p - 1)}
+                  style={{fontFamily:F,fontSize:11,letterSpacing:1,textTransform:"uppercase",fontWeight:600,padding:"8px 18px",border:`1px solid ${C.border}`,background:"transparent",color:C.dim,cursor:"pointer",transition:"all 0.18s",outline:"none"}}
+                  onMouseEnter={e=>{e.currentTarget.style.borderColor=tc.a;e.currentTarget.style.color=tc.at}}
+                  onMouseLeave={e=>{e.currentTarget.style.borderColor=C.border;e.currentTarget.style.color=C.dim}}
+                >
+                  ← {lang==="de"?"Zurück":lang==="cn"?"上一页":"Previous"}
+                </button>
+              )}
+              <span style={{fontFamily:F,fontSize:10,color:C.dim,letterSpacing:0.5}}>
+                {page * PAGE_SIZE + 1}–{Math.min((page + 1) * PAGE_SIZE, filtered.length)} / {filtered.length}
+              </span>
+              {hasNext && (
+                <button
+                  onClick={() => setPage(p => p + 1)}
+                  style={{fontFamily:F,fontSize:11,letterSpacing:1,textTransform:"uppercase",fontWeight:600,padding:"8px 18px",border:`1px solid ${tc.a}`,background:tc.as,color:tc.at,cursor:"pointer",transition:"all 0.18s",outline:"none"}}
+                  onMouseEnter={e=>{e.currentTarget.style.background=tc.a;e.currentTarget.style.color="#fff"}}
+                  onMouseLeave={e=>{e.currentTarget.style.background=tc.as;e.currentTarget.style.color=tc.at}}
+                >
+                  {lang==="de"?"Weiter":lang==="cn"?"下一页":"More"} →
+                </button>
+              )}
+            </div>
+          </>
         )}
 
         {/* Bottom accent bar */}
