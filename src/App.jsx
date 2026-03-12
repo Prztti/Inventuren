@@ -571,7 +571,7 @@ body{overflow-x:hidden;background:#F5F4F1}
   {/* Timeline — Company Track Record */}
   <Timeline lang={lang} />
   {/* Logo trust-bar below timeline on landing */}
-  {!track && <R><PartnerLogos lang={lang} compact={true} /></R>}
+  {!track && <R><PartnerLogos lang={lang} compact={true} track="all" /></R>}
 </section>
 )}
 

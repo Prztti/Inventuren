@@ -89,7 +89,7 @@ function LogoTile({ logo }) {
 
 export default function PartnerLogos({ lang = "en", compact = false, track = "tech" }) {
   const tx = txTitles[lang] || txTitles.en;
-  const logos = track === "re" ? logosRE : logosTech;
+  const logos = track === "re" ? logosRE : track === "all" ? [...logosTech, ...logosRE] : logosTech;
   const sub = track === "re" ? tx.sub : (tx.subTech || tx.sub);
 
   if (compact) return (
