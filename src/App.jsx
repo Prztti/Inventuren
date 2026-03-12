@@ -597,9 +597,9 @@ body{overflow-x:hidden;background:#F5F4F1}
           </div>
         </R>
         <R delay={0.32}>
-          <div style={{display:"flex",gap:mob?20:48,marginTop:mob?40:64,flexWrap:"wrap"}}>
+          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:mob?"16px 24px":"20px 48px",marginTop:mob?40:64}}>
             {td.stats.map((s,i)=>(
-              <div key={i}><div style={{fontFamily:F,fontSize:22,fontWeight:700,color:tc.at}}>{s.v}</div><div style={{fontFamily:F,fontSize:10,letterSpacing:1.5,textTransform:"uppercase",color:C.dim,marginTop:3,fontWeight:500}}>{s.l}</div></div>
+              <div key={i} style={{alignSelf:"start"}}><div style={{fontFamily:F,fontSize:22,fontWeight:700,color:tc.at}}>{s.v}</div><div style={{fontFamily:F,fontSize:10,letterSpacing:1.5,textTransform:"uppercase",color:C.dim,marginTop:3,fontWeight:500}}>{s.l}</div></div>
             ))}
           </div>
         </R>
