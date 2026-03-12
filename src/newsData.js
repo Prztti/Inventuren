@@ -12,7 +12,6 @@ export const techNews = [
       "88% of organisations now use AI in at least one business function — up from 78% a year ago. Yet most remain in the piloting phase, with only one-third reporting enterprise-wide scaling.",
     image: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=400&h=250&fit=crop",
     year: 2025,
-  }
   },
   {
     id: 11,
@@ -24,7 +23,6 @@ export const techNews = [
       "Agentic AI systems capable of autonomous decision-making and multi-step execution are moving from research to production. Enterprises in finance, legal and operations are piloting AI agents as 'virtual employees'.",
     image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=250&fit=crop",
     year: 2025,
-  }
   },
   {
     id: 8,
@@ -36,7 +34,6 @@ export const techNews = [
       "89% of revenue organisations now use AI-powered tools. Predictive lead scoring delivers 89% accuracy, conversational AI cuts response times from 38 hours to 30 seconds, and revenue intelligence platforms improve forecast accuracy to ±5%.",
     image: "https://images.unsplash.com/photo-1568952433726-3896e3881c65?w=400&h=250&fit=crop",
     year: 2025,
-  }
   },
   {
     id: 4,
@@ -48,7 +45,6 @@ export const techNews = [
       "The EU AI Act — the world's first comprehensive AI regulation — establishes risk-based obligations for AI developers and deployers. High-risk applications require conformity assessments, DPIAs and ongoing monitoring.",
     image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400&h=250&fit=crop",
     year: 2024,
-  }
   },
   {
     id: 2,
@@ -60,7 +56,6 @@ export const techNews = [
       "Agentic AI — systems capable of autonomously planning and executing multi-step workflows — has emerged as one of the fastest-growing enterprise technology trends, with applications in IT, knowledge management and sales.",
     image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=400&h=250&fit=crop",
     year: 2025,
-  }
   },
   {
     id: 3,
@@ -72,7 +67,6 @@ export const techNews = [
       "Gen AI could unlock $0.8–1.2 trillion in additional productivity across sales and marketing. The technology is moving from automating tasks to enabling entirely new growth pathways for B2B organisations.",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop",
     year: 2024,
-  }
   },
   {
     id: 5,
@@ -84,7 +78,6 @@ export const techNews = [
       "AI Trust, Risk and Security Management (AI TRiSM) and Continuous Threat Exposure Management headline Gartner's top trends, alongside AI-augmented development and intelligent applications reshaping enterprise software.",
     image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=250&fit=crop",
     year: 2024,
-  }
   },
   {
     id: 6,
@@ -96,7 +89,6 @@ export const techNews = [
       "Generative AI could add $2.6–4.4 trillion annually to the global economy. Knowledge workers face the greatest transformation, with 60–70% of current work activities potentially automated.",
     image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=250&fit=crop",
     year: 2023,
-  }
   },
   {
     id: 7,
@@ -108,7 +100,6 @@ export const techNews = [
       "Vienna continues to attract AI and deep-tech founders from across the DACH region, with B2B SaaS and AI-driven automation companies leading a record year for Austrian startup investment.",
     image: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=400&h=250&fit=crop",
     year: 2024,
-  }
   },
   {
     id: 9,
@@ -120,7 +111,6 @@ export const techNews = [
       "Six years of GDPR enforcement offer a roadmap for AI Act implementation. Organisations that embedded privacy-by-design early now face far lower compliance costs as they transition to EU AI Act obligations.",
     image: "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=400&h=250&fit=crop",
     year: 2024,
-  }
   },
   {
     id: 10,
@@ -132,7 +122,6 @@ export const techNews = [
       "European telcos are leveraging AI for customer churn prediction, network optimisation and new B2B data products. Early movers report OPEX reductions of 15–25% and incremental revenues from anonymised mobility analytics.",
     image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=400&h=250&fit=crop",
     year: 2023,
-  }
   },
   {
     id: 12,
@@ -144,7 +133,6 @@ export const techNews = [
       "43% of organisations now use AI-powered analytics in production. Decision-making improvement is cited as the top goal by 56% of data leaders — closely followed by cost savings and workflow efficiency.",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop",
     year: 2025,
-  }
   },
   {
     id: 13,
@@ -156,7 +144,6 @@ export const techNews = [
       "The OECD estimates 27% of jobs in OECD countries are at high risk of automation. Knowledge-intensive roles in finance, legal and consulting face significant AI augmentation, while new tech roles are being created in parallel.",
     image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=400&h=250&fit=crop",
     year: 2023,
-  }
   },
   {
     id: 14,
@@ -168,7 +155,6 @@ export const techNews = [
       "Only 35% of global consumers trust how companies use AI. Organisations that prioritise explainability and bias testing see 2.5x higher customer satisfaction scores and significantly lower regulatory risk.",
     image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400&h=250&fit=crop",
     year: 2024,
-  }
   },
   {
     id: 15,
@@ -180,7 +166,6 @@ export const techNews = [
       "Deep-dive into six dimensions required for successful AI transformation at scale: strategy, talent, operating model, technology, data, and adoption. Companies that get all six right report 3x higher EBIT impact.",
     image: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=400&h=250&fit=crop",
     year: 2023,
-  }
   },
   {
     id: 16,
@@ -192,7 +177,6 @@ export const techNews = [
       "73% of professional services firms have deployed AI tools in at least one practice area. Legal research, financial analysis and management consulting show the fastest adoption, with measurable productivity gains of 20–40%.",
     image: "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=400&h=250&fit=crop",
     year: 2024,
-  }
   },
   {
     id: 17,
@@ -204,7 +188,6 @@ export const techNews = [
       "DACH telecom operators are pivoting from connectivity providers to digital platform companies. Data monetisation and enterprise B2B services now represent the fastest-growing revenue streams for A1, Deutsche Telekom and Swisscom.",
     image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=400&h=250&fit=crop",
     year: 2022,
-  }
   },
   {
     id: 18,
@@ -216,7 +199,6 @@ export const techNews = [
       "The Stanford AI Index 2024 documents an explosion in AI legislation globally — from 1 bill in 2016 to 25 passed in 2023. The EU AI Act sets the most comprehensive framework, influencing regulation in 40+ countries.",
     image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=250&fit=crop",
     year: 2024,
-  }
   },
   {
     id: 19,
@@ -228,7 +210,6 @@ export const techNews = [
       "BCG analysed 230 AI implementations and found that companies achieving ROI follow a consistent pattern: start with high-frequency, data-rich use cases, establish feedback loops, and redesign workflows rather than just automating existing ones.",
     image: "https://images.unsplash.com/photo-1568952433726-3896e3881c65?w=400&h=250&fit=crop",
     year: 2023,
-  }
   },
   {
     id: 20,
@@ -240,7 +221,6 @@ export const techNews = [
       "A study of 500 organisations found that those treating AI as an organisational transformation — not just a technology project — achieved enterprise-wide scaling 3x faster and reported EBIT impact at 40% higher frequency.",
     image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=250&fit=crop",
     year: 2024,
-  }
   },
   {
     id: 21,
@@ -252,7 +232,6 @@ export const techNews = [
       "Following the Schrems II ruling, companies operating data platforms across EU, MENA and ASEAN must implement supplementary measures including encryption, pseudonymisation and Transfer Impact Assessments.",
     image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400&h=250&fit=crop",
     year: 2021,
-  }
   },
   {
     id: 22,
@@ -264,7 +243,6 @@ export const techNews = [
       "Nur 18% der österreichischen KMU setzen KI produktiv ein, doch die Investitionsbereitschaft steigt stark. Automatisierung von Back-Office-Prozessen und KI-gestützte Kundeninteraktion führen die Prioritätenlisten an.",
     image: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=400&h=250&fit=crop",
     year: 2024,
-  }
   },
   {
     id: 23,
@@ -276,7 +254,6 @@ export const techNews = [
       "Berlin, Vienna and Zurich rank among Europe's top 15 startup ecosystems. Vienna shows exceptional strength in deep tech, life sciences and AI, driven by world-class technical universities and increasing corporate venture activity.",
     image: "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=400&h=250&fit=crop",
     year: 2023,
-  }
   },
   {
     id: 24,
@@ -288,7 +265,6 @@ export const techNews = [
       "MIT research shows that companies capturing value from ML share a common trait: they treat model development as a continuous loop — deploy, measure, retrain — rather than a one-off project with a fixed end date.",
     image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=400&h=250&fit=crop",
     year: 2022,
-  }
   },
   {
     id: 25,
@@ -300,9 +276,7 @@ export const techNews = [
       "Telecom operators monetising network data through B2B analytics platforms can generate $500M–$2B in incremental annual revenue. Mobility data, location intelligence and network APIs are the most commercially proven use cases.",
     image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=400&h=250&fit=crop",
     year: 2020,
-  }
-  },
-];
+  },];
 
 export const reNews = [
   {
@@ -315,7 +289,6 @@ export const reNews = [
       "Austria's investment market has returned to pre-crisis levels. Institutional and international investors are back, prime yields continue to fall, and the Vienna office market recorded a strong leasing year driven by major deals.",
     image: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400&h=250&fit=crop",
     year: 2026,
-  }
   },
   {
     id: 15,
@@ -327,7 +300,6 @@ export const reNews = [
       "Vienna's office vacancy rate edged up slightly in 2024 as remote work reshaped demand, but prime rents in the 1st and 3rd districts continued to rise — reaching EUR 27/sqm/month for best-in-class space.",
     image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=250&fit=crop",
     year: 2024,
-  }
   },
   {
     id: 13,
@@ -339,7 +311,6 @@ export const reNews = [
       "AI-powered due diligence tools are slashing the time required for legal, technical and commercial reviews. Platforms like LEVERTON and Structo can process hundreds of lease documents in hours, reducing transaction timelines.",
     image: "https://images.unsplash.com/photo-1486596422571-0ba4a6dbba18?w=400&h=250&fit=crop",
     year: 2024,
-  }
   },
   {
     id: 12,
@@ -351,7 +322,6 @@ export const reNews = [
       "Middle Eastern sovereign wealth funds and family offices invested over $8bn in European real estate in 2023. Austria, Germany and the UK were the top destinations for MENA capital deploying into trophy and logistics assets.",
     image: "https://images.unsplash.com/photo-1503389152951-9f343d3ad3b7?w=400&h=250&fit=crop",
     year: 2023,
-  }
   },
   {
     id: 2,
@@ -363,7 +333,6 @@ export const reNews = [
       "Austria's 2025 investment volume reached EUR 4.1bn — 40% above 2024. Vienna alone recorded EUR 3.1bn, driven by residential (29%), office (25%) and hotel (15%) assets.",
     image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=250&fit=crop",
     year: 2026,
-  }
   },
   {
     id: 3,
@@ -375,7 +344,6 @@ export const reNews = [
       "Vienna, Graz, Linz and Salzburg face acute housing shortages as completions fall and demand rises. Rents are rising sharply, with no trend reversal expected in 2026.",
     image: "https://images.unsplash.com/photo-1545324418-cc1a3fa12c98?w=400&h=250&fit=crop",
     year: 2025,
-  }
   },
   {
     id: 4,
@@ -387,7 +355,6 @@ export const reNews = [
       "The price correction cycle is complete. Yields are falling across all asset classes and international players are returning to the Austrian market after two years of domestic investor dominance.",
     image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=250&fit=crop",
     year: 2025,
-  }
   },
   {
     id: 5,
@@ -399,7 +366,6 @@ export const reNews = [
       "After two years of yield expansion and price correction, Europe's real estate markets are moving from adjustment to recovery. Cross-border capital flows are rebounding, led by logistics, living and prime office.",
     image: "https://images.unsplash.com/photo-1560185127-6a9d7e6a9e5e?w=400&h=250&fit=crop",
     year: 2025,
-  }
   },
   {
     id: 6,
@@ -411,7 +377,6 @@ export const reNews = [
       "The European PropTech Map 2024 identifies five categories reshaping real estate: investment platforms, building operations, asset management, market analytics and smart city. AI-driven valuation and analytics are the fastest growing.",
     image: "https://images.unsplash.com/photo-1486596422571-0ba4a6dbba18?w=400&h=250&fit=crop",
     year: 2024,
-  }
   },
   {
     id: 7,
@@ -423,7 +388,6 @@ export const reNews = [
       "The global PropTech market reached $36.55bn in 2024, with $3.2bn invested in AI-powered startups. AI leasing automation, CRM platforms and predictive analytics dominate the investment landscape.",
     image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&h=250&fit=crop",
     year: 2024,
-  }
   },
   {
     id: 8,
@@ -435,7 +399,6 @@ export const reNews = [
       "Vienna's hotel market benefited from record overnight stays in 2024 and 2025, with hotel transactions reaching nearly EUR 600m. Arcotel, Plaza Group and international operators are actively repositioning assets.",
     image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=250&fit=crop",
     year: 2025,
-  }
   },
   {
     id: 9,
@@ -447,7 +410,6 @@ export const reNews = [
       "CBRE's 2025 European Investor Intentions Survey reveals markedly more optimism versus recent years. Logistics and residential lead preferred asset classes, while ESG compliance is now a table-stakes requirement.",
     image: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400&h=250&fit=crop",
     year: 2025,
-  }
   },
   {
     id: 10,
@@ -459,7 +421,6 @@ export const reNews = [
       "Germany's residential market shows early signs of stabilisation after a peak-to-trough correction of up to 30% in major cities. Transaction volumes are recovering in Munich, Berlin and Hamburg as financing conditions ease.",
     image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=250&fit=crop",
     year: 2024,
-  }
   },
   {
     id: 11,
@@ -471,7 +432,6 @@ export const reNews = [
       "ESG-certified office and residential buildings in Vienna command rent premiums of 8–12% over conventional stock. Tenants and investors increasingly use ÖGNI/BREEAM certification as a baseline requirement.",
     image: "https://images.unsplash.com/photo-1545324418-cc1a3fa12c98?w=400&h=250&fit=crop",
     year: 2024,
-  }
   },
   {
     id: 14,
@@ -483,7 +443,6 @@ export const reNews = [
       "Tokenised ownership, rent-to-own models, AI-powered asset management and blockchain-backed investment platforms are redefining how money moves through property across Europe.",
     image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&h=250&fit=crop",
     year: 2025,
-  }
   },
   {
     id: 16,
@@ -495,7 +454,6 @@ export const reNews = [
       "Emerging Trends in Real Estate Europe 2024 highlights a wave of distressed and repriced assets creating selective buying opportunities — particularly in German and UK commercial real estate.",
     image: "https://images.unsplash.com/photo-1560185127-6a9d7e6a9e5e?w=400&h=250&fit=crop",
     year: 2023,
-  }
   },
   {
     id: 17,
@@ -507,7 +465,6 @@ export const reNews = [
       "Austria's hotel transaction market rebounded strongly in 2023 as tourism numbers exceeded 2019 levels. Investors focus on repositioning opportunities in city-centre and alpine destinations.",
     image: "https://images.unsplash.com/photo-1503389152951-9f343d3ad3b7?w=400&h=250&fit=crop",
     year: 2023,
-  }
   },
   {
     id: 18,
@@ -519,7 +476,6 @@ export const reNews = [
       "Rising construction costs (+25–35% since 2020), supply chain disruptions and tighter zoning regulations in Vienna are slowing new residential completions and driving up values of existing stock.",
     image: "https://images.unsplash.com/photo-1545324418-cc1a3fa12c98?w=400&h=250&fit=crop",
     year: 2023,
-  }
   },
   {
     id: 19,
@@ -531,7 +487,6 @@ export const reNews = [
       "Gulf Cooperation Council sovereign funds and UHNW family offices are directing record capital into European real estate. Austria, with its legal stability and AAA-rated economy, is increasingly attractive to MENA investors.",
     image: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400&h=250&fit=crop",
     year: 2022,
-  }
   },
   {
     id: 20,
@@ -543,7 +498,6 @@ export const reNews = [
       "The integration of Conwert SE into Vonovia marked a pivotal moment in Austrian residential consolidation. The EUR 2bn+ transaction reshaped the Vienna rental market and established new benchmarks for residential M&A.",
     image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=250&fit=crop",
     year: 2021,
-  }
   },
   {
     id: 21,
@@ -555,7 +509,6 @@ export const reNews = [
       "AI-first property management platforms like Arbio (EUR 45m funding) are disrupting European short-term rental markets. AI building management, predictive maintenance and digital tenant experience are the next frontier.",
     image: "https://images.unsplash.com/photo-1486596422571-0ba4a6dbba18?w=400&h=250&fit=crop",
     year: 2025,
-  }
   },
   {
     id: 22,
@@ -567,7 +520,6 @@ export const reNews = [
       "As the ECB cuts rates for the first time since 2019, JLL projects 5–15% value uplifts for core real estate across Europe by 2026. Office and logistics in gateway cities are expected to benefit most.",
     image: "https://images.unsplash.com/photo-1560185127-6a9d7e6a9e5e?w=400&h=250&fit=crop",
     year: 2024,
-  }
   },
   {
     id: 23,
@@ -579,7 +531,6 @@ export const reNews = [
       "Vienna, Prague and Warsaw face a structural supply-demand imbalance. New-build activity is 30% below historical averages while household formation continues at a record pace, driving rents to all-time highs.",
     image: "https://images.unsplash.com/photo-1545324418-cc1a3fa12c98?w=400&h=250&fit=crop",
     year: 2022,
-  }
   },
   {
     id: 24,
@@ -591,7 +542,6 @@ export const reNews = [
       "Hybrid work has permanently reduced office footprints by 10–20%, but prime office in central locations remained resilient. The pandemic accelerated flight-to-quality trends and repositioning of secondary stock.",
     image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=250&fit=crop",
     year: 2021,
-  }
   },
   {
     id: 25,
@@ -603,6 +553,4 @@ export const reNews = [
       "Austria's real estate market demonstrated exceptional resilience in 2020. Residential demand accelerated on the back of historically low interest rates, while logistics emerged as the standout commercial asset class.",
     image: "https://images.unsplash.com/photo-1503389152951-9f343d3ad3b7?w=400&h=250&fit=crop",
     year: 2020,
-  }
-  },
-];
+  },];
