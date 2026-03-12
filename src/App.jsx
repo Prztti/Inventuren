@@ -38,7 +38,7 @@ en:{
   fQ:"Thinking like a lawyer. Acting like an entrepreneur. Executing with high Impact.",
   networkLabel:"Network & Execution",
   networkTitle:"The right team for every challenge.",
-  networkP:"I don't just advise — I execute. With the right experts, assembled project-specifically from a proven network spanning Legal, Tech, Real Estate, Finance and Industry. This is what separates consulting from impact.",
+  networkP:"We don't just advise — we execute. With the right experts, assembled project-specifically from a proven network spanning Legal, Tech, Real Estate, Finance and Industry. This is what separates consulting from impact.",
   networkBadge:"Consulting & Execution",
   clusters:{
     tech:[
@@ -77,10 +77,12 @@ en:{
     kpis:[{v:"EUR 600M+",l:"transaction record across asset classes"},{v:"25+",l:"years of real estate advisory & execution"},{v:"CEE & Spain",l:"transaction reach across markets"}],
     sLabel:"Services",sTitle:"What we do in Real Estate & Hospitality",
     serv:[
-      {n:"01",t:"Transaction Advisory",d:"Buy-side and sell-side mandate execution. Market analysis, full due diligence (legal, financial, technical), structuring, negotiation and successful closing.",tags:["Acquisitions","Sales","Due Diligence"]},
+      {n:"01",t:"Transaction Advisory",d:"Buy-side and sell-side mandate execution. Market analysis, full due diligence (legal, financial, technical) and structuring.",tags:["Acquisitions","Sales","Due Diligence"]},
       {n:"02",t:"Project Management & Leadership",d:"Hands-on project leadership for development, refurbishment and repositioning. Budget, timeline, contractor and authority management.",tags:["Project Mgmt","Development","Execution"]},
       {n:"03",t:"Hospitality Advisory",d:"Strategic advisory for hotel and F&B assets: repositioning, brand selection, operator negotiations and value-add identification.",tags:["Hotels","F&B","Repositioning"]},
-      {n:"04",t:"RE Structuring & Legal",d:"Transaction structuring, corporate law, financing coordination and closing documentation. Cross-border (EU, MENA).",tags:["Structuring","Legal","Cross-Border"]},
+      {n:"04",t:"RE Structuring & Legal",d:"Transaction structuring, corporate law, financing coordination and closing documentation. Cross-border execution.",tags:["Structuring","Legal","Cross-Border"]},
+      {n:"05",t:"Sparring & Negotiating",d:"Strategic sparring for complex negotiation situations. Positioning, counter-party analysis and deal dynamics — we prepare and lead negotiations to protect and maximise your outcome.",tags:["Sparring","Negotiation","Advisory"]},
+      {n:"06",t:"Closing Deals",d:"One goal: the deal closes. We drive transactions to completion — managing stakeholders, timelines and final documentation. Because the only result that counts is a signed deal.",tags:["Closing","Execution","Results"]},
     ],
     pLabel:"Process",pTitle:"From first brief to successful closing",
     proc:[
@@ -186,10 +188,12 @@ de:{
     kpis:[{v:"EUR 600M+",l:"Transaction Record über Asset-Klassen"},{v:"25+",l:"Jahre Immobilienberatung & Execution"},{v:"CEE & Spanien",l:"Transaktionsraum über Märkte"}],
     sLabel:"Leistungen",sTitle:"Was wir im Bereich Real Estate & Hospitality tun",
     serv:[
-      {n:"01",t:"Transaktions-Advisory",d:"Buy-Side und Sell-Side Mandatsbetreuung. Marktanalyse, vollständige Due Diligence (rechtlich, finanziell, technisch), Strukturierung, Verhandlung und erfolgreiches Closing.",tags:["Ankauf","Verkauf","Due Diligence"]},
+      {n:"01",t:"Transaktions-Advisory",d:"Buy-Side und Sell-Side Mandatsbetreuung. Marktanalyse, vollständige Due Diligence (rechtlich, finanziell, technisch) und Strukturierung.",tags:["Ankauf","Verkauf","Due Diligence"]},
       {n:"02",t:"Projektmanagement & -leitung",d:"Operative Projektleitung bei Entwicklung, Sanierung und Repositionierung. Budget, Zeitplan, Generalunternehmer- und Behördenmanagement.",tags:["Projektleitung","Entwicklung","Execution"]},
       {n:"03",t:"Hospitality Advisory",d:"Strategische Beratung für Hotel- und F&B-Assets: Repositionierung, Markenwahl, Operatorverhandlungen und Wertsteigerungspotenziale.",tags:["Hotels","F&B","Repositionierung"]},
-      {n:"04",t:"RE-Strukturierung & Legal",d:"Transaktionsstrukturierung, Gesellschaftsrecht, Finanzierungskoordination und Closing-Dokumentation. Grenzüberschreitend (EU, MENA).",tags:["Strukturierung","Legal","Cross-Border"]},
+      {n:"04",t:"RE-Strukturierung & Legal",d:"Transaktionsstrukturierung, Gesellschaftsrecht, Finanzierungskoordination und Closing-Dokumentation. Grenzüberschreitende Execution.",tags:["Strukturierung","Legal","Cross-Border"]},
+      {n:"05",t:"Sparring & Verhandlung",d:"Strategisches Sparring für komplexe Verhandlungssituationen. Positionierung, Gegenparteienanalyse und Deal-Dynamik — wir bereiten Verhandlungen vor und führen sie, um Ihr Ergebnis zu schützen und zu maximieren.",tags:["Sparring","Verhandlung","Advisory"]},
+      {n:"06",t:"Deal Closing",d:"Ein Ziel: der Deal wird abgeschlossen. Wir treiben Transaktionen zum Abschluss — Stakeholder-Management, Timelines und finale Dokumentation. Denn das einzige Ergebnis, das zählt, ist ein unterzeichneter Vertrag.",tags:["Closing","Execution","Ergebnisse"]},
     ],
     pLabel:"Prozess",pTitle:"Vom ersten Briefing bis zum erfolgreichen Closing",
     proc:[
