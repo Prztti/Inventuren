@@ -603,7 +603,7 @@ body{overflow-x:hidden;background:#F5F4F1}
           </div>
         </R>
       </div>
-      {track==="tech" && (
+      {!mob && track==="tech" && (
         <R delay={0.2}>
           <div style={{display:"flex",justifyContent:"center",alignItems:"flex-start",marginTop:mob?"0":"-200px"}}>
             <img src="/images/ai-hero-visual.jpg" alt="Deep Analysis. Fast Execution. High Impact."
