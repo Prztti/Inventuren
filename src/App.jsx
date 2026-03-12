@@ -605,9 +605,15 @@ body{overflow-x:hidden;background:#F5F4F1}
       </div>
       {!mob && track==="tech" && (
         <R delay={0.2}>
-          <div style={{display:"flex",justifyContent:"center",alignItems:"center",height:"100%",paddingTop:40}}>
+          <div style={{display:"flex",justifyContent:"center",alignItems:"flex-end",height:"100%"}}>
             <img src="/images/ai-hero-visual.jpg" alt="Deep Analysis. Fast Execution. High Impact."
-              style={{width:300,height:300,objectFit:"contain",mixBlendMode:"lighten",filter:"drop-shadow(0 0 32px rgba(200,149,42,0.25))"}}
+              style={{
+                width:320,height:420,objectFit:"contain",
+                mixBlendMode:"lighten",
+                filter:"drop-shadow(0 0 40px rgba(200,149,42,0.28))",
+                WebkitMaskImage:"radial-gradient(ellipse 78% 88% at 50% 52%, black 48%, rgba(0,0,0,0.7) 65%, rgba(0,0,0,0.2) 80%, transparent 100%)",
+                maskImage:"radial-gradient(ellipse 78% 88% at 50% 52%, black 48%, rgba(0,0,0,0.7) 65%, rgba(0,0,0,0.2) 80%, transparent 100%)",
+              }}
             />
           </div>
         </R>
