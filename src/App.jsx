@@ -67,7 +67,7 @@ en:{
     fP2:"Trusted advisor and project lead for institutional investors, family offices and developers across Austria, CEE, Canary Islands and beyond. Active network partner with EPI Immobilien Group and leading Austrian hospitality operators.",
     secLabel:"Focus Areas",
     sec:["Residential","Commercial & Office","Hotel & Hospitality","Retail & Mixed Use","Development Projects","Sale & Acquisition"],
-    secDetail:["EPI Immobilien Group, Trimmobilien Gruppe, Conwert SE, Akkadia Immobilien","Strategic advisory on commercial acquisitions and disposals","Arcotel Hotels, Plaza Group, Ibis Group — hotel transactions & advisory","Mixed-use project advisory and transaction structuring","Project development advisory, feasibility, regulatory coordination","End-to-end buy-side and sell-side transaction management"],
+    secDetail:["EPI Immobilien Group, Trimmobilien Gruppe, Conwert SE, Akkadia Immobilien","Strategic advisory on commercial acquisitions and disposals","EPI Hospitality, Ibis Group, Arcotel Hotels — hotel transactions & advisory","Mixed-use project advisory and transaction structuring","Project development advisory, feasibility, regulatory coordination","End-to-end buy-side and sell-side transaction management"],
     tLabel:"Real Estate Expertise",tTitle:"From first analysis to successful closing.",
     tP:"Deep market knowledge, legal precision and operational execution. We structure and lead real estate transactions — always with the goal of a clean, timely, value-maximising result.",
     opexT:"Transaction & Advisory",
@@ -176,7 +176,7 @@ de:{
     fP2:"Vertrauenspartner und Projektleiter für institutionelle Investoren, Family Offices und Developer in Österreich, CEE und auf den Kanarischen Inseln. Aktiver Netzwerkpartner der EPI Immobilien Group und führender österreichischer Hospitality-Operators.",
     secLabel:"Schwerpunkte",
     sec:["Wohnimmobilien","Gewerbe & Büro","Hotel & Hospitality","Retail & Mixed Use","Entwicklungsprojekte","Verkauf & Ankauf"],
-    secDetail:["EPI Immobilien Group, Trimmobilien Gruppe, Conwert SE, Akkadia Immobilien","Strategische Beratung bei gewerblichen An- und Verkäufen","Arcotel Hotels, Plaza Group, Ibis Group — Hotel-Transaktionen & Advisory","Mixed-Use Projektberatung und Transaktionsstrukturierung","Projektentwicklungsberatung, Machbarkeit, Behördenkoordination","End-to-End Buy-Side und Sell-Side Mandatsbetreuung"],
+    secDetail:["EPI Immobilien Group, Trimmobilien Gruppe, Conwert SE, Akkadia Immobilien","Strategische Beratung bei gewerblichen An- und Verkäufen","EPI Hospitality, Ibis Group, Arcotel Hotels — Hotel-Transaktionen & Advisory","Mixed-Use Projektberatung und Transaktionsstrukturierung","Projektentwicklungsberatung, Machbarkeit, Behördenkoordination","End-to-End Buy-Side und Sell-Side Mandatsbetreuung"],
     tLabel:"Real Estate Expertise",tTitle:"Von der ersten Analyse bis zum erfolgreichen Closing.",
     tP:"Tiefes Marktwissen, rechtliche Präzision und operative Umsetzung. Wir strukturieren und leiten Immobilientransaktionen — immer mit dem Ziel eines sauberen, termingerechten, wertoptimierenden Ergebnisses.",
     opexT:"Transaktion & Advisory",
@@ -351,7 +351,7 @@ cn:{
 };
 
 const anchors=["profil","partner","leistungen","netzwerk","prozess","news","kontakt"];
-const partnersRE=["Wiener Privatbank SE","EPI Immobilien Group","Akkadia Immobilien","Conwert SE","Trimmobilien Gruppe","Arcotel Hotels","Plaza Group","Ibis Group","Raiffeisen Bank International","DSC Rechtsanwälte","Herbst Kinsky RAe","Uniqa Versicherung","Stadt Wien"];
+const partnersRE=["Wiener Privatbank SE","EPI Immobilien Group","Akkadia Immobilien","Conwert SE","Trimmobilien Gruppe","EPI Hospitality","Ibis Group","Arcotel Hotels","Raiffeisen Bank International","DSC Rechtsanwälte","Herbst Kinsky RAe","Uniqa Versicherung","Stadt Wien"];
 const partnersTech=["Deutsche Telekom","A1 Group","Orange","Zain Group","Viettel","Huawei","Ericsson","European Stroke Organisation","SFU Wien","Donau Universitaet Krems","Raiffeisen Bank International","Wiener Privatbank SE","Uniqa Versicherung","Lansky & Partner RAe","ORF","Integrationshaus Wien"];
 
 function useV(threshold=0.1){
