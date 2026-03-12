@@ -26,7 +26,7 @@ const logos = [
     url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/UNIQA_logo.svg/200px-UNIQA_logo.svg.png",
   },
   {
-    name: "LKW Walter",
+    name: "Deutsche Telekom",
     url: null,
   },
   {
