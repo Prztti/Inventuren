@@ -73,7 +73,7 @@ en:{
     opexT:"Transaction & Advisory",
     opex:["Strategic market and feasibility analysis","Full due diligence process: legal, financial, technical and commercial","Financing and equity structuring advisory","Stakeholder management and negotiation leadership","Regulatory and zoning process coordination"],
     revT:"Sale, Acquisition & Project Leadership",
-    rev:["Buy-side and sell-side mandate management","Project development oversight from concept to handover","Hospitality repositioning and brand advisory","Cross-border deal sourcing (EU, MENA)","Distressed asset advisory and restructuring"],
+    rev:["Buy-side and sell-side mandate management","Project development oversight from concept to handover","Hospitality repositioning and brand advisory","Cross-border deal sourcing (CEE, Spain)","Distressed asset advisory and restructuring"],
     kpis:[{v:"EUR 600M+",l:"transaction record across asset classes"},{v:"25+",l:"years of real estate advisory & execution"},{v:"CEE & Spain",l:"transaction reach across markets"}],
     sLabel:"Services",sTitle:"What we do in Real Estate & Hospitality",
     serv:[
@@ -184,7 +184,7 @@ de:{
     opexT:"Transaktion & Advisory",
     opex:["Strategische Markt- und Machbarkeitsanalyse","Vollständiger Due-Diligence-Prozess: rechtlich, finanziell, technisch und kaufmännisch","Finanzierungs- und Eigenkapitalstrukturierung","Stakeholder-Management und Verhandlungsführung","Behörden- und Widmungsprozesskoordination"],
     revT:"Verkauf, Ankauf & Projektleitung",
-    rev:["Buy-Side und Sell-Side Mandatsführung","Projektentwicklungssteuerung von der Planung bis zur Übergabe","Hospitality-Repositionierung und Markenberatung","Grenzüberschreitendes Deal-Sourcing (EU, MENA)","Advisory bei distressed Assets und Restrukturierung"],
+    rev:["Buy-Side und Sell-Side Mandatsführung","Projektentwicklungssteuerung von der Planung bis zur Übergabe","Hospitality-Repositionierung und Markenberatung","Grenzüberschreitendes Deal-Sourcing (CEE, Spanien)","Advisory bei distressed Assets und Restrukturierung"],
     kpis:[{v:"EUR 600M+",l:"Transaction Record über Asset-Klassen"},{v:"25+",l:"Jahre Immobilienberatung & Execution"},{v:"CEE & Spanien",l:"Transaktionsraum über Märkte"}],
     sLabel:"Leistungen",sTitle:"Was wir im Bereich Real Estate & Hospitality tun",
     serv:[
@@ -264,7 +264,7 @@ cn:{
   networkBadge:"咨询与执行",
   clusters:{
     tech:[
-      {n:"法律",d:"企业、知识产权及监管——Lansky & Partner RAe, Prader律所"},
+      {n:"法律",d:"企业、知识产权及监管——Lansky & Partner RAe, Herbst Kinsky"},
       {n:"技术与AI",d:"软件架构师、AI专家、数据工程师"},
       {n:"房地产",d:"EPI不动产集团、Akkadia Immobilien、酒店运营商"},
       {n:"金融",d:"Raiffeisen银行国际、维也纳私人银行、风险投资、家族办公室"},
@@ -322,7 +322,7 @@ cn:{
     fP2:"2015年受德国电信和A1集团委托，率先开发新数字收入来源。Geolad GmbH创始人兼CEO——30+员工，合作伙伴遍布欧洲和亚洲。",
     secLabel:"行业领域",
     sec:["电信与数据","房地产","科研与教育","法律","酒店业","社会公益"],
-    secDetail:["德国电信, A1集团, Orange, Zain, Viettel, 华为, 爱立信","Conwert SE, 雅高酒店, Trimmobilien集团","欧洲卒中组织, SFU维也纳, 多瑙大学克雷姆斯","Lansky & Partner RAe, Prader律所","雅高酒店, Plaza集团, Ibis集团","维也纳融合之家, ORF, 红牛, vidid协会"],
+    secDetail:["德国电信, A1集团, Orange, Zain, Viettel, 华为, 爱立信","Conwert SE, 雅高酒店, Trimmobilien集团","欧洲卒中组织, SFU维也纳, 多瑙大学克雷姆斯","Lansky & Partner RAe, Herbst Kinsky","雅高酒店, Plaza集团, Ibis集团","维也纳融合之家, ORF, 红牛, vidid协会"],
     compLabel:"数据合规与AI监管",compTitle:"8年GDPR经验。为欧盟AI法案做好准备。",
     compP:"自2018年GDPR生效以来，在多个行业中提供数据保护合规咨询。现已扩展至欧盟AI法案。",
     compItems:["8年跨行业GDPR实施经验","针对AI系统的数据保护影响评估","欧盟AI法案就绪：风险分类、合规评估","设计合规的AI治理框架","Schrems II下的跨境数据传输结构","团队AI合规文化培训"],
