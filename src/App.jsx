@@ -390,6 +390,7 @@ export default function App(){
   const[menuOpen,setMenuOpen]=useState(false);
   const[legalModal,setLegalModal]=useState(null);
   const mob=useIsMobile();
+  const mid=useIsMobile(1100);
   const t=TX[lang];
   const tc=track?TC[track]:TC.tech;
   const td=track?t[track]:null;
@@ -608,7 +609,7 @@ body{overflow-x:hidden;background:#F5F4F1}
           <div style={{display:"flex",justifyContent:"center",alignItems:"flex-start",marginTop:mob?"0":"-200px"}}>
             <img src="/images/ai-hero-visual.jpg" alt="Deep Analysis. Fast Execution. High Impact."
               style={{
-                width:mob?100:480,height:mob?100:620,objectFit:"contain",
+                width:mob?100:mid?260:480,height:mob?100:mid?260:620,objectFit:"contain",
                 mixBlendMode:"lighten",
                 filter:"drop-shadow(0 0 40px rgba(200,149,42,0.28))",
                 WebkitMaskImage:"radial-gradient(ellipse 78% 88% at 50% 52%, black 48%, rgba(0,0,0,0.7) 65%, rgba(0,0,0,0.2) 80%, transparent 100%)",
