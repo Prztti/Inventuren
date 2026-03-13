@@ -26,7 +26,9 @@ const TX = {
 en:{
   claim:["Analysis.","Execution.","Impact."],
   since06:"Since 2006", since15:"Since 2015",
-  selectTitle:"Two disciplines. One network.",
+  brandSub:"Venture Builder in AI & Real Estate",
+  brandP:"Strategic execution, AI transformation and venture building — from first concept to measurable impact.",
+  selectTitle:"Two disciplines. One venture platform.",
   selectSub:"Select your area of interest",
   tracks:{
     tech:{label:"Tech & AI",sub:"AI Transformation · Implementation · Accelerator"},
@@ -137,7 +139,9 @@ en:{
 de:{
   claim:["Analysis.","Execution.","Impact."],
   since06:"Seit 2006",since15:"Seit 2015",
-  selectTitle:"Zwei Disziplinen. Ein Netzwerk.",
+  brandSub:"Venture Building in AI & Real Estate",
+  brandP:"Strategische Umsetzung, AI-Transformation und Venture Building — von der ersten Idee bis zum messbaren Impact.",
+  selectTitle:"Zwei Disziplinen. Eine Venture-Plattform.",
   selectSub:"Wählen Sie Ihren Bereich",
   tracks:{
     tech:{label:"Tech & AI",sub:"AI-Transformation · Implementierung · Accelerator"},
@@ -186,7 +190,7 @@ de:{
     revT:"Verkauf, Ankauf & Projektleitung",
     rev:["Buy-Side und Sell-Side Mandatsführung","Projektentwicklungssteuerung von der Planung bis zur Übergabe","Hospitality-Repositionierung und Markenberatung","Grenzüberschreitendes Deal-Sourcing (CEE, Spanien)","Advisory bei distressed Assets und Restrukturierung"],
     kpis:[{v:"EUR 600M+",l:"Transaction Record über Asset-Klassen"},{v:"25+",l:"Jahre Immobilienberatung & Execution"},{v:"CEE & Spanien",l:"Transaktionsraum über Märkte"}],
-    sLabel:"Leistungen",sTitle:"Was wir im Bereich Real Estate & Hospitality tun",
+    sLabel:"Leistungen",sTitle:"Wie wir im Bereich Real Estate & Hospitality wirken",
     serv:[
       {n:"01",t:"Transaktions-Advisory",d:"Buy-Side und Sell-Side Mandatsbetreuung. Marktanalyse, vollständige Due Diligence (rechtlich, finanziell, technisch) und Strukturierung.",tags:["Ankauf","Verkauf","Due Diligence"]},
       {n:"02",t:"Projektmanagement & -leitung",d:"Operative Projektleitung bei Entwicklung, Sanierung und Repositionierung. Budget, Zeitplan, Generalunternehmer- und Behördenmanagement.",tags:["Projektleitung","Entwicklung","Execution"]},
@@ -225,7 +229,7 @@ de:{
     revT:"Neue Revenue Streams",
     rev:["Datenmonetarisierung aus bestehenden Unternehmensassets","AI-gestützte Produkt- und Serviceentwicklung","Digitale Plattform- und Marktplatzmodelle","Cross-Selling durch intelligente Kundenanalyse","Skalierbare SaaS-Komponenten aus internen Lösungen"],
     kpis:[{v:"6–9",u:" Monate",l:"bis zum messbaren Ergebnis"},{v:"30%+",l:"typische OPEX-Ersparnis"},{v:"Net New",l:"Revenue Streams aus bestehenden Assets",c:C.goldText}],
-    sLabel:"Leistungen",sTitle:"Was wir tun",
+    sLabel:"Leistungen",sTitle:"Wie wir wirken",
     serv:[
       {n:"01",t:"Strategic Sparring & Advisory",d:"Strategische Reflexion auf Augenhöhe mit CEOs und Vorständen. Cross-Sektor-Perspektive. Transaktionsbegleitung. Interim Management.",tags:["CEO-Sparring","Transaktionen","Interim"]},
       {n:"02",t:"AI & Data Consulting",d:"Branchenspezifische AI-Beratung vom Assessment bis zur Implementierung. AI-Agenten, Datenplattformen, Predictive Analytics – DSGVO- und EU-AI-Act-konform.",tags:["AI-Agents","Data Strategy","EU AI Act"]},
@@ -248,7 +252,9 @@ de:{
 cn:{
   claim:["Analysis.","Execution.","Impact."],
   since06:"始于2006年",since15:"始于2015年",
-  selectTitle:"两大领域。一个网络。",
+  brandSub:"AI 与房地产领域的 Venture Building",
+  brandP:"战略执行、AI 转型与 Venture Building —— 从最初构想到可衡量的实际影响。",
+  selectTitle:"两大领域。一个 Venture 平台。",
   selectSub:"请选择您的领域",
   tracks:{
     tech:{label:"技术与AI",sub:"AI转型 · 实施 · 加速器"},
@@ -297,7 +303,7 @@ cn:{
     revT:"销售、收购与项目领导",
     rev:["买方和卖方授权管理","从概念到交付的项目开发监督","酒店重新定位和品牌咨询","跨境交易来源（欧盟、中东北非）","不良资产咨询和重组"],
     kpis:[{v:"4.5亿欧元+",l:"跨资产类别交易记录"},{v:"25+",l:"年房地产咨询与执行经验"},{v:"欧盟与中东北非",l:"跨市场交易覆盖"}],
-    sLabel:"服务",sTitle:"我们在房地产与酒店业的业务",
+    sLabel:"服务",sTitle:"我们如何在房地产与酒店业发挥作用",
     serv:[
       {n:"01",t:"交易顾问",d:"买方和卖方授权执行。市场分析、法律结构、谈判和成功交割。",tags:["收购","销售","尽职调查"]},
       {n:"02",t:"项目管理与领导",d:"开发、翻新和重新定位项目的实际领导。预算、时间表、承包商和政府机构管理。",tags:["项目管理","开发","执行"]},
@@ -333,7 +339,7 @@ cn:{
     revT:"新收入来源",
     rev:["从现有企业资产中实现数据变现","AI驱动的产品与服务开发","数字平台与市场模式","通过智能客户分析实现交叉销售","从内部解决方案构建可扩展SaaS组件"],
     kpis:[{v:"6–9",u:" 个月",l:"达到可衡量成果"},{v:"30%+",l:"目标流程运营成本节省"},{v:"全新",l:"来自现有资产的收入来源",c:C.goldText}],
-    sLabel:"服务",sTitle:"我们的业务",
+    sLabel:"服务",sTitle:"我们如何发挥作用",
     serv:[
       {n:"01",t:"战略顾问与咨询",d:"与CEO和董事会平等对话的战略反思。跨行业视角。交易支持。临时管理。",tags:["CEO顾问","交易","临时管理"]},
       {n:"02",t:"AI与数据咨询",d:"从准备度评估到运营实施的行业AI咨询。AI代理、数据平台、预测分析。",tags:["AI代理","数据战略","欧盟AI法案"]},
@@ -444,7 +450,8 @@ body{overflow-x:hidden;background:#F5F4F1}
   <div style={{display:"flex",alignItems:"center",gap:16}}>
     <a href="#" onClick={e=>{e.preventDefault();setTrack(null);}} style={{textDecoration:"none",display:"flex",flexDirection:"column"}}>
       <div style={{display:"flex",alignItems:"baseline",gap:4}}>
-        <span style={{fontFamily:F,fontSize:15,fontWeight:700,color:C.goldText,letterSpacing:2.5}}>INVENTURES</span>
+        <span style={{fontFamily:F,fontSize:15,fontWeight:500,color:C.silverText,letterSpacing:2.1}}>IN</span>
+        <span style={{fontFamily:F,fontSize:15,fontWeight:700,color:C.goldText,letterSpacing:2.5}}>VENTURES</span>
         <span style={{fontFamily:F,fontSize:9,letterSpacing:1.5,color:C.goldText}}>.at</span>
       </div>
       <span style={{fontFamily:F,fontSize:7.5,letterSpacing:1.5,color:C.gold,textTransform:"uppercase",marginTop:1}}>InVentures GmbH</span>
@@ -505,13 +512,20 @@ body{overflow-x:hidden;background:#F5F4F1}
       <span style={{fontFamily:F,fontSize:9,letterSpacing:3,textTransform:"uppercase",color:C.goldText,fontWeight:500}}>InVentures GmbH · Vienna</span>
       <div style={{width:32,height:1,background:C.silver,opacity:0.4}}/>
     </div>
-    <h1 style={{fontFamily:F,fontSize:mob?"clamp(28px,8vw,52px)":"clamp(36px,5vw,64px)",fontWeight:300,color:C.dark,letterSpacing:"-0.025em",lineHeight:1.1}}>
-      <span style={{color:C.dark,fontWeight:300}}>{t.claim[0]}</span>{" "}
-      <span style={{color:C.silverText,fontWeight:600}}>{t.claim[1]}</span>{" "}
-      <span style={{color:C.goldText,fontWeight:300}}>{t.claim[2]}</span>
+    <h1 style={{fontFamily:F,fontSize:mob?"clamp(32px,9vw,58px)":"clamp(42px,5.6vw,76px)",fontWeight:300,color:C.dark,letterSpacing:"-0.03em",lineHeight:1.02,margin:0}}>
+      <span style={{color:C.silverText,fontWeight:400}}>In</span><span style={{color:C.goldText,fontWeight:700}}>Ventures</span>
     </h1>
-    <p style={{fontFamily:F,fontSize:13,color:C.dim,marginTop:12,letterSpacing:0.3}}>{t.selectTitle}</p>
-    <p style={{fontFamily:F,fontSize:11,color:C.muted,marginTop:4,letterSpacing:1,textTransform:"uppercase"}}>{t.selectSub}</p>
+    <p style={{fontFamily:F,fontSize:mob?14:15,color:C.dark,marginTop:14,letterSpacing:0.5,fontWeight:600}}>{t.brandSub}</p>
+    <p style={{fontFamily:F,fontSize:mob?12:13,color:C.dim,marginTop:10,letterSpacing:0.2,maxWidth:760,marginInline:"auto",lineHeight:1.65}}>{t.brandP}</p>
+    <div style={{marginTop:22}}>
+      <h2 style={{fontFamily:F,fontSize:mob?"clamp(24px,6vw,40px)":"clamp(30px,4.2vw,48px)",fontWeight:300,color:C.dark,letterSpacing:"-0.025em",lineHeight:1.1,margin:0}}>
+        <span style={{color:C.dark,fontWeight:300}}>{t.claim[0]}</span>{" "}
+        <span style={{color:C.silverText,fontWeight:600}}>{t.claim[1]}</span>{" "}
+        <span style={{color:C.goldText,fontWeight:300}}>{t.claim[2]}</span>
+      </h2>
+      <p style={{fontFamily:F,fontSize:13,color:C.dim,marginTop:12,letterSpacing:0.3}}>{t.selectTitle}</p>
+      <p style={{fontFamily:F,fontSize:11,color:C.muted,marginTop:4,letterSpacing:1,textTransform:"uppercase"}}>{t.selectSub}</p>
+    </div>
   </div>
   {/* Split cards — Tech first, RE second */}
   <div className="split-grid" style={{display:"grid",gridTemplateColumns:"1fr 1fr",flex:1,gap:mob?12:20,padding:mob?"0 12px 24px":"0 40px 48px",maxWidth:1200,margin:"0 auto",width:"100%",position:"relative",zIndex:2}}>
@@ -893,7 +907,8 @@ body{overflow-x:hidden;background:#F5F4F1}
   <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:12}}>
     <div style={{display:"flex",flexDirection:"column"}}>
       <div style={{display:"flex",alignItems:"baseline",gap:4}}>
-        <span style={{fontFamily:F,fontSize:12,fontWeight:700,color:C.goldText,letterSpacing:2.5}}>INVENTURES</span>
+        <span style={{fontFamily:F,fontSize:12,fontWeight:500,color:C.silverText,letterSpacing:2.1}}>IN</span>
+        <span style={{fontFamily:F,fontSize:12,fontWeight:700,color:C.goldText,letterSpacing:2.5}}>VENTURES</span>
         <span style={{fontFamily:F,fontSize:8,letterSpacing:1.5,color:C.goldText}}>.at</span>
       </div>
       <span style={{fontFamily:F,fontSize:8,color:C.dim,letterSpacing:1,marginTop:2}}>{t.ent}</span>
