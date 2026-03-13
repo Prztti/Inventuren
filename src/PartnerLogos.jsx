@@ -18,6 +18,7 @@ const logosTech = [
 const logosRE = [
   { name: "Wiener Privatbank SE", url: null },
   { name: "EPI Immobilien Group", url: null },
+  { name: "Conwert AG", url: null },
   { name: "EPI Hospitality", url: null },
   { name: "Uniqa Versicherung", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/UNIQA_logo.svg/200px-UNIQA_logo.svg.png" },
   { name: "Arcotel Hotels", url: null },
