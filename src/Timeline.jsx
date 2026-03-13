@@ -15,8 +15,8 @@ const events = [
   },
   {
     year: "2007",
-    en: { title: "Co-Investment alongside Conwert SE", desc: "Strategic co-investment alongside Conwert SE in a residential and commercial real estate portfolio across Austria and CEE, deepening institutional network." },
-    de: { title: "Co-Investment neben Conwert SE", desc: "Strategisches Co-Investment neben der Conwert SE in ein Wohn- und Gewerbeimmobilienportfolio in Österreich und CEE — Vertiefung des institutionellen Netzwerks." },
+    en: { title: "Co-Investment alongside Conwert AG", desc: "Strategic co-investment alongside Conwert AG in a residential and commercial real estate portfolio across Austria and CEE, deepening institutional network." },
+    de: { title: "Co-Investment neben Conwert AG", desc: "Strategisches Co-Investment neben der Conwert AG in ein Wohn- und Gewerbeimmobilienportfolio in Österreich und CEE — Vertiefung des institutionellen Netzwerks." },
   },
   {
     year: "2009",

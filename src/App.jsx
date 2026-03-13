@@ -69,7 +69,7 @@ en:{
     fP2:"Trusted advisor and project lead for institutional investors, family offices and developers across Austria, CEE, Canary Islands and beyond. Active network partner with EPI Immobilien Group and leading Austrian hospitality operators.",
     secLabel:"Focus Areas",
     sec:["Residential","Commercial & Office","Hotel & Hospitality","Retail & Mixed Use","Development Projects","Sale & Acquisition"],
-    secDetail:["EPI Immobilien Group, Trimmobilien Gruppe, Conwert SE, Akkadia Immobilien","Strategic advisory on commercial acquisitions and disposals","EPI Hospitality, Ibis Group, Arcotel Hotels — hotel transactions & advisory","Mixed-use project advisory and transaction structuring","Project development advisory, feasibility, regulatory coordination","End-to-end buy-side and sell-side transaction management"],
+    secDetail:["EPI Immobilien Group, Trimmobilien Gruppe, Conwert AG, Akkadia Immobilien","Strategic advisory on commercial acquisitions and disposals","EPI Hospitality, Ibis Group, Arcotel Hotels — hotel transactions & advisory","Mixed-use project advisory and transaction structuring","Project development advisory, feasibility, regulatory coordination","End-to-end buy-side and sell-side transaction management"],
     tLabel:"Real Estate Expertise",tTitle:"From first analysis to successful closing.",
     tP:"Deep market knowledge, legal precision and operational execution. We structure and lead real estate transactions — always with the goal of a clean, timely, value-maximising result.",
     opexT:"Transaction & Advisory",
@@ -182,7 +182,7 @@ de:{
     fP2:"Vertrauenspartner und Projektleiter für institutionelle Investoren, Family Offices und Developer in Österreich, CEE und auf den Kanarischen Inseln. Aktiver Netzwerkpartner der EPI Immobilien Group und führender österreichischer Hospitality-Operators.",
     secLabel:"Schwerpunkte",
     sec:["Wohnimmobilien","Gewerbe & Büro","Hotel & Hospitality","Retail & Mixed Use","Entwicklungsprojekte","Verkauf & Ankauf"],
-    secDetail:["EPI Immobilien Group, Trimmobilien Gruppe, Conwert SE, Akkadia Immobilien","Strategische Beratung bei gewerblichen An- und Verkäufen","EPI Hospitality, Ibis Group, Arcotel Hotels — Hotel-Transaktionen & Advisory","Mixed-Use Projektberatung und Transaktionsstrukturierung","Projektentwicklungsberatung, Machbarkeit, Behördenkoordination","End-to-End Buy-Side und Sell-Side Mandatsbetreuung"],
+    secDetail:["EPI Immobilien Group, Trimmobilien Gruppe, Conwert AG, Akkadia Immobilien","Strategische Beratung bei gewerblichen An- und Verkäufen","EPI Hospitality, Ibis Group, Arcotel Hotels — Hotel-Transaktionen & Advisory","Mixed-Use Projektberatung und Transaktionsstrukturierung","Projektentwicklungsberatung, Machbarkeit, Behördenkoordination","End-to-End Buy-Side und Sell-Side Mandatsbetreuung"],
     tLabel:"Real Estate Expertise",tTitle:"Von der ersten Analyse bis zum erfolgreichen Closing.",
     tP:"Tiefes Marktwissen, rechtliche Präzision und operative Umsetzung. Wir strukturieren und leiten Immobilientransaktionen — immer mit dem Ziel eines sauberen, termingerechten, wertoptimierenden Ergebnisses.",
     opexT:"Transaktion & Advisory",
@@ -295,7 +295,7 @@ cn:{
     fP2:"为机构投资者、家族办公室和开发商提供可信赖的顾问和项目领导服务。EPI不动产集团及奥地利领先酒店运营商的活跃网络合作伙伴。",
     secLabel:"重点领域",
     sec:["住宅","商业与办公","酒店与餐饮","零售与综合用途","开发项目","销售与收购"],
-    secDetail:["EPI不动产集团, Trimmobilien集团, Conwert SE, Akkadia Immobilien","商业收购和处置战略咨询","雅高酒店, Plaza集团, Ibis集团——酒店交易与咨询","综合用途项目咨询和交易结构设计","项目开发咨询、可行性研究、监管协调","端到端买方和卖方交易管理"],
+    secDetail:["EPI不动产集团, Trimmobilien集团, Conwert AG, Akkadia Immobilien","商业收购和处置战略咨询","雅高酒店, Plaza集团, Ibis集团——酒店交易与咨询","综合用途项目咨询和交易结构设计","项目开发咨询、可行性研究、监管协调","端到端买方和卖方交易管理"],
     tLabel:"房地产专业知识",tTitle:"从首次分析到成功交割。",
     tP:"深厚的市场知识、法律精准度和运营执行力。我们为房地产交易提供结构设计和项目领导。",
     opexT:"交易与顾问",
@@ -328,7 +328,7 @@ cn:{
     fP2:"2015年受德国电信和A1集团委托，率先开发新数字收入来源。Geolad GmbH创始人兼CEO——30+员工，合作伙伴遍布欧洲和亚洲。",
     secLabel:"行业领域",
     sec:["电信与数据","房地产","科研与教育","法律","酒店业","社会公益"],
-    secDetail:["德国电信, A1集团, Orange, Zain, Viettel, 华为, 爱立信","Conwert SE, 雅高酒店, Trimmobilien集团","欧洲卒中组织, SFU维也纳, 多瑙大学克雷姆斯","Lansky & Partner RAe, Herbst Kinsky","雅高酒店, Plaza集团, Ibis集团","维也纳融合之家, ORF, 红牛, vidid协会"],
+    secDetail:["德国电信, A1集团, Orange, Zain, Viettel, 华为, 爱立信","Conwert AG, 雅高酒店, Trimmobilien集团","欧洲卒中组织, SFU维也纳, 多瑙大学克雷姆斯","Lansky & Partner RAe, Herbst Kinsky","雅高酒店, Plaza集团, Ibis集团","维也纳融合之家, ORF, 红牛, vidid协会"],
     compLabel:"数据合规与AI监管",compTitle:"8年GDPR经验。为欧盟AI法案做好准备。",
     compP:"自2018年GDPR生效以来，在多个行业中提供数据保护合规咨询。现已扩展至欧盟AI法案。",
     compItems:["8年跨行业GDPR实施经验","针对AI系统的数据保护影响评估","欧盟AI法案就绪：风险分类、合规评估","设计合规的AI治理框架","Schrems II下的跨境数据传输结构","团队AI合规文化培训"],
@@ -361,7 +361,7 @@ cn:{
 };
 
 const anchors=["profil","partner","leistungen","netzwerk","prozess","news","kontakt"];
-const partnersRE=["Wiener Privatbank SE","EPI Immobilien Group","Akkadia Immobilien","Conwert SE","Trimmobilien Gruppe","EPI Hospitality","Ibis Group","Arcotel Hotels","Raiffeisen Bank International","DSC Rechtsanwälte","Herbst Kinsky RAe","Uniqa Versicherung","Stadt Wien"];
+const partnersRE=["Wiener Privatbank SE","EPI Immobilien Group","Akkadia Immobilien","Conwert AG","Trimmobilien Gruppe","EPI Hospitality","Ibis Group","Arcotel Hotels","Raiffeisen Bank International","DSC Rechtsanwälte","Herbst Kinsky RAe","Uniqa Versicherung","Stadt Wien"];
 const partnersTech=["Deutsche Telekom","A1 Group","Orange","Zain Group","Viettel","Huawei","Ericsson","European Stroke Organisation","SFU Wien","Donau Universitaet Krems","Raiffeisen Bank International","Wiener Privatbank SE","Uniqa Versicherung","Lansky & Partner RAe","ORF","Integrationshaus Wien"];
 
 function useV(threshold=0.1){

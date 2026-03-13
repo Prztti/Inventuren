@@ -490,12 +490,12 @@ export const reNews = [
   },
   {
     id: 20,
-    title: "Conwert SE Privatisation and Portfolio Rationalisation: A Case Study",
+    title: "Conwert AG Privatisation and Portfolio Rationalisation: A Case Study",
     source: "Börsen-Zeitung / Real Estate Capital",
     date: "2021-03",
     url: "https://www.inrev.org/news/press/capital-raised-european-non-listed-real-estate-recovers-pre-pandemic-record-high",
     summary:
-      "The integration of Conwert SE into Vonovia marked a pivotal moment in Austrian residential consolidation. The EUR 2bn+ transaction reshaped the Vienna rental market and established new benchmarks for residential M&A.",
+      "The integration of Conwert AG into Vonovia marked a pivotal moment in Austrian residential consolidation. The EUR 2bn+ transaction reshaped the Vienna rental market and established new benchmarks for residential M&A.",
     image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=250&fit=crop",
     year: 2021,
   },
