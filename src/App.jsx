@@ -508,10 +508,6 @@ body{overflow-x:hidden;background:#F5F4F1}
   <div style={{position:"absolute",inset:0,opacity:0.025,backgroundImage:`radial-gradient(${C.teal} 0.4px, transparent 0.4px)`,backgroundSize:"32px 32px"}}/>
   {/* Claim header */}
   <div style={{position:"relative",zIndex:2,textAlign:"center",padding:mob?"90px 20px 32px":"100px 40px 40px",animation:"fadeUp 0.7s ease both"}}>
-    <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:8,marginBottom:16}}>
-      <span style={{fontFamily:F,fontSize:9,letterSpacing:3,textTransform:"uppercase",color:C.goldText,fontWeight:500}}>InVentures GmbH · Vienna</span>
-      <div style={{width:32,height:1,background:C.silver,opacity:0.4}}/>
-    </div>
     <h1 style={{fontFamily:F,fontSize:mob?"clamp(32px,9vw,58px)":"clamp(42px,5.6vw,76px)",fontWeight:300,color:C.dark,letterSpacing:"-0.03em",lineHeight:1.02,margin:0}}>
       <span style={{color:C.silverText,fontWeight:400}}>In</span><span style={{color:C.goldText,fontWeight:700}}>Ventures</span>
     </h1>
