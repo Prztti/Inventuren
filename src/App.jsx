@@ -60,7 +60,7 @@ en:{
   },
   cLabel:"Contact",cTitle:"Get in touch.",
   cP:"For strategic enquiries, partnership opportunities or accelerator applications.",
-  loc:"Vienna, Austria",ent:"InVentures GmbH",entSub:"formerly Inside Holding & Real Estate GmbH (est. 2010)",
+  loc:"Vienna, Austria",ent:"InVentures",entSub:"A venture builder of Inside Holding & Real Estate GmbH (est. 2010)",
   re:{
     heroP:"Over EUR 600M in transactions across residential, commercial and hospitality. Deal structuring, project leadership and hands-on execution — from sale to acquisition.",
     ctaA:"Explore Real Estate",ctaB:"Services",
@@ -173,7 +173,7 @@ de:{
   },
   cLabel:"Kontakt",cTitle:"Get in touch.",
   cP:"Für strategische Anfragen, Partnerschaftsmöglichkeiten oder Accelerator-Bewerbungen.",
-  loc:"Wien, Österreich",ent:"InVentures GmbH",entSub:"vormals Inside Holding & Real Estate GmbH (gegr. 2010)",
+  loc:"Wien, Österreich",ent:"InVentures",entSub:"Venture Builder der Inside Holding & Real Estate GmbH (gegr. 2010)",
   re:{
     heroP:"Über EUR 600 Mio. in Transaktionen in Wohn-, Gewerbe- und Hospitality-Immobilien. Deal-Strukturierung, Projektleitung und operative Umsetzung — vom Verkauf bis zum Ankauf.",
     ctaA:"Real Estate entdecken",ctaB:"Leistungen",
@@ -286,7 +286,7 @@ cn:{
   },
   cLabel:"联系",cTitle:"联系我们",
   cP:"欢迎战略咨询、合作机会或加速器申请。",
-  loc:"维也纳，奥地利",ent:"InVentures GmbH",entSub:"前身 Inside Holding & Real Estate GmbH（成立于2010年）",
+  loc:"维也纳，奥地利",ent:"InVentures",entSub:"Inside Holding & Real Estate GmbH 旗下风险投资平台（成立于2010年）",
   re:{
     heroP:"超过4.5亿欧元的住宅、商业和酒店地产交易记录。交易结构设计、项目领导和实际执行——从销售到收购。",
     ctaA:"了解房地产业务",ctaB:"服务内容",
@@ -454,7 +454,7 @@ body{overflow-x:hidden;background:#F5F4F1}
         <span style={{fontFamily:F,fontSize:15,fontWeight:700,color:C.goldText,letterSpacing:2.5}}>VENTURES</span>
         <span style={{fontFamily:F,fontSize:9,letterSpacing:1.5,color:C.goldText}}>.at</span>
       </div>
-      <span style={{fontFamily:F,fontSize:7.5,letterSpacing:1.5,color:C.gold,textTransform:"uppercase",marginTop:1}}>InVentures GmbH</span>
+      <span style={{fontFamily:F,fontSize:7.5,letterSpacing:1.5,color:C.gold,textTransform:"uppercase",marginTop:1}}>A project of Inside Holding & Real Estate GmbH</span>
     </a>
     {track && (
       <div style={{display:"flex",alignItems:"center",gap:6,padding:"3px 10px",background:tc.as,borderRadius:2}}>

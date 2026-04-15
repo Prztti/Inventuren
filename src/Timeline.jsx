@@ -73,11 +73,6 @@ const events = [
     en: { title: "inventures.at — Platform Launch", desc: "Launch of inventures.at — InVentures' digital-first client interface for AI strategy, PropTech advisory and cross-border investment mandates." },
     de: { title: "inventures.at — Platform Launch", desc: "Launch von inventures.at — InVentures' digitale Mandatsplattform für KI-Strategie, PropTech-Advisory und grenzüberschreitende Investitionsprojekte." },
   },
-  {
-    year: "2025",
-    en: { title: "InVentures GmbH — Relaunch", desc: "Rebranded and restructured as InVentures GmbH, consolidating 20 years of cross-sector expertise into a focused AI × Real Estate advisory platform." },
-    de: { title: "InVentures GmbH Relaunch", desc: "Rebranding und Restrukturierung als InVentures GmbH — 20 Jahre branchenübergreifende Expertise in einer fokussierten AI × Real Estate Advisory-Plattform konsolidiert." },
-  },
 ];
 
 const txTitles = {

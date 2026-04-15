@@ -100,7 +100,7 @@ function Impressum() {
       <p style={{ fontSize: 10, color: dim, letterSpacing: 2.5, textTransform: "uppercase", marginBottom: 40, fontWeight: 500 }}>Gemäß § 5 ECG · Österreich</p>
 
       <Section title="Angaben gemäß § 5 E-Commerce-Gesetz (ECG)">
-        <Field label="Unternehmen">InVentures GmbH</Field>
+        <Field label="Unternehmen">Inside Holding & Real Estate GmbH</Field>
         <Field label="Adresse">Garbergasse 14/7, 1060 Wien, Österreich</Field>
         <Field label="Firmenbuchnummer">FN 342972 x beim Handelsgericht Wien</Field>
         <Field label="UID-Nummer">ATU65716433</Field>
@@ -124,7 +124,7 @@ function Impressum() {
           <A href="https://ec.europa.eu/consumers/odr">https://ec.europa.eu/consumers/odr</A>
         </P>
         <P>
-          InVentures GmbH ist weder bereit noch verpflichtet, an Streitbeilegungsverfahren vor
+          Inside Holding & Real Estate GmbH ist weder bereit noch verpflichtet, an Streitbeilegungsverfahren vor
           einer Verbraucherschlichtungsstelle teilzunehmen. Unsere Kontakt-E-Mail-Adresse finden
           Sie im Abschnitt „Angaben gemäß § 5 ECG" oben.
         </P>
@@ -133,7 +133,7 @@ function Impressum() {
       <Section title="Inhaltliche Verantwortung & Haftungshinweis">
         <P>
           Die Inhalte dieser Website wurden mit größter Sorgfalt und nach bestem Wissen erstellt.
-          Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte übernimmt InVentures GmbH
+          Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte übernimmt Inside Holding & Real Estate GmbH
           keine Gewähr. Als Diensteanbieter sind wir gemäß § 7 Abs. 1 ECG für eigene Inhalte nach
           den allgemeinen Gesetzen verantwortlich.
         </P>
@@ -159,7 +159,7 @@ function Impressum() {
 
       <Section title="Urheberrecht">
         <P>
-          Die durch InVentures GmbH erstellten Inhalte und Werke auf dieser Website unterliegen dem
+          Die durch Inside Holding & Real Estate GmbH erstellten Inhalte und Werke auf dieser Website unterliegen dem
           österreichischen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art
           der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der schriftlichen Zustimmung
           des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den
@@ -184,7 +184,7 @@ function Datenschutz() {
 
       <Section title="1. Verantwortlicher (Art. 4 Nr. 7 DSGVO)">
         <P>
-          <strong>InVentures GmbH</strong><br />
+          <strong>Inside Holding & Real Estate GmbH</strong><br />
           Garbergasse 14/7, 1060 Wien, Österreich<br />
           E-Mail: <A href="mailto:info@inventures.at">info@inventures.at</A><br />
           Website: inventures.at

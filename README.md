@@ -1,6 +1,6 @@
 # INVENTURES.ai — Website
 
-InVentures GmbH
+InVentures — a venture builder of Inside Holding & Real Estate GmbH
 
 ## Local Development
 
