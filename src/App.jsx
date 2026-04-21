@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { Routes, Route, Link } from "react-router-dom";
 import AvatarWidget from "./AvatarWidget";
 import NewsSection from "./NewsSection";
 import Timeline from "./Timeline";
@@ -7,6 +8,9 @@ import PartnerLogos from "./PartnerLogos";
 import InVenturesView from "./InVenturesView";
 import TrackArticle from "./TrackArticle";
 import LegalModal from "./LegalModal";
+import CookieConsent from "./CookieConsent";
+import Impressum from "./pages/Impressum";
+import Datenschutz from "./pages/Datenschutz";
 
 const C = {
   bg:"#F5F4F1",surface:"#ECEAE6",surfaceAlt:"#E4E2DD",
@@ -387,7 +391,7 @@ const H2D=({children})=><h2 style={{fontFamily:F,fontSize:"clamp(24px,3vw,36px)"
 const H2L=({children})=><h2 style={{fontFamily:F,fontSize:"clamp(24px,3vw,36px)",fontWeight:300,color:C.dark,marginBottom:40,letterSpacing:"-0.02em"}}>{children}</h2>;
 const Dot=({color})=><div style={{width:4,height:4,borderRadius:"50%",background:color,marginTop:7,flexShrink:0}}/>;
 
-export default function App(){
+function Home(){
   const[lang,setLang]=useState("en");
   const[track,setTrack_]=useState(()=>{
     // Restore track from URL hash on load
@@ -418,7 +422,7 @@ export default function App(){
 
   return(
 <div style={{fontFamily:F}}>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+{/* DM Sans is self-hosted via @fontsource/dm-sans — no external font request */}
 <style>{`
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -920,9 +924,18 @@ body{overflow-x:hidden;background:#F5F4F1}
   {/* Footer links row */}
   <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:12,paddingTop:12,borderTop:`1px solid ${C.border}`}}>
     {/* Legal links */}
-    <div style={{display:"flex",gap:20,alignItems:"center"}}>
-      <button onClick={()=>setLegalModal("imprint")} style={{fontFamily:F,fontSize:10,letterSpacing:1.2,textTransform:"uppercase",color:C.dim,background:"none",border:"none",cursor:"pointer",padding:0,transition:"color 0.2s"}} onMouseEnter={e=>e.target.style.color=C.goldText} onMouseLeave={e=>e.target.style.color=C.dim}>Impressum</button>
-      <button onClick={()=>setLegalModal("privacy")} style={{fontFamily:F,fontSize:10,letterSpacing:1.2,textTransform:"uppercase",color:C.dim,background:"none",border:"none",cursor:"pointer",padding:0,transition:"color 0.2s"}} onMouseEnter={e=>e.target.style.color=C.goldText} onMouseLeave={e=>e.target.style.color=C.dim}>Datenschutz</button>
+    <div style={{display:"flex",gap:16,alignItems:"center",flexWrap:"wrap"}}>
+      <Link to="/impressum" style={{fontFamily:F,fontSize:10,letterSpacing:1.2,textTransform:"uppercase",color:C.dim,textDecoration:"none",transition:"color 0.2s"}} onMouseEnter={e=>e.target.style.color=C.goldText} onMouseLeave={e=>e.target.style.color=C.dim}>
+        {lang==="cn"?"法律声明":lang==="de"?"Impressum":"Imprint"}
+      </Link>
+      <span style={{color:C.muted,fontSize:8}}>·</span>
+      <Link to="/datenschutz" style={{fontFamily:F,fontSize:10,letterSpacing:1.2,textTransform:"uppercase",color:C.dim,textDecoration:"none",transition:"color 0.2s"}} onMouseEnter={e=>e.target.style.color=C.goldText} onMouseLeave={e=>e.target.style.color=C.dim}>
+        {lang==="cn"?"隐私政策":lang==="de"?"Datenschutz":"Privacy Policy"}
+      </Link>
+      <span style={{color:C.muted,fontSize:8}}>·</span>
+      <button onClick={()=>window.dispatchEvent(new Event("open-consent"))} style={{fontFamily:F,fontSize:10,letterSpacing:1.2,textTransform:"uppercase",color:C.dim,background:"none",border:"none",cursor:"pointer",padding:0,transition:"color 0.2s"}} onMouseEnter={e=>e.target.style.color=C.goldText} onMouseLeave={e=>e.target.style.color=C.dim}>
+        {lang==="cn"?"Cookie 设置":lang==="de"?"Cookie-Einstellungen":"Cookie Settings"}
+      </button>
     </div>
     {/* Social links */}
     <div style={{display:"flex",gap:16,alignItems:"center"}}>
@@ -941,6 +954,17 @@ body{overflow-x:hidden;background:#F5F4F1}
 
 <AvatarWidget lang={lang} />
 {legalModal && <LegalModal type={legalModal} onClose={()=>setLegalModal(null)} />}
+<CookieConsent lang={lang} />
 </div>
+  );
+}
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/impressum" element={<Impressum />} />
+      <Route path="/datenschutz" element={<Datenschutz />} />
+    </Routes>
   );
 }
