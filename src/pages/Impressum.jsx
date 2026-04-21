@@ -66,8 +66,7 @@ export default function Impressum() {
           <Row label="Firmenbuchnummer" value="FN 342 972x" />
           <Row label="Firmenbuchgericht" value="Handelsgericht Wien" />
           <Row label="UID-Nummer" value="ATU65716433" />
-          {/* TODO: Geschäftsanschrift bitte prüfen — vermutlich Garbergasse 14/7, 1060 Wien */}
-          <Row label="Geschäftsanschrift" value="[BITTE PRÜFEN: Garbergasse 14/7, 1060 Wien]" />
+          <Row label="Geschäftsanschrift" value="Garbergasse 14/7, 1060 Wien" />
           <Row label="Geschäftsführer" value="Mag. David Brainin" />
         </Section>
 
@@ -86,8 +85,7 @@ export default function Impressum() {
         {/* Gewerberechtliche Angaben */}
         <Section title="Gewerberechtliche Angaben">
           <Row label="Gewerberecht" value="Unternehmensberatung gemäß Gewerbeordnung (GewO)" />
-          {/* TODO: WKO-Mitgliedschaft bitte bestätigen */}
-          <Row label="Kammermitgliedschaft" value="[BITTE BESTÄTIGEN: Mitglied der Wirtschaftskammer Wien (WKO Wien)]" />
+          <Row label="Kammermitgliedschaft" value="Mitglied der Wirtschaftskammer Wien (WKO Wien)" />
           <Row label="Aufsichtsbehörde" value="Magistratisches Bezirksamt Wien" />
           <Row label="Anwendbares Recht" value="Österreichisches Recht" />
         </Section>

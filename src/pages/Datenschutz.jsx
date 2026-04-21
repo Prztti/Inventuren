@@ -62,8 +62,7 @@ export default function Datenschutz() {
           <div style={{ padding: "16px 20px", background: "rgba(0,0,0,0.03)", border: `1px solid ${C.border}`, marginBottom: 10 }}>
             <p style={{ fontFamily: F, fontSize: 13, color: C.dark, lineHeight: 1.8, margin: 0 }}>
               <strong>InVentures GmbH</strong><br />
-              {/* TODO: Adresse prüfen — vermutlich Garbergasse 14/7, 1060 Wien */}
-              [BITTE PRÜFEN: Garbergasse 14/7, 1060 Wien]<br />
+              Garbergasse 14/7, 1060 Wien<br />
               E-Mail: <a href="mailto:info@inventures.at" style={{ color: C.gold }}>info@inventures.at</a><br />
               Telefon: <a href="tel:+436641100333" style={{ color: C.gold }}>+43 664 11 00 333</a>
             </p>
