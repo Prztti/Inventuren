@@ -124,37 +124,86 @@ export function Regulated({ t }) {
   );
 }
 
-// ── Timeline (content unchanged; single column on phones) ───────────────────
+// ── Timeline: two lanes (David left, Philip right), converging in a joint entry ─
+const NAMES = { david: "David Brainin", philip: "Philip Kügler" };
+
+function YearDot({ year, kind }) {
+  const ring = kind === "david" ? { border: `2px solid ${C.gold}`, background: "#fff" }
+    : kind === "philip" ? { border: `2px solid ${C.silverLine}`, background: "#fff" }
+    : kind === "both" ? { border: "2px solid transparent", background: `linear-gradient(#fff, #fff) padding-box, linear-gradient(90deg, ${C.gold} 50%, ${C.silverLine} 50%) border-box` }
+    : { border: "2px solid transparent", background: `linear-gradient(90deg, ${C.gold}, ${C.silverLine})` };
+  const color = kind === "david" ? C.goldDeep : kind === "philip" ? C.silver : kind === "joint" ? "#fff" : C.dark;
+  return (
+    <div style={{ width: 44, height: 44, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1, flexShrink: 0, ...ring }}>
+      <span style={{ fontFamily: F, fontSize: 10, fontWeight: 700, color }}>{year}</span>
+    </div>
+  );
+}
+
+function TlCard({ ev, side, lang }) {
+  const e = ev[lang] || ev.en;
+  const a = accentOf(side === "david" ? "gold" : "silver");
+  return (
+    <div className={`tl-card tl-card-${side}`}>
+      <div style={{ fontFamily: F, fontSize: 10, letterSpacing: 1.4, textTransform: "uppercase", fontWeight: 700, color: a.text, marginBottom: 4 }}>{NAMES[side]}</div>
+      <h3 style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.dark, margin: "0 0 5px", lineHeight: 1.35 }}>{e.title}</h3>
+      <p style={{ fontFamily: F, fontSize: 13, color: C.dim, lineHeight: 1.6, margin: 0 }}>{e.desc}</p>
+    </div>
+  );
+}
+
 export function Timeline({ t, lang }) {
   const tx = t.timeline;
+  const rows = [];
+  for (const ev of TIMELINE) {
+    let r = rows.find((x) => x.year === ev.year);
+    if (!r) { r = { year: ev.year }; rows.push(r); }
+    r[ev.who] = ev;
+  }
   return (
     <Section id="track-record" bg={`linear-gradient(175deg, #F5F4F1 0%, #EDEBE6 50%, #F2F0EB 100%)`}>
-      <div style={{ textAlign: "center", marginBottom: 44 }}>
+      <div style={{ textAlign: "center", marginBottom: 36 }}>
         <Eyebrow color={C.goldDeep} center>{tx.label}</Eyebrow>
         <H2 style={{ margin: "0 auto 12px" }}>{tx.title}</H2>
-        <p style={{ fontFamily: F, fontSize: 15, color: C.dim, lineHeight: 1.7, maxWidth: 560, margin: "0 auto" }}>{tx.sub}</p>
+        <p style={{ fontFamily: F, fontSize: 15, color: C.dim, lineHeight: 1.7, maxWidth: 620, margin: "0 auto" }}>{tx.sub}</p>
+      </div>
+      <div className="tl-legend" aria-hidden>
+        <span style={{ justifySelf: "end", color: C.goldDeep }}>{NAMES.david} <span style={{ display: "inline-block", width: 24, height: 2, background: C.gold, verticalAlign: "middle", marginLeft: 8 }} /></span>
+        <span />
+        <span style={{ color: C.silver }}><span style={{ display: "inline-block", width: 24, height: 2, background: C.silverLine, verticalAlign: "middle", marginRight: 8 }} />{NAMES.philip}</span>
       </div>
       <ol className="tl" style={{ listStyle: "none", margin: 0, padding: 0 }}>
-        {TIMELINE.map((ev, i) => {
-          const e = lang === "de" ? ev.de : ev.en;
-          const last = i === TIMELINE.length - 1;
-          const card = (
-            <div className="tl-card" style={{ padding: "12px 16px", background: "rgba(255,255,255,0.75)", border: `1px solid rgba(184,148,75,0.18)` }}>
-              <h3 style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: last ? C.goldDeep : C.dark, margin: "0 0 5px", lineHeight: 1.35 }}>{e.title}</h3>
-              <p style={{ fontFamily: F, fontSize: 13, color: C.dim, lineHeight: 1.6, margin: 0 }}>{e.desc}</p>
-            </div>
-          );
-          const left = i % 2 === 0;
-          return (
-            <li key={ev.year + e.title} className={`tl-row ${left ? "tl-l" : "tl-r"}`}>
-              <div className="tl-left">{left ? card : null}</div>
-              <div className="tl-spine">
-                <div style={{ width: 44, height: 44, borderRadius: "50%", background: last ? C.gold : "#fff", border: `2px solid ${C.gold}`, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1 }}>
-                  <span style={{ fontFamily: F, fontSize: 10, fontWeight: 700, color: last ? "#fff" : C.goldDeep }}>{ev.year}</span>
+        {rows.map((r, i) => {
+          const last = i === rows.length - 1;
+          if (r.both) {
+            const e = r.both[lang] || r.both.en;
+            return (
+              <li key={r.year} className="tl-row tl-row-joint">
+                <div className="tl-spine"><YearDot year={r.year} kind="joint" /></div>
+                <div className="tl-jcard">
+                  <div aria-hidden style={{ height: 2, background: `linear-gradient(90deg, ${C.gold}, ${C.silverLine})`, margin: "-12px -18px 12px" }} />
+                  <div style={{ fontFamily: F, fontSize: 10, letterSpacing: 1.4, textTransform: "uppercase", fontWeight: 700, color: C.dark, marginBottom: 4 }}>{tx.joint} · {NAMES.david} & {NAMES.philip}</div>
+                  <h3 style={{ fontFamily: F, fontSize: 16, fontWeight: 600, color: C.dark, margin: "0 0 6px", lineHeight: 1.35 }}>{e.title}</h3>
+                  <p style={{ fontFamily: F, fontSize: 14, color: C.dim, lineHeight: 1.6, margin: 0 }}>{e.desc}</p>
                 </div>
+              </li>
+            );
+          }
+          const kind = r.david && r.philip ? "both" : r.david ? "david" : "philip";
+          return (
+            <li key={r.year} className="tl-row">
+              <div className="tl-left">{r.david && <TlCard ev={r.david} side="david" lang={lang} />}</div>
+              <div className="tl-spine">
+                <YearDot year={r.year} kind={kind} />
                 {!last && <div className="tl-line" />}
               </div>
-              <div className="tl-right">{left ? <div className="tl-mob">{card}</div> : card}</div>
+              <div className="tl-right">
+                <div className="tl-desk">{r.philip && <TlCard ev={r.philip} side="philip" lang={lang} />}</div>
+                <div className="tl-mob">
+                  {r.david && <TlCard ev={r.david} side="david" lang={lang} />}
+                  {r.philip && <TlCard ev={r.philip} side="philip" lang={lang} />}
+                </div>
+              </div>
             </li>
           );
         })}
