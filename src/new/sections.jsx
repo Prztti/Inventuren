@@ -52,7 +52,7 @@ export function TeamCards({ t }) {
                   {p.facts.map((f) => (
                     <div key={f.v}>
                       <div style={{ fontFamily: F, fontSize: 22, fontWeight: 700, color: a.text, letterSpacing: "-0.01em" }}>{f.v}</div>
-                      <div style={{ fontFamily: F, fontSize: 12, color: C.dim, lineHeight: 1.45, marginTop: 4 }}>{f.l}</div>
+                      <div style={{ fontFamily: F, fontSize: 12, color: C.dim, lineHeight: 1.45, marginTop: 4, minHeight: "4.35em" }}>{f.l}</div>
                     </div>
                   ))}
                 </div>
