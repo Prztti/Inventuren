@@ -5,8 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "vite build && vite build --config vite.new.config.js",
+    "preview": "vite preview",
+    "dev:new": "vite --config vite.new.config.js",
+    "preview:new": "vite preview --config vite.new.config.js"
   },
   "dependencies": {
     "@fontsource/dm-sans": "^5.2.8",
