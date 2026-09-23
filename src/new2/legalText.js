@@ -40,9 +40,6 @@ export const LEGAL = {
           ["Beteiligungsverhältnisse", "Mag.^iur David Brainin, 100 %"],
           ["Grundlegende Richtung", "Information über die Leistungen von InVentures in den Bereichen Tech & AI sowie Real Estate & Hospitality und Fachbeiträge zu diesen Themen."],
         ] },
-        { h: "Verbraucherstreitbeilegung", ps: [
-          "Wir sind weder verpflichtet noch bereit, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.",
-        ] },
         { id: "referenzen", h: "Hinweis zu Referenzen, Track Record und Marken", ps: [
           "Die auf dieser Website genannten Unternehmen, Institutionen, Projekte und Kennzahlen beschreiben die berufliche Erfahrung der Partner Mag.^iur David Brainin und Philip Kügler, MSc. Erfasst sind Organisationen, an denen die Partner maßgeblich beteiligt waren oder in denen sie Führungspositionen innehatten, sowie Projekte und Kunden, die sie unmittelbar geleitet oder betreut haben – innerhalb eigener oder fremder Organisationen, als Angestellte oder als Auftragnehmer, auch vor Gründung von InVentures.",
           `Die Nennung bedeutet nicht, dass diese Organisationen Kunden der ${ENTITY} oder von InVentures sind oder waren, und bringt keine Empfehlung, Partnerschaft oder Billigung durch sie zum Ausdruck. Kennzahlen beziehen sich, soweit nicht anders angegeben, auf die berufliche Tätigkeit der jeweiligen Partner insgesamt und nicht ausschließlich auf InVentures.`,
@@ -134,9 +131,6 @@ export const LEGAL = {
           ["Media owner", `${ENTITY}, ${ADDRESS_EN}`],
           ["Ownership", "David Brainin, 100%"],
           ["Editorial line", "Information about the services of InVentures in Tech & AI and Real Estate & Hospitality, and articles on these topics."],
-        ] },
-        { h: "Consumer dispute resolution", ps: [
-          "We are neither obliged nor willing to take part in dispute resolution proceedings before a consumer arbitration board.",
         ] },
         { id: "referenzen", h: "Note on references, track record and trademarks", ps: [
           "The companies, institutions, projects and figures named on this website describe the professional experience of the partners David Brainin and Philip Kügler. They include organisations in which the partners held a significant stake or a leadership position, and projects and clients they directly led or served — within their own or third-party organisations, as employees or as contractors, including before InVentures was founded.",
