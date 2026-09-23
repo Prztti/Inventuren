@@ -84,7 +84,7 @@ export const TIMELINE = [
 // Clients & partners, grouped. `tracks` decides where a group appears.
 export const CLIENT_GROUPS = [
   { key: "telecom", tracks: ["home", "tech"], names: ["Deutsche Telekom", "A1 Group", "Telekom Austria", "Orange", "Zain Group", "Viettel", "Huawei", "Ericsson", "VeriSign"] },
-  { key: "public", tracks: ["home", "tech"], names: ["Bundesministerium für Finanzen", "Supreme Council of Health (Qatar)", "McKinsey & Company", "European Stroke Organisation"] },
+  { key: "public", tracks: ["home", "tech"], names: ["Bundesministerium für Finanzen", "Supreme Council of Health (Qatar)", "McKinsey & Company", "European Stroke Organisation", "World Stroke Organization"] },
   { key: "edu", tracks: ["home", "tech"], names: ["Donau-Universität Krems", "Untis"] },
   { key: "finance", tracks: ["home", "tech", "re"], names: ["Raiffeisen Bank International", "Wiener Privatbank SE", "Uniqa Versicherung", "Global Blue", "Arthur D. Little"] },
   { key: "industry", tracks: ["home", "tech"], names: ["Porsche Informatik (Volkswagen)", "RISE", "Match Maker Ventures"] },
