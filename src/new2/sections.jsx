@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { C, F, T, LABEL, TRACK } from "./tokens";
 import { Reveal, Panel, Container, Eyebrow, H2, Lead, TextLink, Button, Picture, Rich, plain } from "./ui";
@@ -264,38 +264,60 @@ function LogoItem({ name }) {
   );
 }
 
+const wrapX = (x, w) => ((x % w) + w) % w;
+
 function Marquees({ rows }) {
   const wrapRef = useRef(null);
   const trackRefs = useRef([]);
-  const rowState = useRef(rows.map(() => ({ x: 0, w: 0, items: [] })));
   const [reduce] = useState(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  // The rows run in opposite directions: the first to the left, the second to the right.
+  // A row running right is laid out in reverse, so its names still enter in order of strength.
+  const lanes = useMemo(() => rows.map((names, i) => {
+    const dir = i % 2 ? -1 : 1;
+    return { dir, names: dir < 0 && !reduce ? [...names].reverse() : names };
+  }), [rows, reduce]);
+  const rowState = useRef(lanes.map((l) => ({ x: 0, w: 0, items: [], dir: l.dir })));
+  // Copies per row: two, or more on screens wider than one copy (short lists on wide monitors).
+  const [copies, setCopies] = useState(2);
 
   // Positions of the items in the first copy and the width of one copy.
   useEffect(() => {
-    const measure = () => rows.forEach((names, i) => {
-      const t = trackRefs.current[i];
-      if (!t) return;
-      const kids = [...t.children];
-      const first = kids[0];
-      const dup = kids[names.length];
-      const st = rowState.current[i];
-      st.w = dup && first ? dup.offsetLeft - first.offsetLeft : 0;
-      st.items = kids.slice(0, names.length).map((k, j) => ({ l: k.offsetLeft - (first ? first.offsetLeft : 0), w: k.offsetWidth, name: names[j] }));
-      if (!st.w) return;
-      if (!st.init) {
-        // start with the first (strongest) item just inside the faded left edge
-        const fade = (wrapRef.current ? wrapRef.current.clientWidth : 0) * FADE;
-        st.x = (st.w - fade) % st.w;
-        st.init = true;
+    const measure = () => {
+      const cw = wrapRef.current ? wrapRef.current.clientWidth : 0;
+      lanes.forEach((lane, i) => {
+        const t = trackRefs.current[i];
+        if (!t) return;
+        const n = lane.names.length;
+        const kids = [...t.children];
+        const first = kids[0];
+        const dup = kids[n];
+        const st = rowState.current[i];
+        const prev = st.w;
+        st.w = dup && first ? dup.offsetLeft - first.offsetLeft : 0;
+        st.items = kids.slice(0, n).map((k, j) => ({ l: k.offsetLeft - (first ? first.offsetLeft : 0), w: k.offsetWidth, name: lane.names[j] }));
+        if (!st.w) return;
+        const need = Math.ceil(cw / st.w) + 1;
+        if (need > 2) setCopies((c) => Math.max(c, need));
+        if (!st.started) {
+          // Until the band first moves (the font and logos may still change the widths), keep the
+          // strongest item just inside the faded edge it will leave by: the left edge for a row
+          // running left, the right edge for a row running right (reversed, so its strongest item
+          // closes the first copy).
+          const fade = cw * FADE;
+          st.x = st.dir > 0 ? st.w - fade : st.w - cw + fade;
+        } else if (prev && prev !== st.w) {
+          st.x *= st.w / prev; // keep the place in the loop when the layout changes
+        }
+        st.x = wrapX(st.x, st.w);
         if (!reduce) t.style.transform = `translate3d(${(-st.x).toFixed(1)}px,0,0)`;
-      }
-      st.x %= st.w;
-    });
+      });
+    };
     measure();
     const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(measure) : null;
+    if (ro && wrapRef.current) ro.observe(wrapRef.current);
     trackRefs.current.forEach((t) => t && ro && ro.observe(t));
     return () => ro && ro.disconnect();
-  }, [rows, reduce]);
+  }, [lanes, reduce]);
 
   // Runs only while the band is really visible: not scrolled away and not covered by the next panel.
   useEffect(() => {
@@ -319,7 +341,7 @@ function Marquees({ rows }) {
       const cw = el.clientWidth;
       const pad = cw * FADE; // the edges fade out
       rowState.current.forEach((st) => st.items.forEach((it) => {
-        for (const off of [0, st.w]) {
+        for (let off = 0; off < st.w + cw; off += st.w) {
           const p = it.l - st.x + off;
           const shown = Math.min(p + it.w, cw - pad) - Math.max(p, pad);
           if (shown >= it.w * 0.6) SEEN.add(it.name);
@@ -333,7 +355,8 @@ function Marquees({ rows }) {
       if (on && !hover && !reduce) {
         rowState.current.forEach((st, i) => {
           if (!st.w) return;
-          st.x = (st.x + SPEED * dt) % st.w;
+          st.started = true;
+          st.x = wrapX(st.x + st.dir * SPEED * dt, st.w);
           const t = trackRefs.current[i];
           if (t) t.style.transform = `translate3d(${(-st.x).toFixed(1)}px,0,0)`;
         });
@@ -351,10 +374,10 @@ function Marquees({ rows }) {
 
   return (
     <div className="marquees" aria-hidden ref={wrapRef}>
-      {rows.map((names, i) => (
+      {lanes.map((lane, i) => (
         <div key={i} className="marquee">
           <div className="marquee-track" ref={(n) => { trackRefs.current[i] = n; }}>
-            {(reduce ? names : [...names, ...names]).map((n, j) => <LogoItem key={j} name={n} />)}
+            {(reduce ? lane.names : Array.from({ length: copies }, () => lane.names).flat()).map((n, j) => <LogoItem key={j} name={n} />)}
           </div>
         </div>
       ))}
