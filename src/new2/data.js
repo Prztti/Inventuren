@@ -84,7 +84,7 @@ export const TIMELINE = [
 // Clients & partners, grouped. `tracks` decides where a group appears.
 export const CLIENT_GROUPS = [
   { key: "telecom", tracks: ["home", "tech"], names: ["Deutsche Telekom", "A1 Group", "Telekom Austria", "Orange", "Zain Group", "Viettel", "Huawei", "Ericsson", "VeriSign"] },
-  { key: "public", tracks: ["home", "tech"], names: ["Bundesministerium für Finanzen", "Supreme Council of Health (Qatar)", "McKinsey & Company", "European Stroke Organisation", "World Stroke Organization"] },
+  { key: "public", tracks: ["home", "tech"], names: ["Bundesministerium für Finanzen", "Supreme Council of Health – State of Qatar", "McKinsey & Company", "European Stroke Organisation", "World Stroke Organization"] },
   { key: "edu", tracks: ["home", "tech"], names: ["Donau-Universität Krems", "Untis"] },
   { key: "finance", tracks: ["home", "tech", "re"], names: ["Raiffeisen Bank International", "Wiener Privatbank SE", "Uniqa Versicherung", "Global Blue", "Arthur D. Little"] },
   { key: "industry", tracks: ["home", "tech"], names: ["Porsche Informatik (Volkswagen)", "RISE", "Match Maker Ventures"] },
@@ -131,7 +131,7 @@ export const REFERENCES = [
   // Gesellschaft
   { name: "Integrationshaus Wien", row: 0, on: ["home", "tech", "re"] },
   // Supreme Council of Health closes the row: the loop wraps, so it starts directly left of BMF
-  { name: "Supreme Council of Health (Qatar)", row: 0, on: ["home", "tech"] },
+  { name: "Supreme Council of Health – State of Qatar", row: 0, on: ["home", "tech"] },
   // ── bottom row
   // Banken & Payments
   { name: "Raiffeisen Bank International", row: 1, on: ["home", "tech", "re"] },
@@ -177,8 +177,6 @@ export const LOGOS = {
   "EPI Immobilien": { src: "/logos/epi.png", h: 30, raster: true },
   "Ibis Group": { src: "/logos/ibis.svg", h: 38 },
   "Stadt Wien": { src: "/logos/stadt-wien.svg", h: 36 },
-  // No free logo: the council was dissolved in 2016 (its tasks went to the Ministry of Public Health).
-  "Supreme Council of Health (Qatar)": { flag: "/logos/flag-qatar.svg", label: "Supreme Council of Health" },
   "ORF": { src: "/logos/orf.svg", h: 22 },
   "Integrationshaus Wien": { src: "/logos/integrationshaus.jpg", h: 32, raster: true },
 };

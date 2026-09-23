@@ -256,12 +256,10 @@ const FADE = 0.09; // width of the faded edges, see .marquee mask
 function LogoItem({ name }) {
   const logo = LOGOS[name];
   return (
-    <span className={`logo-item ${logo?.src ? "has-logo" : ""}`}>
-      {logo?.flag
-        ? <span className="logo-word" title={name}><img src={logo.flag} alt="" className="logo-flag" />{logo.label}</span>
-        : logo
-          ? <img src={logo.src} alt="" title={name} className={`${logo.raster ? "raster" : ""} ${logo.dark ? "dark" : ""}`} style={{ height: logo.h, width: "auto", display: "block" }} />
-          : <span className="logo-word">{name}</span>}
+    <span className={`logo-item ${logo ? "has-logo" : ""}`}>
+      {logo
+        ? <img src={logo.src} alt="" title={name} className={`${logo.raster ? "raster" : ""} ${logo.dark ? "dark" : ""}`} style={{ height: logo.h, width: "auto", display: "block" }} />
+        : <span className="logo-word">{name}</span>}
     </span>
   );
 }

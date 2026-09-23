@@ -175,7 +175,6 @@ li:last-child>.news-row{border-bottom:1px solid rgba(0,0,0,.1)}
 .logo-item img.raster{mix-blend-mode:multiply}
 .logo-item img.dark{filter:grayscale(1) brightness(.55);opacity:.7}
 .marquees .logo-word{font-size:var(--t-xl)}
-.logo-item img.logo-flag{display:inline-block;height:.7em;width:auto;margin-right:.45em;vertical-align:-.02em;border-radius:2px;box-shadow:0 0 0 1px rgba(0,0,0,.12)}
 
 /* chapter rail */
 .rail{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:90;display:flex;flex-direction:column;gap:2px;padding:10px 8px;border-radius:999px;background:rgba(245,244,241,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 6px 24px -12px rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:opacity .4s}
