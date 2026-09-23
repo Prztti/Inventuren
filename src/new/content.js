@@ -34,7 +34,7 @@ en: {
     intro: "Law, capital and company building meet architecture, security and delivery — a team for years.",
     people: [
       { ...PEOPLE.david, role: "Founder & Managing Partner", focus: "Legal · Capital · Company Building",
-        bio: "Lawyer, founder and serial CEO. 25+ years of operational responsibility, EUR 600m+ in transactions, founder of Geolad. GDPR and EU AI Act in practice.",
+        bio: "Lawyer, founder and serial CEO. 25+ years of operational responsibility, EUR 600m+ in transactions, founder of geolad. GDPR and EU AI Act in practice.",
         facts: [{ v: "€600m+", l: "Transactions" }, { v: "€45m+", l: "Capital raised" }, { v: "€12m+", l: "Research grants" }] },
       { ...PEOPLE.philip, role: "Managing Partner, Technology", focus: "Architecture · Security · Delivery",
         bio: "Enterprise architect and CTO. 25+ years of large IT programmes for government, health, education and telecom — from customs to a national health insurance.",
@@ -97,7 +97,7 @@ en: {
     profiles: [
       { ...PEOPLE.david, role: "Founder & Managing Partner", focus: "Legal · Capital · Company Building",
         paras: ["Lawyer, startup founder and serial CEO. 25+ years of operational experience, EUR 600m+ in transactions across six sectors.",
-          "Pioneer mandate from Deutsche Telekom and A1 in 2015. Founder and CEO of Geolad (30+ staff, EU & Asia). GDPR and EU AI Act in practice."],
+          "Pioneer mandate from Deutsche Telekom and A1 in 2015. Founder and CEO of geolad (30+ staff, EU & Asia). GDPR and EU AI Act in practice."],
         quote: "Thinking like a lawyer. Acting like an entrepreneur. Executing with impact.",
         cards: [["Telecom & Data", "Deutsche Telekom, A1, Orange, Zain, Viettel, Huawei, Ericsson"], ["Science & Education", "European Stroke Organisation, Sigmund Freud University, Danube University Krems"], ["Real Estate", "Wiener Privatbank, EPI Immobilien, UNIQA"], ["Legal", "Lansky, Ganzger & Partner, Herbst Kinsky"], ["Hospitality", "EPI Hospitality, Ibis, Arcotel"], ["Social Impact", "Integrationshaus Wien, ORF, Red Bull, vidid"]] },
       { ...PEOPLE.philip, role: "Managing Partner, Technology", focus: "Architecture · Security · Delivery",
@@ -198,7 +198,7 @@ de: {
     intro: "Recht, Kapital und Company Building trifft Architektur, Sicherheit und Delivery – eingespielt seit Jahren.",
     people: [
       { ...PEOPLE.david, role: "Founder & Managing Partner", focus: "Recht · Kapital · Company Building",
-        bio: "Jurist, Gründer und Mehrfach-CEO. 25+ Jahre operative Verantwortung, Transaktionen über EUR 600 Mio., Gründer der Geolad. DSGVO und EU AI Act in der Praxis.",
+        bio: "Jurist, Gründer und Mehrfach-CEO. 25+ Jahre operative Verantwortung, Transaktionen über EUR 600 Mio., Gründer der geolad. DSGVO und EU AI Act in der Praxis.",
         facts: [{ v: "€600m+", l: "Transaktionen" }, { v: "€45m+", l: "Kapital mobilisiert" }, { v: "€12m+", l: "Forschungsförderung" }] },
       { ...PEOPLE.philip, role: "Managing Partner, Technology", focus: "Architektur · Sicherheit · Delivery",
         bio: "Enterprise Architect und CTO. 25+ Jahre IT-Großprojekte für Behörden, Gesundheit, Bildung und Telekom – vom Zoll bis zur nationalen Krankenversicherung.",
@@ -261,7 +261,7 @@ de: {
     profiles: [
       { ...PEOPLE.david, role: "Founder & Managing Partner", focus: "Recht · Kapital · Company Building",
         paras: ["Jurist, Startup-Founder und Mehrfach-CEO. 25+ Jahre operative Erfahrung, Transaktionen über EUR 600 Mio. in sechs Branchen.",
-          "2015 Pionierauftrag von Deutscher Telekom und A1. Gründer und CEO der Geolad (30+ Mitarbeiter, EU & Asien). DSGVO und EU AI Act in der Praxis."],
+          "2015 Pionierauftrag von Deutscher Telekom und A1. Gründer und CEO der geolad (30+ Mitarbeiter, EU & Asien). DSGVO und EU AI Act in der Praxis."],
         quote: "Juristisch denkend. Unternehmerisch handelnd. Mit Impact umsetzend.",
         cards: [["Telekom & Data", "Deutsche Telekom, A1, Orange, Zain, Viettel, Huawei, Ericsson"], ["Wissenschaft & Bildung", "European Stroke Organisation, Sigmund Freud PrivatUniversität, Donau-Universität Krems"], ["Immobilien", "Wiener Privatbank, EPI Immobilien, UNIQA"], ["Legal", "Lansky, Ganzger & Partner, Herbst Kinsky"], ["Hospitality", "EPI Hospitality, Ibis, Arcotel"], ["Social Impact", "Integrationshaus Wien, ORF, Red Bull, vidid"]] },
       { ...PEOPLE.philip, role: "Managing Partner, Technology", focus: "Architektur · Sicherheit · Delivery",
@@ -362,7 +362,7 @@ cn: {
     intro: "法律、资本与公司建设，结合架构、安全与交付——多年默契合作。",
     people: [
       { ...PEOPLE.david, role: "创始人兼管理合伙人", focus: "法律 · 资本 · 公司建设",
-        bio: "法律专家、创业者及连续CEO。25年以上运营经验，交易额逾6亿欧元，Geolad创始人。GDPR与欧盟AI法案实践经验丰富。",
+        bio: "法律专家、创业者及连续CEO。25年以上运营经验，交易额逾6亿欧元，geolad创始人。GDPR与欧盟AI法案实践经验丰富。",
         facts: [{ v: "€600m+", l: "交易额" }, { v: "€45m+", l: "募集资本" }, { v: "€12m+", l: "研究资助" }] },
       { ...PEOPLE.philip, role: "技术管理合伙人", focus: "架构 · 安全 · 交付",
         bio: "企业架构师兼CTO。25年以上为政府、医疗、教育和电信主导大型IT项目——从海关系统到国家医疗保险。",
@@ -424,7 +424,7 @@ cn: {
     teamLabel: "团队", teamTitle: "法律、资本、技术。同一团队。", teamIntro: "",
     profiles: [
       { ...PEOPLE.david, role: "创始人兼管理合伙人", focus: "法律 · 资本 · 公司建设",
-        paras: ["法律专家、创业者及连续CEO。25年以上运营经验，横跨六大行业交易额逾6亿欧元。", "2015年受德国电信和A1委托开拓新业务。Geolad创始人兼CEO（30余名员工，欧洲与亚洲）。GDPR与欧盟AI法案实践经验丰富。"],
+        paras: ["法律专家、创业者及连续CEO。25年以上运营经验，横跨六大行业交易额逾6亿欧元。", "2015年受德国电信和A1委托开拓新业务。geolad创始人兼CEO（30余名员工，欧洲与亚洲）。GDPR与欧盟AI法案实践经验丰富。"],
         quote: "以法律思维思考。以企业家方式行动。以成效付诸实施。",
         cards: [["电信与数据", "德国电信、A1、Orange、Zain、Viettel、华为、爱立信"], ["科研与教育", "欧洲卒中组织、西格蒙德·弗洛伊德私立大学、多瑙大学克雷姆斯"], ["房地产", "维也纳私人银行、EPI不动产、UNIQA"], ["法律", "Lansky, Ganzger & Partner、Herbst Kinsky"], ["酒店业", "EPI Hospitality、Ibis、Arcotel"], ["社会公益", "维也纳融合之家、ORF、红牛、vidid"]] },
       { ...PEOPLE.philip, role: "技术管理合伙人", focus: "架构 · 安全 · 交付",

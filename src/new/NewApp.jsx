@@ -66,6 +66,7 @@ button,input,select,textarea{font-family:inherit}
 .wordmark{font-family:var(--font);display:inline-flex;align-items:baseline;line-height:1;letter-spacing:-.025em;white-space:nowrap}
 .wm-at{font-size:.5em;font-weight:500;color:${C.gold};margin-left:.08em;letter-spacing:0}
 [aria-label="Cookie consent"],[aria-label="Cookie consent"] *{font-family:var(--font)!important}
+[aria-label="Cookie consent"] a{color:${C.gold}!important}
 ::selection{background:${C.dark};color:#fff}
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid ${C.silver};outline-offset:3px}
 .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
@@ -144,7 +145,7 @@ li:last-child>.news-row{border-bottom:1px solid rgba(0,0,0,.1)}
 .marquee:hover .marquee-track{animation-play-state:paused}
 @keyframes marquee{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
 .logo-item{flex:none;display:flex;align-items:center;padding:0 clamp(26px,3.6vw,52px)}
-.logo-word{font-family:var(--font);font-size:var(--t-2xl);font-weight:500;letter-spacing:-.025em;color:#A9AEB3;white-space:nowrap;transition:color .4s}
+.logo-word{font-family:var(--font);font-size:var(--t-2xl);font-weight:500;letter-spacing:-.025em;color:#858B92;white-space:nowrap;transition:color .4s}
 .logo-item:hover .logo-word{color:${C.dark}}
 .logo-item img{transition:filter .4s,opacity .4s}
 .logo-item:hover img{filter:none;opacity:1}
