@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { C, F, T, LABEL, MAXW } from "./tokens";
 
 export function useInView(threshold = 0.15) {
@@ -64,17 +64,18 @@ export function Lead({ children, style }) {
   return <p className="t-lead" style={{ maxWidth: 680, margin: "0 0 56px", ...style }}>{children}</p>;
 }
 
-export function TextLink({ href, children, color = C.dark, onClick }) {
+export function TextLink({ href, children, color = C.dark, onClick, size = T.base }) {
   return (
-    <a href={href} onClick={onClick} className="text-link" style={{ fontFamily: F, fontSize: T.base, fontWeight: 600, color, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 10 }}>
+    <a href={href} onClick={onClick} className="text-link" style={{ fontFamily: F, fontSize: size, fontWeight: 600, color, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 10 }}>
       <span>{children}</span><span aria-hidden className="arrow">→</span>
     </a>
   );
 }
 
-export function Button({ href, onClick, children, color = C.dark, variant = "solid", ...rest }) {
+export function Button({ href, to, onClick, children, color = C.dark, variant = "solid", ...rest }) {
   const base = { fontFamily: F, fontSize: T.sm, fontWeight: 600, letterSpacing: "0.01em", padding: "15px 28px", borderRadius: 999, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 10, cursor: "pointer", border: "1px solid transparent", transition: "transform .25s, background .25s, color .25s, border-color .25s" };
   const look = variant === "solid" ? { background: color, color: "#fff" } : { background: "transparent", color: "inherit", borderColor: "currentColor" };
+  if (to) return <Link to={to} onClick={onClick} className={`btn btn-${variant}`} style={{ ...base, ...look }} {...rest}>{children}<span aria-hidden className="arrow">→</span></Link>;
   const Tag = href ? "a" : "button";
   return <Tag href={href} onClick={onClick} className={`btn btn-${variant}`} style={{ ...base, ...look }} {...rest}>{children}<span aria-hidden className="arrow">→</span></Tag>;
 }

@@ -20,8 +20,8 @@ function mailtoHref(form, topics) {
 
 // Success is shown only when /api/contact answers {ok:true}. Anything else falls back to a
 // prepared e-mail, so no enquiry is silently lost.
-export function ContactForm({ l, accent }) {
-  const [form, setForm] = useState({ name: "", company: "", email: "", topic: "", message: "", website: "" });
+export function ContactForm({ l, accent, defaultTopic = "" }) {
+  const [form, setForm] = useState({ name: "", company: "", email: "", topic: defaultTopic, message: "", website: "" });
   const [state, setState] = useState("idle"); // idle | sending | sent | fallback | invalid
   const set = (e) => { setForm({ ...form, [e.target.name]: e.target.value }); if (state === "invalid") setState("idle"); };
 
@@ -69,7 +69,7 @@ export function ContactForm({ l, accent }) {
 
   return (
     <form onSubmit={submit} noValidate className="cform" style={{ display: "flex", flexDirection: "column", gap: 26 }}>
-      <div aria-hidden style={{ position: "absolute", left: -10000, width: 1, height: 1, overflow: "hidden" }}>
+      <div aria-hidden inert="" style={{ position: "absolute", left: -10000, width: 1, height: 1, overflow: "hidden" }}>
         <label>Website <input name="website" tabIndex={-1} autoComplete="off" value={form.website} onChange={set} /></label>
       </div>
       <div className="split-2 tight">
@@ -98,10 +98,12 @@ export function ContactForm({ l, accent }) {
   );
 }
 
-export function ContactSection({ t, tc, ch }) {
+export function ContactSection({ t, tc, ch, track }) {
   const c = t.contact;
+  const p = track ? t[track].contactP : c.p;
+  const defaultTopic = track === "tech" ? c.form.topics[0] : track === "re" ? c.form.topics[1] : "";
   const rows = [
-    { k: c.web, v: "inventures.at", h: "https://inventures.at" },
+    { k: c.people, v: c.peopleV },
     { k: c.mail, v: MAIL, h: `mailto:${MAIL}` },
     { k: c.loc, v: c.locV },
   ];
@@ -110,15 +112,16 @@ export function ContactSection({ t, tc, ch }) {
       <Container>
         <Reveal><Eyebrow color={tc.at} n={ch?.n}>{c.label}</Eyebrow></Reveal>
         <Reveal delay={0.05}><H2 className="t-display">{c.title}</H2></Reveal>
-        <Reveal delay={0.1}><Lead>{c.p}</Lead></Reveal>
+        <Reveal delay={0.1}><Lead>{p}</Lead></Reveal>
         <div className="split-2 wide-gap" style={{ alignItems: "start" }}>
-          <Reveal delay={0.1}><ContactForm l={c.form} accent={tc.at} /></Reveal>
+          <Reveal delay={0.1}><ContactForm l={c.form} accent={tc.at} defaultTopic={defaultTopic} /></Reveal>
           <Reveal delay={0.18}>
+            <p className="t-body" style={{ color: C.text, margin: "0 0 24px" }}>{c.first}</p>
             <dl style={{ margin: "0 0 36px" }}>
               {rows.map((r) => (
-                <div key={r.k} className="row-line" style={{ display: "flex", justifyContent: "space-between", gap: 16 }}>
+                <div key={r.k} className="row-line" style={Array.isArray(r.v) ? { display: "block" } : { display: "flex", justifyContent: "space-between", gap: 16 }}>
                   <dt style={{ ...LABEL, color: C.muted }}>{r.k}</dt>
-                  <dd className="t-body" style={{ margin: 0 }}>{r.h ? <a href={r.h} className="u-link" style={{ color: C.dark, textDecoration: "none" }}>{r.v}</a> : <span>{r.v}</span>}</dd>
+                  <dd className="t-body" style={{ margin: Array.isArray(r.v) ? "8px 0 0" : 0, textAlign: Array.isArray(r.v) ? "left" : "right" }}>{Array.isArray(r.v) ? r.v.map((x) => <span key={x} style={{ display: "block" }}>{x}</span>) : r.h ? <a href={r.h} className="u-link" style={{ color: C.dark, textDecoration: "none" }}>{r.v}</a> : <span>{r.v}</span>}</dd>
                 </div>
               ))}
             </dl>

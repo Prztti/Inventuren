@@ -33,17 +33,17 @@ function AIArticle({ lang }) {
       <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
         <div style={{ width: 24, height: 1, background: C.silver }} />
         <span style={{ ...LABEL, color: C.silver }}>
-          InVentures View · March 2026
+          InVentures View · {isDE ? "März 2026, aktualisiert September 2026" : "March 2026, updated September 2026"}
         </span>
       </div>
 
       <h2 className="t-stat" style={{ color: C.dark, lineHeight: 1.2, margin: "0 0 12px", maxWidth: 720 }}>
         {isDE
-          ? "Die stille Disruption: Wie Agentic AI ganze Unternehmen verändert — bevor sie es merken"
-          : "The Silent Disruption: How Agentic AI Is Reshaping Entire Organisations — Before They Notice"}
+          ? "Die stille Disruption: Wie Agentic AI Unternehmen verändert"
+          : "The silent disruption: how agentic AI is reshaping organisations"}
       </h2>
       <p style={{ ...LABEL, fontWeight: 500, color: C.dim, margin: "0 0 32px" }}>
-        InVentures Advisory — {isDE ? "März" : "March"} 2026
+        InVentures Advisory — {isDE ? "März 2026" : "March 2026"}
       </p>
 
       <Body>
@@ -56,8 +56,8 @@ function AIArticle({ lang }) {
 
       <Body>
         {isDE
-          ? "Die erste Welle der KI-Adoption — Copiloten, Chatbots, Zusammenfassungen — hat Routineaufgaben beschleunigt. Die zweite Welle, Agentic AI, ist qualitativ anders: Systeme die eigenständig planen, ausführen, rückmelden und iterieren. McKinsey schätzt, dass 60–70 % der Arbeitszeit von Wissensarbeitern heute durch KI-Agenten übernommen werden könnten (McKinsey Global Institute, 2023). Stanford HAI dokumentiert, dass Agentic-AI-Systeme in kontrollierten Umgebungen bereits komplexe Rechtsgutachten, Finanzanalysen und Produktstrategien liefern — nicht als Entwurf, sondern als Erstversion."
-          : "The first wave of AI adoption — copilots, chatbots, summaries — accelerated routine tasks. The second wave, Agentic AI, is qualitatively different: systems that independently plan, execute, report and iterate. McKinsey estimates that 60–70% of knowledge workers' time could now be handled by AI agents (McKinsey Global Institute, 2023). Stanford HAI documents that agentic AI systems in controlled environments already deliver complex legal opinions, financial analyses and product strategies — not as drafts, but as first versions."}
+          ? "Die erste Welle der KI-Adoption — Copiloten, Chatbots, Zusammenfassungen — hat Routineaufgaben beschleunigt. Die zweite Welle, Agentic AI, ist qualitativ anders: Systeme, die eigenständig planen, ausführen, rückmelden und iterieren. McKinsey schätzte 2023, dass generative KI zusammen mit anderen Technologien theoretisch Tätigkeiten automatisieren könnte, die 60–70 % der heutigen Arbeitszeit beanspruchen. Das ist ein theoretisches Potenzial, keine gemessene Leistung heutiger KI-Agenten; wie viel davon realisiert wird, hängt von Prozessen, Daten und Wirtschaftlichkeit ab. Nach unserer Einschätzung verkürzen Agentic-AI-Systeme heute vor allem die Entwurfsphase – bei Analysen, Verträgen und Konzepten. Die fachliche Prüfung bleibt beim Menschen."
+          : "The first wave of AI adoption — copilots, chatbots, summaries — accelerated routine tasks. The second wave, Agentic AI, is qualitatively different: systems that independently plan, execute, report and iterate. McKinsey estimated in 2023 that generative AI, together with other technologies, could in theory automate activities that absorb 60–70% of employees' working time today. That is a theoretical potential, not a measure of what today's AI agents deliver; how much of it is realised depends on processes, data and economics. In our assessment, agentic AI systems today mainly shorten the drafting stage — for analyses, contracts and concepts. Expert review stays with people."}
       </Body>
 
       <PullQuote
@@ -71,28 +71,28 @@ function AIArticle({ lang }) {
 
       <Body>
         {isDE
-          ? "Börsennotierte Konzerne haben Boards, Investoren und Analysten die auf AI-Readiness drängen. KMUs und mittelgroße private Unternehmen haben diesen externen Druck nicht. Eine Studie der WKO (2024) zeigt: Nur 10,8 % der österreichischen Unternehmen nutzen KI produktiv. Gleichzeitig berichten frühe Adopters — insbesondere im Rechts-, Finanz- und Beratungssektor — von Effizienzgewinnen von 30–60 %, die Wettbewerbsvorteile erzeugen, die innerhalb von 12–24 Monaten strukturell schwer aufzuholen sind."
-          : "Listed corporations have boards, investors and analysts pushing AI readiness. SMEs and mid-sized private companies lack this external pressure. A WKO study (2024) shows: only 10.8% of Austrian companies use AI productively. Meanwhile early adopters — particularly in legal, finance and consulting — report efficiency gains of 30–60%, generating competitive advantages that become structurally difficult to close within 12–24 months."}
+          ? "Börsennotierte Konzerne haben Boards, Investoren und Analysten, die auf AI-Readiness drängen. Kleine und mittlere private Unternehmen haben diesen externen Druck nicht. Laut Statistik Austria nutzten 2025 rund 30 % der österreichischen Unternehmen mit mindestens 10 Beschäftigten künstliche Intelligenz – 2023 waren es 10,8 %. Das ist mehr als der EU-Schnitt, aber weiterhin eine Minderheit. Frühe Anwender, insbesondere im Rechts-, Finanz- und Beratungssektor, berichten von deutlichen Effizienzgewinnen. Nach unserer Einschätzung können daraus binnen 12 bis 24 Monaten Vorsprünge entstehen, die schwer aufzuholen sind."
+          : "Listed corporations have boards, investors and analysts pushing AI readiness. Small and mid-sized private companies lack this external pressure. According to Statistik Austria, around 30% of Austrian companies with 10 or more employees used artificial intelligence in 2025, up from 10.8% in 2023 — above the EU average, but still a minority. Early adopters, particularly in legal, finance and consulting, report clear efficiency gains. In our assessment, these can turn into leads that are hard to close within 12 to 24 months."}
       </Body>
 
       <Body>
         {isDE
-          ? "Konkret: Im Rechtsbereich ersetzt Harvey.ai — ein auf GPT-4 basierendes System, eingesetzt bei Allen & Overy und anderen Magic-Circle-Kanzleien — bereits Junior-Associates bei der Vertragsanalyse. Klarna ersetzte 2024 öffentlichkeitswirksam 700 Kundendienst-Mitarbeiter durch ein internes KI-System und kommunizierte damit explizit an Investoren. Das sind keine Ausnahmen — das sind Frühindikatoren."
-          : "Concretely: in legal, Harvey.ai — a GPT-4-based system deployed at Allen & Overy and other Magic Circle firms — is already replacing junior associates in contract analysis. In 2024 Klarna publicly replaced 700 customer service employees with an internal AI system, explicitly communicating this to investors. These are not exceptions — they are leading indicators."}
+          ? "Konkret: Im Rechtsbereich unterstützt Harvey – ursprünglich auf GPT-4 aufgebaut und bei Allen & Overy sowie weiteren Magic-Circle-Kanzleien im Einsatz – Anwältinnen und Anwälte bei Vertragsanalyse, Due Diligence und Regulatorik; jedes Ergebnis wird dort anwaltlich geprüft. Klarna berichtete im Februar 2024, dass sein KI-Assistent im Kundenservice ein Arbeitsvolumen entsprechend 700 Vollzeitkräften erledigt, und verband das öffentlich mit besseren Renditen für Investoren. Das sind keine Ausnahmen – das sind frühe Signale dafür, wie stark KI Arbeitsweisen bereits verändert."
+          : "Concretely: in legal, Harvey — originally built on GPT-4 and used at Allen & Overy and other Magic Circle firms — supports lawyers in contract analysis, due diligence and regulatory work; every output is reviewed by a lawyer. In February 2024 Klarna reported that its AI assistant handled a customer-service workload equivalent to 700 full-time agents, and publicly linked this to better returns for investors. These are not exceptions — they are early signals of how deeply AI is already changing the way work gets done."}
       </Body>
 
       <H3 color={C.silver}>{isDE ? "Das Extremszenario: Geklonte Vorstände" : "The Extreme Scenario: Cloned Boards"}</H3>
 
       <Body>
         {isDE
-          ? "Was noch vor zwei Jahren nach Science Fiction klang, wird akademisch ernsthaft diskutiert: Digital Twins von Führungskräften — trainiert auf deren Entscheidungshistorie, Kommunikation und strategischen Präferenzen — als 'Decision Prediction Engines'. Unternehmen wie Synthesia und D-ID ermöglichen bereits überzeugende Video-Avatare von Executives. Der nächste Schritt: Entscheidungsmodelle. Wharton-Forscher haben 2023 demonstriert, dass GPT-4 in simulierten Managementszenarien konsistenter und systematischer entscheidet als menschliche Manager — und das ohne Müdigkeit, Bias durch Tagesform oder politische Rücksichtnahme."
-          : "What sounded like science fiction two years ago is now seriously discussed in academia: digital twins of executives — trained on their decision history, communication and strategic preferences — as 'decision prediction engines'. Companies like Synthesia and D-ID already enable convincing video avatars of executives. The next step: decision models. Wharton researchers demonstrated in 2023 that GPT-4 decides more consistently and systematically than human managers in simulated management scenarios — without fatigue, mood-induced bias or political considerations."}
+          ? "Was noch vor zwei Jahren nach Science Fiction klang, wird akademisch ernsthaft diskutiert: Digital Twins von Führungskräften — trainiert auf deren Entscheidungshistorie, Kommunikation und strategischen Präferenzen — als 'Decision Prediction Engines'. Unternehmen wie Synthesia und D-ID ermöglichen bereits überzeugende Video-Avatare von Executives. Der nächste Schritt: Entscheidungsmodelle. Die Forschung zu KI-gestützten Managemententscheidungen zeigt bisher ein gemischtes Bild: Bei klar strukturierten Aufgaben entscheiden Sprachmodelle konsistenter als Menschen, bei mehrdeutigen Entscheidungen zeigen sie ähnliche Verzerrungen. Der eigentliche Vorteil liegt nach unserer Einschätzung in der Unabhängigkeit von Tagesform und Müdigkeit – nicht in Objektivität an sich."
+          : "What sounded like science fiction two years ago is now seriously discussed in academia: digital twins of executives — trained on their decision history, communication and strategic preferences — as 'decision prediction engines'. Companies like Synthesia and D-ID already enable convincing video avatars of executives. The next step: decision models. Research on AI-supported management decisions paints a mixed picture so far: on clearly structured tasks, language models decide more consistently than people; in ambiguous decisions, they show similar biases. In our assessment, the real advantage is independence from mood and fatigue — not objectivity as such."}
       </Body>
 
       <PullQuote
         color={C.silver}
         text={isDE
-          ? "Die Frage ist nicht ob KI Entscheidungen trifft. Die Frage ist, wessen Werte dabei codiert sind."
+          ? "Die Frage ist nicht, ob KI Entscheidungen trifft. Die Frage ist, wessen Werte dabei codiert sind."
           : "The question is not whether AI makes decisions. The question is whose values are encoded in it."}
       />
 
@@ -100,15 +100,15 @@ function AIArticle({ lang }) {
 
       <Body>
         {isDE
-          ? "InVentures begleitet Unternehmen bei der strukturierten AI-Readiness-Analyse: welche Prozesse sind AI-substitutierbar, welche müssen human-in-the-loop bleiben, und wo entstehen durch gezielte Adoption echte Marktvorteile. Wir arbeiten nicht mit Hype — wir arbeiten mit Szenarien, Timelines und messbaren Ergebnissen."
-          : "InVentures accompanies companies through structured AI readiness analysis: which processes are AI-substitutable, which must remain human-in-the-loop, and where targeted adoption creates genuine market advantages. We don't work with hype — we work with scenarios, timelines and measurable outcomes."}
+          ? "InVentures begleitet Unternehmen bei der strukturierten AI-Readiness-Analyse: welche Prozesse durch KI automatisierbar sind, welche human-in-the-loop bleiben müssen und wo gezielte Adoption echte Marktvorteile schafft. Wir arbeiten nicht mit Hype — wir arbeiten mit Szenarien, Timelines und messbaren Ergebnissen."
+          : "InVentures accompanies companies through structured AI readiness analysis: which processes can be automated by AI, which must remain human-in-the-loop, and where targeted adoption creates genuine market advantages. We don't work with hype — we work with scenarios, timelines and measurable outcomes."}
       </Body>
 
       <div style={{ marginTop: 16 }}>
         <span className="t-small" style={{ color: C.silver }}>
           {isDE
-            ? "Quellen: McKinsey Global Institute (2023), WKO Digitalisierungsreport (2024), Stanford HAI AI Index (2024), Wharton School — AI in Management (2023), Harvey.ai Case Studies (Allen & Overy, 2023), Klarna Annual Report (2024)"
-            : "Sources: McKinsey Global Institute (2023), WKO Digitalisierungsreport (2024), Stanford HAI AI Index (2024), Wharton School — AI in Management (2023), Harvey.ai Case Studies (Allen & Overy, 2023), Klarna Annual Report (2024)"}
+            ? "Quellen: McKinsey Global Institute, The Economic Potential of Generative AI (2023); Statistik Austria, IKT-Einsatz in Unternehmen 2025 (Juni 2026); Digital Austria, KI-Monitor (2024); Allen & Overy, Ankündigung der Partnerschaft mit Harvey (2023); Klarna, Pressemitteilung zum KI-Assistenten (Februar 2024); Chen et al., A Manager and an AI Walk into a Bar, Manufacturing & Service Operations Management (2025). Aussagen „nach unserer Einschätzung“ sind Bewertungen von InVentures."
+            : "Sources: McKinsey Global Institute, The Economic Potential of Generative AI (2023); Statistik Austria, ICT usage in enterprises 2025 (June 2026); Digital Austria, KI-Monitor (2024); Allen & Overy, announcement of the Harvey partnership (2023); Klarna, press release on its AI assistant (February 2024); Chen et al., A Manager and an AI Walk into a Bar, Manufacturing & Service Operations Management (2025). Statements marked \"in our assessment\" are InVentures' own views."}
         </span>
       </div>
     </div>
@@ -128,31 +128,31 @@ function REArticle({ lang }) {
       <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
         <div style={{ width: 24, height: 1, background: C.gold }} />
         <span style={{ ...LABEL, color: C.gold }}>
-          InVentures View · March 2026
+          InVentures View · {isDE ? "März 2026, aktualisiert September 2026" : "March 2026, updated September 2026"}
         </span>
       </div>
 
       <h2 className="t-stat" style={{ color: C.dark, lineHeight: 1.2, margin: "0 0 12px", maxWidth: 720 }}>
         {isDE
-          ? "Nach der Korrektur: Wo jetzt die besten Einstiegsmöglichkeiten im europäischen Immobilienmarkt liegen — und warum Hotels eine stille Krise verbirgt"
-          : "After the Correction: Where Europe's Best Real Estate Entry Points Now Lie — and Why Hotels Are Hiding a Silent Crisis"}
+          ? "Nach der Korrektur: Wo der europäische Immobilienmarkt jetzt Chancen bietet – und warum Hotelbetreiber unter Kostendruck stehen"
+          : "After the correction: where Europe's real estate market offers opportunities now — and why hotel operators are under cost pressure"}
       </h2>
       <p style={{ ...LABEL, fontWeight: 500, color: C.dim, margin: "0 0 32px" }}>
-        InVentures Advisory — {isDE ? "März" : "March"} 2026
+        InVentures Advisory — {isDE ? "März 2026" : "March 2026"}
       </p>
 
       <Body>
         {isDE
-          ? "Zwischen 2022 und 2024 hat der europäische Immobilienmarkt eine der schärfsten Bewertungskorrekturen der Nachkriegszeit durchlaufen. Steigende Zinsen, Finanzierungsengpässe und ein Nachfragerückgang haben Preise in Kernmärkten um 15–30 % gedrückt — in einzelnen deutschen Teilmärkten bis zu 35 %. Was als Schmerz begann, ist heute für kapitalkräftige Käufer eine strukturelle Chance: Die Korrektur ist weitgehend abgeschlossen, Renditen fallen wieder, und internationales Kapital kehrt zurück."
-          : "Between 2022 and 2024, the European real estate market underwent one of the sharpest valuation corrections since the post-war period. Rising interest rates, financing constraints and demand collapse pushed prices in core markets down by 15–30% — in some German sub-markets by up to 35%. What began as pain is today a structural opportunity for capital-strong buyers: the correction is largely complete, yields are falling again, and international capital is returning."}
+          ? "Zwischen 2022 und 2024 hat der europäische Immobilienmarkt eine der schärfsten Bewertungskorrekturen der Nachkriegszeit durchlaufen. Steigende Zinsen, Finanzierungsengpässe und ein Nachfragerückgang haben die Preise spürbar gedrückt: Der europäische Gewerbeimmobilien-Preisindex von Green Street lag 2024 rund 25 % unter seinem Höchststand von 2022, Büros traf es am stärksten; deutsche Gewerbeimmobilien verloren laut VDP-Index rund 17 %. Was als Schmerz begann, ist heute für kapitalkräftige Käufer eine strukturelle Chance: Die Korrektur ist weitgehend abgeschlossen, Renditen fallen wieder, und internationales Kapital kehrt zurück."
+          : "Between 2022 and 2024, the European real estate market underwent one of the sharpest valuation corrections since the post-war period. Rising interest rates, financing constraints and falling demand pushed prices down sharply: Green Street's pan-European commercial property price index stood around 25% below its 2022 peak in 2024, with offices hit hardest; German commercial property lost roughly 17%, according to the VDP index. What began as pain is today a structural opportunity for well-capitalised buyers: the correction is largely complete, yields are falling again, and international capital is returning."}
       </Body>
 
-      <H3 color={C.gold}>{isDE ? "Wohnimmobilien: Struktureller Nachfrageüberhang trifft auf erschöpftes Angebot" : "Residential: Structural Demand Overhang Meets Exhausted Supply"}</H3>
+      <H3 color={C.gold}>{isDE ? "Wohnimmobilien: Die Nachfrage übersteigt das Angebot weiter" : "Residential: demand continues to outstrip supply"}</H3>
 
       <Body>
         {isDE
-          ? "Wien, München, Hamburg und Zürich eint ein gemeinsames Problem: Fertigstellungen sinken seit 2022 auf historische Tiefststände, während Haushaltsbildung und Migration weiter ansteigen. CBRE dokumentiert für Wien eine Leerstandsrate von unter 1 % bei gleichzeitig steigenden Spitzenmieten. EHL Immobilien berichtet für 2025 von einer Angebotsknappheit, die sich frühestens 2027 entspannen wird. Für Investoren bedeutet das: Bestandsimmobilien mit Repositionierungspotenzial bieten heute Risk-adjusted Returns, die Neubauprojekte nicht erreichen können."
-          : "Vienna, Munich, Hamburg and Zurich share a common problem: completions have fallen to historic lows since 2022 while household formation and migration continue to rise. CBRE documents a vacancy rate below 1% in Vienna alongside rising prime rents. EHL Immobilien reports a supply shortage for 2025 that will not ease until 2027 at the earliest. For investors this means: existing stock with repositioning potential today offers risk-adjusted returns that new-build projects cannot match."}
+          ? "Wien, München, Hamburg und Zürich eint ein gemeinsames Problem: Fertigstellungen sinken seit 2022 auf historische Tiefststände, während Haushaltsbildung und Migration weiter ansteigen. Für Wien erwartet CBRE 2026 Spitzenmieten auf Rekordniveau von 20,30 € pro Quadratmeter. EHL Immobilien beziffert die Wiener Fertigstellungen 2025 auf 9.688 Einheiten – erstmals seit rund zehn Jahren unter 10.000 und 32 % weniger als 2023; für 2026 rechnet EHL mit einem weiteren Rückgang auf rund 8.630 Einheiten. Für Investoren heißt das aus unserer Sicht: Bestandsimmobilien mit Repositionierungspotenzial können risikoadjustierte Renditen bieten, die Neubauprojekte kaum erreichen – wenn Lage, Zustand und Einstiegspreis stimmen."
+          : "Vienna, Munich, Hamburg and Zurich share a common problem: completions have fallen to historic lows since 2022 while household formation and migration continue to rise. For Vienna, CBRE expects prime rents to reach a record €20.30 per square metre in 2026. EHL Immobilien puts 2025 completions in Vienna at 9,688 units — the first figure below 10,000 in around a decade and 32% fewer than in 2023 — and expects a further fall to around 8,630 units in 2026. In our view, existing stock with repositioning potential can therefore offer risk-adjusted returns that new-build projects will struggle to match — provided location, condition and entry price are right."}
       </Body>
 
       <PullQuote
@@ -166,32 +166,32 @@ function REArticle({ lang }) {
 
       <Body>
         {isDE
-          ? "Im Bürosektor findet eine beschleunigte Qualitätsspaltung statt: Prime-Flächen in Toplage (Wien 1., 3., 19. Bezirk) verzeichnen Mietsteigerungen von 8–12 %, während B-Lagen strukturellen Leerstand aufbauen. Die Botschaft für Investoren ist präzise: Nur Kernlagen mit hoher ESG-Zertifizierung (ÖGNI/BREEAM) rechtfertigen heute Investition — dort sichert der Mietpremium die Rendite. Logistik bleibt stärkste Asset-Klasse: JLL erwartet bis 2026 stabile Renditen bei weiter steigenden Mieten in Lagen nahe Wien, Linz und Graz."
-          : "In the office sector an accelerated quality split is underway: prime space in top locations (Vienna's 1st, 3rd and 19th districts) is recording rent increases of 8–12%, while B-locations are building structural vacancy. The message for investors is precise: only core locations with high ESG certification (ÖGNI/BREEAM) justify investment today — there the rent premium secures the yield. Logistics remains the strongest asset class: JLL expects stable yields through 2026 with continuing rent increases near Vienna, Linz and Graz."}
+          ? "Im Bürosektor findet eine beschleunigte Qualitätsspaltung statt: Top-Flächen in Wiens Innenstadtlagen erzielen Spitzenmieten von bis zu rund 29,50 €/m² (EHL, Frühjahr 2026), während B-Lagen zunehmend strukturellen Leerstand aufbauen. Unsere These für Investoren: Vor allem Kernlagen mit hoher ESG-Zertifizierung (ÖGNI/BREEAM) rechtfertigen derzeit eine Investition – dort kann ein Mietaufschlag zur Rendite beitragen. Logistik bleibt eine der widerstandsfähigsten Asset-Klassen: Für 2026 erwartet CBRE eine Konsolidierung bei stabilen bis leicht steigenden Mieten in den Regionen Wien, Linz und Graz."
+          : "In the office sector an accelerated quality split is underway: prime space in Vienna's inner-city locations achieves top rents of up to around €29.50/m² (EHL, spring 2026), while B-locations are increasingly building structural vacancy. Our thesis for investors: above all, core locations with high ESG certification (ÖGNI/BREEAM) justify investment at present — there, a rent premium can contribute to returns. Logistics remains one of the most resilient asset classes: for 2026, CBRE expects consolidation with stable to slightly rising rents in the Vienna, Linz and Graz regions."}
       </Body>
 
-      <H3 color={C.gold}>{isDE ? "Hotels: Die stille Krise hinter den Rekordzahlen" : "Hotels: The Silent Crisis Behind the Record Numbers"}</H3>
+      <H3 color={C.gold}>{isDE ? "Hotels: Kostendruck hinter den Rekordzahlen" : "Hotels: cost pressure behind the record numbers"}</H3>
 
       <Body>
         {isDE
-          ? "Der österreichische Tourismusmarkt verzeichnet Rekordübernachtungen — und dennoch steuert der Hotelmarkt auf eine strukturelle Krise zu. Die Schere zwischen steigenden Betriebskosten und stagnierenden Zimmerpreisen öffnet sich in einem Tempo, das viele Betreiber überfordert. Pachten für Hotelimmobilien sind im Zuge der allgemeinen Immobilienwerte gestiegen. Gleichzeitig können Zimmerpreise in Wien und den österreichischen Tourismusregionen nicht unbegrenzt erhöht werden — die Konsumenten reagieren bereits mit Buchungsverschiebungen und verkürzten Aufenthalten."
-          : "Austria's tourism market is recording overnight stays at record levels — and yet the hotel market is heading for a structural crisis. The gap between rising operating costs and stagnating room prices is widening at a rate that is overwhelming many operators. Leases on hotel properties have risen in line with general real estate values. Meanwhile room prices in Vienna and Austria's tourism regions cannot be increased without limit — consumers are already responding with booking shifts and shorter stays."}
+          ? "Der österreichische Tourismus verzeichnete 2025 mit rund 157 Millionen Nächtigungen einen neuen Höchstwert – und dennoch gerät die Profitabilität vieler Hotelbetriebe unter Druck. Die Schere zwischen steigenden Betriebskosten und stagnierenden Zimmerpreisen öffnet sich in einem Tempo, das viele Betreiber überfordert. Pachten für Hotelimmobilien sind in den vergangenen Jahren gestiegen und belasten die Kostenseite der Betreiber zusätzlich. Gleichzeitig können Zimmerpreise in Wien und den österreichischen Tourismusregionen nicht unbegrenzt erhöht werden — die Konsumenten reagieren bereits mit Buchungsverschiebungen und verkürzten Aufenthalten."
+          : "Austrian tourism reached a new high of around 157 million overnight stays in 2025 — and yet profitability at many hotel operators is coming under pressure. The gap between rising operating costs and stagnating room prices is widening at a rate that is overwhelming many operators. Leases on hotel properties have risen in recent years, adding to operators' costs. Meanwhile room prices in Vienna and Austria's tourism regions cannot be increased without limit — consumers are already responding with booking shifts and shorter stays."}
       </Body>
 
       <Body>
         {isDE
-          ? "CBRE Austria und Christie & Co. dokumentieren für 2025 einen Rückgang der EBITDA-Margen bei 3- und 4-Sterne-Betrieben um 4–8 Prozentpunkte — bei gleichzeitig steigendem Kapitaldienst. Das Ergebnis: Erste Distressed-Asset-Situationen werden bereits sichtbar, insbesondere bei Hotelimmobilien mit auslaufenden Finanzierungen und Betreibern ohne Preissetzungsmacht."
-          : "CBRE Austria and Christie & Co. document for 2025 a decline in EBITDA margins at 3- and 4-star properties of 4–8 percentage points — alongside rising debt service. The result: the first distressed-asset situations are already becoming visible, particularly in hotel properties with maturing financing and operators without pricing power."}
+          ? "CBRE Austria beobachtet sinkende Margen bei Hotelbetreibern, weil Personal- und Betriebskosten schneller steigen als die erzielbaren Zimmerpreise – und bezeichnet das Segment für Investoren dennoch als attraktiv. Nach unserer Einschätzung kann dieser Kostendruck bei einzelnen Betrieben mit auslaufenden Finanzierungen und ohne Preissetzungsmacht in den kommenden Jahren zu Distressed-Asset-Situationen führen."
+          : "CBRE Austria observes shrinking margins at hotel operators, as staff and operating costs rise faster than achievable room rates — while still describing the segment as attractive for investors. In our assessment, this cost pressure may lead to distressed-asset situations over the coming years for operators with maturing financing and limited pricing power."}
       </Body>
 
       <PullQuote
         color={C.gold}
         text={isDE
-          ? "Record occupancy with shrinking margins is not a success story. It is the precursor to a restructuring wave."
-          : "Record occupancy with shrinking margins is not a success story. It is the precursor to a restructuring wave."}
+          ? "Rekordauslastung allein sichert keine Profitabilität. Sinkende Margen können Restrukturierungen erforderlich machen."
+          : "Record occupancy alone does not secure profitability. Shrinking margins can make restructuring necessary."}
       />
 
-      <H3 color={C.gold}>{isDE ? "Wie InVentures positioniert ist" : "How InVentures Is Positioned"}</H3>
+      <H3 color={C.gold}>{isDE ? "Wie InVentures positioniert ist" : "How InVentures is positioned"}</H3>
 
       <Body>
         {isDE
@@ -202,8 +202,8 @@ function REArticle({ lang }) {
       <div style={{ marginTop: 16 }}>
         <span className="t-small" style={{ color: C.dim }}>
           {isDE
-            ? "Quellen: CBRE Austria Real Estate Market Outlook 2026, EHL Immobilien Wohnmarktbericht 2025, JLL Housing Market Overview H2 2024, Christie & Co Hotel Market Report 2025, PwC/ULI Emerging Trends in Real Estate Europe 2025"
-            : "Sources: CBRE Austria Real Estate Market Outlook 2026, EHL Immobilien Wohnmarktbericht 2025, JLL Housing Market Overview H2 2024, Christie & Co Hotel Market Report 2025, PwC/ULI Emerging Trends in Real Estate Europe 2025"}
+            ? "Quellen: CBRE Austria, Immobilienwirtschaft 2026 (Jänner 2026) sowie Logistikmarktbericht 2025; EHL Immobilien, Wiener Wohnungsmarkt – Rückblick 2025 & Ausblick 2026 (Jänner 2026) und Büromarktbericht Frühjahr 2026; Statistik Austria, Ankünfte und Nächtigungen 2025 (Jänner 2026); Green Street, Pan-European Commercial Property Price Index (2024); VDP-Immobilienpreisindex (2024). Aussagen „nach unserer Einschätzung“ und „unsere These“ sind Bewertungen von InVentures."
+            : "Sources: CBRE Austria, Real Estate Outlook 2026 (January 2026) and Logistics Market Report 2025; EHL Immobilien, Vienna Housing Market Review 2025 & Outlook 2026 (January 2026) and Office Market Report Spring 2026; Statistik Austria, arrivals and overnight stays 2025 (January 2026); Green Street, Pan-European Commercial Property Price Index (2024); VDP property price index (2024). Statements marked \"in our view\", \"in our assessment\" or \"our thesis\" are InVentures' own views."}
         </span>
       </div>
     </div>

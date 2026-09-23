@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { C, F, T, LABEL, TRACK } from "./tokens";
 import { Reveal, Panel, Container, Eyebrow, H2, Lead, TextLink, Button, Picture } from "./ui";
 import { TIMELINE, CLIENT_GROUPS, LOGOS } from "./data";
-import { techNews, reNews } from "./news";
+import { techNews, reNews, articles } from "./news";
 
 const accentOf = (a) => (a === "gold" ? { line: C.gold, text: C.goldDeep } : { line: C.silverLine, text: C.silverInk });
 const NAMES = { david: "David Brainin", philip: "Philip Kügler" };
@@ -65,19 +66,7 @@ export function TeamCards({ t, ch }) {
             })}
           </div>
         </div>
-        <div style={{ marginTop: "clamp(64px, 8vw, 104px)" }}>
-          <Reveal><div style={{ ...LABEL, color: C.muted, marginBottom: 24 }}>{tm.bondsLabel}</div></Reveal>
-          <div className="cols-3">
-            {tm.bonds.map((b, i) => (
-              <Reveal key={b.t} delay={i * 0.08} className="rule-top">
-                <Num i={i} color={i === 1 ? C.goldDeep : C.silverInk} />
-                <h3 className="t-h3" style={{ margin: "12px 0 8px" }}>{b.t}</h3>
-                <p className="t-body" style={{ color: C.dim, margin: 0 }}>{b.d}</p>
-              </Reveal>
-            ))}
-          </div>
-          <Reveal delay={0.1}><div style={{ marginTop: 44 }}><Button href="#kontakt">{tm.cta}</Button></div></Reveal>
-        </div>
+        <Reveal delay={0.1}><div style={{ marginTop: "clamp(48px, 6vw, 72px)" }}><Button href="#kontakt">{tm.cta}</Button></div></Reveal>
       </Container>
     </Panel>
   );
@@ -252,7 +241,7 @@ function LogoItem({ name, dup }) {
   return (
     <span className={`logo-item ${dup ? "dup" : ""} ${logo ? "has-logo" : ""}`}>
       {logo
-        ? <img src={logo.src} alt={name} title={name} loading="lazy" className={`${logo.raster ? "raster" : ""} ${logo.dark ? "dark" : ""}`} style={{ height: logo.h, width: "auto", display: "block" }} />
+        ? <img src={logo.src} alt="" title={name} loading="lazy" className={`${logo.raster ? "raster" : ""} ${logo.dark ? "dark" : ""}`} style={{ height: logo.h, width: "auto", display: "block" }} />
         : <span className="logo-word">{name}</span>}
     </span>
   );
@@ -279,7 +268,10 @@ export function Clients({ t, scope = "home", title, id = "partner", ch }) {
         ))}
       </div>
       <ul className="sr-only">{names.map((n) => <li key={n}>{n}</li>)}</ul>
-      <Container><p className="t-small" style={{ color: C.muted, margin: "24px 0 0" }}>{t.clients.fo}</p></Container>
+      <Container>
+        <p className="t-small" style={{ color: C.muted, margin: "24px 0 0" }}>{t.clients.fo}</p>
+        <p className="t-small" style={{ color: C.muted, margin: "4px 0 0" }}>{t.ui.refNote} <Link to="/impressum#referenzen" className="u-link" style={{ color: C.dim, textDecoration: "none", fontWeight: 600 }}>{t.ui.refLink}</Link></p>
+      </Container>
     </Panel>
   );
 }
@@ -480,39 +472,63 @@ export function Process({ d, tc , ch }) {
 
 // ── Insights: curated news as a clean list ──────────────────────────────────
 const MONTHS = { en: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], de: ["Jän", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"] };
-const fmtDate = (s, lang) => {
+export const fmtDate = (s, lang) => {
   const [y, m] = String(s).split("-");
   if (!m) return y;
   if (lang === "cn") return `${y}年${parseInt(m, 10)}月`;
   return `${(MONTHS[lang] || MONTHS.en)[parseInt(m, 10) - 1]} ${y}`;
 };
+const byDate = (list) => [...list].sort((a, b) => String(b.date).localeCompare(String(a.date)));
+export const newsFor = (track) => byDate(track === "re" ? reNews : techNews);
 
-export function Insights({ t, lang, track, tc , ch }) {
-  const all = [...(track === "re" ? reNews : techNews)].sort((a, b) => String(b.date).localeCompare(String(a.date)));
-  const [count, setCount] = useState(6);
+// One external report: date, original title, summary in the page language, source.
+export function NewsRow({ n, lang, t, accent }) {
+  const summary = (lang === "de" && n.summary_de) || (lang === "cn" && n.summary_cn) || n.summary;
+  const srcLang = n.lang || "en";
+  const hint = srcLang !== lang ? t.ui.langHint?.[srcLang] : null;
+  return (
+    <li>
+      <a href={n.url} target="_blank" rel="noopener noreferrer" className="news-row">
+        <span className="t-small" style={{ color: C.muted }}>{fmtDate(n.date, lang)}</span>
+        <span>
+          <span className="t-title" style={{ display: "block", color: C.dark }}>{n.title}</span>
+          <span className="t-body" style={{ display: "block", color: C.dim, lineHeight: 1.55, marginTop: 6 }}>{summary}</span>
+          <span className="t-small" style={{ display: "block", color: accent, fontWeight: 600, marginTop: 6 }}>{n.source}{hint ? <span style={{ color: C.muted, fontWeight: 500 }}> · {hint}</span> : null}</span>
+        </span>
+        <span aria-hidden className="arrow" style={{ fontSize: 20, color: C.dark }}>↗</span>
+      </a>
+    </li>
+  );
+}
+
+// Card for an own article (InVentures View) that links to its page.
+export function ArticleCard({ a, lang, t, accent }) {
+  const l = lang === "de" ? "de" : lang === "cn" ? "cn" : "en";
+  return (
+    <Link to={`/insights/${a.slug}`} className="article-card" style={{ display: "block", textDecoration: "none", color: C.dark, padding: "26px 28px", borderRadius: 18, background: "#fff", boxShadow: "0 1px 0 rgba(0,0,0,.06), 0 18px 40px -28px rgba(0,0,0,.35)" }}>
+      <div style={{ ...LABEL, color: accent, marginBottom: 10 }}>{t.insights.view} · {fmtDate(a.date, lang)}</div>
+      <div className="t-h3" style={{ marginBottom: 8 }}>{a.title[l]}</div>
+      <p className="t-body" style={{ color: C.dim, margin: "0 0 14px" }}>{a.teaser[l]}</p>
+      <span className="t-small" style={{ fontWeight: 600 }}>{t.insights.read} <span aria-hidden className="arrow">→</span></span>
+    </Link>
+  );
+}
+
+// Track pages: the own article plus the three latest reports; everything else lives on /insights.
+export function Insights({ t, lang, track, tc, ch }) {
   const ix = t.insights;
+  const own = articles.filter((a) => a.track === track);
   return (
     <Panel id="insights" tone="light" chapter={ch}>
       <Container>
         <Reveal><Eyebrow color={tc.at} n={ch?.n}>{ix.label}</Eyebrow></Reveal>
         <Reveal delay={0.05}><H2>{ix.title}</H2></Reveal>
-        <Reveal delay={0.1}><Lead>{ix.sub}</Lead></Reveal>
+        <Reveal delay={0.1}><Lead style={{ marginBottom: 36 }}>{ix.sub}</Lead></Reveal>
+        {own.map((a) => <Reveal key={a.slug} style={{ marginBottom: 32 }}><ArticleCard a={a} lang={lang} t={t} accent={tc.at} /></Reveal>)}
         <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
-          {all.slice(0, count).map((n) => (
-            <li key={n.id}>
-              <a href={n.url} target="_blank" rel="noopener noreferrer" className="news-row">
-                <span className="t-small" style={{ color: C.muted }}>{fmtDate(n.date, lang)}</span>
-                <span>
-                  <span className="t-title" style={{ display: "block", color: C.dark }}>{n.title}</span>
-                  <span className="t-body" style={{ display: "block", color: C.dim, lineHeight: 1.55, marginTop: 6 }}>{n.summary}</span>
-                  <span className="t-small" style={{ display: "block", color: tc.at, fontWeight: 600, marginTop: 6 }}>{n.source}</span>
-                </span>
-                <span aria-hidden className="arrow" style={{ fontSize: 20, color: C.dark }}>↗</span>
-              </a>
-            </li>
-          ))}
+          {newsFor(track).slice(0, 3).map((n) => <NewsRow key={n.id} n={n} lang={lang} t={t} accent={tc.at} />)}
         </ul>
-        {count < all.length && <div style={{ marginTop: 32 }}><Button variant="ghost" onClick={() => setCount((c) => c + 6)}>{ix.more}</Button></div>}
+        <div style={{ marginTop: 32 }}><Button to="/insights" variant="ghost">{t.ui.allInsights}</Button></div>
       </Container>
     </Panel>
   );
