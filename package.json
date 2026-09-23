@@ -5,12 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && vite build --config vite.new.config.js && vite build --config vite.new2.config.js",
+    "build": "vite build && cp dist/index.html dist/404.html && vite build --config vite.new.config.js",
     "preview": "vite preview",
     "dev:new": "vite --config vite.new.config.js",
-    "preview:new": "vite preview --config vite.new.config.js",
-    "dev:new2": "vite --config vite.new2.config.js",
-    "preview:new2": "vite preview --config vite.new2.config.js"
+    "preview:new": "vite preview --config vite.new.config.js"
   },
   "dependencies": {
     "@fontsource-variable/figtree": "^5.3.0",
