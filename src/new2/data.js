@@ -137,6 +137,10 @@ export const REFERENCES = [
   { name: "Raiffeisen Bank International", row: 1, on: ["home", "tech", "re"] },
   { name: "Wiener Privatbank SE", row: 1, on: ["home", "tech", "re"] },
   { name: "Global Blue", row: 1, on: ["home", "tech"] },
+  // Förderungen (right after the banks, so they do not all sit next to RBI at the start)
+  { name: "FFG – Forschungsförderungsgesellschaft", row: 1, on: ["home", "tech"] },
+  { name: "aws – Austria Wirtschaftsservice", row: 1, on: ["home", "tech"] },
+  { name: "WKO – Wirtschaftskammer Österreich", row: 1, on: ["home", "tech", "re"] },
   // Versicherungen
   { name: "Uniqa Versicherung", row: 1, on: ["home", "tech", "re"] },
   // Immobilien & Hospitality
@@ -147,10 +151,7 @@ export const REFERENCES = [
   { name: "Trimmobilien Gruppe", row: 1, on: ["home", "re"] },
   { name: "Akkadia Immobilien", row: 1, on: ["home", "re"] },
   { name: "EPI Hospitality", row: 1, on: ["home", "re"] },
-  // Förderungen & Kapital
-  { name: "FFG – Forschungsförderungsgesellschaft", row: 1, on: ["home", "tech"] },
-  { name: "aws – Austria Wirtschaftsservice", row: 1, on: ["home", "tech"] },
-  { name: "WKO – Wirtschaftskammer Österreich", row: 1, on: ["home", "tech", "re"] },
+  // Kapital
   { name: "Match Maker Ventures", row: 1, on: ["home", "tech"] },
 ];
 
