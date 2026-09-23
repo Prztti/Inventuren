@@ -244,11 +244,11 @@ export function Timeline({ t, lang, ch }) {
   );
 }
 
-// ── Clients & partners: two endless rows, strongest first ─────────────────────
+// ── Clients & partners: two endless rows by theme, strongest first ────────────
 // Names the visitor has already seen, kept in memory only (no cookies, no browser storage):
-// it survives moving between the overview, Tech & AI and Real Estate. Each band starts with
-// what has not been seen yet, in order of strength, so the strongest come first, repetition
-// stays low and the whole list gets shown over time.
+// it survives moving between the overview, Tech & AI and Real Estate. Each row starts with
+// what has not been seen yet, in list order, so the strongest come first, repetition stays
+// low and the whole list gets shown over time.
 const SEEN = new Set();
 const SPEED = 36; // px per second
 const FADE = 0.09; // width of the faded edges, see .marquee mask
@@ -388,12 +388,13 @@ function Marquees({ rows }) {
 }
 
 export function Clients({ t, scope = "home", title, id = "partner", ch }) {
-  const names = REFERENCES.filter((r) => r.on.includes(scope)).map((r) => r.name);
-  // Unseen first (in order of strength), then the ones already seen; split into two rows.
-  const [rows] = useState(() => {
-    const queue = [...names.filter((n) => !SEEN.has(n)), ...names.filter((n) => SEEN.has(n))];
-    return [queue.filter((_, i) => i % 2 === 0), queue.filter((_, i) => i % 2 === 1)];
-  });
+  const refs = REFERENCES.filter((r) => r.on.includes(scope));
+  const names = refs.map((r) => r.name);
+  // Two rows by theme (see REFERENCES); in each row the unseen names come first, in list order.
+  const [rows] = useState(() => [0, 1].map((row) => {
+    const own = refs.filter((r) => r.row === row).map((r) => r.name);
+    return [...own.filter((n) => !SEEN.has(n)), ...own.filter((n) => SEEN.has(n))];
+  }));
   return (
     <Panel id={id} tone="white" className="panel-tight" chapter={ch}>
       <Container>
