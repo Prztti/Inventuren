@@ -250,7 +250,7 @@ export function Timeline({ t, lang, ch }) {
 // what has not been seen yet, in list order, so the strongest come first, repetition stays
 // low and the whole list gets shown over time.
 const SEEN = new Set();
-const SPEED = 43; // px per second (about 20 % faster than the first 36, David 2026-09-23)
+const SPEED = 48; // px per second (David, 2026-09-23: 36 → 43 → 48)
 const FADE = 0.09; // width of the faded edges, see .marquee mask
 
 function LogoItem({ name }) {
