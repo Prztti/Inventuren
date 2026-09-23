@@ -92,6 +92,50 @@ export const CLIENT_GROUPS = [
   { key: "legal", tracks: ["home", "tech", "re"], names: ["Lansky, Ganzger & Partner", "Herbst Kinsky RAe", "DSC Rechtsanwälte", "ORF", "Integrationshaus Wien"] },
 ];
 
+// Reference band, ordered by strength (David, 2026-09-23): public bodies → universities & science →
+// banks → insurers → corporates by group size at the time of the work → others.
+// `on` = pages that show the name (home, tech, re). The real estate page stays David's.
+export const REFERENCES = [
+  { name: "Bundesministerium für Finanzen", on: ["home", "tech"] },
+  { name: "Supreme Council of Health (Qatar)", on: ["home", "tech"] },
+  { name: "Stadt Wien", on: ["home", "re"] },
+  { name: "ORF", on: ["home", "tech", "re"] },
+  { name: "Donau-Universität Krems", on: ["home", "tech"] },
+  { name: "Sigmund Freud PrivatUniversität Wien", on: ["home", "re"] },
+  { name: "World Stroke Organization", on: ["home", "tech"] },
+  { name: "European Stroke Organisation", on: ["home", "tech"] },
+  { name: "Raiffeisen Bank International", on: ["home", "tech", "re"] },
+  { name: "Wiener Privatbank SE", on: ["home", "tech", "re"] },
+  { name: "Uniqa Versicherung", on: ["home", "tech", "re"] },
+  { name: "Porsche Informatik (Volkswagen)", on: ["home", "tech"] },
+  { name: "Huawei", on: ["home", "tech"] },
+  { name: "Deutsche Telekom", on: ["home", "tech"] },
+  { name: "Orange", on: ["home", "tech"] },
+  { name: "Ericsson", on: ["home", "tech"] },
+  { name: "Viettel", on: ["home", "tech"] },
+  { name: "McKinsey & Company", on: ["home", "tech"] },
+  { name: "Ibis Group", on: ["home", "re"] },
+  { name: "A1 Group", on: ["home", "tech"] },
+  { name: "Telekom Austria", on: ["home", "tech"] },
+  { name: "Zain Group", on: ["home", "tech"] },
+  { name: "VeriSign", on: ["home", "tech"] },
+  { name: "Arthur D. Little", on: ["home", "tech"] },
+  { name: "Global Blue", on: ["home", "tech"] },
+  { name: "Conwert AG", on: ["home", "re"] },
+  { name: "EPI Immobilien Group", on: ["home", "re"] },
+  { name: "Arcotel Hotels", on: ["home", "re"] },
+  { name: "Untis", on: ["home", "tech"] },
+  { name: "RISE", on: ["home", "tech"] },
+  { name: "Trimmobilien Gruppe", on: ["home", "re"] },
+  { name: "Akkadia Immobilien", on: ["home", "re"] },
+  { name: "EPI Hospitality", on: ["home", "re"] },
+  { name: "Match Maker Ventures", on: ["home", "tech"] },
+  { name: "Lansky, Ganzger & Partner", on: ["home", "tech", "re"] },
+  { name: "Herbst Kinsky RAe", on: ["home", "tech", "re"] },
+  { name: "DSC Rechtsanwälte", on: ["home", "tech", "re"] },
+  { name: "Integrationshaus Wien", on: ["home", "tech", "re"] },
+];
+
 // Logo files for the client marquee (downloaded from Wikimedia Commons, self-hosted in public/logos).
 // h = display height in px, tuned per logo shape. Names without an entry are shown as a wordmark.
 export const LOGOS = {

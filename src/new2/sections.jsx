@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { C, F, T, LABEL, TRACK } from "./tokens";
 import { Reveal, Panel, Container, Eyebrow, H2, Lead, TextLink, Button, Picture } from "./ui";
-import { TIMELINE, CLIENT_GROUPS, LOGOS } from "./data";
+import { TIMELINE, REFERENCES, LOGOS } from "./data";
 import { techNews, reNews, articles } from "./news";
 
 const accentOf = (a) => (a === "gold" ? { line: C.gold, text: C.goldDeep } : { line: C.silverLine, text: C.silverInk });
@@ -244,38 +244,138 @@ export function Timeline({ t, lang, ch }) {
   );
 }
 
-// ── Clients & partners: logo row + wordmark row, both endless ───────────────
-function LogoItem({ name, dup }) {
+// ── Clients & partners: two endless rows, strongest first ─────────────────────
+// Names the visitor has already seen, kept in memory only (no cookies, no browser storage):
+// it survives moving between the overview, Tech & AI and Real Estate. Each band starts with
+// what has not been seen yet, in order of strength, so the strongest come first, repetition
+// stays low and the whole list gets shown over time.
+const SEEN = new Set();
+const SPEED = 36; // px per second
+const FADE = 0.09; // width of the faded edges, see .marquee mask
+
+function LogoItem({ name }) {
   const logo = LOGOS[name];
   return (
-    <span className={`logo-item ${dup ? "dup" : ""} ${logo ? "has-logo" : ""}`}>
+    <span className={`logo-item ${logo ? "has-logo" : ""}`}>
       {logo
-        ? <img src={logo.src} alt="" title={name} loading="lazy" className={`${logo.raster ? "raster" : ""} ${logo.dark ? "dark" : ""}`} style={{ height: logo.h, width: "auto", display: "block" }} />
+        ? <img src={logo.src} alt="" title={name} className={`${logo.raster ? "raster" : ""} ${logo.dark ? "dark" : ""}`} style={{ height: logo.h, width: "auto", display: "block" }} />
         : <span className="logo-word">{name}</span>}
     </span>
   );
 }
 
+function Marquees({ rows }) {
+  const wrapRef = useRef(null);
+  const trackRefs = useRef([]);
+  const rowState = useRef(rows.map(() => ({ x: 0, w: 0, items: [] })));
+  const [reduce] = useState(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+
+  // Positions of the items in the first copy and the width of one copy.
+  useEffect(() => {
+    const measure = () => rows.forEach((names, i) => {
+      const t = trackRefs.current[i];
+      if (!t) return;
+      const kids = [...t.children];
+      const first = kids[0];
+      const dup = kids[names.length];
+      const st = rowState.current[i];
+      st.w = dup && first ? dup.offsetLeft - first.offsetLeft : 0;
+      st.items = kids.slice(0, names.length).map((k, j) => ({ l: k.offsetLeft - (first ? first.offsetLeft : 0), w: k.offsetWidth, name: names[j] }));
+      if (!st.w) return;
+      if (!st.init) {
+        // start with the first (strongest) item just inside the faded left edge
+        const fade = (wrapRef.current ? wrapRef.current.clientWidth : 0) * FADE;
+        st.x = (st.w - fade) % st.w;
+        st.init = true;
+        if (!reduce) t.style.transform = `translate3d(${(-st.x).toFixed(1)}px,0,0)`;
+      }
+      st.x %= st.w;
+    });
+    measure();
+    const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(measure) : null;
+    trackRefs.current.forEach((t) => t && ro && ro.observe(t));
+    return () => ro && ro.disconnect();
+  }, [rows, reduce]);
+
+  // Runs only while the band is really visible: not scrolled away and not covered by the next panel.
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el) return undefined;
+    let raf = 0, last = 0, lastCheck = 0, hover = false;
+    const onEnter = () => { hover = true; };
+    const onLeave = () => { hover = false; };
+    el.addEventListener("mouseenter", onEnter);
+    el.addEventListener("mouseleave", onLeave);
+    const visible = () => {
+      const r = el.getBoundingClientRect();
+      const next = el.closest(".panel")?.nextElementSibling;
+      const cover = next ? next.getBoundingClientRect().top : Infinity;
+      const top = Math.max(r.top, 0);
+      const bottom = Math.min(r.bottom, window.innerHeight, cover);
+      return bottom - top > r.height * 0.5;
+    };
+    const markSeen = () => {
+      if (reduce) { rows.flat().forEach((n) => SEEN.add(n)); return; }
+      const cw = el.clientWidth;
+      const pad = cw * FADE; // the edges fade out
+      rowState.current.forEach((st) => st.items.forEach((it) => {
+        for (const off of [0, st.w]) {
+          const p = it.l - st.x + off;
+          const shown = Math.min(p + it.w, cw - pad) - Math.max(p, pad);
+          if (shown >= it.w * 0.6) SEEN.add(it.name);
+        }
+      }));
+    };
+    const tick = (now) => {
+      const dt = last ? Math.min(0.05, (now - last) / 1000) : 0;
+      last = now;
+      const on = visible();
+      if (on && !hover && !reduce) {
+        rowState.current.forEach((st, i) => {
+          if (!st.w) return;
+          st.x = (st.x + SPEED * dt) % st.w;
+          const t = trackRefs.current[i];
+          if (t) t.style.transform = `translate3d(${(-st.x).toFixed(1)}px,0,0)`;
+        });
+      }
+      if (on && now - lastCheck > 200) { lastCheck = now; markSeen(); }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => {
+      cancelAnimationFrame(raf);
+      el.removeEventListener("mouseenter", onEnter);
+      el.removeEventListener("mouseleave", onLeave);
+    };
+  }, [rows, reduce]);
+
+  return (
+    <div className="marquees" aria-hidden ref={wrapRef}>
+      {rows.map((names, i) => (
+        <div key={i} className="marquee">
+          <div className="marquee-track" ref={(n) => { trackRefs.current[i] = n; }}>
+            {(reduce ? names : [...names, ...names]).map((n, j) => <LogoItem key={j} name={n} />)}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export function Clients({ t, scope = "home", title, id = "partner", ch }) {
-  const names = [...new Set(CLIENT_GROUPS.filter((g) => g.tracks.includes(scope)).flatMap((g) => g.names))];
-  const withLogo = names.filter((n) => LOGOS[n]);
-  const words = names.filter((n) => !LOGOS[n]);
-  const rows = [withLogo, words].filter((r) => r.length);
+  const names = REFERENCES.filter((r) => r.on.includes(scope)).map((r) => r.name);
+  // Unseen first (in order of strength), then the ones already seen; split into two rows.
+  const [rows] = useState(() => {
+    const queue = [...names.filter((n) => !SEEN.has(n)), ...names.filter((n) => SEEN.has(n))];
+    return [queue.filter((_, i) => i % 2 === 0), queue.filter((_, i) => i % 2 === 1)];
+  });
   return (
     <Panel id={id} tone="white" className="panel-tight" chapter={ch}>
       <Container>
         <Reveal><Eyebrow n={ch?.n}>{title || t.clients.label}</Eyebrow></Reveal>
         <Reveal delay={0.05}><H2 style={{ marginBottom: 40 }}>{t.clients.title}</H2></Reveal>
       </Container>
-      <div className="marquees" aria-hidden>
-        {rows.map((row, i) => (
-          <div key={i} className={`marquee ${i ? "marquee-words" : "marquee-logos"}`}>
-            <div className={`marquee-track ${i ? "reverse" : ""}`} style={{ animationDuration: `${Math.max(36, row.length * 4.5)}s` }}>
-              {[...row, ...row].map((n, j) => <LogoItem key={j} name={n} dup={j >= row.length} />)}
-            </div>
-          </div>
-        ))}
-      </div>
+      <Marquees rows={rows} />
       <ul className="sr-only">{names.map((n) => <li key={n}>{n}</li>)}</ul>
     </Panel>
   );
