@@ -139,13 +139,32 @@ function TlEntry({ ev, side, lang }) {
   );
 }
 
+function JointLabel({ ev, lang }) {
+  const roles = ev.roles ? ev.roles[lang] || ev.roles.en : ["", ""];
+  const part = (side, role) => (
+    <span>
+      <span style={{ color: side === "david" ? C.goldDeep : C.silver, whiteSpace: "nowrap" }}>{NAMES[side]}</span>
+      {role && <span style={{ color: C.muted, fontWeight: 500 }}> · {role}</span>}
+    </span>
+  );
+  return (
+    <div style={{ fontFamily: F, fontSize: 11, letterSpacing: 1.3, textTransform: "uppercase", fontWeight: 600, marginBottom: 10, display: "flex", flexWrap: "wrap", gap: "4px 14px" }} className="tl-jlabel">
+      {part("david", roles[0])}<span aria-hidden style={{ color: C.muted }}>+</span>{part("philip", roles[1])}
+    </div>
+  );
+}
+
 export function Timeline({ t, lang }) {
   const tx = t.timeline;
+  // One row per lane-year; joint entries get their own row that spans both lanes.
   const rows = [];
-  for (const ev of TIMELINE) {
-    let r = rows.find((x) => x.year === ev.year);
-    if (!r) { r = { year: ev.year }; rows.push(r); }
-    r[ev.who] = ev;
+  for (const year of [...new Set(TIMELINE.map((e) => e.year))]) {
+    const evs = TIMELINE.filter((e) => e.year === year);
+    const joints = evs.filter((e) => e.who === "both");
+    const david = evs.find((e) => e.who === "david");
+    const philip = evs.find((e) => e.who === "philip");
+    joints.forEach((ev, k) => rows.push({ type: "joint", year, ev, showYear: k === 0 }));
+    if (david || philip) rows.push({ type: "lane", year, david, philip, showYear: joints.length === 0 });
   }
   return (
     <Panel id="track-record" tone="light">
@@ -163,26 +182,26 @@ export function Timeline({ t, lang }) {
         <ol className="tl" style={{ listStyle: "none", margin: 0, padding: 0 }}>
           {rows.map((r, i) => {
             const last = i === rows.length - 1;
-            if (r.both) {
-              const e = r.both[lang] || r.both.en;
+            if (r.type === "joint") {
+              const e = r.ev[lang] || r.ev.en;
+              const big = r.ev.final;
               return (
-                <Reveal as="li" key={r.year} className="tl-row tl-row-joint">
-                  <div className="tl-spine"><YearDot year={r.year} kind="joint" /></div>
+                <Reveal as="li" key={r.year + e.title} className={`tl-row tl-row-joint ${big ? "is-final" : ""}`}>
+                  <div className="tl-spine"><YearDot year={r.year} kind="joint" />{!last && <div className="tl-line" />}</div>
                   <div className="tl-jcard">
-                    <div style={{ fontFamily: F, fontSize: 11, letterSpacing: 1.4, textTransform: "uppercase", fontWeight: 600, marginBottom: 8 }}>
-                      <span style={{ color: C.goldDeep }}>{NAMES.david}</span> <span style={{ color: C.muted }}>&</span> <span style={{ color: C.silver }}>{NAMES.philip}</span>
-                    </div>
-                    <h3 style={{ fontFamily: F, fontSize: "clamp(22px, 2.4vw, 30px)", fontWeight: 400, margin: "0 0 8px", letterSpacing: "-0.02em" }}>{e.title}</h3>
-                    <p style={{ fontFamily: F, fontSize: 16, color: C.dim, lineHeight: 1.65, margin: 0 }}>{e.desc}</p>
+                    <div aria-hidden className="tl-jbar" />
+                    <JointLabel ev={r.ev} lang={lang} />
+                    <h3 style={{ fontFamily: F, fontSize: big ? "clamp(22px, 2.4vw, 30px)" : 19, fontWeight: big ? 400 : 500, margin: "0 0 8px", letterSpacing: "-0.015em", lineHeight: 1.3 }}>{e.title}</h3>
+                    <p style={{ fontFamily: F, fontSize: big ? 16 : 14, color: C.dim, lineHeight: 1.65, margin: 0 }}>{e.desc}</p>
                   </div>
                 </Reveal>
               );
             }
             const kind = r.david && r.philip ? "both" : r.david ? "david" : "philip";
             return (
-              <Reveal as="li" key={r.year} className="tl-row">
+              <Reveal as="li" key={r.year + kind} className="tl-row">
                 <div className="tl-left">{r.david && <TlEntry ev={r.david} side="david" lang={lang} />}</div>
-                <div className="tl-spine"><YearDot year={r.year} kind={kind} />{!last && <div className="tl-line" />}</div>
+                <div className="tl-spine">{r.showYear ? <YearDot year={r.year} kind={kind} /> : <span className="tl-minor" style={{ background: kind === "david" ? C.gold : C.silverLine }} />}{!last && <div className="tl-line" />}</div>
                 <div className="tl-right">
                   <div className="tl-desk">{r.philip && <TlEntry ev={r.philip} side="philip" lang={lang} />}</div>
                   <div className="tl-mob">

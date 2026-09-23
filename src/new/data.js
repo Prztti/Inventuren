@@ -17,9 +17,9 @@ export const TIMELINE = [
     de: { title: "VeriSign / 3united — 100+ Mobilfunkbetreiber, 15 Länder", desc: "Technische Projektleitung der Integration von über 100 Mobilfunkbetreibern in 15 Ländern in eine Multimedia- und Payment-Plattform — mit einem Team von 50+ auf drei Kontinenten." },
     cn: { title: "VeriSign / 3united——100多家运营商，15个国家", desc: "技术负责人，将15个国家的100多家移动运营商集成至多媒体与支付平台——带领横跨三大洲的50余人团队。" } },
   { year: "2009", who: "david",
-    en: { title: "International Real Estate Desk — Austria's Prominent Law Firm", desc: "Established and led the International Real Estate Desk at Austria's prominent law firm, structuring cross-border transactions for CEE and MENA clients." },
-    de: { title: "International Real Estate Desk bei österreichischer Spitzenanwaltskanzlei", desc: "Aufbau und Leitung des International Real Estate Desk in Österreichs führender Anwaltskanzlei — Strukturierung grenzüberschreitender Transaktionen für CEE- und MENA-Mandanten." },
-    cn: { title: "奥地利顶级律所国际房地产部", desc: "在奥地利知名律所组建并领导国际房地产部——为中东欧及中东北非客户设计跨境交易结构。" } },
+    en: { title: "International Real Estate Desk at Lansky, Ganzger & Partner", desc: "Established and led the International Real Estate Desk at Lansky, Ganzger & Partner in Vienna, structuring cross-border transactions for CEE and MENA clients." },
+    de: { title: "International Real Estate Desk bei Lansky, Ganzger & Partner", desc: "Aufbau und Leitung des International Real Estate Desk bei Lansky, Ganzger & Partner in Wien — Strukturierung grenzüberschreitender Transaktionen für CEE- und MENA-Mandanten." },
+    cn: { title: "Lansky, Ganzger & Partner律所国际房地产部", desc: "在维也纳Lansky, Ganzger & Partner律所组建并领导国际房地产部——为中东欧及中东北非客户设计跨境交易结构。" } },
   { year: "2012", who: "philip",
     en: { title: "RISE — International Large-Scale IT Programmes", desc: "Project manager and enterprise architect for national and international IT programmes; key account and presales for public tenders, presenting up to board level." },
     de: { title: "RISE — internationale IT-Großprojekte", desc: "Projektleiter und Enterprise Architect für nationale und internationale IT-Großprojekte; Key Account und Presales für öffentliche Ausschreibungen, Präsentation bis auf Vorstandsebene." },
@@ -36,6 +36,14 @@ export const TIMELINE = [
     en: { title: "First Telecom Data Hub Infrastructure Mandate — Deutsche Telekom", desc: "Awarded the first engagement for the development of a Telecom Science Data Hub infrastructure — a pioneering B2B platform monetising network data for enterprise clients, anchored by Deutsche Telekom." },
     de: { title: "Erstes Telco-Data-Hub-Infrastrukturmandat — Deutsche Telekom", desc: "Erste Beauftragung zur Entwicklung einer Telecom Science Data Hub Infrastruktur — wegweisende B2B-Plattform zur Monetarisierung von Netzwerkdaten für Unternehmenskunden, verankert durch Deutsche Telekom." },
     cn: { title: "首个电信数据中心基础设施委托——德国电信", desc: "获得首个电信科学数据中心基础设施开发委托——以德国电信为核心、面向企业客户实现网络数据变现的开创性B2B平台。" } },
+  { year: "2016", who: "both", roles: { en: ["Founder & CEO", "Advisor"], de: ["Gründer & CEO", "Advisor"], cn: ["创始人兼CEO", "顾问"] },
+    en: { title: "geolad — Philip Kügler joins as Advisor", desc: "David Brainin, founder and CEO, brings in Philip Kügler as advisor to the telecom data platform geolad." },
+    de: { title: "geolad — Philip Kügler als Advisor", desc: "David Brainin, Gründer und CEO, holt Philip Kügler als Advisor zur Telekom-Datenplattform geolad." },
+    cn: { title: "geolad——Philip Kügler出任顾问", desc: "创始人兼CEO David Brainin邀请Philip Kügler担任电信数据平台geolad的顾问。" } },
+  { year: "2017", who: "both", roles: { en: ["CEO", "CTO"], de: ["CEO", "CTO"], cn: ["CEO", "CTO"] },
+    en: { title: "TICO — Telecom Identity Product", desc: "A jointly built telecom identity product with IP in the EU and the US." },
+    de: { title: "TICO — Telekom-Identity-Produkt", desc: "Gemeinsam aufgebautes Telekom-Identity-Produkt mit IP in der EU und den USA." },
+    cn: { title: "TICO——电信身份产品", desc: "共同打造的电信身份产品，在欧盟和美国拥有知识产权。" } },
   { year: "2017", who: "philip",
     en: { title: "OptInk — CTO & Co-Founder", desc: "Co-founder and CTO of the Austrian startup OptInk — responsible for technology, architecture and product development." },
     de: { title: "OptInk — CTO & Co-Founder", desc: "Mitgründer und CTO des österreichischen Startups OptInk — verantwortlich für Technologie, Architektur und Produktentwicklung." },
@@ -68,10 +76,10 @@ export const TIMELINE = [
     en: { title: "Merkit Consulting FlexCo — Managing Director", desc: "Managing director of a consultancy for robotic process automation and test automation." },
     de: { title: "Merkit Consulting FlexCo — Geschäftsführer", desc: "Geschäftsführer einer Beratung für Robotic Process Automation und Testautomatisierung." },
     cn: { title: "Merkit Consulting FlexCo——总经理", desc: "担任一家机器人流程自动化与测试自动化咨询公司的总经理。" } },
-  { year: "2026", who: "both",
-    en: { title: "Joint Leadership of InVentures", desc: "Years of collaboration become joint leadership: two managing partners, one platform for ventures in regulated markets." },
-    de: { title: "Gemeinsame Führung von InVentures", desc: "Aus langjähriger Zusammenarbeit wird gemeinsame Führung: zwei Managing Partner, eine Plattform für Ventures in regulierten Märkten." },
-    cn: { title: "共同领导InVentures", desc: "多年合作升级为共同领导：两位管理合伙人，一个面向受监管市场创业项目的平台。" } },
+  { year: "2026", who: "both", final: true,
+    en: { title: "prax.net — Our Joint Venture", desc: "The clinical referral network for psychosocial professionals in Austria (FlexCo in formation). In parallel, both lead InVentures as managing partners." },
+    de: { title: "prax.net — gemeinsames Joint Venture", desc: "Das klinische Referral-Netzwerk für psychosoziale Fachkräfte in Österreich (FlexCo i. G.). Parallel führen beide InVentures als Managing Partner." },
+    cn: { title: "prax.net——共同创办的合资企业", desc: "面向奥地利心理社会专业人士的临床转介网络（FlexCo筹建中）。同时，两人以管理合伙人身份共同领导InVentures。" } },
 ];
 
 // Clients & partners, grouped. `tracks` decides where a group appears.
@@ -82,7 +90,7 @@ export const CLIENT_GROUPS = [
   { key: "finance", tracks: ["home", "tech", "re"], names: ["Raiffeisen Bank International", "Wiener Privatbank SE", "Uniqa Versicherung", "Global Blue", "Arthur D. Little"] },
   { key: "industry", tracks: ["home", "tech"], names: ["Porsche Informatik (Volkswagen)", "RISE", "Match Maker Ventures"] },
   { key: "re", tracks: ["home", "re"], names: ["EPI Immobilien Group", "Conwert AG", "Trimmobilien Gruppe", "Akkadia Immobilien", "EPI Hospitality", "Arcotel Hotels", "Ibis Group", "Stadt Wien"] },
-  { key: "legal", tracks: ["home", "tech", "re"], names: ["Lansky & Partner RAe", "Herbst Kinsky RAe", "DSC Rechtsanwälte", "ORF", "Integrationshaus Wien"] },
+  { key: "legal", tracks: ["home", "tech", "re"], names: ["Lansky, Ganzger & Partner", "Herbst Kinsky RAe", "DSC Rechtsanwälte", "ORF", "Integrationshaus Wien"] },
 ];
 
 // Logo files for the client marquee: name → path under public/ (e.g. "/logos/deutsche-telekom.svg").
