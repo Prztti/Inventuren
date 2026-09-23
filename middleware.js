@@ -1,9 +1,9 @@
-// Vercel Routing Middleware: password gate for the preview area under /new.
-// Only /new and /new/* are matched; the live site is never touched.
+// Vercel Routing Middleware: password gate for the preview areas under /new and /new2.
+// Only these paths are matched; the live site is never touched.
 // Password: env PREVIEW_PASSWORD if set, otherwise the one whose SHA-256 hash is below.
 
 export const config = {
-  matcher: ["/new", "/new/:path*"],
+  matcher: ["/new", "/new/:path*", "/new2", "/new2/:path*"],
 };
 
 const DEFAULT_PASSWORD_SHA256 =

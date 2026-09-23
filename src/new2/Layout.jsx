@@ -9,12 +9,18 @@ function LangSwitch({ lang, setLang, tc }) {
     <div role="group" aria-label="Language" style={{ display: "flex", gap: 2 }}>
       {LANGS.map(([code, label]) => (
         <button key={code} type="button" aria-pressed={lang === code} onClick={() => setLang(code)}
-          style={{ fontFamily: F, fontSize: T.xs, letterSpacing: "0.04em", whiteSpace: "nowrap", fontWeight: lang === code ? 600 : 500, color: lang === code ? tc.at : C.dim, background: lang === code ? tc.as : "transparent", border: "none", padding: "6px 9px", cursor: "pointer" }}>
+          className="lang-btn" style={{ fontFamily: F, fontSize: T.xs, letterSpacing: "0.04em", whiteSpace: "nowrap", fontWeight: lang === code ? 600 : 500, color: lang === code ? tc.at : C.dim, background: lang === code ? tc.as : "transparent", border: "none", padding: "6px 9px", cursor: "pointer", borderRadius: 6 }}>
           {label}
         </button>
       ))}
     </div>
   );
+}
+
+// Nav target: "/route" → route link, "id" → anchor on this page, "/#id" → anchor on the overview.
+function NavLink({ to, children, style, className, onClick }) {
+  if (to.startsWith("/")) return <Link to={to} className={className} style={style} onClick={onClick}>{children}</Link>;
+  return <a href={`#${to}`} className={className} style={style} onClick={onClick}>{children}</a>;
 }
 
 export function Nav({ t, lang, setLang, track, links }) {
@@ -45,13 +51,13 @@ export function Nav({ t, lang, setLang, track, links }) {
           )}
         </div>
         <div className="nav-desk" style={{ alignItems: "center", gap: 26 }}>
-          {links.map(([id, label]) => <a key={id} href={`#${id}`} className="nav-link" style={linkStyle}>{label}</a>)}
+          {links.map(([id, label]) => <NavLink key={id} to={id} className="nav-link" style={linkStyle}>{label}</NavLink>)}
           <span aria-hidden style={{ width: 1, height: 14, background: "rgba(0,0,0,0.12)" }} />
           <LangSwitch lang={lang} setLang={setLang} tc={tc} />
         </div>
         <div className="nav-mob" style={{ alignItems: "center", gap: 8 }}>
           <LangSwitch lang={lang} setLang={setLang} tc={tc} />
-          <button type="button" aria-label={t.ui.menu} aria-expanded={open} onClick={() => setOpen(!open)} style={{ background: "none", border: "none", cursor: "pointer", padding: 8, display: "flex", flexDirection: "column", gap: 5 }}>
+          <button type="button" aria-label={t.ui.menu} aria-expanded={open} onClick={() => setOpen(!open)} style={{ background: "none", border: "none", cursor: "pointer", width: 44, height: 44, padding: 11, display: "flex", flexDirection: "column", justifyContent: "center", gap: 5 }}>
             {[0, 1, 2].map((i) => (
               <span key={i} style={{ width: 22, height: 2, background: C.dark, transition: "all .3s", opacity: open && i === 1 ? 0 : 1, transform: open ? (i === 0 ? "rotate(45deg) translate(5px,5px)" : i === 2 ? "rotate(-45deg) translate(5px,-5px)" : "none") : "none" }} />
             ))}
@@ -60,7 +66,7 @@ export function Nav({ t, lang, setLang, track, links }) {
       </nav>
       {open && (
         <div className="nav-mob" style={{ flexDirection: "column", gap: 4, padding: "12px 20px 18px", borderTop: `1px solid ${C.border}` }}>
-          {links.map(([id, label]) => <a key={id} href={`#${id}`} onClick={() => setOpen(false)} style={{ ...linkStyle, fontSize: T.lg, padding: "10px 0" }}>{label}</a>)}
+          {links.map(([id, label]) => <NavLink key={id} to={id} onClick={() => setOpen(false)} style={{ ...linkStyle, fontSize: T.lg, padding: "10px 0" }}>{label}</NavLink>)}
           {track && <Link to="/" onClick={() => setOpen(false)} style={{ fontFamily: F, fontSize: T.base, fontWeight: 500, color: tc.at, textDecoration: "none", paddingTop: 10, marginTop: 6, borderTop: `1px solid ${C.border}` }}>← {t.ui.back}</Link>}
         </div>
       )}
@@ -85,9 +91,9 @@ export function Footer({ t, track }) {
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12, paddingTop: 14, borderTop: `1px solid ${C.border}` }}>
           <div style={{ display: "flex", gap: 16, flexWrap: "wrap", alignItems: "center" }}>
-            <a href="/impressum" style={small}>{t.ui.imprint}</a>
-            <a href="/datenschutz" style={small}>{t.ui.privacy}</a>
-            <button type="button" onClick={() => window.dispatchEvent(new Event("open-consent"))} style={small}>{t.ui.cookies}</button>
+            <Link to="/impressum" style={small}>{t.ui.imprint}</Link>
+            <Link to="/datenschutz" style={small}>{t.ui.privacy}</Link>
+            <Link to="/insights" style={small}>{t.insights.label}</Link>
           </div>
           <span className="t-small" style={{ color: C.dim }}>2006–2026 InVentures</span>
         </div>

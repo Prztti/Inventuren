@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { C, F, T, LABEL, TRACK } from "./tokens";
-import { Picture, Panel, Container, Reveal, Eyebrow, Wordmark } from "./ui";
+import { Picture, Panel, Container, Reveal, Eyebrow, Wordmark, Button, TextLink } from "./ui";
 import { TeamCards, Regulated, References, Timeline, Clients } from "./sections";
 import { H2 } from "./ui";
 import { ContactSection } from "./Contact";
@@ -43,17 +43,19 @@ export default function Home({ t, lang }) {
         </div>
         <div aria-hidden style={{ position: "absolute", inset: 0, background: `linear-gradient(180deg, rgba(245,244,241,0) 55%, ${C.bg} 100%)` }} />
         <Container style={{ textAlign: "center", paddingTop: 120, paddingBottom: 96 }}>
-          <h1 className="hero-in" style={{ margin: 0, lineHeight: 0.9 }}>
-            <Wordmark size="clamp(64px, 12vw, 164px)" at={false} style={{ letterSpacing: "-0.04em" }} />
-          </h1>
-          <p className="hero-in d1" style={{ fontSize: T.lg, fontWeight: 600, margin: "32px 0 0" }}>{h.brandSub}</p>
-          <p className="hero-in d2 t-lead" style={{ maxWidth: 640, margin: "12px auto 0" }}>{h.brandP}</p>
-          <p className="hero-in d3 t-stat" style={{ margin: "40px 0 0" }}>
+          <div className="hero-in" aria-hidden style={{ lineHeight: 0.9 }}>
+            <Wordmark size="clamp(48px, 8vw, 104px)" at={false} style={{ letterSpacing: "-0.04em" }} />
+          </div>
+          <p className="hero-in d1" style={{ fontSize: T.lg, fontWeight: 500, margin: "18px 0 0" }}>
             <span>{h.claim[0]}</span>{" "}<span style={{ color: C.silver }}>{h.claim[1]}</span>{" "}<span style={{ color: C.goldText }}>{h.claim[2]}</span>
           </p>
-          <a href="#bereiche" className="hero-in d4 scroll-cue" aria-label={h.selectSub} style={{ ...LABEL, display: "inline-flex", flexDirection: "column", alignItems: "center", gap: 10, marginTop: 56, color: C.muted, textDecoration: "none" }}>
-            {h.selectSub}<span aria-hidden className="cue-line" />
-          </a>
+          <h1 className="hero-in d2 t-h2" style={{ margin: "clamp(32px, 5vw, 48px) auto 0", maxWidth: 920 }}>{h.h1}</h1>
+          <p className="hero-in d3 t-lead" style={{ maxWidth: 640, margin: "20px auto 0" }}>{h.brandP}</p>
+          <div className="hero-in d4" style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginTop: 36 }}>
+            <Button to="/tech" color="#4A5866">{h.tracks.tech.label}</Button>
+            <Button to="/real-estate" color={C.goldDeep}>{h.tracks.re.label.replace("\n", " ")}</Button>
+          </div>
+          <div className="hero-in d4" style={{ marginTop: 22 }}><TextLink href="#kontakt">{t.ui.discuss}</TextLink></div>
         </Container>
       </Panel>
 
@@ -64,6 +66,16 @@ export default function Home({ t, lang }) {
           <div className="split-tiles">
             <TrackTile to="/tech" img={{ name: "hero-tech", widths: [800, 1400] }} overlay="linear-gradient(180deg, rgba(14,18,24,0.1) 0%, rgba(14,18,24,0.35) 45%, rgba(14,18,24,0.85) 100%)" eyebrow={t.ui.since15} {...h.tracks.tech} />
             <TrackTile to="/real-estate" img={{ name: "hero-re", widths: [800, 1280] }} overlay="linear-gradient(180deg, rgba(34,22,8,0.1) 0%, rgba(34,22,8,0.35) 45%, rgba(34,22,8,0.85) 100%)" eyebrow={t.ui.since06} {...h.tracks.re} delay={0.1} />
+          </div>
+          <Reveal><div style={{ ...LABEL, color: C.muted, margin: "clamp(56px, 7vw, 88px) 0 24px" }}>{h.waysLabel}</div></Reveal>
+          <div className="cols-3">
+            {h.ways.map((w, i) => (
+              <Reveal key={w.t} delay={i * 0.08} className="rule-top">
+                <span className="t-small" style={{ fontWeight: 600, fontVariantNumeric: "tabular-nums", color: i === 2 ? C.goldDeep : C.silverInk }}>{String(i + 1).padStart(2, "0")}</span>
+                <h3 className="t-h3" style={{ margin: "12px 0 8px" }}>{w.t}</h3>
+                <p className="t-body" style={{ color: C.dim, margin: 0 }}>{w.d}</p>
+              </Reveal>
+            ))}
           </div>
         </Container>
       </Panel>

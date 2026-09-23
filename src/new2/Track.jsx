@@ -1,10 +1,8 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { C, F, T, LABEL, TRACK } from "./tokens";
-import { Picture, Button, Panel, Container } from "./ui";
+import { Picture, Button, Panel, Container, TextLink } from "./ui";
 import { Clients, Profiles, Compliance, Expertise, Services, Network, Process, Insights } from "./sections";
 import { ContactSection } from "./Contact";
-import Article from "./Article";
 
 function Hero({ t, d, track, tc }) {
   return (
@@ -15,25 +13,28 @@ function Hero({ t, d, track, tc }) {
           <div>
             <Link to="/" className="hero-in back-link" style={{ fontFamily: F, fontSize: T.sm, fontWeight: 500, color: C.dim, textDecoration: "none", display: "inline-flex", gap: 8, marginBottom: 40 }}>← {t.ui.back}</Link>
             <div className="hero-in" style={{ ...LABEL, color: tc.at, marginBottom: 20 }}>{track === "re" ? t.ui.since06 : t.ui.since15}</div>
-            <h1 className="hero-in d1 t-display" style={{ margin: "0 0 22px" }}>
+            <h1 className="hero-in d1 t-h2" style={{ margin: "0 0 24px", lineHeight: 1.04 }}>
               <span style={{ display: "block" }}>{d.h1[0]}</span>
               <span style={{ display: "block", color: C.silver }}>{d.h1[1]}</span>
               <span style={{ display: "block", color: C.goldText }}>{d.h1[2]}</span>
             </h1>
             <p className="hero-in d2 t-lead" style={{ maxWidth: 600, margin: "0 0 40px" }}>{d.heroP}</p>
-            <div className="hero-in d3" style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-              <Button href="#leistungen" color={C.dark}>{d.ctaA}</Button>
-              <Button href={track === "re" ? "#profil" : "#team"} variant="ghost">{d.ctaB}</Button>
+            <div className="hero-in d3" style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
+              <Button href="#kontakt" color={C.dark}>{t.ui.discuss}</Button>
+              <Button href="#leistungen" variant="ghost">{d.ctaA}</Button>
+              <span style={{ marginLeft: 8 }}><TextLink href={track === "re" ? "#profil" : "#team"} size={T.sm}>{d.ctaB}</TextLink></span>
             </div>
           </div>
-          <div className="hero-visual hero-in d2" aria-hidden style={{ height: "min(62vh, 580px)", borderRadius: 24, overflow: "hidden", position: "relative" }}>
-            <Picture name={track === "re" ? "re-hero-visual" : "ai-hero-visual"} widths={[960]} sizes="420px" priority parallax="0.1" style={{ position: "absolute", inset: 0, top: "-9%" }} />
+          <div className="hero-visual hero-in d2" style={{ height: "min(62vh, 580px)", borderRadius: 24, overflow: "hidden", position: "relative" }}>
+            {track === "re"
+              ? <Picture name="hero-re" widths={[800, 1280]} sizes="420px" priority parallax="0.1" alt="" style={{ position: "absolute", inset: 0, top: "-9%" }} />
+              : <TechVisual v={d.visual} />}
           </div>
         </div>
         <dl className="stats-row hero-in d4">
           {d.stats.map((s) => (
             <div key={s.l}>
-              <dt className="t-stat" style={{ color: C.dark }}>{s.v}</dt>
+              <dt className="t-stat" style={{ color: C.dark, whiteSpace: "nowrap" }}>{s.v}</dt>
               <dd className="t-small" style={{ color: C.dim, margin: "6px 0 0", lineHeight: 1.45 }}>{s.l}</dd>
             </div>
           ))}
@@ -43,15 +44,25 @@ function Hero({ t, d, track, tc }) {
   );
 }
 
-function ArticleFold({ t, track, lang }) {
-  const [open, setOpen] = useState(false);
+// Tech hero: a small architecture sketch instead of a decorative image — governance wraps every layer.
+function TechVisual({ v }) {
   return (
-    <Panel tone="white" className="panel-flush">
-      <div className={`article-fold ${open ? "is-open" : ""}`}><Article track={track} lang={lang} /></div>
-      <div style={{ textAlign: "center", padding: "0 0 clamp(56px, 7vw, 88px)" }}>
-        <Button variant="ghost" onClick={() => setOpen(!open)}>{open ? t.ui.closeArticle : t.ui.readArticle}</Button>
+    <div role="img" aria-label={`${v.label}: ${v.layers.map((l) => l[0]).join(", ")}`} style={{ position: "absolute", inset: 0, background: "#15171A", color: "#F2F1EE", padding: "clamp(22px, 2.4vw, 32px)", display: "flex", flexDirection: "column", justifyContent: "center", gap: 18 }}>
+      <div aria-hidden style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px)", backgroundSize: "28px 28px" }} />
+      <div style={{ ...LABEL, color: C.gold, position: "relative" }}>{v.label}</div>
+      <div style={{ position: "relative", border: "1px solid rgba(184,148,75,.45)", borderRadius: 18, padding: 14, display: "flex", flexDirection: "column", gap: 10 }}>
+        {v.layers.map(([h, d], i) => (
+          <div key={h} style={{ background: "#1F2226", border: "1px solid rgba(255,255,255,.08)", borderRadius: 12, padding: "14px 16px" }}>
+            <div className="t-small" style={{ fontWeight: 600, display: "flex", gap: 10 }}><span style={{ color: i === 0 ? C.gold : "#A9B6C2", fontVariantNumeric: "tabular-nums" }}>{String(i + 1).padStart(2, "0")}</span>{h}</div>
+            <div className="t-small" style={{ color: "rgba(242,241,238,.62)", marginTop: 4 }}>{d}</div>
+          </div>
+        ))}
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, paddingTop: 4 }}>
+          {v.chips.map((c) => <span key={c} style={{ ...LABEL, letterSpacing: "0.06em", color: C.gold, border: "1px solid rgba(184,148,75,.5)", borderRadius: 999, padding: "5px 10px" }}>{c}</span>)}
+        </div>
       </div>
-    </Panel>
+      <p className="t-small" style={{ position: "relative", color: "rgba(242,241,238,.62)", margin: 0 }}>{v.caption}</p>
+    </div>
   );
 }
 
@@ -77,9 +88,8 @@ export default function Track({ t, lang, track }) {
       <Services d={d} tc={tc} ch={at(k.serv)} />
       <Network d={d} tc={tc} ch={at(k.net)} />
       <Process d={d} tc={tc} ch={at(k.proc)} />
-      <ContactSection t={t} tc={tc} ch={at(k.contact)} />
+      <ContactSection t={t} tc={tc} ch={at(k.contact)} track={track} />
       <Insights t={t} lang={lang} track={track} tc={tc} ch={at(k.insights)} />
-      <ArticleFold t={t} track={track} lang={lang} />
     </main>
   );
 }

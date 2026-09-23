@@ -6,7 +6,8 @@ import { useStack } from "./ui";
 import { Nav, Footer, NotFound, ChapterRail } from "./Layout";
 import Home from "./Home";
 import Track from "./Track";
-import CookieConsent from "../CookieConsent";
+import LegalPage from "./Legal";
+import { InsightsPage, ArticlePage } from "./Insights";
 
 const LANG_KEY = "inventures-lang";
 
@@ -65,8 +66,11 @@ button,input,select,textarea{font-family:inherit}
 .t-small{font-size:var(--t-sm);line-height:1.55}
 .wordmark{font-family:var(--font);display:inline-flex;align-items:baseline;line-height:1;letter-spacing:-.025em;white-space:nowrap}
 .wm-at{font-size:.5em;font-weight:500;color:${C.gold};margin-left:.08em;letter-spacing:0}
-[aria-label="Cookie consent"],[aria-label="Cookie consent"] *{font-family:var(--font)!important}
-[aria-label="Cookie consent"] a{color:${C.gold}!important}
+/* legal pages */
+.legal-row{display:grid;grid-template-columns:220px minmax(0,1fr);gap:4px 24px;padding:8px 0}
+.article-card{transition:transform .5s ${EASE},box-shadow .5s ${EASE}}
+.article-card:hover{transform:translateY(-2px)}
+.article-card:hover .arrow{transform:translateX(5px)}
 ::selection{background:${C.dark};color:#fff}
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid ${C.silver};outline-offset:3px}
 .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
@@ -251,6 +255,8 @@ li:last-child>.news-row{border-bottom:1px solid rgba(0,0,0,.1)}
   .tl-jcard{grid-column:2;grid-row:1;justify-self:stretch;width:auto;margin:4px 0 32px 18px;text-align:left;padding:18px 18px 20px}
   .tl-jcard .tl-jlabel{justify-content:flex-start}
   .track-pill{display:none!important}
+  .legal-row{grid-template-columns:minmax(0,1fr)}
+  .lang-btn{min-height:44px;min-width:40px}
 }
 @media (max-width:760px){ .t-h2,.t-display{hyphens:auto;-webkit-hyphens:auto} }
 @media (max-width:560px){
@@ -278,7 +284,11 @@ export default function NewApp() {
   const tech = useMatch("/tech");
   const re = useMatch("/real-estate");
   const home = useMatch("/");
+  const insights = useMatch("/insights/*");
+  const imprint = useMatch("/impressum");
+  const privacy = useMatch("/datenschutz");
   const track = tech ? "tech" : re ? "re" : null;
+  const page = track || (home ? "home" : insights ? "insights" : imprint ? "impressum" : privacy ? "datenschutz" : "notFound");
   useStack();
 
   const setLang = (l) => {
@@ -286,12 +296,20 @@ export default function NewApp() {
     try { window.localStorage.setItem(LANG_KEY, l); } catch { /* storage unavailable */ }
   };
 
+  // Title, description and canonical per page and language (canonical points at the future public URL).
+  const { pathname } = useLocation();
   useEffect(() => {
     document.documentElement.lang = HTML_LANG[lang];
-    document.title = track ? t.meta[track] : home ? t.meta.home : t.meta.notFound;
-  }, [lang, track, home, t]);
+    document.title = t.meta[page] || t.meta.notFound;
+    const desc = t.meta.desc[page] || t.meta.desc.home;
+    document.querySelector('meta[name="description"]')?.setAttribute("content", desc);
+    document.querySelector('meta[property="og:description"]')?.setAttribute("content", desc);
+    document.querySelector('meta[property="og:title"]')?.setAttribute("content", document.title);
+    document.querySelector('link[rel="canonical"]')?.setAttribute("href", `https://inventures.at${pathname === "/" ? "/" : pathname}`);
+  }, [lang, page, pathname, t]);
 
-  const links = track ? t[track].nav : home ? t.homeNav : [];
+  // Other pages reuse the overview menu; its anchors then point back to the overview.
+  const links = track ? t[track].nav : home ? t.homeNav : t.homeNav.map(([id, label]) => [id.startsWith("/") ? id : `/#${id}`, label]);
 
   return (
     <div>
@@ -303,10 +321,13 @@ export default function NewApp() {
         <Route path="/" element={<Home t={t} lang={lang} />} />
         <Route path="/tech" element={<Track key="tech" t={t} lang={lang} track="tech" />} />
         <Route path="/real-estate" element={<Track key="re" t={t} lang={lang} track="re" />} />
+        <Route path="/insights" element={<InsightsPage t={t} lang={lang} />} />
+        <Route path="/insights/:slug" element={<ArticlePage t={t} lang={lang} />} />
+        <Route path="/impressum" element={<LegalPage kind="impressum" lang={lang} />} />
+        <Route path="/datenschutz" element={<LegalPage kind="datenschutz" lang={lang} />} />
         <Route path="*" element={<NotFound t={t} />} />
       </Routes>
       <Footer t={t} track={track} />
-      <CookieConsent lang={lang} />
     </div>
   );
 }
