@@ -15,7 +15,7 @@ export const LEGAL = {
     impressum: {
       label: "Impressum",
       title: "Impressum",
-      intro: `InVentures ist ein Joint Venture von David Brainin und Philip Kügler. Rechtsträger und Betreiber dieser Website ist die ${ENTITY}.`,
+      intro: `InVentures ist ein Joint Venture von Mag.^iur David Brainin und Philip Kügler, MSc. Rechtsträger und Betreiber dieser Website ist die ${ENTITY}.`,
       sections: [
         { h: "Angaben gemäß § 5 ECG, § 14 UGB und § 25 MedienG", rows: [
           ["Firma", ENTITY],
@@ -24,7 +24,7 @@ export const LEGAL = {
           ["Firmenbuchnummer", "FN 342972 x"],
           ["Firmenbuchgericht", "Handelsgericht Wien"],
           ["UID-Nummer", "ATU65716433"],
-          ["Geschäftsführer", "Mag. David Brainin"],
+          ["Geschäftsführer", "Mag.^iur David Brainin"],
           ["Telefon", PHONE, "tel:+436641100333"],
           ["E-Mail", MAIL, `mailto:${MAIL}`],
         ] },
@@ -37,14 +37,14 @@ export const LEGAL = {
         ] },
         { h: "Offenlegung gemäß § 25 MedienG", rows: [
           ["Medieninhaber", `${ENTITY}, ${ADDRESS}`],
-          ["Beteiligungsverhältnisse", "Mag. David Brainin, 100 %"],
+          ["Beteiligungsverhältnisse", "Mag.^iur David Brainin, 100 %"],
           ["Grundlegende Richtung", "Information über die Leistungen von InVentures in den Bereichen Tech & AI sowie Real Estate & Hospitality und Fachbeiträge zu diesen Themen."],
         ] },
         { h: "Verbraucherstreitbeilegung", ps: [
           "Wir sind weder verpflichtet noch bereit, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.",
         ] },
         { id: "referenzen", h: "Hinweis zu Referenzen, Track Record und Marken", ps: [
-          "Die auf dieser Website genannten Unternehmen, Institutionen, Projekte und Kennzahlen beschreiben die berufliche Erfahrung der Partner David Brainin und Philip Kügler. Erfasst sind Organisationen, an denen die Partner maßgeblich beteiligt waren oder in denen sie Führungspositionen innehatten, sowie Projekte und Kunden, die sie unmittelbar geleitet oder betreut haben – innerhalb eigener oder fremder Organisationen, als Angestellte oder als Auftragnehmer, auch vor Gründung von InVentures.",
+          "Die auf dieser Website genannten Unternehmen, Institutionen, Projekte und Kennzahlen beschreiben die berufliche Erfahrung der Partner Mag.^iur David Brainin und Philip Kügler, MSc. Erfasst sind Organisationen, an denen die Partner maßgeblich beteiligt waren oder in denen sie Führungspositionen innehatten, sowie Projekte und Kunden, die sie unmittelbar geleitet oder betreut haben – innerhalb eigener oder fremder Organisationen, als Angestellte oder als Auftragnehmer, auch vor Gründung von InVentures.",
           `Die Nennung bedeutet nicht, dass diese Organisationen Kunden der ${ENTITY} oder von InVentures sind oder waren, und bringt keine Empfehlung, Partnerschaft oder Billigung durch sie zum Ausdruck. Kennzahlen beziehen sich, soweit nicht anders angegeben, auf die berufliche Tätigkeit der jeweiligen Partner insgesamt und nicht ausschließlich auf InVentures.`,
           "Marken, Logos und Unternehmensnamen sind Eigentum der jeweiligen Inhaber und werden ausschließlich zur Beschreibung dieser Tätigkeiten verwendet.",
         ] },
@@ -68,7 +68,7 @@ export const LEGAL = {
           ["Anschrift", ADDRESS],
           ["E-Mail", MAIL, `mailto:${MAIL}`],
           ["Telefon", PHONE, "tel:+436641100333"],
-        ], ps: [`InVentures ist ein Joint Venture von David Brainin und Philip Kügler. Datenschutzrechtlich verantwortlich ist die ${ENTITY}.`] },
+        ], ps: [`InVentures ist ein Joint Venture von Mag.^iur David Brainin und Philip Kügler, MSc. Datenschutzrechtlich verantwortlich ist die ${ENTITY}.`] },
         { h: "2. Hosting und Server-Logfiles", ps: [
           "Diese Website wird bei Vercel Inc., USA, gehostet. Beim Aufruf verarbeitet Vercel technisch notwendige Daten – insbesondere IP-Adresse, Datum und Uhrzeit, aufgerufene Seite, Referrer sowie Browser- und Geräteinformationen –, um die Website auszuliefern und vor Angriffen zu schützen.",
           "Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO; unser berechtigtes Interesse liegt im sicheren und stabilen Betrieb der Website. Vercel verarbeitet die Daten als Auftragsverarbeiter. Die Übermittlung in die USA stützt sich auf den Angemessenheitsbeschluss der Europäischen Kommission zum EU-US Data Privacy Framework (Art. 45 DSGVO), unter dem Vercel zertifiziert ist. Protokolldaten werden nur so lange gespeichert, wie es für diese Zwecke erforderlich ist.",
@@ -119,7 +119,7 @@ export const LEGAL = {
           ["Company register number", "FN 342972 x"],
           ["Register court", "Commercial Court of Vienna (Handelsgericht Wien)"],
           ["VAT number", "ATU65716433"],
-          ["Managing director", "Mag. David Brainin"],
+          ["Managing director", "David Brainin"],
           ["Phone", PHONE, "tel:+436641100333"],
           ["E-mail", MAIL, `mailto:${MAIL}`],
         ] },
@@ -132,7 +132,7 @@ export const LEGAL = {
         ] },
         { h: "Disclosure pursuant to § 25 MedienG", rows: [
           ["Media owner", `${ENTITY}, ${ADDRESS_EN}`],
-          ["Ownership", "Mag. David Brainin, 100%"],
+          ["Ownership", "David Brainin, 100%"],
           ["Editorial line", "Information about the services of InVentures in Tech & AI and Real Estate & Hospitality, and articles on these topics."],
         ] },
         { h: "Consumer dispute resolution", ps: [

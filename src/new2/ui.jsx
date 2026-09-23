@@ -92,6 +92,13 @@ export function Picture({ name, widths, sizes = "100vw", alt = "", style, imgSty
   );
 }
 
+// Text with small superscripts written as "^abc" (e.g. "Mag.^iur David Brainin").
+export function Rich({ text }) {
+  if (!text || !text.includes("^")) return text || null;
+  return text.split(/\^(\w+)/).map((part, i) => (i % 2 ? <sup key={i} className="sup">{part}</sup> : part));
+}
+export const plain = (text) => (text || "").replace(/\^(\w+)/g, " $1");
+
 // Brand wordmark: "In" silver (medium) + "Ventures" gold (semibold), tight and round; ".at" optional.
 export function Wordmark({ size = 22, at = true, light, style }) {
   return (

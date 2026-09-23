@@ -4,7 +4,10 @@
 export const LANGS = [["en", "EN"], ["de", "DE"], ["cn", "中文"]];
 export const HTML_LANG = { en: "en", de: "de", cn: "zh-Hans" };
 
-const PEOPLE = { david: { key: "david", name: "Mag. David Brainin", initials: "DB", accent: "gold", photo: "portrait-brainin" }, philip: { key: "philip", name: "Philip Kügler, MSc", initials: "PK", accent: "silver", photo: "portrait-kuegler" } };
+// Names without academic titles (English, 中文); the German pages add them (David, 2026-09-23).
+// "^iur" renders as a small superscript, see Rich in ui.jsx.
+const PEOPLE = { david: { key: "david", name: "David Brainin", initials: "DB", accent: "gold", photo: "portrait-brainin" }, philip: { key: "philip", name: "Philip Kügler", initials: "PK", accent: "silver", photo: "portrait-kuegler" } };
+const PEOPLE_DE = { david: { ...PEOPLE.david, name: "Mag.^iur David Brainin" }, philip: { ...PEOPLE.philip, name: "Philip Kügler, MSc" } };
 
 export const TX = {
 // ─────────────────────────────────────────────────────────────── EN
@@ -185,9 +188,9 @@ en: {
 // ─────────────────────────────────────────────────────────────── DE
 de: {
   meta: { home: "InVentures — Ventures in den am stärksten regulierten Märkten", tech: "Tech & AI — InVentures", re: "Real Estate & Hospitality — InVentures", insights: "Insights — InVentures", impressum: "Impressum — InVentures", datenschutz: "Datenschutz — InVentures", notFound: "Seite nicht gefunden — InVentures",
-    desc: { home: "InVentures baut Ventures in den am stärksten regulierten Märkten: Recht, Kapital und Technologie aus einem Team – Tech & AI sowie Real Estate & Hospitality, aus Wien.", tech: "AI-Strategie, Umsetzung und Plattformen für regulierte Märkte – DSGVO und AI Act von Beginn an berücksichtigt. InVentures, Wien.", re: "Transaktionsberatung, Projekt- und Entwicklungsmanagement und Hospitality: über 600 Mio. € Transaktionsvolumen. InVentures, Wien.", insights: "Eigene Analysen und ausgewählte Marktberichte zu AI, Regulierung und Immobilien.", impressum: "Impressum von InVentures, einem Joint Venture unter dem Rechtsträger Inside Holding & Real Estate GmbH.", datenschutz: "Datenschutzerklärung von InVentures: keine Cookies, kein Tracking, selbst gehostete Schriften und Bilder." } },
+    desc: { home: "InVentures baut Ventures in den am stärksten regulierten Märkten: Recht, Kapital und Technologie aus einem Team – Tech & AI sowie Real Estate & Hospitality, aus Wien.", tech: "AI-Strategie, Umsetzung und Plattformen für regulierte Märkte – DSGVO und AI Act von Beginn an berücksichtigt. InVentures, Wien.", re: "Transaktionsberatung, Projekt- und Entwicklungsmanagement und Hospitality: über 600 Mio. € Transaktionsvolumen. InVentures, Wien.", insights: "Eigene Analysen und ausgewählte Marktberichte zu AI, Regulierung und Immobilien.", impressum: "Impressum von InVentures, einem Joint Venture unter dem Rechtsträger Inside Holding & Real Estate GmbH.", datenschutz: "Datenschutzerklärung von InVentures: keine Cookies, kein Tracking, selbst gehostete Schriften und Bilder." } },
   ui: {
-    entity: "Ein Projekt der Inside Holding & Real Estate GmbH", entityLong: "Ein Joint Venture von David Brainin und Philip Kügler. Rechtsträger: Inside Holding & Real Estate GmbH.",
+    entity: "Ein Projekt der Inside Holding & Real Estate GmbH", entityLong: "Ein Joint Venture von Mag.^iur David Brainin und Philip Kügler, MSc. Rechtsträger: Inside Holding & Real Estate GmbH.",
     back: "Zur Übersicht", menu: "Menü", since06: "Seit 2006", since15: "Seit 2015",
     imprint: "Impressum", privacy: "Datenschutz", cookies: "Cookie-Einstellungen", trackTech: "Tech & AI", trackRe: "Real Estate", switchTrack: "Zur Übersicht",
     discuss: "Projekt besprechen", allInsights: "Alle Insights", refNote: "Organisationen aus der Projekterfahrung unserer Partner – auch vor Gründung von InVentures.", refLink: "Hinweis zu Referenzen", langHint: { de: "Artikel auf Deutsch", en: "Artikel auf Englisch" },
@@ -217,12 +220,12 @@ de: {
     label: "Team", title: "Zwei Partner. Über 50 Jahre Erfahrung.",
     intro: "Wir verbinden Recht, Kapital und Unternehmensaufbau mit Architektur, Sicherheit und Umsetzung – als eingespieltes Team.",
     people: [
-      { ...PEOPLE.david, role: "Founder & Managing Partner", focus: "Recht · Kapital · Company Building",
-        bio: "Jurist, Gründer und Mehrfach-CEO. 25+ Jahre operative Verantwortung, Transaktionen über 600 Mio. €, Gründer der geolad. DSGVO und EU AI Act in der Praxis.",
-        facts: [{ v: "600+", l: "Mio. € Transaktions\u00advolumen" }, { v: "45+", l: "Mio. € Kapital mobilisiert" }, { v: "12+", l: "Mio. € Forschungs\u00adförderung" }] },
-      { ...PEOPLE.philip, role: "Managing Partner, Technology", focus: "Architektur · Sicherheit · Umsetzung",
+      { ...PEOPLE_DE.david, role: "Founder & Managing Partner", focus: "Recht · Kapital · Company Building",
+        bio: "Jurist, Gründer und Mehrfach-CEO. 25+ Jahre operative Verantwortung, Transaktionen über 600 Mio. €, Gründer der geolad. DSGVO und EU AI Act in der Praxis.",
+        facts: [{ v: "600+", l: "Mio. € Transaktions\u00advolumen" }, { v: "45+", l: "Mio. € Kapital mobilisiert" }, { v: "12+", l: "Mio. € Forschungs\u00adförderung" }] },
+      { ...PEOPLE_DE.philip, role: "Managing Partner, Technology", focus: "Architektur · Sicherheit · Umsetzung",
         bio: "Enterprise Architect und CTO. 25+ Jahre IT-Großprojekte für Behörden, Gesundheit, Bildung und Telekom – vom Zoll bis zur nationalen Krankenversicherung.",
-        facts: [{ v: "4", l: "Nationale Regierungs\u00adprogramme" }, { v: "10+", l: "Mio. € Verantwortung im Zollprogramm" }, { v: "5", l: "Jahre Identity-Management für Bund, Länder und Schulen" }] },
+        facts: [{ v: "4", l: "Nationale Regierungs\u00adprogramme" }, { v: "10+", l: "Mio. € Verantwortung im Zollprogramm" }, { v: "5", l: "Jahre Identity-Management für Bund, Länder und Schulen" }] },
     ],
     bondsLabel: "Was wir verbinden",
     bonds: [
@@ -239,7 +242,7 @@ de: {
     pillars: [
       { t: "Security by Design", who: "Philip Kügler", d: "Sicherheitsanforderungen nach ISO 27001 und BSI, Identity- & Access-Management." },
       { t: "Architektur & Betrieb", who: "Philip Kügler", d: "Nationale Register und Plattformen – hochverfügbar, integriert, bis in den Betrieb." },
-      { t: "Company Building & Kapital", who: "David Brainin", d: "Gründung, Governance, Go-to-Market. Über 45 Mio. € Kapital, über 12 Mio. € Förderungen." },
+      { t: "Company Building & Kapital", who: "David Brainin", d: "Gründung, Governance, Go-to-Market. Über 45 Mio. € Kapital, über 12 Mio. € Förderungen." },
       { t: "Recht & Compliance", who: "David Brainin", d: "Art. 9 DSGVO, Folgenabschätzung, AI-Act-Klassifizierung." },
     ],
     telecom: { label: "Telekommunikationsrecht", claim: "Gelernt, wo Datenschutz am strengsten ist: im Telekommunikationsrecht.", p: "Beide Partner arbeiten seit Jahren mit Telekom-Daten – unter den Telekommunikationsgesetzen mehrerer Länder, die differenzierter, strenger und enger überwacht sind als die DSGVO allein." },
@@ -260,7 +263,7 @@ de: {
     label: "Kontakt", title: "Sprechen wir.", p: "Strategie, Projekte in regulierten Märkten, Partnerschaften.",
     first: "Im ersten Gespräch klären wir Ziel, Ausgangslage und Zeitrahmen – und welche Form der Zusammenarbeit passt: Beratung, Umsetzung oder Joint Venture.",
     web: "Web", mail: "E-Mail", loc: "Standort", locV: "Wien, Österreich", entity: "Rechtsträger",
-    people: "Ansprechpartner", peopleV: ["David Brainin – Recht, Kapital, Immobilien", "Philip Kügler – Technologie, Security, Produkt"],
+    people: "Ansprechpartner", peopleV: ["Mag.^iur David Brainin – Recht, Kapital, Immobilien", "Philip Kügler, MSc – Technologie, Security, Produkt"],
     form: {
       name: "Name", company: "Unternehmen", email: "E-Mail", topic: "Thema", message: "Nachricht",
       topics: ["Tech & AI", "Real Estate & Hospitality", "Regulierte Märkte / Joint Venture", "Sonstiges"],
@@ -281,16 +284,16 @@ de: {
     ctaA: "Leistungen", ctaB: "Team",
     contactP: "AI-Projekt, Plattform oder Venture in einem regulierten Markt: Besprechen wir Ihr Vorhaben.",
     visual: { label: "Compliance by Design", layers: [["Anwendungsfälle", "AI-Agenten, Automatisierung, neue Services"], ["Integration & Betrieb", "Schnittstellen, Identity, Monitoring"], ["Daten & Systeme", "Register, ERP, Datenplattformen"]], chips: ["DSGVO", "AI Act", "ISO 27001", "BSI"], caption: "Recht, Sicherheit und Technik in einer Architektur." },
-    stats: [{ v: "45+", l: "Mio. € Kapital mobilisiert" }, { v: "12+", l: "Mio. € Forschungs\u00adförderung" }, { v: "4", l: "Nationale Regierungs\u00adprogramme" }, { v: "10+", l: "Mio. € Verantwortung im Zollprogramm" }, { v: "40+", l: "Projekte DACH & MENA" }, { v: "50+", l: "Jahre Erfahrung, zusammen\u00adgerechnet" }],
+    stats: [{ v: "45+", l: "Mio. € Kapital mobilisiert" }, { v: "12+", l: "Mio. € Forschungs\u00adförderung" }, { v: "4", l: "Nationale Regierungs\u00adprogramme" }, { v: "10+", l: "Mio. € Verantwortung im Zollprogramm" }, { v: "40+", l: "Projekte DACH & MENA" }, { v: "50+", l: "Jahre Erfahrung, zusammen\u00adgerechnet" }],
     partnerTitle: "Projekterfahrung",
     teamLabel: "Team", teamTitle: "Recht, Kapital, Technologie. Ein Team.", teamIntro: "",
     profiles: [
-      { ...PEOPLE.david, role: "Founder & Managing Partner", focus: "Recht · Kapital · Company Building",
-        paras: ["Jurist, Startup-Gründer und Mehrfach-CEO. 25+ Jahre operative Erfahrung, Transaktionen über 600 Mio. € in zwei Branchen.",
+      { ...PEOPLE_DE.david, role: "Founder & Managing Partner", focus: "Recht · Kapital · Company Building",
+        paras: ["Jurist, Startup-Gründer und Mehrfach-CEO. 25+ Jahre operative Erfahrung, Transaktionen über 600 Mio. € in zwei Branchen.",
           "2015 Pionierauftrag von Deutscher Telekom und A1. Gründer und CEO der geolad (30+ Mitarbeiter, EU & Asien). DSGVO und EU AI Act in der Praxis."],
         quote: "Juristisch denkend. Unternehmerisch handelnd. Mit Impact umsetzend.",
         cards: [["Telekom & Data", "Deutsche Telekom, A1, Orange, Zain, Viettel, Huawei, Ericsson"], ["Wissenschaft & Bildung", "European Stroke Organisation, World Stroke Organization, Donau-Universität Krems, Sigmund Freud PrivatUniversität (in Vorbereitung)"], ["Immobilien", "Wiener Privatbank, EPI Immobilien, UNIQA"], ["Legal", "Lansky, Ganzger & Partner, Herbst Kinsky"], ["Hospitality", "EPI Hospitality, Ibis, Arcotel"], ["Social Impact", "Integrationshaus Wien, ORF, Red Bull, vidid"]] },
-      { ...PEOPLE.philip, role: "Managing Partner, Technology", focus: "Architektur · Sicherheit · Umsetzung",
+      { ...PEOPLE_DE.philip, role: "Managing Partner, Technology", focus: "Architektur · Sicherheit · Umsetzung",
         paras: ["Enterprise Architect, Programm-Manager und CTO. 25+ Jahre IT-Großprojekte – Schwerpunkt öffentliche Hand, Finanz und Bildung.",
           "Nationale Krankenversicherung Katar (mit McKinsey), Zoll-Import im Finanzministerium, ePassport und Grenzkontrolle. CTO & Co-Founder OptInk, GF Merkit Consulting. MSc TU Wien, IPMA Level C."],
         quote: "Systemisch denkend. Pragmatisch bauend. Verlässlich betreibend.",
@@ -308,7 +311,7 @@ de: {
     tP: "Drei Hebel: Automatisierung, neue Umsatzquellen, Agentic AI – mit messbaren Zielen je Projekt.",
     opexT: "OPEX-Reduktion", opex: ["Automatisierung repetitiver Prozesse", "Weniger Fehler und Nacharbeit", "Intelligente Dokumenten- und Vertragsanalyse", "Konsolidierte Datenquellen"],
     revT: "Neue Umsätze", rev: ["Datenmonetarisierung", "AI-gestützte Produkte und Services", "Plattform- und Marktplatzmodelle", "SaaS aus internen Lösungen"],
-    kpis: [{ v: "6–9", u: " Monate", l: "typische Laufzeit eines klar abgegrenzten Projekts" }, { v: "30 %", l: "Einsparziel je automatisiertem Prozess, projektspezifisch vereinbart" }, { v: "Neu", l: "Umsatzquellen aus vorhandenen Daten und Assets", gold: true }],
+    kpis: [{ v: "6–9", u: " Monate", l: "typische Laufzeit eines klar abgegrenzten Projekts" }, { v: "30 %", l: "Einsparziel je automatisiertem Prozess, projektspezifisch vereinbart" }, { v: "Neu", l: "Umsatzquellen aus vorhandenen Daten und Assets", gold: true }],
     sLabel: "Leistungen", sTitle: "Von der Strategie bis zum Betrieb.",
     serv: [
       { t: "AI-Strategie & Entscheidungsgrundlage", d: "Für Geschäftsführung und Vorstand: priorisierte Anwendungsfälle, Wirtschaftlichkeitsbewertung, Daten- und Risikoprüfung nach DSGVO und AI Act, Umsetzungsplan.", tags: ["Anwendungsfälle", "Business Case", "DSGVO & AI Act"] },
@@ -326,22 +329,22 @@ de: {
   re: {
     nav: [["profil", "Profil"], ["expertise", "Expertise"], ["leistungen", "Leistungen"], ["netzwerk", "Netzwerk"], ["prozess", "Prozess"], ["kontakt", "Kontakt"]],
     chapters: ["Profil", "Expertise", "Leistungen", "Netzwerk", "Prozess", "Kontakt", "Insights"],
-    profileTitle: "25 Jahre. Über 600 Mio. € Transaktionsvolumen.",
+    profileTitle: "25 Jahre. Über 600 Mio. € Transaktionsvolumen.",
     h1: ["Fundierte Analyse.", "Präzise Struktur.", "Sicheres Closing."],
-    heroP: "Über 600 Mio. € Transaktionsvolumen in Wohnen, Gewerbe und Hotel. Strukturierung, Projektmanagement, Closing.",
+    heroP: "Über 600 Mio. € Transaktionsvolumen in Wohnen, Gewerbe und Hotel. Strukturierung, Projektmanagement, Closing.",
     ctaA: "Leistungen", ctaB: "Profil",
     contactP: "Ankauf, Verkauf, Entwicklung oder Hotel-Repositionierung: Besprechen wir Ihr Vorhaben.",
-    stats: [{ v: "600+", l: "Mio. € Transaktions\u00advolumen" }, { v: "25+", l: "Jahre persönliche Erfahrung in Immobilien & Hospitality (David Brainin)" }, { v: "3", l: "Asset-Klassen" }, { v: "AT · CEE · ES", l: "Märkte" }],
+    stats: [{ v: "600+", l: "Mio. € Transaktions\u00advolumen" }, { v: "25+", l: "Jahre persönliche Erfahrung in Immobilien & Hospitality (David Brainin)" }, { v: "3", l: "Asset-Klassen" }, { v: "AT · CEE · ES", l: "Märkte" }],
     partnerTitle: "Projekterfahrung",
     profileLabel: "Founder & Managing Partner",
-    profile: { ...PEOPLE.david, role: "Founder & Managing Partner", focus: "Recht · Transaktionen · Real Estate",
-      paras: ["Jurist und Mehrfach-CEO. 25+ Jahre Immobilien und Hospitality, Transaktionen über 600 Mio. €.", "Partner für institutionelle Investoren, Family Offices und Developer in Österreich, CEE und Spanien."],
+    profile: { ...PEOPLE_DE.david, role: "Founder & Managing Partner", focus: "Recht · Transaktionen · Real Estate",
+      paras: ["Jurist und Mehrfach-CEO. 25+ Jahre Immobilien und Hospitality, Transaktionen über 600 Mio. €.", "Partner für institutionelle Investoren, Family Offices und Developer in Österreich, CEE und Spanien."],
       quote: "Juristisch denkend. Unternehmerisch handelnd. Mit Impact umsetzend.",
       cards: [["Wohnen", "EPI Immobilien, Trimmobilien, Conwert, Akkadia"], ["Gewerbe & Büro", "An- und Verkäufe"], ["Hotel & Hospitality", "EPI Hospitality, Ibis, Arcotel"], ["Retail & Mixed Use", "Beratung und Strukturierung"], ["Entwicklung", "Machbarkeit, Behörden, Projektmanagement"], ["Verkauf & Ankauf", "Buy-Side- und Sell-Side-Mandate"]] },
     tLabel: "Real Estate Expertise", tTitle: "Von der Analyse zum Closing.", tP: "Marktwissen, rechtliche Präzision, operative Umsetzung.",
     opexT: "Transaktion & Advisory", opex: ["Markt- und Machbarkeitsanalyse", "Due Diligence: rechtlich, finanziell, technisch", "Finanzierungs- und Eigenkapitalstruktur", "Verhandlung und Behördenkoordination"],
     revT: "Verkauf, Ankauf & Projekte", rev: ["Buy-Side- und Sell-Side-Mandate", "Entwicklung bis zur Übergabe", "Hotel-Repositionierung", "Deal-Sourcing CEE & Spanien"],
-    kpis: [{ v: "600+", l: "Mio. € Transaktions\u00advolumen" }, { v: "25+", l: "Jahre Umsetzungserfahrung" }, { v: "CEE & Spanien", l: "Transaktionsraum" }],
+    kpis: [{ v: "600+", l: "Mio. € Transaktions\u00advolumen" }, { v: "25+", l: "Jahre Umsetzungserfahrung" }, { v: "CEE & Spanien", l: "Transaktionsraum" }],
     sLabel: "Leistungen", sTitle: "Ankauf, Verkauf, Projekte – bis zum Closing.",
     serv: [
       { t: "Transaktionsberatung", d: "Buy-Side und Sell-Side: Marktanalyse, Due Diligence, Transaktionsstruktur und Verhandlung – bis zu Signing und Closing. Rechtliche Leistungen erbringen unsere Partnerkanzleien.", tags: ["Ankauf & Verkauf", "Due Diligence", "Closing"] },

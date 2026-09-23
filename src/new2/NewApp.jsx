@@ -64,6 +64,7 @@ button,input,select,textarea{font-family:inherit}
 .t-lead{font-size:var(--t-lg);line-height:1.55;opacity:.74}
 .t-body{font-size:var(--t-base);line-height:1.65}
 .t-small{font-size:var(--t-sm);line-height:1.55}
+.sup{font-size:.56em;vertical-align:.62em;line-height:0;margin-left:.06em;letter-spacing:.01em}
 .wordmark{font-family:var(--font);display:inline-flex;align-items:baseline;line-height:1;letter-spacing:-.025em;white-space:nowrap}
 .wm-at{font-size:.5em;font-weight:500;color:${C.gold};margin-left:.08em;letter-spacing:0}
 /* legal pages */

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { C, F, T, LABEL, TRACK } from "./tokens";
-import { Reveal, Panel, Container, Eyebrow, H2, Lead, TextLink, Button, Picture } from "./ui";
+import { Reveal, Panel, Container, Eyebrow, H2, Lead, TextLink, Button, Picture, Rich, plain } from "./ui";
 import { TIMELINE, REFERENCES, LOGOS } from "./data";
 import { techNews, reNews, articles } from "./news";
 
@@ -24,7 +24,7 @@ const Num = ({ i, color = C.muted }) => <span style={{ fontFamily: F, fontSize: 
 export function Portrait({ person, sizes = "(max-width: 760px) 50vw, 480px", style }) {
   return (
     <div className="portrait" style={{ borderRadius: 18, overflow: "hidden", aspectRatio: "4 / 5", background: "#16171A", ...style }}>
-      <Picture name={person.photo} widths={[480, 960]} sizes={sizes} alt={person.name} />
+      <Picture name={person.photo} widths={[480, 960]} sizes={sizes} alt={plain(person.name)} />
     </div>
   );
 }
@@ -50,7 +50,7 @@ export function TeamCards({ t, ch }) {
               const a = accentOf(p.accent);
               return (
                 <Reveal key={p.key} delay={0.12 + i * 0.06} className="bio">
-                  <h3 className="t-h3" style={{ margin: "0 0 4px" }}>{p.name}</h3>
+                  <h3 className="t-h3" style={{ margin: "0 0 4px" }}><Rich text={p.name} /></h3>
                   <div className="t-small" style={{ marginBottom: 12 }}><span style={{ color: a.text, fontWeight: 600 }}>{p.role}</span><span style={{ color: C.muted }}> · {p.focus}</span></div>
                   <p className="t-body" style={{ color: C.text, margin: "0 0 18px" }}>{p.bio}</p>
                   <div className="facts">
@@ -398,7 +398,7 @@ export function Profiles({ id, label, title, intro, profiles, tc, ch, ui }) {
                 <div style={{ display: "flex", gap: 22, alignItems: "flex-end", marginBottom: 36 }}>
                   {p.photo ? <Portrait person={p} sizes="140px" style={{ width: "clamp(96px, 12vw, 140px)", borderRadius: 14, flexShrink: 0 }} /> : <Monogram initials={p.initials} accent={p.accent} size={64} />}
                   <div>
-                    <h3 className="t-stat" style={{ margin: 0 }}>{p.name}</h3>
+                    <h3 className="t-stat" style={{ margin: 0 }}><Rich text={p.name} /></h3>
                     <div className="t-body" style={{ marginTop: 8 }}><span style={{ color: a.text, fontWeight: 600 }}>{p.role}</span><span style={{ color: C.muted }}> · {p.focus}</span></div>
                   </div>
                 </div>

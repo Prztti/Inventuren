@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { C, F, T, LABEL } from "./tokens";
-import { Reveal, Panel, Container, Eyebrow, H2, Lead } from "./ui";
+import { Reveal, Panel, Container, Eyebrow, H2, Lead, Rich } from "./ui";
 
 const MAIL = "info@inventures.at";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -121,12 +121,12 @@ export function ContactSection({ t, tc, ch, track, philipFirst }) {
               {rows.map((r) => (
                 <div key={r.k} className="row-line" style={Array.isArray(r.v) ? { display: "block" } : { display: "flex", justifyContent: "space-between", gap: 16 }}>
                   <dt style={{ ...LABEL, color: C.muted }}>{r.k}</dt>
-                  <dd className="t-body" style={{ margin: Array.isArray(r.v) ? "8px 0 0" : 0, textAlign: Array.isArray(r.v) ? "left" : "right" }}>{Array.isArray(r.v) ? r.v.map((x) => <span key={x} style={{ display: "block" }}>{x}</span>) : r.h ? <a href={r.h} className="u-link" style={{ color: C.dark, textDecoration: "none" }}>{r.v}</a> : <span>{r.v}</span>}</dd>
+                  <dd className="t-body" style={{ margin: Array.isArray(r.v) ? "8px 0 0" : 0, textAlign: Array.isArray(r.v) ? "left" : "right" }}>{Array.isArray(r.v) ? r.v.map((x) => <span key={x} style={{ display: "block" }}><Rich text={x} /></span>) : r.h ? <a href={r.h} className="u-link" style={{ color: C.dark, textDecoration: "none" }}>{r.v}</a> : <span>{r.v}</span>}</dd>
                 </div>
               ))}
             </dl>
             <div style={{ ...LABEL, color: C.muted, marginBottom: 8 }}>{c.entity}</div>
-            <p className="t-body" style={{ color: C.text, margin: 0 }}>{t.ui.entityLong}</p>
+            <p className="t-body" style={{ color: C.text, margin: 0 }}><Rich text={t.ui.entityLong} /></p>
           </Reveal>
         </div>
       </Container>

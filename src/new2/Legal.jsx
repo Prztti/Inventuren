@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { C, F, T, LABEL } from "./tokens";
-import { Panel, Container } from "./ui";
+import { Panel, Container, Rich } from "./ui";
 import { LEGAL } from "./legalText";
 
 // Impressum / Datenschutz inside /new. German is binding; EN (and 中文) show the English version.
@@ -17,7 +17,7 @@ export default function LegalPage({ kind, lang }) {
           <h1 className="t-h2" style={{ margin: "0 0 20px" }}>{d.title}</h1>
           {d.stand && <p className="t-small" style={{ color: C.muted, margin: "0 0 8px" }}>{d.stand}</p>}
           {L.note && <p className="t-small" style={{ color: C.muted, margin: "0 0 8px" }}>{L.note}</p>}
-          <p className="t-lead" style={{ margin: "24px 0 48px" }}>{d.intro}</p>
+          <p className="t-lead" style={{ margin: "24px 0 48px" }}><Rich text={d.intro} /></p>
           {d.sections.map((s) => (
             <section key={s.h} id={s.id} className="legal-sec" style={{ padding: "28px 0", borderTop: `1px solid ${C.line}`, scrollMarginTop: 96 }}>
               <h2 className="t-h3" style={{ margin: "0 0 16px" }}>{s.h}</h2>
@@ -26,13 +26,13 @@ export default function LegalPage({ kind, lang }) {
                   {s.rows.map(([k, v, href]) => (
                     <div key={k} className="legal-row">
                       <dt className="t-small" style={{ color: C.muted, fontWeight: 600 }}>{k}</dt>
-                      <dd className="t-body" style={{ margin: 0 }}>{href ? <a href={href} className="u-link" style={{ color: C.dark, textDecoration: "none" }}>{v}</a> : v}</dd>
+                      <dd className="t-body" style={{ margin: 0 }}>{href ? <a href={href} className="u-link" style={{ color: C.dark, textDecoration: "none" }}>{v}</a> : <Rich text={v} />}</dd>
                     </div>
                   ))}
                 </dl>
               )}
               {s.list && <ul className="t-body" style={{ margin: "0 0 16px", paddingLeft: 20 }}>{s.list.map((x) => <li key={x} style={{ marginBottom: 6 }}>{x}</li>)}</ul>}
-              {s.ps && s.ps.map((x) => <p key={x.slice(0, 32)} className="t-body" style={{ color: C.text, margin: "0 0 12px" }}>{x}</p>)}
+              {s.ps && s.ps.map((x) => <p key={x.slice(0, 32)} className="t-body" style={{ color: C.text, margin: "0 0 12px" }}><Rich text={x} /></p>)}
             </section>
           ))}
           <div style={{ marginTop: 40, paddingTop: 24, borderTop: `1px solid ${C.line}` }}>

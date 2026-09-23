@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { C, F, T, LABEL, TRACK, MAXW } from "./tokens";
 import { LANGS } from "./content";
-import { Wordmark, Panel, Container, H2 } from "./ui";
+import { Wordmark, Panel, Container, H2, Rich } from "./ui";
 
 function LangSwitch({ lang, setLang, tc }) {
   return (
@@ -82,7 +82,7 @@ export function Footer({ t, track }) {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 14 }}>
           <div>
             <Wordmark size={20} />
-            <div className="t-small" style={{ color: C.dim, marginTop: 8 }}>{t.ui.entityLong}</div>
+            <div className="t-small" style={{ color: C.dim, marginTop: 8 }}><Rich text={t.ui.entityLong} /></div>
           </div>
           <div style={{ display: "flex", gap: 8 }}>
             {track !== "tech" && <Link to="/tech" style={{ ...small, color: C.silverInk, background: C.silverSoft, padding: "8px 14px", borderRadius: 999 }}>{t.ui.trackTech}</Link>}
