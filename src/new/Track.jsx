@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { C, F, TRACK } from "./tokens";
 import { Picture, Button, Panel, Container } from "./ui";
@@ -42,6 +43,18 @@ function Hero({ t, d, track, tc }) {
   );
 }
 
+function ArticleFold({ t, track, lang }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <Panel tone="white" className="panel-flush">
+      <div className={`article-fold ${open ? "is-open" : ""}`}><Article track={track} lang={lang} /></div>
+      <div style={{ textAlign: "center", padding: "0 0 clamp(56px, 7vw, 88px)" }}>
+        <Button variant="ghost" onClick={() => setOpen(!open)}>{open ? t.ui.closeArticle : t.ui.readArticle}</Button>
+      </div>
+    </Panel>
+  );
+}
+
 export default function Track({ t, lang, track }) {
   const d = t[track];
   const tc = TRACK[track];
@@ -61,7 +74,7 @@ export default function Track({ t, lang, track }) {
       <Process d={d} tc={tc} />
       <ContactSection t={t} tc={tc} />
       <Insights t={t} lang={lang} track={track} tc={tc} />
-      <Panel tone="white" className="panel-flush"><Article track={track} lang={lang} /></Panel>
+      <ArticleFold t={t} track={track} lang={lang} />
     </main>
   );
 }

@@ -116,9 +116,18 @@ export function useStack() {
       raf = 0;
       if (reduce) return;
       const vh = window.innerHeight;
-      const nextTops = panels.map((p, i) => (panels[i + 1] ? panels[i + 1].getBoundingClientRect().top : vh));
+      // cover = share of this panel's visible area that the next panel already overlaps
+      const rects = panels.map((p) => p.getBoundingClientRect());
       const pTops = parallax.map((el) => el.parentElement.getBoundingClientRect().top);
-      panels.forEach((p, i) => p.style.setProperty("--cover", Math.min(1, Math.max(0, 1 - nextTops[i] / vh)).toFixed(3)));
+      panels.forEach((p, i) => {
+        const cur = rects[i], next = rects[i + 1];
+        let cover = 0;
+        if (next) {
+          const visible = Math.max(1, Math.min(cur.bottom, vh) - Math.max(cur.top, 0));
+          cover = (Math.min(cur.bottom, vh) - Math.max(next.top, 0)) / visible;
+        }
+        p.style.setProperty("--cover", Math.min(1, Math.max(0, cover)).toFixed(3));
+      });
       parallax.forEach((el, i) => { el.style.transform = `translate3d(0, ${(-pTops[i] * parseFloat(el.dataset.parallax)).toFixed(1)}px, 0)`; });
     };
     const measure = () => {

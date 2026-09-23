@@ -20,51 +20,63 @@ export function Monogram({ initials, accent, size = 56 }) {
 const Num = ({ i, color = C.muted }) => <span style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color, letterSpacing: 1 }}>{String(i + 1).padStart(2, "0")}</span>;
 
 // ── Landing: the two partners ───────────────────────────────────────────────
+export function Portrait({ person, sizes = "(max-width: 760px) 50vw, 480px", style }) {
+  return (
+    <div className="portrait" style={{ borderRadius: 18, overflow: "hidden", aspectRatio: "4 / 5", background: "#16171A", ...style }}>
+      <Picture name={person.photo} widths={[480, 960]} sizes={sizes} alt={person.name} />
+    </div>
+  );
+}
+
 export function TeamCards({ t }) {
   const tm = t.team;
   return (
     <Panel id="team" tone="white">
       <Container>
-        <Reveal><Eyebrow>{tm.label}</Eyebrow></Reveal>
-        <Reveal delay={0.05}><H2>{tm.title}</H2></Reveal>
-        <Reveal delay={0.1}><Lead>{tm.intro}</Lead></Reveal>
-        <div className="duo">
-          {tm.people.map((p, i) => {
-            const a = accentOf(p.accent);
-            return (
-              <Reveal key={p.key} delay={0.1 + i * 0.1} className="duo-col">
-                <div style={{ display: "flex", gap: 18, alignItems: "center", marginBottom: 28 }}>
-                  <Monogram initials={p.initials} accent={p.accent} />
-                  <div>
-                    <h3 style={{ fontFamily: F, fontSize: "clamp(24px, 2.4vw, 32px)", fontWeight: 400, margin: 0, letterSpacing: "-0.02em" }}>{p.name}</h3>
-                    <div style={{ fontFamily: F, fontSize: 14, marginTop: 6 }}><span style={{ color: a.text, fontWeight: 600 }}>{p.role}</span><span style={{ color: C.muted }}> · {p.focus}</span></div>
+        <div className="team-grid">
+          <Reveal className="pair">
+            {tm.people.map((p) => (
+              <figure key={p.key} style={{ margin: 0 }}>
+                <Portrait person={p} sizes="(max-width: 760px) 50vw, 280px" />
+              </figure>
+            ))}
+          </Reveal>
+          <div>
+            <Reveal><Eyebrow>{tm.label}</Eyebrow></Reveal>
+            <Reveal delay={0.05}><H2 style={{ fontSize: "clamp(34px, 4.4vw, 60px)" }}>{tm.title}</H2></Reveal>
+            <Reveal delay={0.1}><Lead style={{ marginBottom: 40 }}>{tm.intro}</Lead></Reveal>
+            {tm.people.map((p, i) => {
+              const a = accentOf(p.accent);
+              return (
+                <Reveal key={p.key} delay={0.12 + i * 0.06} className="bio">
+                  <h3 style={{ fontFamily: F, fontSize: 21, fontWeight: 500, margin: "0 0 2px", letterSpacing: "-0.01em" }}>{p.name}</h3>
+                  <div style={{ fontFamily: F, fontSize: 13, marginBottom: 10 }}><span style={{ color: a.text, fontWeight: 600 }}>{p.role}</span><span style={{ color: C.muted }}> · {p.focus}</span></div>
+                  <p style={{ fontFamily: F, fontSize: 15, color: C.text, lineHeight: 1.65, margin: "0 0 16px" }}>{p.bio}</p>
+                  <div className="facts">
+                    {p.facts.map((f) => (
+                      <div key={f.v}>
+                        <div style={{ fontFamily: F, fontSize: 24, fontWeight: 300, letterSpacing: "-0.02em", color: a.text, whiteSpace: "nowrap" }}>{f.v}</div>
+                        <div style={{ fontFamily: F, fontSize: 12, color: C.dim, lineHeight: 1.35 }}>{f.l}</div>
+                      </div>
+                    ))}
                   </div>
-                </div>
-                <p style={{ fontFamily: F, fontSize: 16, color: C.text, lineHeight: 1.75, margin: "0 0 36px", flex: 1 }}>{p.bio}</p>
-                <div className="facts">
-                  {p.facts.map((f) => (
-                    <div key={f.v} style={{ borderTop: `1px solid ${a.line}`, paddingTop: 14 }}>
-                      <div style={{ fontFamily: F, fontSize: "clamp(22px, 2vw, 30px)", fontWeight: 300, letterSpacing: "-0.02em", color: C.dark, whiteSpace: "nowrap" }}>{f.v}</div>
-                      <div style={{ fontFamily: F, fontSize: 13, color: C.dim, lineHeight: 1.45, marginTop: 4 }}>{f.l}</div>
-                    </div>
-                  ))}
-                </div>
-              </Reveal>
-            );
-          })}
+                </Reveal>
+              );
+            })}
+          </div>
         </div>
-        <div style={{ marginTop: "clamp(72px, 9vw, 120px)" }}>
-          <Reveal><div style={{ fontFamily: F, fontSize: 12, letterSpacing: 2.4, textTransform: "uppercase", color: C.muted, fontWeight: 600, marginBottom: 28 }}>{tm.bondsLabel}</div></Reveal>
+        <div style={{ marginTop: "clamp(64px, 8vw, 104px)" }}>
+          <Reveal><div style={{ fontFamily: F, fontSize: 12, letterSpacing: 2.4, textTransform: "uppercase", color: C.muted, fontWeight: 600, marginBottom: 24 }}>{tm.bondsLabel}</div></Reveal>
           <div className="cols-3">
             {tm.bonds.map((b, i) => (
               <Reveal key={b.t} delay={i * 0.08} className="rule-top">
                 <Num i={i} color={i === 1 ? C.goldDeep : C.silver} />
-                <h3 style={{ fontFamily: F, fontSize: 22, fontWeight: 400, letterSpacing: "-0.01em", margin: "14px 0 10px" }}>{b.t}</h3>
-                <p style={{ fontFamily: F, fontSize: 15, color: C.dim, lineHeight: 1.7, margin: 0 }}>{b.d}</p>
+                <h3 style={{ fontFamily: F, fontSize: 21, fontWeight: 400, letterSpacing: "-0.01em", margin: "12px 0 8px" }}>{b.t}</h3>
+                <p style={{ fontFamily: F, fontSize: 15, color: C.dim, lineHeight: 1.6, margin: 0 }}>{b.d}</p>
               </Reveal>
             ))}
           </div>
-          <Reveal delay={0.1}><div style={{ marginTop: 48 }}><Button href="#kontakt">{tm.cta}</Button></div></Reveal>
+          <Reveal delay={0.1}><div style={{ marginTop: 44 }}><Button href="#kontakt">{tm.cta}</Button></div></Reveal>
         </div>
       </Container>
     </Panel>
@@ -218,20 +230,23 @@ export function Timeline({ t, lang }) {
   );
 }
 
-// ── Clients & partners: two endless logo rows ───────────────────────────────
+// ── Clients & partners: logo row + wordmark row, both endless ───────────────
 function LogoItem({ name, dup }) {
-  const src = LOGOS[name];
+  const logo = LOGOS[name];
   return (
-    <span className={`logo-item ${dup ? "dup" : ""}`}>
-      {src ? <img src={src} alt={name} loading="lazy" style={{ height: 30, width: "auto", display: "block" }} /> : <span className="logo-word">{name}</span>}
+    <span className={`logo-item ${dup ? "dup" : ""} ${logo ? "has-logo" : ""}`}>
+      {logo
+        ? <img src={logo.src} alt={name} title={name} loading="lazy" className={`${logo.raster ? "raster" : ""} ${logo.dark ? "dark" : ""}`} style={{ height: logo.h, width: "auto", display: "block" }} />
+        : <span className="logo-word">{name}</span>}
     </span>
   );
 }
 
 export function Clients({ t, scope = "home", title, id = "partner" }) {
   const names = [...new Set(CLIENT_GROUPS.filter((g) => g.tracks.includes(scope)).flatMap((g) => g.names))];
-  const half = Math.ceil(names.length / 2);
-  const rows = [names.slice(0, half), names.slice(half)];
+  const withLogo = names.filter((n) => LOGOS[n]);
+  const words = names.filter((n) => !LOGOS[n]);
+  const rows = [withLogo, words].filter((r) => r.length);
   return (
     <Panel id={id} tone="white" className="panel-tight">
       <Container>
@@ -239,15 +254,15 @@ export function Clients({ t, scope = "home", title, id = "partner" }) {
       </Container>
       <div className="marquees" aria-hidden>
         {rows.map((row, i) => (
-          <div key={i} className="marquee">
-            <div className={`marquee-track ${i ? "reverse" : ""}`} style={{ animationDuration: `${Math.max(40, row.length * 5)}s` }}>
+          <div key={i} className={`marquee ${i ? "marquee-words" : "marquee-logos"}`}>
+            <div className={`marquee-track ${i ? "reverse" : ""}`} style={{ animationDuration: `${Math.max(36, row.length * 4.5)}s` }}>
               {[...row, ...row].map((n, j) => <LogoItem key={j} name={n} dup={j >= row.length} />)}
             </div>
           </div>
         ))}
       </div>
       <ul className="sr-only">{names.map((n) => <li key={n}>{n}</li>)}</ul>
-      <Container><p style={{ fontFamily: F, fontSize: 14, color: C.muted, margin: "28px 0 0" }}>{t.clients.fo}</p></Container>
+      <Container><p style={{ fontFamily: F, fontSize: 14, color: C.muted, margin: "24px 0 0" }}>{t.clients.fo}</p></Container>
     </Panel>
   );
 }
@@ -265,8 +280,8 @@ export function Profiles({ id, label, title, intro, profiles, tc }) {
           return (
             <div key={p.key} style={{ marginTop: idx ? "clamp(72px, 9vw, 120px)" : 0 }}>
               <Reveal>
-                <div style={{ display: "flex", gap: 20, alignItems: "center", marginBottom: 36 }}>
-                  <Monogram initials={p.initials} accent={p.accent} size={64} />
+                <div style={{ display: "flex", gap: 22, alignItems: "flex-end", marginBottom: 36 }}>
+                  {p.photo ? <Portrait person={p} sizes="140px" style={{ width: "clamp(96px, 12vw, 140px)", borderRadius: 14, flexShrink: 0 }} /> : <Monogram initials={p.initials} accent={p.accent} size={64} />}
                   <div>
                     <h3 style={{ fontFamily: F, fontSize: "clamp(30px, 3.6vw, 48px)", fontWeight: 300, margin: 0, letterSpacing: "-0.03em" }}>{p.name}</h3>
                     <div style={{ fontFamily: F, fontSize: 15, marginTop: 6 }}><span style={{ color: a.text, fontWeight: 600 }}>{p.role}</span><span style={{ color: C.muted }}> · {p.focus}</span></div>

@@ -120,8 +120,28 @@ li:last-child>.news-row{border-bottom:1px solid rgba(0,0,0,.1)}
 .logo-item{flex:none;display:flex;align-items:center;padding:0 clamp(26px,3.6vw,52px)}
 .logo-word{font-family:${F};font-size:clamp(22px,2.7vw,38px);font-weight:500;letter-spacing:-.025em;color:#A9AEB3;white-space:nowrap;transition:color .4s}
 .logo-item:hover .logo-word{color:${C.dark}}
-.logo-item img{filter:grayscale(1);opacity:.55;transition:filter .4s,opacity .4s}
+.logo-item img{transition:filter .4s,opacity .4s}
 .logo-item:hover img{filter:none;opacity:1}
+
+/* portraits */
+.team-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(40px,6vw,96px);align-items:start}
+.team-grid>.pair{position:sticky;top:110px}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.bio{padding:22px 0;border-top:1px solid rgba(0,0,0,.1)}
+.bio .facts{gap:16px}
+.portrait img{transition:transform 1.4s cubic-bezier(.16,1,.3,1)}
+.portrait:hover img{transform:scale(1.03)}
+/* article fold */
+.article-fold{position:relative;max-height:760px;overflow:hidden;transition:max-height .8s cubic-bezier(.16,1,.3,1)}
+.article-fold::after{content:"";position:absolute;left:0;right:0;bottom:0;height:220px;background:linear-gradient(rgba(255,255,255,0),#fff 85%);pointer-events:none}
+.article-fold.is-open{max-height:none}
+.article-fold.is-open::after{display:none}
+/* logo row */
+.marquee-logos .logo-item{padding:0 clamp(28px,3.4vw,48px)}
+.logo-item img{filter:grayscale(1) contrast(1.05);opacity:.62}
+.logo-item img.raster{mix-blend-mode:multiply}
+.logo-item img.dark{filter:grayscale(1) brightness(.55);opacity:.7}
+.marquee-words .logo-word{font-size:clamp(18px,2vw,26px)}
 
 /* timeline */
 .tl-legend{display:grid;grid-template-columns:1fr 64px 1fr;margin:0 0 28px;font-family:${F};font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:600}
@@ -164,6 +184,8 @@ li:last-child>.news-row{border-bottom:1px solid rgba(0,0,0,.1)}
   .duo,.split-2,.split-tiles,.cols-3,.cols-4{grid-template-columns:minmax(0,1fr)}
   .duo-col:first-child{padding:0 0 56px}
   .duo-col+.duo-col{padding:56px 0 0;border-left:none;border-top:1px solid rgba(0,0,0,.1)}
+  .team-grid{grid-template-columns:minmax(0,1fr)}
+  .team-grid>.pair{position:static}
   .cols-5{grid-template-columns:repeat(2,minmax(0,1fr))}
   .hero-grid{grid-template-columns:minmax(0,1fr)}
   .hero-visual{display:none}
