@@ -113,6 +113,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .row-line:last-child{border-bottom:1px solid rgba(0,0,0,.1)}
 .row-light{border-color:rgba(255,255,255,.12)!important}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:64px;align-items:center}
+/* figure labels: long German compounds carry soft hyphens in the copy; this only prevents overflow */
+.facts .t-small,.stats-row dd{overflow-wrap:break-word}
 .stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:28px 40px;margin:clamp(56px,7vw,88px) 0 0;padding-top:28px;border-top:1px solid rgba(0,0,0,.12)}
 
 /* interactions */

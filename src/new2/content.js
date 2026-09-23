@@ -219,10 +219,10 @@ de: {
     people: [
       { ...PEOPLE.david, role: "Founder & Managing Partner", focus: "Recht · Kapital · Company Building",
         bio: "Jurist, Gründer und Mehrfach-CEO. 25+ Jahre operative Verantwortung, Transaktionen über 600 Mio. €, Gründer der geolad. DSGVO und EU AI Act in der Praxis.",
-        facts: [{ v: "600+", l: "Mio. € Transaktionsvolumen" }, { v: "45+", l: "Mio. € Kapital mobilisiert" }, { v: "12+", l: "Mio. € Forschungsförderung" }] },
+        facts: [{ v: "600+", l: "Mio. € Transaktions\u00advolumen" }, { v: "45+", l: "Mio. € Kapital mobilisiert" }, { v: "12+", l: "Mio. € Forschungs\u00adförderung" }] },
       { ...PEOPLE.philip, role: "Managing Partner, Technology", focus: "Architektur · Sicherheit · Umsetzung",
         bio: "Enterprise Architect und CTO. 25+ Jahre IT-Großprojekte für Behörden, Gesundheit, Bildung und Telekom – vom Zoll bis zur nationalen Krankenversicherung.",
-        facts: [{ v: "4", l: "Nationale Regierungsprogramme" }, { v: "10+", l: "Mio. € Programmverantwortung im Zoll" }, { v: "5", l: "Jahre Identity-Management für Bund, Länder und Schulen" }] },
+        facts: [{ v: "4", l: "Nationale Regierungs\u00adprogramme" }, { v: "10+", l: "Mio. € Verantwortung im Zollprogramm" }, { v: "5", l: "Jahre Identity-Management für Bund, Länder und Schulen" }] },
     ],
     bondsLabel: "Was wir verbinden",
     bonds: [
@@ -281,7 +281,7 @@ de: {
     ctaA: "Leistungen", ctaB: "Team",
     contactP: "AI-Projekt, Plattform oder Venture in einem regulierten Markt: Besprechen wir Ihr Vorhaben.",
     visual: { label: "Compliance by Design", layers: [["Anwendungsfälle", "AI-Agenten, Automatisierung, neue Services"], ["Integration & Betrieb", "Schnittstellen, Identity, Monitoring"], ["Daten & Systeme", "Register, ERP, Datenplattformen"]], chips: ["DSGVO", "AI Act", "ISO 27001", "BSI"], caption: "Recht, Sicherheit und Technik in einer Architektur." },
-    stats: [{ v: "45+", l: "Mio. € Kapital mobilisiert" }, { v: "12+", l: "Mio. € Forschungsförderung" }, { v: "4", l: "Nationale Regierungsprogramme" }, { v: "10+", l: "Mio. € Programmverantwortung im Zoll" }, { v: "40+", l: "Projekte DACH & MENA" }, { v: "50+", l: "Jahre Erfahrung, zusammengerechnet" }],
+    stats: [{ v: "45+", l: "Mio. € Kapital mobilisiert" }, { v: "12+", l: "Mio. € Forschungs\u00adförderung" }, { v: "4", l: "Nationale Regierungs\u00adprogramme" }, { v: "10+", l: "Mio. € Verantwortung im Zollprogramm" }, { v: "40+", l: "Projekte DACH & MENA" }, { v: "50+", l: "Jahre Erfahrung, zusammen\u00adgerechnet" }],
     partnerTitle: "Projekterfahrung",
     teamLabel: "Team", teamTitle: "Recht, Kapital, Technologie. Ein Team.", teamIntro: "",
     profiles: [
@@ -331,7 +331,7 @@ de: {
     heroP: "Über 600 Mio. € Transaktionsvolumen in Wohnen, Gewerbe und Hotel. Strukturierung, Projektmanagement, Closing.",
     ctaA: "Leistungen", ctaB: "Profil",
     contactP: "Ankauf, Verkauf, Entwicklung oder Hotel-Repositionierung: Besprechen wir Ihr Vorhaben.",
-    stats: [{ v: "600+", l: "Mio. € Transaktionsvolumen" }, { v: "25+", l: "Jahre persönliche Erfahrung in Immobilien & Hospitality (David Brainin)" }, { v: "3", l: "Asset-Klassen" }, { v: "AT · CEE · ES", l: "Märkte" }],
+    stats: [{ v: "600+", l: "Mio. € Transaktions\u00advolumen" }, { v: "25+", l: "Jahre persönliche Erfahrung in Immobilien & Hospitality (David Brainin)" }, { v: "3", l: "Asset-Klassen" }, { v: "AT · CEE · ES", l: "Märkte" }],
     partnerTitle: "Projekterfahrung",
     profileLabel: "Founder & Managing Partner",
     profile: { ...PEOPLE.david, role: "Founder & Managing Partner", focus: "Recht · Transaktionen · Real Estate",
@@ -341,7 +341,7 @@ de: {
     tLabel: "Real Estate Expertise", tTitle: "Von der Analyse zum Closing.", tP: "Marktwissen, rechtliche Präzision, operative Umsetzung.",
     opexT: "Transaktion & Advisory", opex: ["Markt- und Machbarkeitsanalyse", "Due Diligence: rechtlich, finanziell, technisch", "Finanzierungs- und Eigenkapitalstruktur", "Verhandlung und Behördenkoordination"],
     revT: "Verkauf, Ankauf & Projekte", rev: ["Buy-Side- und Sell-Side-Mandate", "Entwicklung bis zur Übergabe", "Hotel-Repositionierung", "Deal-Sourcing CEE & Spanien"],
-    kpis: [{ v: "600+", l: "Mio. € Transaktionsvolumen" }, { v: "25+", l: "Jahre Umsetzungserfahrung" }, { v: "CEE & Spanien", l: "Transaktionsraum" }],
+    kpis: [{ v: "600+", l: "Mio. € Transaktions\u00advolumen" }, { v: "25+", l: "Jahre Umsetzungserfahrung" }, { v: "CEE & Spanien", l: "Transaktionsraum" }],
     sLabel: "Leistungen", sTitle: "Ankauf, Verkauf, Projekte – bis zum Closing.",
     serv: [
       { t: "Transaktionsberatung", d: "Buy-Side und Sell-Side: Marktanalyse, Due Diligence, Transaktionsstruktur und Verhandlung – bis zu Signing und Closing. Rechtliche Leistungen erbringen unsere Partnerkanzleien.", tags: ["Ankauf & Verkauf", "Due Diligence", "Closing"] },
