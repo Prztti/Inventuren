@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { C, F } from "./tokens";
-import { Reveal, Section, Eyebrow, H2, Lead } from "./ui";
+import { Reveal, Panel, Container, Eyebrow, H2, Lead } from "./ui";
 
 const MAIL = "info@inventures.at";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -45,38 +45,38 @@ export function ContactForm({ l, accent }) {
 
   if (state === "sent") {
     return (
-      <div role="status" style={{ padding: "44px 28px", textAlign: "center", background: C.warm, border: `1px solid ${C.line}` }}>
-        <div aria-hidden style={{ width: 46, height: 46, borderRadius: "50%", border: `1.5px solid ${accent}`, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 18px", color: accent, fontSize: 20 }}>✓</div>
-        <p style={{ fontFamily: F, fontSize: 16, color: C.dark, margin: 0 }}>{l.success}</p>
+      <div role="status" style={{ padding: "40px 0", borderTop: `1px solid ${C.line}` }}>
+        <div aria-hidden style={{ width: 46, height: 46, borderRadius: "50%", border: `1.5px solid ${accent}`, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 0 18px", color: accent, fontSize: 20 }}>✓</div>
+        <p style={{ fontFamily: F, fontSize: 20, fontWeight: 300, color: C.dark, margin: 0 }}>{l.success}</p>
       </div>
     );
   }
 
   if (state === "fallback") {
     return (
-      <div role="alert" style={{ padding: "28px 26px", background: C.warm, border: `1px solid ${C.line}`, borderLeft: `3px solid ${C.gold}` }}>
+      <div role="alert" style={{ padding: "32px 0", borderTop: `2px solid ${C.gold}` }}>
         <p style={{ fontFamily: F, fontSize: 16, fontWeight: 600, color: C.dark, margin: "0 0 8px" }}>{l.fallbackTitle}</p>
         <p style={{ fontFamily: F, fontSize: 14, color: C.dim, lineHeight: 1.6, margin: "0 0 18px" }}>{l.fallbackText}</p>
-        <a href={mailtoHref(form, l.topics)} style={{ display: "inline-block", fontFamily: F, fontSize: 12, letterSpacing: 1.2, textTransform: "uppercase", fontWeight: 700, padding: "13px 26px", background: accent, color: "#fff", textDecoration: "none" }}>{l.fallbackBtn}</a>
+        <a href={mailtoHref(form, l.topics)} className="btn" style={{ display: "inline-flex", gap: 10, fontFamily: F, fontSize: 14, fontWeight: 600, padding: "15px 28px", borderRadius: 999, background: C.dark, color: "#fff", textDecoration: "none" }}>{l.fallbackBtn} <span aria-hidden className="arrow">→</span></a>
         <p style={{ fontFamily: F, fontSize: 13, color: C.dim, margin: "14px 0 0" }}>{l.fallbackOr} <a href={`mailto:${MAIL}`} style={{ color: C.dark }}>{MAIL}</a></p>
       </div>
     );
   }
 
-  const input = { width: "100%", fontFamily: F, fontSize: 15, color: C.dark, background: "#fff", border: `1px solid ${C.line}`, padding: "12px 14px", borderRadius: 0, appearance: "none" };
-  const label = { fontFamily: F, fontSize: 11, letterSpacing: 1.6, textTransform: "uppercase", color: C.dim, display: "block", marginBottom: 6, fontWeight: 600 };
+  const input = { width: "100%", fontFamily: F, fontSize: 17, color: C.dark, background: "transparent", border: "none", borderBottom: "1px solid rgba(0,0,0,0.18)", padding: "10px 0 12px", borderRadius: 0, appearance: "none" };
+  const label = { fontFamily: F, fontSize: 12, letterSpacing: 1.4, textTransform: "uppercase", color: C.muted, display: "block", marginBottom: 2, fontWeight: 600 };
   const req = <span style={{ color: C.goldDeep }}> *</span>;
 
   return (
-    <form onSubmit={submit} noValidate style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+    <form onSubmit={submit} noValidate className="cform" style={{ display: "flex", flexDirection: "column", gap: 26 }}>
       <div aria-hidden style={{ position: "absolute", left: -10000, width: 1, height: 1, overflow: "hidden" }}>
         <label>Website <input name="website" tabIndex={-1} autoComplete="off" value={form.website} onChange={set} /></label>
       </div>
-      <div className="g2 g2-tight" style={{ gap: 12 }}>
+      <div className="split-2 tight">
         <div><label htmlFor="cf-name" style={label}>{l.name}{req}</label><input id="cf-name" name="name" required autoComplete="name" value={form.name} onChange={set} placeholder={l.namePh} style={input} /></div>
         <div><label htmlFor="cf-company" style={label}>{l.company}</label><input id="cf-company" name="company" autoComplete="organization" value={form.company} onChange={set} placeholder={l.companyPh} style={input} /></div>
       </div>
-      <div className="g2 g2-tight" style={{ gap: 12 }}>
+      <div className="split-2 tight">
         <div><label htmlFor="cf-email" style={label}>{l.email}{req}</label><input id="cf-email" name="email" type="email" required autoComplete="email" value={form.email} onChange={set} placeholder={l.emailPh} style={input} /></div>
         <div>
           <label htmlFor="cf-topic" style={label}>{l.topic}</label>
@@ -86,11 +86,11 @@ export function ContactForm({ l, accent }) {
           </select>
         </div>
       </div>
-      <div><label htmlFor="cf-message" style={label}>{l.message}</label><textarea id="cf-message" name="message" rows={5} value={form.message} onChange={set} placeholder={l.messagePh} style={{ ...input, resize: "vertical", lineHeight: 1.6 }} /></div>
+      <div><label htmlFor="cf-message" style={label}>{l.message}</label><textarea id="cf-message" name="message" rows={4} value={form.message} onChange={set} placeholder={l.messagePh} style={{ ...input, resize: "vertical", lineHeight: 1.6 }} /></div>
       {state === "invalid" && <p role="alert" style={{ fontFamily: F, fontSize: 13, color: "#B42318", margin: 0 }}>{l.required}</p>}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 14 }}>
-        <button type="submit" disabled={state === "sending"} className="btn" style={{ fontFamily: F, fontSize: 12, letterSpacing: 1.4, textTransform: "uppercase", fontWeight: 700, padding: "14px 34px", background: state === "sending" ? C.muted : accent, color: "#fff", border: "none", cursor: state === "sending" ? "wait" : "pointer" }}>
-          {state === "sending" ? l.sending : l.submit}
+        <button type="submit" disabled={state === "sending"} className="btn" style={{ fontFamily: F, fontSize: 14, fontWeight: 600, padding: "15px 30px", borderRadius: 999, background: state === "sending" ? C.muted : C.dark, color: "#fff", border: "none", cursor: state === "sending" ? "wait" : "pointer", display: "inline-flex", gap: 10 }}>
+          {state === "sending" ? l.sending : l.submit}{state !== "sending" && <span aria-hidden className="arrow">→</span>}
         </button>
         <span style={{ fontFamily: F, fontSize: 12, color: C.muted, maxWidth: 300, lineHeight: 1.5 }}>{l.privacy} <a href="/datenschutz" style={{ color: C.dim }}>{l.privacyLink}</a>.</span>
       </div>
@@ -98,7 +98,7 @@ export function ContactForm({ l, accent }) {
   );
 }
 
-export function ContactSection({ t, tc, bg = C.card }) {
+export function ContactSection({ t, tc }) {
   const c = t.contact;
   const rows = [
     { k: c.web, v: "inventures.at", h: "https://inventures.at" },
@@ -106,27 +106,27 @@ export function ContactSection({ t, tc, bg = C.card }) {
     { k: c.loc, v: c.locV },
   ];
   return (
-    <Section id="kontakt" bg={bg}>
-      <Reveal><Eyebrow color={tc.at}>{c.label}</Eyebrow></Reveal>
-      <Reveal delay={0.04}><H2>{c.title}</H2></Reveal>
-      <Reveal delay={0.06}><Lead>{c.p}</Lead></Reveal>
-      <div className="g2" style={{ gap: "clamp(32px, 5vw, 64px)", alignItems: "start" }}>
-        <Reveal delay={0.08}><ContactForm l={c.form} accent={tc.at} /></Reveal>
-        <Reveal delay={0.14}>
-          <div>
-            <dl style={{ margin: "0 0 28px" }}>
+    <Panel id="kontakt" tone="white">
+      <Container>
+        <Reveal><Eyebrow color={tc.at}>{c.label}</Eyebrow></Reveal>
+        <Reveal delay={0.05}><H2 style={{ fontSize: "clamp(44px, 7vw, 104px)" }}>{c.title}</H2></Reveal>
+        <Reveal delay={0.1}><Lead>{c.p}</Lead></Reveal>
+        <div className="split-2 wide-gap" style={{ alignItems: "start" }}>
+          <Reveal delay={0.1}><ContactForm l={c.form} accent={tc.at} /></Reveal>
+          <Reveal delay={0.18}>
+            <dl style={{ margin: "0 0 36px" }}>
               {rows.map((r) => (
-                <div key={r.k} style={{ display: "flex", justifyContent: "space-between", gap: 16, padding: "14px 0", borderBottom: `1px solid ${C.line}` }}>
-                  <dt style={{ fontFamily: F, fontSize: 11, letterSpacing: 1.8, textTransform: "uppercase", color: C.dim, fontWeight: 600 }}>{r.k}</dt>
-                  <dd style={{ margin: 0, fontFamily: F, fontSize: 15, fontWeight: 500 }}>{r.h ? <a href={r.h} style={{ color: C.dark, textDecoration: "none" }}>{r.v}</a> : <span style={{ color: C.dark }}>{r.v}</span>}</dd>
+                <div key={r.k} className="row-line" style={{ display: "flex", justifyContent: "space-between", gap: 16 }}>
+                  <dt style={{ fontFamily: F, fontSize: 12, letterSpacing: 1.4, textTransform: "uppercase", color: C.muted, fontWeight: 600 }}>{r.k}</dt>
+                  <dd style={{ margin: 0, fontFamily: F, fontSize: 17 }}>{r.h ? <a href={r.h} className="u-link" style={{ color: C.dark, textDecoration: "none" }}>{r.v}</a> : <span>{r.v}</span>}</dd>
                 </div>
               ))}
             </dl>
-            <div style={{ fontFamily: F, fontSize: 11, letterSpacing: 1.8, textTransform: "uppercase", color: C.dim, fontWeight: 600, marginBottom: 6 }}>{c.entity}</div>
-            <p style={{ fontFamily: F, fontSize: 14, color: C.text, lineHeight: 1.6, margin: 0 }}>{t.ui.entityLong}</p>
-          </div>
-        </Reveal>
-      </div>
-    </Section>
+            <div style={{ fontFamily: F, fontSize: 12, letterSpacing: 1.4, textTransform: "uppercase", color: C.muted, fontWeight: 600, marginBottom: 8 }}>{c.entity}</div>
+            <p style={{ fontFamily: F, fontSize: 15, color: C.text, lineHeight: 1.6, margin: 0 }}>{t.ui.entityLong}</p>
+          </Reveal>
+        </div>
+      </Container>
+    </Panel>
   );
 }

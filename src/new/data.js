@@ -84,3 +84,7 @@ export const CLIENT_GROUPS = [
   { key: "re", tracks: ["home", "re"], names: ["EPI Immobilien Group", "Conwert AG", "Trimmobilien Gruppe", "Akkadia Immobilien", "EPI Hospitality", "Arcotel Hotels", "Ibis Group", "Stadt Wien"] },
   { key: "legal", tracks: ["home", "tech", "re"], names: ["Lansky & Partner RAe", "Herbst Kinsky RAe", "DSC Rechtsanwälte", "ORF", "Integrationshaus Wien"] },
 ];
+
+// Logo files for the client marquee: name → path under public/ (e.g. "/logos/deutsche-telekom.svg").
+// Names without a file are shown as a typographic wordmark.
+export const LOGOS = {};

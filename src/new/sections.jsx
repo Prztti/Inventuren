@@ -1,153 +1,140 @@
 import { useState } from "react";
 import { C, F, TRACK } from "./tokens";
-import { Reveal, Section, Eyebrow, H2, Lead, Button, Picture } from "./ui";
-import { TIMELINE, CLIENT_GROUPS } from "./data";
+import { Reveal, Panel, Container, Eyebrow, H2, Lead, TextLink, Button, Picture } from "./ui";
+import { TIMELINE, CLIENT_GROUPS, LOGOS } from "./data";
 import { techNews, reNews } from "../newsData";
 
-const accentOf = (a) => (a === "gold" ? { line: C.gold, text: C.goldDeep, soft: C.goldSoft } : { line: C.silverLine, text: C.silver, soft: C.silverSoft });
+const accentOf = (a) => (a === "gold" ? { line: C.gold, text: C.goldDeep } : { line: C.silverLine, text: C.silver });
+const NAMES = { david: "David Brainin", philip: "Philip Kügler" };
+const nameAccent = (name) => accentOf(name.startsWith("David") ? "gold" : "silver");
 
-export function Monogram({ initials, accent, size = 60 }) {
+export function Monogram({ initials, accent, size = 56 }) {
   const a = accentOf(accent);
   return (
-    <div aria-hidden style={{ width: size, height: size, borderRadius: "50%", border: `1.5px solid ${a.line}`, background: a.soft, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-      <span style={{ fontFamily: F, fontSize: size * 0.3, fontWeight: 600, letterSpacing: 1, color: a.text }}>{initials}</span>
+    <div aria-hidden style={{ width: size, height: size, borderRadius: "50%", border: `1px solid ${a.line}`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+      <span style={{ fontFamily: F, fontSize: size * 0.3, fontWeight: 500, letterSpacing: 1, color: a.text }}>{initials}</span>
     </div>
   );
 }
 
-function WhoChip({ name }) {
-  const gold = name.startsWith("David");
-  const a = accentOf(gold ? "gold" : "silver");
-  return (
-    <span style={{ display: "inline-flex", alignItems: "center", gap: 6, fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: 0.4, color: a.text, background: a.soft, padding: "4px 9px" }}>
-      <span aria-hidden style={{ width: 5, height: 5, borderRadius: "50%", background: a.line }} />{name}
-    </span>
-  );
-}
+const Num = ({ i, color = C.muted }) => <span style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color, letterSpacing: 1 }}>{String(i + 1).padStart(2, "0")}</span>;
 
-// ── Landing: two partner cards + what connects them ─────────────────────────
+// ── Landing: the two partners ───────────────────────────────────────────────
 export function TeamCards({ t }) {
   const tm = t.team;
   return (
-    <Section id="team" bg={C.card}>
-      <Reveal><Eyebrow>{tm.label}</Eyebrow></Reveal>
-      <Reveal delay={0.04}><H2>{tm.title}</H2></Reveal>
-      <Reveal delay={0.08}><Lead>{tm.intro}</Lead></Reveal>
-      <div className="g2" style={{ gap: 20 }}>
-        {tm.people.map((p, i) => {
-          const a = accentOf(p.accent);
-          return (
-            <Reveal key={p.key} delay={0.1 + i * 0.06} style={{ height: "100%" }}>
-              <article style={{ height: "100%", display: "flex", flexDirection: "column", background: C.warm, border: `1px solid ${C.line}`, borderTop: `3px solid ${a.line}`, padding: "clamp(24px, 3vw, 36px)" }}>
-                <div style={{ display: "flex", gap: 18, alignItems: "center", marginBottom: 22 }}>
+    <Panel id="team" tone="white">
+      <Container>
+        <Reveal><Eyebrow>{tm.label}</Eyebrow></Reveal>
+        <Reveal delay={0.05}><H2>{tm.title}</H2></Reveal>
+        <Reveal delay={0.1}><Lead>{tm.intro}</Lead></Reveal>
+        <div className="duo">
+          {tm.people.map((p, i) => {
+            const a = accentOf(p.accent);
+            return (
+              <Reveal key={p.key} delay={0.1 + i * 0.1} className="duo-col">
+                <div style={{ display: "flex", gap: 18, alignItems: "center", marginBottom: 28 }}>
                   <Monogram initials={p.initials} accent={p.accent} />
                   <div>
-                    <h3 style={{ fontFamily: F, fontSize: 22, fontWeight: 500, color: C.dark, margin: 0, letterSpacing: "-0.01em" }}>{p.name}</h3>
-                    <div style={{ fontFamily: F, fontSize: 12, fontWeight: 600, letterSpacing: 1.2, textTransform: "uppercase", color: a.text, marginTop: 6 }}>{p.role}</div>
-                    <div style={{ fontFamily: F, fontSize: 13, color: C.dim, marginTop: 3 }}>{p.focus}</div>
+                    <h3 style={{ fontFamily: F, fontSize: "clamp(24px, 2.4vw, 32px)", fontWeight: 400, margin: 0, letterSpacing: "-0.02em" }}>{p.name}</h3>
+                    <div style={{ fontFamily: F, fontSize: 14, marginTop: 6 }}><span style={{ color: a.text, fontWeight: 600 }}>{p.role}</span><span style={{ color: C.muted }}> · {p.focus}</span></div>
                   </div>
                 </div>
-                <p style={{ fontFamily: F, fontSize: 15, color: C.text, lineHeight: 1.75, margin: "0 0 26px", flex: 1 }}>{p.bio}</p>
-                <div className="facts" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 14, borderTop: `1px solid ${C.line}`, paddingTop: 20 }}>
+                <p style={{ fontFamily: F, fontSize: 16, color: C.text, lineHeight: 1.75, margin: "0 0 36px", flex: 1 }}>{p.bio}</p>
+                <div className="facts">
                   {p.facts.map((f) => (
-                    <div key={f.v}>
-                      <div style={{ fontFamily: F, fontSize: 22, fontWeight: 700, color: a.text, letterSpacing: "-0.01em" }}>{f.v}</div>
-                      <div style={{ fontFamily: F, fontSize: 12, color: C.dim, lineHeight: 1.45, marginTop: 4, minHeight: "4.35em" }}>{f.l}</div>
+                    <div key={f.v} style={{ borderTop: `1px solid ${a.line}`, paddingTop: 14 }}>
+                      <div style={{ fontFamily: F, fontSize: "clamp(22px, 2vw, 30px)", fontWeight: 300, letterSpacing: "-0.02em", color: C.dark, whiteSpace: "nowrap" }}>{f.v}</div>
+                      <div style={{ fontFamily: F, fontSize: 13, color: C.dim, lineHeight: 1.45, marginTop: 4 }}>{f.l}</div>
                     </div>
                   ))}
                 </div>
-              </article>
-            </Reveal>
-          );
-        })}
-      </div>
-      <Reveal delay={0.12}>
-        <div style={{ marginTop: 48 }}>
-          <div style={{ fontFamily: F, fontSize: 11, letterSpacing: 2.4, textTransform: "uppercase", color: C.dim, fontWeight: 600, marginBottom: 16 }}>{tm.bondsLabel}</div>
-          <div className="g3" style={{ gap: 14 }}>
+              </Reveal>
+            );
+          })}
+        </div>
+        <div style={{ marginTop: "clamp(72px, 9vw, 120px)" }}>
+          <Reveal><div style={{ fontFamily: F, fontSize: 12, letterSpacing: 2.4, textTransform: "uppercase", color: C.muted, fontWeight: 600, marginBottom: 28 }}>{tm.bondsLabel}</div></Reveal>
+          <div className="cols-3">
             {tm.bonds.map((b, i) => (
-              <div key={b.t} style={{ padding: "22px 22px 24px", background: C.bg, border: `1px solid ${C.line}` }}>
-                <div style={{ fontFamily: F, fontSize: 12, fontWeight: 600, color: i === 1 ? C.goldDeep : C.silver, marginBottom: 8 }}>{String(i + 1).padStart(2, "0")}</div>
-                <h3 style={{ fontFamily: F, fontSize: 17, fontWeight: 600, color: C.dark, margin: "0 0 8px" }}>{b.t}</h3>
-                <p style={{ fontFamily: F, fontSize: 14, color: C.dim, lineHeight: 1.65, margin: 0 }}>{b.d}</p>
-              </div>
+              <Reveal key={b.t} delay={i * 0.08} className="rule-top">
+                <Num i={i} color={i === 1 ? C.goldDeep : C.silver} />
+                <h3 style={{ fontFamily: F, fontSize: 22, fontWeight: 400, letterSpacing: "-0.01em", margin: "14px 0 10px" }}>{b.t}</h3>
+                <p style={{ fontFamily: F, fontSize: 15, color: C.dim, lineHeight: 1.7, margin: 0 }}>{b.d}</p>
+              </Reveal>
             ))}
           </div>
-          <div style={{ marginTop: 28 }}><Button href="#kontakt" color={C.silver}>{tm.cta} →</Button></div>
+          <Reveal delay={0.1}><div style={{ marginTop: 48 }}><Button href="#kontakt">{tm.cta}</Button></div></Reveal>
         </div>
-      </Reveal>
-    </Section>
+      </Container>
+    </Panel>
   );
 }
 
-// ── Landing: regulated ventures (the combination, without naming a venture) ─
+// ── Landing: regulated ventures (dark block) ────────────────────────────────
 export function Regulated({ t }) {
   const r = t.regulated;
   return (
-    <Section id="regulated" bg={`linear-gradient(170deg, #F0EEE9 0%, #EAE8E3 55%, #F2F0EB 100%)`}>
-      <Reveal><Eyebrow color={C.goldDeep}>{r.label}</Eyebrow></Reveal>
-      <Reveal delay={0.04}><H2>{r.title}</H2></Reveal>
-      <Reveal delay={0.08}><Lead>{r.intro}</Lead></Reveal>
-      <div className="g4" style={{ gap: 14 }}>
-        {r.pillars.map((p, i) => (
-          <Reveal key={p.t} delay={0.1 + i * 0.05} style={{ height: "100%" }}>
-            <div style={{ height: "100%", display: "flex", flexDirection: "column", gap: 12, padding: "24px 22px", background: C.card, border: `1px solid ${C.line}` }}>
-              <span style={{ fontFamily: F, fontSize: 28, fontWeight: 200, color: C.silverLine, lineHeight: 1 }}>{String(i + 1).padStart(2, "0")}</span>
-              <h3 style={{ fontFamily: F, fontSize: 17, fontWeight: 600, color: C.dark, margin: 0 }}>{p.t}</h3>
-              <div><WhoChip name={p.who} /></div>
-              <p style={{ fontFamily: F, fontSize: 14, color: C.dim, lineHeight: 1.65, margin: 0 }}>{p.d}</p>
-            </div>
-          </Reveal>
-        ))}
-      </div>
-      <Reveal delay={0.1}>
-        <div style={{ marginTop: 44 }}>
-          <div style={{ fontFamily: F, fontSize: 11, letterSpacing: 2.4, textTransform: "uppercase", color: C.dim, fontWeight: 600, marginBottom: 16 }}>{r.fieldsLabel}</div>
-          <div className="g4" style={{ gap: 0, borderTop: `1px solid rgba(0,0,0,0.12)` }}>
-            {r.fields.map((f) => (
-              <div key={f.t} className="field-col" style={{ padding: "20px 20px 8px 0" }}>
-                <h3 style={{ fontFamily: F, fontSize: 12, letterSpacing: 1.6, textTransform: "uppercase", fontWeight: 700, color: C.silver, margin: "0 0 12px" }}>{f.t}</h3>
+    <Panel id="regulated" tone="dark">
+      <Container>
+        <Reveal><Eyebrow color={C.gold}>{r.label}</Eyebrow></Reveal>
+        <Reveal delay={0.05}><H2>{r.title}</H2></Reveal>
+        <Reveal delay={0.1}><Lead>{r.intro}</Lead></Reveal>
+        <div className="cols-4">
+          {r.pillars.map((p, i) => (
+            <Reveal key={p.t} delay={i * 0.08} className="rule-top rule-light">
+              <Num i={i} color="rgba(242,241,238,.45)" />
+              <h3 style={{ fontFamily: F, fontSize: 21, fontWeight: 400, letterSpacing: "-0.01em", margin: "14px 0 8px" }}>{p.t}</h3>
+              <div style={{ fontFamily: F, fontSize: 12, fontWeight: 600, letterSpacing: 1.2, textTransform: "uppercase", color: p.who.startsWith("David") ? C.gold : "#A9B6C2", marginBottom: 12 }}>{p.who}</div>
+              <p style={{ fontFamily: F, fontSize: 15, lineHeight: 1.7, margin: 0, opacity: 0.68 }}>{p.d}</p>
+            </Reveal>
+          ))}
+        </div>
+        <div style={{ marginTop: "clamp(72px, 9vw, 112px)" }}>
+          <Reveal><div style={{ fontFamily: F, fontSize: 12, letterSpacing: 2.4, textTransform: "uppercase", fontWeight: 600, opacity: 0.5, marginBottom: 28 }}>{r.fieldsLabel}</div></Reveal>
+          <div className="cols-4">
+            {r.fields.map((f, i) => (
+              <Reveal key={f.t} delay={i * 0.06}>
+                <h3 style={{ fontFamily: F, fontSize: 15, fontWeight: 600, margin: "0 0 14px", color: "#fff" }}>{f.t}</h3>
                 <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
-                  {f.items.map((it) => (
-                    <li key={it} style={{ display: "flex", gap: 10, fontFamily: F, fontSize: 14, color: C.text, lineHeight: 1.55, marginBottom: 10 }}>
-                      <span aria-hidden style={{ width: 4, height: 4, borderRadius: "50%", background: C.gold, marginTop: 9, flexShrink: 0 }} />{it}
-                    </li>
-                  ))}
+                  {f.items.map((it) => <li key={it} style={{ fontFamily: F, fontSize: 15, lineHeight: 1.55, marginBottom: 12, opacity: 0.68 }}>{it}</li>)}
                 </ul>
-              </div>
+              </Reveal>
             ))}
           </div>
-          <p style={{ fontFamily: F, fontSize: "clamp(18px, 2vw, 22px)", fontWeight: 300, color: C.dark, lineHeight: 1.5, margin: "36px 0 0", paddingLeft: 20, borderLeft: `2px solid ${C.gold}`, maxWidth: 760 }}>{r.closing}</p>
+          <Reveal delay={0.1}>
+            <p style={{ fontFamily: F, fontSize: "clamp(24px, 3vw, 40px)", fontWeight: 300, letterSpacing: "-0.02em", lineHeight: 1.25, margin: "clamp(56px, 7vw, 96px) 0 0", maxWidth: 900 }}>
+              <span style={{ color: C.gold }}>— </span>{r.closing}
+            </p>
+          </Reveal>
         </div>
-      </Reveal>
-    </Section>
+      </Container>
+    </Panel>
   );
 }
 
-// ── Timeline: two lanes (David left, Philip right), converging in a joint entry ─
-const NAMES = { david: "David Brainin", philip: "Philip Kügler" };
-
+// ── Timeline: two lanes, David left, Philip right ───────────────────────────
 function YearDot({ year, kind }) {
-  const ring = kind === "david" ? { border: `2px solid ${C.gold}`, background: "#fff" }
-    : kind === "philip" ? { border: `2px solid ${C.silverLine}`, background: "#fff" }
-    : kind === "both" ? { border: "2px solid transparent", background: `linear-gradient(#fff, #fff) padding-box, linear-gradient(90deg, ${C.gold} 50%, ${C.silverLine} 50%) border-box` }
-    : { border: "2px solid transparent", background: `linear-gradient(90deg, ${C.gold}, ${C.silverLine})` };
+  const ring = kind === "david" ? { border: `1.5px solid ${C.gold}`, background: C.bg }
+    : kind === "philip" ? { border: `1.5px solid ${C.silverLine}`, background: C.bg }
+    : kind === "both" ? { border: "1.5px solid transparent", background: `linear-gradient(${C.bg}, ${C.bg}) padding-box, linear-gradient(90deg, ${C.gold} 50%, ${C.silverLine} 50%) border-box` }
+    : { border: "1.5px solid transparent", background: `linear-gradient(90deg, ${C.gold}, ${C.silverLine})` };
   const color = kind === "david" ? C.goldDeep : kind === "philip" ? C.silver : kind === "joint" ? "#fff" : C.dark;
   return (
-    <div style={{ width: 44, height: 44, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1, flexShrink: 0, ...ring }}>
-      <span style={{ fontFamily: F, fontSize: 10, fontWeight: 700, color }}>{year}</span>
+    <div style={{ width: 48, height: 48, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1, flexShrink: 0, ...ring }}>
+      <span style={{ fontFamily: F, fontSize: 11, fontWeight: 600, color }}>{year}</span>
     </div>
   );
 }
 
-function TlCard({ ev, side, lang }) {
+function TlEntry({ ev, side, lang }) {
   const e = ev[lang] || ev.en;
   const a = accentOf(side === "david" ? "gold" : "silver");
   return (
     <div className={`tl-card tl-card-${side}`}>
-      <div style={{ fontFamily: F, fontSize: 10, letterSpacing: 1.4, textTransform: "uppercase", fontWeight: 700, color: a.text, marginBottom: 4 }}>{NAMES[side]}</div>
-      <h3 style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.dark, margin: "0 0 5px", lineHeight: 1.35 }}>{e.title}</h3>
-      <p style={{ fontFamily: F, fontSize: 13, color: C.dim, lineHeight: 1.6, margin: 0 }}>{e.desc}</p>
+      <div style={{ fontFamily: F, fontSize: 11, letterSpacing: 1.4, textTransform: "uppercase", fontWeight: 600, color: a.text, marginBottom: 6 }}>{NAMES[side]}</div>
+      <h3 style={{ fontFamily: F, fontSize: 17, fontWeight: 500, margin: "0 0 6px", lineHeight: 1.35, letterSpacing: "-0.01em" }}>{e.title}</h3>
+      <p style={{ fontFamily: F, fontSize: 14, color: C.dim, lineHeight: 1.65, margin: 0 }}>{e.desc}</p>
     </div>
   );
 }
@@ -161,294 +148,280 @@ export function Timeline({ t, lang }) {
     r[ev.who] = ev;
   }
   return (
-    <Section id="track-record" bg={`linear-gradient(175deg, #F5F4F1 0%, #EDEBE6 50%, #F2F0EB 100%)`}>
-      <div style={{ textAlign: "center", marginBottom: 36 }}>
-        <Eyebrow color={C.goldDeep} center>{tx.label}</Eyebrow>
-        <H2 style={{ margin: "0 auto 12px" }}>{tx.title}</H2>
-        <p style={{ fontFamily: F, fontSize: 15, color: C.dim, lineHeight: 1.7, maxWidth: 620, margin: "0 auto" }}>{tx.sub}</p>
-      </div>
-      <div className="tl-legend" aria-hidden>
-        <span style={{ justifySelf: "end", color: C.goldDeep }}>{NAMES.david} <span style={{ display: "inline-block", width: 24, height: 2, background: C.gold, verticalAlign: "middle", marginLeft: 8 }} /></span>
-        <span />
-        <span style={{ color: C.silver }}><span style={{ display: "inline-block", width: 24, height: 2, background: C.silverLine, verticalAlign: "middle", marginRight: 8 }} />{NAMES.philip}</span>
-      </div>
-      <ol className="tl" style={{ listStyle: "none", margin: 0, padding: 0 }}>
-        {rows.map((r, i) => {
-          const last = i === rows.length - 1;
-          if (r.both) {
-            const e = r.both[lang] || r.both.en;
+    <Panel id="track-record" tone="light">
+      <Container>
+        <div style={{ textAlign: "center", marginBottom: 56 }}>
+          <Reveal><Eyebrow color={C.goldDeep} center>{tx.label}</Eyebrow></Reveal>
+          <Reveal delay={0.05}><H2 style={{ margin: "0 auto 20px" }}>{tx.title}</H2></Reveal>
+          <Reveal delay={0.1}><Lead style={{ margin: "0 auto" }}>{tx.sub}</Lead></Reveal>
+        </div>
+        <div className="tl-legend" aria-hidden>
+          <span style={{ color: C.goldDeep }}>{NAMES.david}</span>
+          <span />
+          <span style={{ color: C.silver }}>{NAMES.philip}</span>
+        </div>
+        <ol className="tl" style={{ listStyle: "none", margin: 0, padding: 0 }}>
+          {rows.map((r, i) => {
+            const last = i === rows.length - 1;
+            if (r.both) {
+              const e = r.both[lang] || r.both.en;
+              return (
+                <Reveal as="li" key={r.year} className="tl-row tl-row-joint">
+                  <div className="tl-spine"><YearDot year={r.year} kind="joint" /></div>
+                  <div className="tl-jcard">
+                    <div style={{ fontFamily: F, fontSize: 11, letterSpacing: 1.4, textTransform: "uppercase", fontWeight: 600, marginBottom: 8 }}>
+                      <span style={{ color: C.goldDeep }}>{NAMES.david}</span> <span style={{ color: C.muted }}>&</span> <span style={{ color: C.silver }}>{NAMES.philip}</span>
+                    </div>
+                    <h3 style={{ fontFamily: F, fontSize: "clamp(22px, 2.4vw, 30px)", fontWeight: 400, margin: "0 0 8px", letterSpacing: "-0.02em" }}>{e.title}</h3>
+                    <p style={{ fontFamily: F, fontSize: 16, color: C.dim, lineHeight: 1.65, margin: 0 }}>{e.desc}</p>
+                  </div>
+                </Reveal>
+              );
+            }
+            const kind = r.david && r.philip ? "both" : r.david ? "david" : "philip";
             return (
-              <li key={r.year} className="tl-row tl-row-joint">
-                <div className="tl-spine"><YearDot year={r.year} kind="joint" /></div>
-                <div className="tl-jcard">
-                  <div aria-hidden style={{ height: 2, background: `linear-gradient(90deg, ${C.gold}, ${C.silverLine})`, margin: "-12px -18px 12px" }} />
-                  <div style={{ fontFamily: F, fontSize: 10, letterSpacing: 1.4, textTransform: "uppercase", fontWeight: 700, color: C.dark, marginBottom: 4 }}>{tx.joint} · {NAMES.david} & {NAMES.philip}</div>
-                  <h3 style={{ fontFamily: F, fontSize: 16, fontWeight: 600, color: C.dark, margin: "0 0 6px", lineHeight: 1.35 }}>{e.title}</h3>
-                  <p style={{ fontFamily: F, fontSize: 14, color: C.dim, lineHeight: 1.6, margin: 0 }}>{e.desc}</p>
+              <Reveal as="li" key={r.year} className="tl-row">
+                <div className="tl-left">{r.david && <TlEntry ev={r.david} side="david" lang={lang} />}</div>
+                <div className="tl-spine"><YearDot year={r.year} kind={kind} />{!last && <div className="tl-line" />}</div>
+                <div className="tl-right">
+                  <div className="tl-desk">{r.philip && <TlEntry ev={r.philip} side="philip" lang={lang} />}</div>
+                  <div className="tl-mob">
+                    {r.david && <TlEntry ev={r.david} side="david" lang={lang} />}
+                    {r.philip && <TlEntry ev={r.philip} side="philip" lang={lang} />}
+                  </div>
                 </div>
-              </li>
+              </Reveal>
             );
-          }
-          const kind = r.david && r.philip ? "both" : r.david ? "david" : "philip";
-          return (
-            <li key={r.year} className="tl-row">
-              <div className="tl-left">{r.david && <TlCard ev={r.david} side="david" lang={lang} />}</div>
-              <div className="tl-spine">
-                <YearDot year={r.year} kind={kind} />
-                {!last && <div className="tl-line" />}
-              </div>
-              <div className="tl-right">
-                <div className="tl-desk">{r.philip && <TlCard ev={r.philip} side="philip" lang={lang} />}</div>
-                <div className="tl-mob">
-                  {r.david && <TlCard ev={r.david} side="david" lang={lang} />}
-                  {r.philip && <TlCard ev={r.philip} side="philip" lang={lang} />}
-                </div>
-              </div>
-            </li>
-          );
-        })}
-      </ol>
-    </Section>
+          })}
+        </ol>
+      </Container>
+    </Panel>
   );
 }
 
-// ── Clients & partners as a typographic list (no third-party logos) ─────────
-export function Clients({ t, scope = "home", title, bg = C.bg, id }) {
-  const groups = CLIENT_GROUPS.filter((g) => g.tracks.includes(scope));
+// ── Clients & partners: two endless logo rows ───────────────────────────────
+function LogoItem({ name, dup }) {
+  const src = LOGOS[name];
   return (
-    <Section id={id} bg={bg} style={{ padding: "clamp(40px, 6vw, 64px) clamp(16px, 4vw, 40px)", borderTop: `1px solid ${C.border}`, borderBottom: `1px solid ${C.border}` }}>
-      <div style={{ fontFamily: F, fontSize: 11, letterSpacing: 2.4, textTransform: "uppercase", color: C.dim, fontWeight: 600, marginBottom: 20 }}>{title || t.clients.label}</div>
-      <div className="clients" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(210px, 1fr))", gap: "22px 28px" }}>
-        {groups.map((g) => (
-          <div key={g.key}>
-            <div style={{ fontFamily: F, fontSize: 11, letterSpacing: 1.4, textTransform: "uppercase", fontWeight: 700, color: g.key === "re" ? C.goldDeep : C.silver, marginBottom: 8 }}>{t.groups[g.key]}</div>
-            <div style={{ fontFamily: F, fontSize: 14, color: C.text, lineHeight: 1.75 }}>
-              {g.names.map((n) => <div key={n}>{n}</div>)}
+    <span className={`logo-item ${dup ? "dup" : ""}`}>
+      {src ? <img src={src} alt={name} loading="lazy" style={{ height: 30, width: "auto", display: "block" }} /> : <span className="logo-word">{name}</span>}
+    </span>
+  );
+}
+
+export function Clients({ t, scope = "home", title, id = "partner" }) {
+  const names = [...new Set(CLIENT_GROUPS.filter((g) => g.tracks.includes(scope)).flatMap((g) => g.names))];
+  const half = Math.ceil(names.length / 2);
+  const rows = [names.slice(0, half), names.slice(half)];
+  return (
+    <Panel id={id} tone="white" className="panel-tight">
+      <Container>
+        <Reveal><Eyebrow>{title || t.clients.label}</Eyebrow></Reveal>
+      </Container>
+      <div className="marquees" aria-hidden>
+        {rows.map((row, i) => (
+          <div key={i} className="marquee">
+            <div className={`marquee-track ${i ? "reverse" : ""}`} style={{ animationDuration: `${Math.max(40, row.length * 5)}s` }}>
+              {[...row, ...row].map((n, j) => <LogoItem key={j} name={n} dup={j >= row.length} />)}
             </div>
           </div>
         ))}
       </div>
-      <div style={{ fontFamily: F, fontSize: 13, fontStyle: "italic", color: C.muted, marginTop: 18 }}>{t.clients.fo}</div>
-    </Section>
+      <ul className="sr-only">{names.map((n) => <li key={n}>{n}</li>)}</ul>
+      <Container><p style={{ fontFamily: F, fontSize: 14, color: C.muted, margin: "28px 0 0" }}>{t.clients.fo}</p></Container>
+    </Panel>
   );
 }
 
 // ── Track: management profiles ──────────────────────────────────────────────
 export function Profiles({ id, label, title, intro, profiles, tc }) {
   return (
-    <Section id={id} bg={C.card}>
-      <Reveal><Eyebrow color={tc.at}>{label}</Eyebrow></Reveal>
-      {title && <Reveal delay={0.04}><H2>{title}</H2></Reveal>}
-      {intro && <Reveal delay={0.06}><Lead>{intro}</Lead></Reveal>}
-      {profiles.map((p, idx) => {
-        const a = accentOf(p.accent);
-        return (
-          <div key={p.key} style={{ paddingTop: idx ? 48 : 8, marginTop: idx ? 48 : 0, borderTop: idx ? `1px solid ${C.line}` : "none" }}>
-            <Reveal>
-              <div style={{ display: "flex", gap: 18, alignItems: "center", marginBottom: 28 }}>
-                <Monogram initials={p.initials} accent={p.accent} size={64} />
-                <div>
-                  <h3 style={{ fontFamily: F, fontSize: "clamp(24px, 2.6vw, 32px)", fontWeight: 300, color: C.dark, margin: 0, letterSpacing: "-0.02em" }}>{p.name}</h3>
-                  <div style={{ fontFamily: F, fontSize: 13, color: C.dim, marginTop: 6 }}>
-                    <span style={{ fontWeight: 600, letterSpacing: 1, textTransform: "uppercase", fontSize: 12, color: a.text }}>{p.role}</span>
-                    <span aria-hidden style={{ margin: "0 8px", color: C.muted }}>·</span>{p.focus}
+    <Panel id={id} tone="white">
+      <Container>
+        <Reveal><Eyebrow color={tc.at}>{label}</Eyebrow></Reveal>
+        {title && <Reveal delay={0.05}><H2>{title}</H2></Reveal>}
+        {intro && <Reveal delay={0.1}><Lead>{intro}</Lead></Reveal>}
+        {profiles.map((p, idx) => {
+          const a = accentOf(p.accent);
+          return (
+            <div key={p.key} style={{ marginTop: idx ? "clamp(72px, 9vw, 120px)" : 0 }}>
+              <Reveal>
+                <div style={{ display: "flex", gap: 20, alignItems: "center", marginBottom: 36 }}>
+                  <Monogram initials={p.initials} accent={p.accent} size={64} />
+                  <div>
+                    <h3 style={{ fontFamily: F, fontSize: "clamp(30px, 3.6vw, 48px)", fontWeight: 300, margin: 0, letterSpacing: "-0.03em" }}>{p.name}</h3>
+                    <div style={{ fontFamily: F, fontSize: 15, marginTop: 6 }}><span style={{ color: a.text, fontWeight: 600 }}>{p.role}</span><span style={{ color: C.muted }}> · {p.focus}</span></div>
                   </div>
                 </div>
+              </Reveal>
+              <div className="split-2">
+                <Reveal delay={0.05}>
+                  {p.paras.map((x) => <p key={x.slice(0, 24)} style={{ fontFamily: F, fontSize: 16, color: C.text, lineHeight: 1.8, margin: "0 0 18px" }}>{x}</p>)}
+                  <p style={{ fontFamily: F, fontSize: "clamp(20px, 2vw, 26px)", fontWeight: 300, fontStyle: "italic", lineHeight: 1.4, letterSpacing: "-0.01em", margin: "28px 0 0", paddingLeft: 20, borderLeft: `2px solid ${a.line}` }}>{p.quote}</p>
+                </Reveal>
+                <Reveal delay={0.12}>
+                  <dl style={{ margin: 0 }}>
+                    {p.cards.map(([h, d]) => (
+                      <div key={h} className="row-line">
+                        <dt style={{ fontFamily: F, fontSize: 12, letterSpacing: 1.4, textTransform: "uppercase", color: a.text, fontWeight: 600, marginBottom: 4 }}>{h}</dt>
+                        <dd style={{ fontFamily: F, fontSize: 15, color: C.dim, lineHeight: 1.55, margin: 0 }}>{d}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </Reveal>
               </div>
-            </Reveal>
-            <div className="g2" style={{ gap: "clamp(24px, 4vw, 48px)" }}>
-              <Reveal delay={0.06}>
-                <div>
-                  {p.paras.map((x) => <p key={x.slice(0, 24)} style={{ fontFamily: F, fontSize: 15, color: C.text, lineHeight: 1.8, margin: "0 0 16px" }}>{x}</p>)}
-                  <blockquote style={{ margin: "8px 0 0", padding: "16px 20px", borderLeft: `2px solid ${a.line}`, background: C.warm }}>
-                    <p style={{ fontFamily: F, fontSize: 15, fontStyle: "italic", color: C.dark, lineHeight: 1.6, margin: 0 }}>{p.quote}</p>
-                  </blockquote>
-                </div>
-              </Reveal>
-              <Reveal delay={0.12}>
-                <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 6 }}>
-                  {p.cards.map(([h, d]) => (
-                    <li key={h} className="hover-line" style={{ padding: "12px 16px", background: "#fff", border: `1px solid ${C.line}`, "--hover": a.line }}>
-                      <div style={{ fontFamily: F, fontSize: 11, letterSpacing: 1.8, textTransform: "uppercase", color: a.text, fontWeight: 700, marginBottom: 3 }}>{h}</div>
-                      <div style={{ fontFamily: F, fontSize: 13, color: C.dim, lineHeight: 1.5 }}>{d}</div>
-                    </li>
-                  ))}
-                </ul>
-              </Reveal>
             </div>
-          </div>
-        );
-      })}
-    </Section>
+          );
+        })}
+      </Container>
+    </Panel>
   );
 }
 
-// ── Tech: data protection & security (legal + technical column) ─────────────
+// ── Tech: data protection & security (dark block) ───────────────────────────
 export function Compliance({ c }) {
   return (
-    <Section id="compliance" bg={`linear-gradient(170deg, #F0EEE9 0%, #EBE9E4 50%, #F0EEE9 100%)`}>
-      <Reveal><Eyebrow>{c.label}</Eyebrow></Reveal>
-      <Reveal delay={0.04}><H2>{c.title}</H2></Reveal>
-      <Reveal delay={0.08}><Lead>{c.p}</Lead></Reveal>
-      <div className="g2" style={{ gap: 16 }}>
-        {c.cols.map((col, ci) => (
-          <Reveal key={col.t} delay={0.1 + ci * 0.06} style={{ height: "100%" }}>
-            <div style={{ height: "100%", background: C.card, border: `1px solid ${C.line}`, padding: "24px 22px" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12, flexWrap: "wrap", marginBottom: 18 }}>
-                <h3 style={{ fontFamily: F, fontSize: 13, letterSpacing: 1.6, textTransform: "uppercase", fontWeight: 700, color: ci ? C.silver : C.goldDeep, margin: 0 }}>{col.t}</h3>
-                <WhoChip name={col.who} />
+    <Panel id="compliance" tone="dark">
+      <Container>
+        <Reveal><Eyebrow color={C.gold}>{c.label}</Eyebrow></Reveal>
+        <Reveal delay={0.05}><H2>{c.title}</H2></Reveal>
+        <Reveal delay={0.1}><Lead>{c.p}</Lead></Reveal>
+        <div className="split-2">
+          {c.cols.map((col, ci) => (
+            <Reveal key={col.t} delay={ci * 0.1}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 12, flexWrap: "wrap", marginBottom: 8 }}>
+                <h3 style={{ fontFamily: F, fontSize: 22, fontWeight: 400, margin: 0 }}>{col.t}</h3>
+                <span style={{ fontFamily: F, fontSize: 12, fontWeight: 600, letterSpacing: 1.2, textTransform: "uppercase", color: ci ? "#A9B6C2" : C.gold }}>{col.who}</span>
               </div>
               <ol style={{ listStyle: "none", margin: 0, padding: 0 }}>
                 {col.items.map((it, i) => (
-                  <li key={it} style={{ display: "flex", gap: 12, alignItems: "flex-start", padding: "10px 0", borderTop: i ? `1px solid ${C.line}` : "none" }}>
-                    <span style={{ fontFamily: F, fontSize: 11, fontWeight: 700, color: C.muted, minWidth: 20, marginTop: 2 }}>{String(i + 1).padStart(2, "0")}</span>
-                    <span style={{ fontFamily: F, fontSize: 14, color: C.text, lineHeight: 1.6 }}>{it}</span>
+                  <li key={it} className="row-line row-light" style={{ display: "flex", gap: 16 }}>
+                    <Num i={i} color="rgba(242,241,238,.4)" />
+                    <span style={{ fontFamily: F, fontSize: 15, lineHeight: 1.6, opacity: 0.78 }}>{it}</span>
                   </li>
                 ))}
               </ol>
-            </div>
-          </Reveal>
-        ))}
-      </div>
-    </Section>
+            </Reveal>
+          ))}
+        </div>
+      </Container>
+    </Panel>
   );
 }
 
 // ── Track: transformation / expertise block ─────────────────────────────────
 export function Expertise({ id, d, tc, image }) {
   const List = ({ title, items, color }) => (
-    <div style={{ height: "100%", padding: "26px 24px", border: `1px solid ${C.line}`, background: C.card }}>
-      <h3 style={{ fontFamily: F, fontSize: 12, letterSpacing: 1.8, textTransform: "uppercase", color, fontWeight: 700, margin: "0 0 16px" }}>{title}</h3>
+    <div>
+      <h3 style={{ fontFamily: F, fontSize: 22, fontWeight: 400, margin: "0 0 8px", color }}>{title}</h3>
       <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
-        {items.map((x) => (
-          <li key={x} style={{ display: "flex", gap: 10, marginBottom: 12, fontFamily: F, fontSize: 14, color: C.text, lineHeight: 1.6 }}>
-            <span aria-hidden style={{ width: 4, height: 4, borderRadius: "50%", background: color, marginTop: 9, flexShrink: 0 }} />{x}
-          </li>
-        ))}
+        {items.map((x) => <li key={x} className="row-line" style={{ fontFamily: F, fontSize: 15, color: C.text, lineHeight: 1.6 }}>{x}</li>)}
       </ul>
     </div>
   );
   return (
-    <Section id={id} bg={`linear-gradient(175deg, #F2F0EB 0%, #EDEBE6 40%, #F5F3EF 100%)`}>
-      <Reveal><Eyebrow color={tc.at}>{d.tLabel}</Eyebrow></Reveal>
-      <Reveal delay={0.04}><H2>{d.tTitle}</H2></Reveal>
-      <Reveal delay={0.08}><Lead>{d.tP}</Lead></Reveal>
-      <Reveal delay={0.1}>
-        <div style={{ marginBottom: 28, border: `1px solid ${C.line}`, overflow: "hidden", height: "clamp(200px, 30vw, 340px)", background: "#fff" }}>
-          <Picture {...image} sizes="(max-width: 1100px) 100vw, 1100px" />
+    <Panel id={id} tone="light">
+      <Container>
+        <Reveal><Eyebrow color={tc.at}>{d.tLabel}</Eyebrow></Reveal>
+        <Reveal delay={0.05}><H2>{d.tTitle}</H2></Reveal>
+        <Reveal delay={0.1}><Lead>{d.tP}</Lead></Reveal>
+      </Container>
+      <Container wide>
+        <Reveal>
+          <div style={{ borderRadius: 20, overflow: "hidden", height: "clamp(240px, 38vw, 520px)", marginBottom: "clamp(56px, 7vw, 96px)", position: "relative" }}>
+            <Picture {...image} sizes="(max-width: 1320px) 100vw, 1320px" parallax="0.12" style={{ position: "absolute", inset: 0, top: "-9%" }} />
+          </div>
+        </Reveal>
+      </Container>
+      <Container>
+        <div className="split-2">
+          <Reveal><List title={d.opexT} items={d.opex} color={tc.at} /></Reveal>
+          <Reveal delay={0.1}><List title={d.revT} items={d.rev} color={C.goldDeep} /></Reveal>
         </div>
-      </Reveal>
-      <div className="g2" style={{ gap: 16, marginBottom: 28 }}>
-        <Reveal delay={0.12} style={{ height: "100%" }}><List title={d.opexT} items={d.opex} color={tc.at} /></Reveal>
-        <Reveal delay={0.16} style={{ height: "100%" }}><List title={d.revT} items={d.rev} color={C.goldDeep} /></Reveal>
-      </div>
-      <Reveal delay={0.2}>
-        <div className="g3" style={{ gap: 12 }}>
-          {d.kpis.map((k) => (
-            <div key={k.l} style={{ padding: 22, background: C.surfaceAlt, textAlign: "center" }}>
-              <div style={{ fontFamily: F, fontSize: 26, fontWeight: 700, color: k.gold ? C.goldDeep : tc.at }}>{k.v}<span style={{ fontSize: 15, fontWeight: 400 }}>{k.u || ""}</span></div>
-              <div style={{ fontFamily: F, fontSize: 12, color: C.dim, marginTop: 6, lineHeight: 1.4 }}>{k.l}</div>
-            </div>
+        <div className="cols-3" style={{ marginTop: "clamp(56px, 7vw, 96px)" }}>
+          {d.kpis.map((k, i) => (
+            <Reveal key={k.l} delay={i * 0.08} className="rule-top">
+              <div style={{ fontFamily: F, fontSize: "clamp(36px, 4.4vw, 60px)", fontWeight: 300, letterSpacing: "-0.035em", color: k.gold ? C.goldDeep : C.dark }}>{k.v}<span style={{ fontSize: "0.4em", letterSpacing: 0 }}>{k.u || ""}</span></div>
+              <div style={{ fontFamily: F, fontSize: 14, color: C.dim, marginTop: 6, lineHeight: 1.5 }}>{k.l}</div>
+            </Reveal>
           ))}
         </div>
-      </Reveal>
-    </Section>
+      </Container>
+    </Panel>
   );
 }
 
 export function Services({ d, tc }) {
   return (
-    <Section id="leistungen" bg={C.card}>
-      <Reveal><Eyebrow color={tc.at}>{d.sLabel}</Eyebrow></Reveal>
-      <Reveal delay={0.04}><H2 style={{ marginBottom: 36 }}>{d.sTitle}</H2></Reveal>
-      <div className="g2" style={{ gap: 14 }}>
-        {d.serv.map((s, i) => (
-          <Reveal key={s.t} delay={(i % 2) * 0.06} style={{ height: "100%" }}>
-            <article className="hover-line" style={{ height: "100%", display: "flex", flexDirection: "column", padding: "26px 24px", border: `1px solid ${C.line}`, background: "#fff", "--hover": tc.a }}>
-              <span style={{ fontFamily: F, fontSize: 26, fontWeight: 200, color: tc.a }}>{String(i + 1).padStart(2, "0")}</span>
-              <h3 style={{ fontFamily: F, fontSize: 18, fontWeight: 600, color: C.dark, margin: "4px 0 10px" }}>{s.t}</h3>
-              <p style={{ fontFamily: F, fontSize: 14, color: C.dim, lineHeight: 1.7, flex: 1, margin: 0 }}>{s.d}</p>
-              <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginTop: 16 }}>
-                {s.tags.map((tag) => <span key={tag} style={{ fontFamily: F, fontSize: 10, letterSpacing: 0.8, textTransform: "uppercase", fontWeight: 600, padding: "4px 8px", background: tc.as, color: tc.at }}>{tag}</span>)}
+    <Panel id="leistungen" tone="white">
+      <Container>
+        <Reveal><Eyebrow color={tc.at}>{d.sLabel}</Eyebrow></Reveal>
+        <Reveal delay={0.05}><H2 style={{ marginBottom: 56 }}>{d.sTitle}</H2></Reveal>
+        <ol style={{ listStyle: "none", margin: 0, padding: 0 }}>
+          {d.serv.map((s, i) => (
+            <Reveal as="li" key={s.t} className="service-row">
+              <Num i={i} color={tc.at} />
+              <h3 style={{ fontFamily: F, fontSize: "clamp(22px, 2.4vw, 30px)", fontWeight: 400, letterSpacing: "-0.02em", margin: 0, lineHeight: 1.2 }}>{s.t}</h3>
+              <div>
+                <p style={{ fontFamily: F, fontSize: 15, color: C.dim, lineHeight: 1.7, margin: "0 0 10px" }}>{s.d}</p>
+                <div style={{ fontFamily: F, fontSize: 12, letterSpacing: 1, textTransform: "uppercase", color: tc.at, fontWeight: 600 }}>{s.tags.join(" · ")}</div>
               </div>
-            </article>
-          </Reveal>
-        ))}
-      </div>
-    </Section>
+            </Reveal>
+          ))}
+        </ol>
+      </Container>
+    </Panel>
   );
 }
 
 export function Network({ d, tc }) {
   return (
-    <Section id="netzwerk" bg={`linear-gradient(170deg, #F0EEE9 0%, #EBE9E4 50%, #F2F0EB 100%)`}>
-      <Reveal><Eyebrow color={tc.at}>{d.netLabel}</Eyebrow></Reveal>
-      <Reveal delay={0.04}><H2>{d.netTitle}</H2></Reveal>
-      <Reveal delay={0.08}><Lead>{d.netP}</Lead></Reveal>
-      <Reveal delay={0.1}>
-        <div className="g5" style={{ gap: 12, marginBottom: 20 }}>
-          {d.clusters.map(([n, desc]) => (
-            <div key={n} className="hover-line" style={{ padding: "20px 16px", background: C.card, border: `1px solid ${C.line}`, "--hover": tc.a }}>
-              <h3 style={{ fontFamily: F, fontSize: 11, letterSpacing: 1.8, textTransform: "uppercase", color: tc.at, fontWeight: 700, margin: "0 0 8px" }}>{n}</h3>
-              <p style={{ fontFamily: F, fontSize: 13, color: C.dim, lineHeight: 1.55, margin: 0 }}>{desc}</p>
-            </div>
+    <Panel id="netzwerk" tone="warm">
+      <Container>
+        <Reveal><Eyebrow color={tc.at}>{d.netLabel}</Eyebrow></Reveal>
+        <Reveal delay={0.05}><H2>{d.netTitle}</H2></Reveal>
+        <Reveal delay={0.1}><Lead>{d.netP}</Lead></Reveal>
+        <div className="cols-5">
+          {d.clusters.map(([n, desc], i) => (
+            <Reveal key={n} delay={i * 0.06} className="rule-top">
+              <h3 style={{ fontFamily: F, fontSize: 18, fontWeight: 500, margin: "0 0 10px" }}>{n}</h3>
+              <p style={{ fontFamily: F, fontSize: 14, color: C.dim, lineHeight: 1.6, margin: 0 }}>{desc}</p>
+            </Reveal>
           ))}
         </div>
-      </Reveal>
-      <Reveal delay={0.14}>
-        <div style={{ padding: "18px 22px", background: C.surfaceAlt, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
-          <span style={{ fontFamily: F, fontSize: 14, color: C.text, lineHeight: 1.6, maxWidth: 640 }}>{d.netBar}</span>
-          <Badge color={tc.at}>{d.netBadge}</Badge>
-        </div>
-      </Reveal>
-    </Section>
-  );
-}
-
-function Badge({ children, color }) {
-  return (
-    <span style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: F, fontSize: 11, color, letterSpacing: 1, textTransform: "uppercase", fontWeight: 600, whiteSpace: "nowrap" }}>
-      <span aria-hidden style={{ width: 6, height: 6, borderRadius: "50%", background: color }} />{children}
-    </span>
+        <Reveal><p style={{ fontFamily: F, fontSize: "clamp(18px, 1.8vw, 22px)", fontWeight: 300, lineHeight: 1.5, margin: "clamp(48px, 6vw, 72px) 0 0", maxWidth: 820 }}>{d.netBar} <span style={{ color: tc.at, fontWeight: 500 }}>— {d.netBadge}</span></p></Reveal>
+      </Container>
+    </Panel>
   );
 }
 
 export function Process({ d, tc }) {
   return (
-    <Section id="prozess" bg={`linear-gradient(165deg, #F0EEE9 0%, #EDEBE6 50%, #F2F0EB 100%)`}>
-      <Reveal><Eyebrow color={tc.at}>{d.pLabel}</Eyebrow></Reveal>
-      <Reveal delay={0.04}><H2 style={{ marginBottom: 36 }}>{d.pTitle}</H2></Reveal>
-      <Reveal delay={0.08}>
+    <Panel id="prozess" tone="light">
+      <Container>
+        <Reveal><Eyebrow color={tc.at}>{d.pLabel}</Eyebrow></Reveal>
+        <Reveal delay={0.05}><H2 style={{ marginBottom: 56 }}>{d.pTitle}</H2></Reveal>
         <ol className="proc" style={{ listStyle: "none", margin: 0, padding: 0 }}>
           {d.proc.map((s, i) => {
             const last = i === d.proc.length - 1;
             const col = last ? C.goldDeep : tc.at;
             return (
-              <li key={s.t} className="proc-step">
-                <div className="proc-dot" style={{ borderColor: last ? C.gold : tc.a }}>
-                  <span style={{ fontFamily: F, fontSize: 15, fontWeight: 700, color: col }}>{String(i + 1).padStart(2, "0")}</span>
-                </div>
-                <div>
-                  <h3 style={{ fontFamily: F, fontSize: 15, fontWeight: 600, color: C.dark, margin: "0 0 3px" }}>{s.t}</h3>
-                  <div style={{ fontFamily: F, fontSize: 11, letterSpacing: 1, textTransform: "uppercase", color: col, fontWeight: 600, marginBottom: 6 }}>{s.sub}</div>
-                  <p style={{ fontFamily: F, fontSize: 13, color: C.dim, lineHeight: 1.55, margin: 0 }}>{s.d}</p>
-                </div>
-              </li>
+              <Reveal as="li" key={s.t} delay={i * 0.08} className="proc-step">
+                <div className="proc-dot" style={{ background: last ? C.gold : tc.a }} />
+                <div style={{ fontFamily: F, fontSize: 12, letterSpacing: 1.2, textTransform: "uppercase", color: col, fontWeight: 600, marginBottom: 8 }}>{String(i + 1).padStart(2, "0")} · {s.sub}</div>
+                <h3 style={{ fontFamily: F, fontSize: 19, fontWeight: 500, margin: "0 0 6px" }}>{s.t}</h3>
+                <p style={{ fontFamily: F, fontSize: 14, color: C.dim, lineHeight: 1.6, margin: 0 }}>{s.d}</p>
+              </Reveal>
             );
           })}
         </ol>
-      </Reveal>
-      <Reveal delay={0.14}>
-        <div style={{ marginTop: 40, padding: "18px 22px", background: C.surfaceAlt, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
-          <span style={{ fontFamily: F, fontSize: 14, color: C.text }}>{d.pBar[0]} <strong style={{ color: C.dark }}>{d.pBar[1]}</strong> {d.pBar[2]}</span>
-          <Badge color={tc.at}>{d.pBadge}</Badge>
-        </div>
-      </Reveal>
-    </Section>
+        <Reveal><p style={{ fontFamily: F, fontSize: "clamp(18px, 1.8vw, 22px)", fontWeight: 300, lineHeight: 1.5, margin: "clamp(48px, 6vw, 72px) 0 0" }}>{d.pBar[0]} <strong style={{ fontWeight: 600 }}>{d.pBar[1]}</strong> {d.pBar[2]} <span style={{ color: tc.at, fontWeight: 500 }}>— {d.pBadge}</span></p></Reveal>
+      </Container>
+    </Panel>
   );
 }
 
-// ── Insights: curated news as text cards (no third-party images) ────────────
+// ── Insights: curated news as a clean list ──────────────────────────────────
 const MONTHS = { en: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], de: ["Jän", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"] };
 const fmtDate = (s, lang) => {
   const [y, m] = String(s).split("-");
@@ -457,31 +430,34 @@ const fmtDate = (s, lang) => {
   return `${(MONTHS[lang] || MONTHS.en)[parseInt(m, 10) - 1]} ${y}`;
 };
 
-export function Insights({ t, lang, track, tc, children }) {
+export function Insights({ t, lang, track, tc }) {
   const all = [...(track === "re" ? reNews : techNews)].sort((a, b) => String(b.date).localeCompare(String(a.date)));
   const [count, setCount] = useState(6);
   const ix = t.insights;
   return (
-    <Section id="insights" bg={C.bg}>
-      <Reveal><Eyebrow color={tc.at}>{ix.label}</Eyebrow></Reveal>
-      <Reveal delay={0.04}><H2>{ix.title}</H2></Reveal>
-      <Reveal delay={0.06}><Lead style={{ marginBottom: 28 }}>{ix.sub}</Lead></Reveal>
-      <div className="g3" style={{ gap: 14 }}>
-        {all.slice(0, count).map((n) => (
-          <a key={n.id} href={n.url} target="_blank" rel="noopener noreferrer" className="hover-line news" style={{ display: "flex", flexDirection: "column", gap: 10, padding: "20px 20px 18px", background: C.card, border: `1px solid ${C.line}`, textDecoration: "none", "--hover": tc.a }}>
-            <div style={{ fontFamily: F, fontSize: 11, letterSpacing: 1, textTransform: "uppercase", color: tc.at, fontWeight: 600 }}>{n.source} · {fmtDate(n.date, lang)}</div>
-            <h3 style={{ fontFamily: F, fontSize: 16, fontWeight: 600, color: C.dark, lineHeight: 1.35, margin: 0 }}>{n.title}</h3>
-            <p className="clamp3" style={{ fontFamily: F, fontSize: 13, color: C.dim, lineHeight: 1.6, margin: 0, flex: 1 }}>{n.summary}</p>
-            <span style={{ fontFamily: F, fontSize: 12, fontWeight: 600, color: C.text }}>{ix.read} ↗</span>
-          </a>
-        ))}
-      </div>
-      {count < all.length && (
-        <div style={{ marginTop: 22 }}><Button variant="ghost" onClick={() => setCount((c) => c + 6)}>{ix.more}</Button></div>
-      )}
-      {children && <div style={{ marginTop: 64 }}>{children}</div>}
-    </Section>
+    <Panel id="insights" tone="light">
+      <Container>
+        <Reveal><Eyebrow color={tc.at}>{ix.label}</Eyebrow></Reveal>
+        <Reveal delay={0.05}><H2>{ix.title}</H2></Reveal>
+        <Reveal delay={0.1}><Lead>{ix.sub}</Lead></Reveal>
+        <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
+          {all.slice(0, count).map((n) => (
+            <li key={n.id}>
+              <a href={n.url} target="_blank" rel="noopener noreferrer" className="news-row">
+                <span style={{ fontFamily: F, fontSize: 13, color: C.muted }}>{fmtDate(n.date, lang)}</span>
+                <span>
+                  <span style={{ display: "block", fontFamily: F, fontSize: "clamp(18px, 1.8vw, 22px)", fontWeight: 400, color: C.dark, lineHeight: 1.3, letterSpacing: "-0.01em" }}>{n.title}</span>
+                  <span style={{ display: "block", fontFamily: F, fontSize: 13, color: tc.at, fontWeight: 600, marginTop: 6 }}>{n.source}</span>
+                </span>
+                <span aria-hidden className="arrow" style={{ fontSize: 20, color: C.dark }}>↗</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+        {count < all.length && <div style={{ marginTop: 32 }}><Button variant="ghost" onClick={() => setCount((c) => c + 6)}>{ix.more}</Button></div>}
+      </Container>
+    </Panel>
   );
 }
 
-export { accentOf, TRACK };
+export { accentOf, TRACK, nameAccent, TextLink };
