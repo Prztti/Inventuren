@@ -30,6 +30,9 @@ const Section = ({ title, children }) => (
   </div>
 );
 
+// Small superscript for the academic title (Mag.^iur), as on the German preview pages.
+const SUP = { fontSize: "0.6em", verticalAlign: "0.6em", lineHeight: 0, marginLeft: "0.05em" };
+
 const Row = ({ label, value, link }) => (
   <div style={{ display: "flex", gap: 16, paddingBottom: 12, marginBottom: 12, borderBottom: `1px solid ${C.border}`, flexWrap: "wrap" }}>
     <span style={{ fontFamily: F, fontSize: 11, color: C.muted, minWidth: 180, flexShrink: 0 }}>{label}</span>
@@ -57,17 +60,21 @@ export default function Impressum() {
 
         <Label>Impressum</Label>
         <h1 style={{ fontFamily: F, fontSize: "clamp(28px, 4vw, 44px)", fontWeight: 300, color: C.dark, letterSpacing: "-0.02em", marginBottom: 48, lineHeight: 1.2 }}>
-          InVentures GmbH
+          Inside Holding &amp; Real Estate GmbH
         </h1>
+        <div style={{ marginBottom: 40 }}>
+          <P>InVentures ist ein Joint Venture von Mag.<sup style={SUP}>iur</sup> David Brainin und Philip Kügler, MSc. Rechtsträger und Betreiber dieser Website ist die Inside Holding &amp; Real Estate GmbH.</P>
+        </div>
 
         {/* Firmendaten */}
         <Section title="Firmendaten">
-          <Row label="Firmenname" value="InVentures GmbH" />
-          <Row label="Firmenbuchnummer" value="FN 342 972x" />
+          <Row label="Firmenname" value="Inside Holding & Real Estate GmbH" />
+          <Row label="Rechtsform" value="Gesellschaft mit beschränkter Haftung" />
+          <Row label="Firmenbuchnummer" value="FN 342972 x" />
           <Row label="Firmenbuchgericht" value="Handelsgericht Wien" />
           <Row label="UID-Nummer" value="ATU65716433" />
           <Row label="Geschäftsanschrift" value="Garbergasse 14/7, 1060 Wien" />
-          <Row label="Geschäftsführer" value="Mag. David Brainin" />
+          <Row label="Geschäftsführer" value={<>Mag.<sup style={SUP}>iur</sup> David Brainin</>} />
         </Section>
 
         {/* Kontakt */}
@@ -79,26 +86,15 @@ export default function Impressum() {
 
         {/* Unternehmensgegenstand */}
         <Section title="Unternehmensgegenstand">
-          <P>Unternehmensberatung, Tech- &amp; AI-Transformation, Real Estate Advisory.</P>
+          <P>Immobiliengeschäfte und Beteiligungen.</P>
         </Section>
 
         {/* Gewerberechtliche Angaben */}
         <Section title="Gewerberechtliche Angaben">
-          <Row label="Gewerberecht" value="Unternehmensberatung gemäß Gewerbeordnung (GewO)" />
-          <Row label="Kammermitgliedschaft" value="Mitglied der Wirtschaftskammer Wien (WKO Wien)" />
-          <Row label="Aufsichtsbehörde" value="Magistratisches Bezirksamt Wien" />
-          <Row label="Anwendbares Recht" value="Österreichisches Recht" />
-        </Section>
-
-        {/* Online-Streitbeilegung */}
-        <Section title="Online-Streitbeilegung (§ 14 ECG)">
-          <P>
-            Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
-          </P>
-          <Row label="OS-Plattform" value="ec.europa.eu/consumers/odr" link="https://ec.europa.eu/consumers/odr" />
-          <P>
-            Wir sind weder verpflichtet noch bereit, an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
-          </P>
+          <Row label="Gewerbeberechtigungen" value="Handelsgewerbe und Handelsagent; Namhaftmachung von Personen, die an einem Vertragsabschluss über Immobilien interessiert sind, an einen Immobilienmakler" />
+          <Row label="Kammer" value="Wirtschaftskammer Wien" />
+          <Row label="Gewerbebehörde" value="Magistratisches Bezirksamt für den 6. und 7. Bezirk, Hermanngasse 24–26, 1070 Wien" />
+          <Row label="Gewerberecht" value="Gewerbeordnung 1994 (ris.bka.gv.at)" link="https://www.ris.bka.gv.at" />
         </Section>
 
         {/* Haftungsausschluss */}
@@ -117,9 +113,9 @@ export default function Impressum() {
 
         {/* Mediengesetz */}
         <Section title="Offenlegung gem. § 25 MedienG">
-          <Row label="Medieninhaber" value="InVentures GmbH" />
-          <Row label="Unternehmensgegenstand" value="Unternehmensberatung, Tech- & AI-Transformation, Real Estate Advisory" />
-          <Row label="Grundlegende Richtung" value="Informationswebsite zur Unternehmenstätigkeit der InVentures GmbH" />
+          <Row label="Medieninhaber" value="Inside Holding & Real Estate GmbH, Garbergasse 14/7, 1060 Wien" />
+          <Row label="Beteiligungsverhältnisse" value={<>Mag.<sup style={SUP}>iur</sup> David Brainin, 100 %</>} />
+          <Row label="Grundlegende Richtung" value="Information über die Leistungen von InVentures in den Bereichen Tech & AI sowie Real Estate & Hospitality und Fachbeiträge zu diesen Themen." />
         </Section>
 
         {/* Footer nav */}

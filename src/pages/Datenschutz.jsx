@@ -53,7 +53,7 @@ export default function Datenschutz() {
           Datenschutzerklärung
         </h1>
         <p style={{ fontFamily: F, fontSize: 14, color: C.muted, marginBottom: 48 }}>
-          Gemäß Art. 13 DSGVO, § 96 TKG 2021 — Stand: April 2026
+          Gemäß Art. 13 DSGVO und § 165 TKG 2021 — Stand: September 2026
         </p>
 
         {/* 1. Verantwortlicher */}
@@ -61,7 +61,7 @@ export default function Datenschutz() {
           <P>Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:</P>
           <div style={{ padding: "16px 20px", background: "rgba(0,0,0,0.03)", border: `1px solid ${C.border}`, marginBottom: 10 }}>
             <p style={{ fontFamily: F, fontSize: 13, color: C.dark, lineHeight: 1.8, margin: 0 }}>
-              <strong>InVentures GmbH</strong><br />
+              <strong>Inside Holding &amp; Real Estate GmbH</strong> (Rechtsträger von InVentures)<br />
               Garbergasse 14/7, 1060 Wien<br />
               E-Mail: <a href="mailto:info@inventures.at" style={{ color: C.gold }}>info@inventures.at</a><br />
               Telefon: <a href="tel:+436641100333" style={{ color: C.gold }}>+43 664 11 00 333</a>
@@ -103,7 +103,7 @@ export default function Datenschutz() {
         </Section>
 
         {/* 5. Cookies */}
-        <Section title="5. Cookies und Tracking (§ 96 TKG)">
+        <Section title="5. Cookies und Tracking (§ 165 TKG 2021)">
           <P>
             Diese Website verwendet Cookies — kleine Textdateien, die in Ihrem Browser gespeichert werden.
             Wir unterscheiden folgende Kategorien:
