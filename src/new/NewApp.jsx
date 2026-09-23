@@ -77,6 +77,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .reveal.is-in{opacity:1;transform:none;filter:none}
 @keyframes heroIn{from{opacity:0;transform:translate3d(0,36px,0);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
 .hero-in{animation:heroIn 1.3s ${EASE} both}
+/* room for descenders (g, p, y): animated layers are clipped to the element box in some browsers */
+.hero-in,.t-display{padding-bottom:.14em}
 .hero-in.d1{animation-delay:.12s}.hero-in.d2{animation-delay:.24s}.hero-in.d3{animation-delay:.36s}.hero-in.d4{animation-delay:.5s}
 
 /* stacking panels: each sticks, the next one slides over it */

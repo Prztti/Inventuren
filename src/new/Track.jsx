@@ -15,7 +15,7 @@ function Hero({ t, d, track, tc }) {
           <div>
             <Link to="/" className="hero-in back-link" style={{ fontFamily: F, fontSize: T.sm, fontWeight: 500, color: C.dim, textDecoration: "none", display: "inline-flex", gap: 8, marginBottom: 40 }}>← {t.ui.back}</Link>
             <div className="hero-in" style={{ ...LABEL, color: tc.at, marginBottom: 20 }}>{track === "re" ? t.ui.since06 : t.ui.since15}</div>
-            <h1 className="hero-in d1 t-display" style={{ margin: "0 0 32px" }}>
+            <h1 className="hero-in d1 t-display" style={{ margin: "0 0 22px" }}>
               <span style={{ display: "block" }}>{d.h1[0]}</span>
               <span style={{ display: "block", color: C.silver }}>{d.h1[1]}</span>
               <span style={{ display: "block", color: C.goldText }}>{d.h1[2]}</span>
