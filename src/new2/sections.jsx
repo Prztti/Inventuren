@@ -300,11 +300,13 @@ function Marquees({ rows }) {
         if (need > 2) setCopies((c) => Math.max(c, need));
         if (!st.started) {
           // Until the band first moves (the font and logos may still change the widths), keep the
-          // strongest item just inside the faded edge it will leave by: the left edge for a row
-          // running left, the right edge for a row running right (reversed, so its strongest item
-          // closes the first copy).
-          const fade = cw * FADE;
-          st.x = st.dir > 0 ? st.w - fade : st.w - cw + fade;
+          // strongest item at the edge it enters from, so it travels the whole width: the right
+          // edge for a row running left, the left edge for a row running right (reversed, so its
+          // strongest item closes the first copy). The next name waits just outside the band and
+          // the weakest fill the rest; they leave first, the next strongest follow in order.
+          const pad = parseFloat(getComputedStyle(first).paddingLeft) || 0;
+          const top = st.dir > 0 ? st.items[0] : st.items[st.items.length - 1];
+          st.x = st.dir > 0 ? st.w + top.l + top.w + pad - cw : top.l - pad;
         } else if (prev && prev !== st.w) {
           st.x *= st.w / prev; // keep the place in the loop when the layout changes
         }
