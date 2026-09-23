@@ -100,7 +100,6 @@ export const REFERENCES = [
   // ── top row
   // Öffentliche Hand
   { name: "Bundesministerium für Finanzen", row: 0, on: ["home", "tech"] },
-  { name: "Supreme Council of Health (Qatar)", row: 0, on: ["home", "tech"] },
   { name: "Stadt Wien", row: 0, on: ["home", "re"] },
   { name: "ORF", row: 0, on: ["home", "tech", "re"] },
   // Universitäten
@@ -131,6 +130,8 @@ export const REFERENCES = [
   { name: "DSC Rechtsanwälte", row: 0, on: ["home", "tech", "re"] },
   // Gesellschaft
   { name: "Integrationshaus Wien", row: 0, on: ["home", "tech", "re"] },
+  // Supreme Council of Health closes the row: the loop wraps, so it starts directly left of BMF
+  { name: "Supreme Council of Health (Qatar)", row: 0, on: ["home", "tech"] },
   // ── bottom row
   // Banken & Payments
   { name: "Raiffeisen Bank International", row: 1, on: ["home", "tech", "re"] },
@@ -176,6 +177,8 @@ export const LOGOS = {
   "EPI Immobilien": { src: "/logos/epi.png", h: 30, raster: true },
   "Ibis Group": { src: "/logos/ibis.svg", h: 38 },
   "Stadt Wien": { src: "/logos/stadt-wien.svg", h: 36 },
+  // No free logo: the council was dissolved in 2016 (its tasks went to the Ministry of Public Health).
+  "Supreme Council of Health (Qatar)": { flag: "/logos/flag-qatar.svg", label: "Supreme Council of Health" },
   "ORF": { src: "/logos/orf.svg", h: 22 },
   "Integrationshaus Wien": { src: "/logos/integrationshaus.jpg", h: 32, raster: true },
 };
