@@ -1,24 +1,23 @@
-import { useState } from "react";
+import { F, T, LABEL, C as TC } from "./tokens";
 
-const F = "'DM Sans', system-ui, sans-serif";
-const C = { dark: "#1A1A1A", gold: "#8C6F36", goldText: "#B8944B", silver: "#6B7C8B", cream: "#F5F4F1", dim: "#5F6670" };
+const C = { dark: TC.dark, gold: TC.goldDeep, goldText: TC.gold, silver: TC.silverInk, cream: TC.bg, dim: TC.dim };
 
 function PullQuote({ text, color = C.gold }) {
   return (
     <div style={{ borderLeft: `3px solid ${color}`, paddingLeft: 24, margin: "32px 0", maxWidth: 520 }}>
-      <p style={{ fontFamily: F, fontSize: 18, fontWeight: 300, color: C.dark, fontStyle: "italic", lineHeight: 1.65, margin: 0 }}>
-        "{text}"
+      <p className="t-h3" style={{ fontWeight: 400, color: C.dark, lineHeight: 1.45, margin: 0 }}>
+        {text}
       </p>
     </div>
   );
 }
 
 function Body({ children }) {
-  return <p style={{ fontFamily: F, fontSize: 15.5, color: "#374151", lineHeight: 1.85, marginBottom: 20, maxWidth: 720 }}>{children}</p>;
+  return <p className="t-body" style={{ color: TC.text, lineHeight: 1.75, margin: "0 0 20px", maxWidth: 680 }}>{children}</p>;
 }
 
 function H3({ children, color = C.dark }) {
-  return <h3 style={{ fontFamily: F, fontSize: 17, fontWeight: 600, color, letterSpacing: "-0.01em", marginBottom: 10, marginTop: 32 }}>{children}</h3>;
+  return <h3 className="t-h3" style={{ color, margin: "40px 0 12px" }}>{children}</h3>;
 }
 
 // ── AI ARTICLE ──────────────────────────────────────────────────────────────
@@ -33,17 +32,17 @@ function AIArticle({ lang }) {
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
         <div style={{ width: 24, height: 1, background: C.silver }} />
-        <span style={{ fontFamily: F, fontSize: 9, letterSpacing: 3, textTransform: "uppercase", color: C.silver, fontWeight: 600 }}>
+        <span style={{ ...LABEL, color: C.silver }}>
           InVentures View · March 2026
         </span>
       </div>
 
-      <h2 style={{ fontFamily: F, fontSize: "clamp(22px,3vw,34px)", fontWeight: 300, color: C.dark, lineHeight: 1.25, letterSpacing: "-0.02em", marginBottom: 8, maxWidth: 680 }}>
+      <h2 className="t-stat" style={{ color: C.dark, lineHeight: 1.2, margin: "0 0 12px", maxWidth: 720 }}>
         {isDE
           ? "Die stille Disruption: Wie Agentic AI ganze Unternehmen verändert — bevor sie es merken"
           : "The Silent Disruption: How Agentic AI Is Reshaping Entire Organisations — Before They Notice"}
       </h2>
-      <p style={{ fontFamily: F, fontSize: 12, color: C.dim, letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 32 }}>
+      <p style={{ ...LABEL, fontWeight: 500, color: C.dim, margin: "0 0 32px" }}>
         InVentures Advisory — {isDE ? "März" : "March"} 2026
       </p>
 
@@ -106,7 +105,7 @@ function AIArticle({ lang }) {
       </Body>
 
       <div style={{ marginTop: 16 }}>
-        <span style={{ fontFamily: F, fontSize: 13, color: C.silver, fontStyle: "italic" }}>
+        <span className="t-small" style={{ color: C.silver }}>
           {isDE
             ? "Quellen: McKinsey Global Institute (2023), WKO Digitalisierungsreport (2024), Stanford HAI AI Index (2024), Wharton School — AI in Management (2023), Harvey.ai Case Studies (Allen & Overy, 2023), Klarna Annual Report (2024)"
             : "Sources: McKinsey Global Institute (2023), WKO Digitalisierungsreport (2024), Stanford HAI AI Index (2024), Wharton School — AI in Management (2023), Harvey.ai Case Studies (Allen & Overy, 2023), Klarna Annual Report (2024)"}
@@ -128,17 +127,17 @@ function REArticle({ lang }) {
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
         <div style={{ width: 24, height: 1, background: C.gold }} />
-        <span style={{ fontFamily: F, fontSize: 9, letterSpacing: 3, textTransform: "uppercase", color: C.gold, fontWeight: 600 }}>
+        <span style={{ ...LABEL, color: C.gold }}>
           InVentures View · March 2026
         </span>
       </div>
 
-      <h2 style={{ fontFamily: F, fontSize: "clamp(22px,3vw,34px)", fontWeight: 300, color: C.dark, lineHeight: 1.25, letterSpacing: "-0.02em", marginBottom: 8, maxWidth: 680 }}>
+      <h2 className="t-stat" style={{ color: C.dark, lineHeight: 1.2, margin: "0 0 12px", maxWidth: 720 }}>
         {isDE
           ? "Nach der Korrektur: Wo jetzt die besten Einstiegsmöglichkeiten im europäischen Immobilienmarkt liegen — und warum Hotels eine stille Krise verbirgt"
           : "After the Correction: Where Europe's Best Real Estate Entry Points Now Lie — and Why Hotels Are Hiding a Silent Crisis"}
       </h2>
-      <p style={{ fontFamily: F, fontSize: 12, color: C.dim, letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 32 }}>
+      <p style={{ ...LABEL, fontWeight: 500, color: C.dim, margin: "0 0 32px" }}>
         InVentures Advisory — {isDE ? "März" : "March"} 2026
       </p>
 
@@ -201,7 +200,7 @@ function REArticle({ lang }) {
       </Body>
 
       <div style={{ marginTop: 16 }}>
-        <span style={{ fontFamily: F, fontSize: 13, color: C.dim, fontStyle: "italic" }}>
+        <span className="t-small" style={{ color: C.dim }}>
           {isDE
             ? "Quellen: CBRE Austria Real Estate Market Outlook 2026, EHL Immobilien Wohnmarktbericht 2025, JLL Housing Market Overview H2 2024, Christie & Co Hotel Market Report 2025, PwC/ULI Emerging Trends in Real Estate Europe 2025"
             : "Sources: CBRE Austria Real Estate Market Outlook 2026, EHL Immobilien Wohnmarktbericht 2025, JLL Housing Market Overview H2 2024, Christie & Co Hotel Market Report 2025, PwC/ULI Emerging Trends in Real Estate Europe 2025"}
@@ -211,7 +210,7 @@ function REArticle({ lang }) {
   );
 }
 
-// ── MAIN COMPONENT (copy of src/TrackArticle.jsx for /new: DM Sans, CI colours, optimised images) ──
+// ── MAIN COMPONENT (copy of src/TrackArticle.jsx for /new: site type scale, CI colours, optimised images) ──
 export default function TrackArticle({ track, lang }) {
   const mob = typeof window !== "undefined" && window.innerWidth < 700;
   const accentColor = track === "re" ? C.gold : C.silver;
@@ -224,11 +223,11 @@ export default function TrackArticle({ track, lang }) {
         <div style={{ marginTop: 40, paddingTop: 28, borderTop: "1px solid #EAE8E4", display: "flex", gap: 16, flexWrap: "wrap", alignItems: "center" }}>
           <a
             href="mailto:info@inventures.at?subject=InVentures View — Inquiry"
-            style={{ fontFamily: F, fontSize: 12, letterSpacing: 1.5, textTransform: "uppercase", color: accentColor, textDecoration: "none", fontWeight: 600, display: "inline-flex", alignItems: "center", gap: 8, border: `1px solid ${accentColor}`, padding: "10px 20px", borderRadius: 2, transition: "all 0.2s" }}
+            style={{ fontFamily: F, fontSize: T.sm, color: accentColor, textDecoration: "none", fontWeight: 600, display: "inline-flex", alignItems: "center", gap: 8, border: `1px solid ${accentColor}`, padding: "12px 24px", borderRadius: 999, transition: "all 0.2s" }}
           >
             {lang === "de" ? "Gespräch anfragen" : "Request a Conversation"} →
           </a>
-          <span style={{ fontFamily: F, fontSize: 12, color: C.dim }}>
+          <span className="t-small" style={{ color: C.dim }}>
             {lang === "de" ? "Oder schreiben Sie uns direkt:" : "Or write to us:"} info@inventures.at
           </span>
         </div>

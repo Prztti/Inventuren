@@ -37,9 +37,35 @@ function ScrollManager() {
 
 const EASE = "cubic-bezier(.16,1,.3,1)";
 const CSS = `
+/* type scale: 8 fluid steps, mobile -> desktop (see T in tokens.js) */
+:root{
+  --font:${F};
+  --t-xs:.75rem;
+  --t-sm:.875rem;
+  --t-base:clamp(1rem,.96rem + .18vw,1.0625rem);
+  --t-lg:clamp(1.125rem,1.06rem + .3vw,1.25rem);
+  --t-xl:clamp(1.25rem,1.14rem + .45vw,1.5rem);
+  --t-2xl:clamp(1.75rem,1.4rem + 1.5vw,2.5rem);
+  --t-3xl:clamp(2.125rem,1.55rem + 2.5vw,3.75rem);
+  --t-4xl:clamp(2.75rem,1.7rem + 4.4vw,5rem);
+}
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip}
-body{margin:0;background:${C.bg};color:${C.dark};font-family:${F};overflow-x:clip;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{margin:0;background:${C.bg};color:${C.dark};font-family:var(--font);font-size:var(--t-base);line-height:1.6;overflow-x:clip;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;font-kerning:normal}
+h1,h2,h3{text-wrap:balance}
+p,li,dd{text-wrap:pretty}
+button,input,select,textarea{font-family:inherit}
+.t-display{font-size:var(--t-4xl);font-weight:500;letter-spacing:-.035em;line-height:1.02}
+.t-h2{font-size:var(--t-3xl);font-weight:500;letter-spacing:-.03em;line-height:1.06}
+.t-h3{font-size:var(--t-xl);font-weight:500;letter-spacing:-.012em;line-height:1.3}
+.t-title{font-size:var(--t-lg);font-weight:500;letter-spacing:-.006em;line-height:1.35}
+.t-stat{font-size:var(--t-2xl);font-weight:500;letter-spacing:-.025em;line-height:1.1;font-variant-numeric:lining-nums tabular-nums}
+.t-lead{font-size:var(--t-lg);line-height:1.55;opacity:.74}
+.t-body{font-size:var(--t-base);line-height:1.65}
+.t-small{font-size:var(--t-sm);line-height:1.55}
+.wordmark{font-family:var(--font);display:inline-flex;align-items:baseline;line-height:1;letter-spacing:-.025em;white-space:nowrap}
+.wm-at{font-size:.5em;font-weight:500;color:${C.gold};margin-left:.08em;letter-spacing:0}
+[aria-label="Cookie consent"],[aria-label="Cookie consent"] *{font-family:var(--font)!important}
 ::selection{background:${C.dark};color:#fff}
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid ${C.silver};outline-offset:3px}
 .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
@@ -118,7 +144,7 @@ li:last-child>.news-row{border-bottom:1px solid rgba(0,0,0,.1)}
 .marquee:hover .marquee-track{animation-play-state:paused}
 @keyframes marquee{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
 .logo-item{flex:none;display:flex;align-items:center;padding:0 clamp(26px,3.6vw,52px)}
-.logo-word{font-family:${F};font-size:clamp(22px,2.7vw,38px);font-weight:500;letter-spacing:-.025em;color:#A9AEB3;white-space:nowrap;transition:color .4s}
+.logo-word{font-family:var(--font);font-size:var(--t-2xl);font-weight:500;letter-spacing:-.025em;color:#A9AEB3;white-space:nowrap;transition:color .4s}
 .logo-item:hover .logo-word{color:${C.dark}}
 .logo-item img{transition:filter .4s,opacity .4s}
 .logo-item:hover img{filter:none;opacity:1}
@@ -141,22 +167,22 @@ li:last-child>.news-row{border-bottom:1px solid rgba(0,0,0,.1)}
 .logo-item img{filter:grayscale(1) contrast(1.05);opacity:.62}
 .logo-item img.raster{mix-blend-mode:multiply}
 .logo-item img.dark{filter:grayscale(1) brightness(.55);opacity:.7}
-.marquee-words .logo-word{font-size:clamp(18px,2vw,26px)}
+.marquee-words .logo-word{font-size:var(--t-xl)}
 
 /* chapter rail */
 .rail{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:90;display:flex;flex-direction:column;gap:2px;padding:10px 8px;border-radius:999px;background:rgba(245,244,241,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 6px 24px -12px rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:opacity .4s}
 .rail.is-on{opacity:1;pointer-events:auto}
-.rail-item{position:relative;display:flex;align-items:center;justify-content:center;width:30px;height:24px;text-decoration:none;font-family:${F};font-size:10.5px;font-weight:600;color:${C.muted};border-radius:999px;transition:color .3s,background .3s}
+.rail-item{position:relative;display:flex;align-items:center;justify-content:center;width:30px;height:24px;text-decoration:none;font-family:var(--font);font-size:var(--t-xs);font-weight:600;font-variant-numeric:tabular-nums;color:${C.muted};border-radius:999px;transition:color .3s,background .3s}
 .rail-item:hover,.rail-item.is-active{color:${C.dark}}
 .rail-item.is-active{background:#fff}
-.rail-name{position:absolute;right:40px;white-space:nowrap;font-size:12px;font-weight:600;letter-spacing:.4px;color:${C.dark};background:rgba(255,255,255,.92);padding:5px 10px;border-radius:999px;box-shadow:0 4px 16px -8px rgba(0,0,0,.3);opacity:0;transform:translateX(6px);transition:opacity .3s,transform .3s;pointer-events:none}
+.rail-name{position:absolute;right:40px;white-space:nowrap;font-size:var(--t-xs);font-weight:600;letter-spacing:.02em;color:${C.dark};background:rgba(255,255,255,.92);padding:5px 10px;border-radius:999px;box-shadow:0 4px 16px -8px rgba(0,0,0,.3);opacity:0;transform:translateX(6px);transition:opacity .3s,transform .3s;pointer-events:none}
 .rail-item.is-active .rail-name,.rail-item:hover .rail-name{opacity:1;transform:none}
 /* disclosure */
-.disclose{display:inline-flex;align-items:center;gap:12px;font-family:${F};font-size:14px;font-weight:600;color:${C.dark};background:none;border:none;border-bottom:1px solid rgba(0,0,0,.2);padding:6px 0;cursor:pointer;margin-bottom:12px}
+.disclose{display:inline-flex;align-items:center;gap:12px;font-family:var(--font);font-size:var(--t-sm);font-weight:600;color:${C.dark};background:none;border:none;border-bottom:1px solid rgba(0,0,0,.2);padding:6px 0;cursor:pointer;margin-bottom:12px}
 .disclose-icon{font-size:18px;line-height:1;color:${C.muted}}
 
 /* timeline */
-.tl-legend{display:grid;grid-template-columns:1fr 64px 1fr;margin:0 0 28px;font-family:${F};font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:600}
+.tl-legend{display:grid;grid-template-columns:1fr 64px 1fr;margin:0 0 28px;font-family:var(--font);font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;font-weight:600}
 .tl-legend>span:first-child{justify-self:end;padding-right:36px}
 .tl-legend>span:last-child{padding-left:36px}
 .tl-row{display:grid;grid-template-columns:1fr 64px 1fr;align-items:start}
@@ -223,8 +249,13 @@ li:last-child>.news-row{border-bottom:1px solid rgba(0,0,0,.1)}
   .tl-jcard .tl-jlabel{justify-content:flex-start}
   .track-pill{display:none!important}
 }
-@media (max-width:600px){ .wm-sub{display:none!important} }
-@media (max-width:340px){ .facts{grid-template-columns:minmax(0,1fr)!important} }
+@media (max-width:760px){ .t-h2,.t-display{hyphens:auto;-webkit-hyphens:auto} }
+@media (max-width:560px){
+  .bio .facts{grid-template-columns:minmax(0,1fr);gap:8px}
+  .facts>div{display:flex;align-items:baseline;gap:14px}
+  .facts>div>div:first-child{min-width:4.2em}
+  .facts>div>div+div{margin-top:0!important}
+}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .reveal,.hero-in{opacity:1!important;transform:none!important;filter:none!important;transition:none!important;animation:none!important}
@@ -260,7 +291,7 @@ export default function NewApp() {
   const links = track ? t[track].nav : home ? t.homeNav : [];
 
   return (
-    <div style={{ fontFamily: F }}>
+    <div>
       <style>{CSS}</style>
       <ScrollManager />
       <Nav t={t} lang={lang} setLang={setLang} track={track} links={links} />

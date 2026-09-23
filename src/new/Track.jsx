@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { C, F, TRACK } from "./tokens";
+import { C, F, T, LABEL, TRACK } from "./tokens";
 import { Picture, Button, Panel, Container } from "./ui";
 import { Clients, Profiles, Compliance, Expertise, Services, Network, Process, Insights } from "./sections";
 import { ContactSection } from "./Contact";
@@ -13,14 +13,14 @@ function Hero({ t, d, track, tc }) {
       <Container wide style={{ width: "100%", paddingTop: 120, paddingBottom: 72 }}>
         <div className="hero-grid">
           <div>
-            <Link to="/" className="hero-in back-link" style={{ fontFamily: F, fontSize: 14, color: C.dim, textDecoration: "none", display: "inline-flex", gap: 8, marginBottom: 40 }}>← {t.ui.back}</Link>
-            <div className="hero-in" style={{ fontFamily: F, fontSize: 12, letterSpacing: 2.4, textTransform: "uppercase", color: tc.at, fontWeight: 600, marginBottom: 20 }}>{track === "re" ? t.ui.since06 : t.ui.since15}</div>
-            <h1 className="hero-in d1" style={{ fontFamily: F, fontSize: "clamp(40px, 4.8vw, 72px)", fontWeight: 300, lineHeight: 1.0, letterSpacing: "-0.045em", margin: "0 0 32px" }}>
+            <Link to="/" className="hero-in back-link" style={{ fontFamily: F, fontSize: T.sm, fontWeight: 500, color: C.dim, textDecoration: "none", display: "inline-flex", gap: 8, marginBottom: 40 }}>← {t.ui.back}</Link>
+            <div className="hero-in" style={{ ...LABEL, color: tc.at, marginBottom: 20 }}>{track === "re" ? t.ui.since06 : t.ui.since15}</div>
+            <h1 className="hero-in d1 t-display" style={{ margin: "0 0 32px" }}>
               <span style={{ display: "block" }}>{d.h1[0]}</span>
-              <span style={{ display: "block", color: C.silver, fontWeight: 500 }}>{d.h1[1]}</span>
-              <span style={{ display: "block", color: C.gold }}>{d.h1[2]}</span>
+              <span style={{ display: "block", color: C.silver }}>{d.h1[1]}</span>
+              <span style={{ display: "block", color: C.goldText }}>{d.h1[2]}</span>
             </h1>
-            <p className="hero-in d2" style={{ fontFamily: F, fontSize: "clamp(17px, 1.5vw, 20px)", color: C.dim, lineHeight: 1.6, maxWidth: 600, margin: "0 0 40px" }}>{d.heroP}</p>
+            <p className="hero-in d2 t-lead" style={{ maxWidth: 600, margin: "0 0 40px" }}>{d.heroP}</p>
             <div className="hero-in d3" style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
               <Button href="#leistungen" color={C.dark}>{d.ctaA}</Button>
               <Button href={track === "re" ? "#profil" : "#team"} variant="ghost">{d.ctaB}</Button>
@@ -33,8 +33,8 @@ function Hero({ t, d, track, tc }) {
         <dl className="stats-row hero-in d4">
           {d.stats.map((s) => (
             <div key={s.l}>
-              <dt style={{ fontFamily: F, fontSize: "clamp(28px, 3vw, 44px)", fontWeight: 300, letterSpacing: "-0.03em", color: C.dark }}>{s.v}</dt>
-              <dd style={{ fontFamily: F, fontSize: 13, color: C.dim, margin: "4px 0 0", lineHeight: 1.45 }}>{s.l}</dd>
+              <dt className="t-stat" style={{ color: C.dark }}>{s.v}</dt>
+              <dd className="t-small" style={{ color: C.dim, margin: "6px 0 0", lineHeight: 1.45 }}>{s.l}</dd>
             </div>
           ))}
         </dl>

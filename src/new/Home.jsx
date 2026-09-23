@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { C, F, TRACK } from "./tokens";
-import { Picture, Panel, Container, Reveal, Eyebrow } from "./ui";
+import { C, F, T, LABEL, TRACK } from "./tokens";
+import { Picture, Panel, Container, Reveal, Eyebrow, Wordmark } from "./ui";
 import { TeamCards, Regulated, References, Timeline, Clients } from "./sections";
 import { H2 } from "./ui";
 import { ContactSection } from "./Contact";
@@ -13,10 +13,10 @@ function TrackTile({ to, img, overlay, eyebrow, label, sub, tags, cta, delay }) 
         <div className="track-img" style={{ position: "absolute", inset: 0 }}><Picture {...img} sizes="(max-width: 760px) 100vw, 50vw" /></div>
         <div aria-hidden style={{ position: "absolute", inset: 0, background: overlay }} />
         <div style={{ position: "relative" }}>
-          <div style={{ fontFamily: F, fontSize: 12, letterSpacing: 2.4, textTransform: "uppercase", fontWeight: 600, opacity: 0.85, marginBottom: 16 }}>{eyebrow}</div>
-          <h2 style={{ fontFamily: F, fontSize: "clamp(34px, 4.4vw, 60px)", fontWeight: 300, lineHeight: 1.02, letterSpacing: "-0.035em", whiteSpace: "pre-line", margin: "0 0 16px" }}>{label}</h2>
-          <p style={{ fontFamily: F, fontSize: 15, lineHeight: 1.6, opacity: 0.82, maxWidth: 420, margin: "0 0 28px" }}>{tags.join(" · ")}</p>
-          <span className="tile-cta" style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: F, fontSize: 14, fontWeight: 600, padding: "13px 22px", borderRadius: 999, background: "rgba(255,255,255,0.14)", backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)", border: "1px solid rgba(255,255,255,0.28)" }}>{cta} <span aria-hidden className="arrow">→</span></span>
+          <div style={{ ...LABEL, opacity: 0.9, marginBottom: 16 }}>{eyebrow}</div>
+          <h2 className="t-h2" style={{ lineHeight: 1.02, whiteSpace: "pre-line", margin: "0 0 16px" }}>{label}</h2>
+          <p className="t-body" style={{ opacity: 0.86, maxWidth: 420, margin: "0 0 28px" }}>{tags.join(" · ")}</p>
+          <span className="tile-cta" style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: F, fontSize: T.sm, fontWeight: 600, padding: "13px 22px", borderRadius: 999, background: "rgba(255,255,255,0.14)", backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)", border: "1px solid rgba(255,255,255,0.28)" }}>{cta} <span aria-hidden className="arrow">→</span></span>
           <span className="sr-only">{sub}</span>
         </div>
       </Link>
@@ -43,15 +43,15 @@ export default function Home({ t, lang }) {
         </div>
         <div aria-hidden style={{ position: "absolute", inset: 0, background: `linear-gradient(180deg, rgba(245,244,241,0) 55%, ${C.bg} 100%)` }} />
         <Container style={{ textAlign: "center", paddingTop: 120, paddingBottom: 96 }}>
-          <h1 className="hero-in" style={{ fontFamily: F, fontSize: "clamp(58px, 11vw, 168px)", fontWeight: 300, letterSpacing: "-0.055em", lineHeight: 0.92, margin: 0 }}>
-            <span style={{ color: C.silver, fontWeight: 300 }}>In</span><span style={{ color: C.gold, fontWeight: 600 }}>Ventures</span>
+          <h1 className="hero-in" style={{ margin: 0, lineHeight: 0.9 }}>
+            <Wordmark size="clamp(64px, 12vw, 164px)" at={false} style={{ letterSpacing: "-0.04em" }} />
           </h1>
-          <p className="hero-in d1" style={{ fontFamily: F, fontSize: "clamp(16px, 1.6vw, 20px)", fontWeight: 600, letterSpacing: 0.2, margin: "28px 0 0" }}>{h.brandSub}</p>
-          <p className="hero-in d2" style={{ fontFamily: F, fontSize: "clamp(16px, 1.5vw, 19px)", color: C.dim, lineHeight: 1.6, maxWidth: 720, margin: "14px auto 0" }}>{h.brandP}</p>
-          <p className="hero-in d3" style={{ fontFamily: F, fontSize: "clamp(26px, 3.4vw, 46px)", fontWeight: 300, letterSpacing: "-0.03em", margin: "40px 0 0" }}>
-            <span>{h.claim[0]}</span>{" "}<span style={{ color: C.silver, fontWeight: 500 }}>{h.claim[1]}</span>{" "}<span style={{ color: C.gold }}>{h.claim[2]}</span>
+          <p className="hero-in d1" style={{ fontSize: T.lg, fontWeight: 600, margin: "32px 0 0" }}>{h.brandSub}</p>
+          <p className="hero-in d2 t-lead" style={{ maxWidth: 640, margin: "12px auto 0" }}>{h.brandP}</p>
+          <p className="hero-in d3 t-stat" style={{ margin: "40px 0 0" }}>
+            <span>{h.claim[0]}</span>{" "}<span style={{ color: C.silver }}>{h.claim[1]}</span>{" "}<span style={{ color: C.goldText }}>{h.claim[2]}</span>
           </p>
-          <a href="#bereiche" className="hero-in d4 scroll-cue" aria-label={h.selectSub} style={{ display: "inline-flex", flexDirection: "column", alignItems: "center", gap: 10, marginTop: 56, fontFamily: F, fontSize: 12, letterSpacing: 2, textTransform: "uppercase", color: C.muted, textDecoration: "none" }}>
+          <a href="#bereiche" className="hero-in d4 scroll-cue" aria-label={h.selectSub} style={{ ...LABEL, display: "inline-flex", flexDirection: "column", alignItems: "center", gap: 10, marginTop: 56, color: C.muted, textDecoration: "none" }}>
             {h.selectSub}<span aria-hidden className="cue-line" />
           </a>
         </Container>
@@ -60,7 +60,7 @@ export default function Home({ t, lang }) {
       <Panel id="bereiche" tone="white" className="panel-tight" chapter={ch[0]}>
         <Container wide>
           <Reveal><Eyebrow n={ch[0].n}>{ch[0].name}</Eyebrow></Reveal>
-          <Reveal delay={0.05}><H2 style={{ fontSize: "clamp(28px, 3.6vw, 48px)", marginBottom: 32 }}>{h.selectTitle}</H2></Reveal>
+          <Reveal delay={0.05}><H2 style={{ marginBottom: 40 }}>{h.selectTitle}</H2></Reveal>
           <div className="split-tiles">
             <TrackTile to="/tech" img={{ name: "hero-tech", widths: [800, 1400] }} overlay="linear-gradient(180deg, rgba(14,18,24,0.1) 0%, rgba(14,18,24,0.35) 45%, rgba(14,18,24,0.85) 100%)" eyebrow={t.ui.since15} {...h.tracks.tech} />
             <TrackTile to="/real-estate" img={{ name: "hero-re", widths: [800, 1280] }} overlay="linear-gradient(180deg, rgba(34,22,8,0.1) 0%, rgba(34,22,8,0.35) 45%, rgba(34,22,8,0.85) 100%)" eyebrow={t.ui.since06} {...h.tracks.re} delay={0.1} />

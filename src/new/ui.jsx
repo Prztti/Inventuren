@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { C, F, MAXW } from "./tokens";
+import { C, F, T, LABEL, MAXW } from "./tokens";
 
 export function useInView(threshold = 0.15) {
   const ref = useRef(null);
@@ -46,34 +46,34 @@ export function Container({ children, style, wide }) {
   return <div style={{ maxWidth: wide ? 1320 : MAXW, margin: "0 auto", padding: "0 clamp(20px, 5vw, 56px)", position: "relative", ...style }}>{children}</div>;
 }
 
-export function Eyebrow({ children, color = C.silver, center, style, n }) {
+export function Eyebrow({ children, color = C.silverInk, center, style, n }) {
   return (
     <div style={{ display: "flex", alignItems: "center", justifyContent: center ? "center" : "flex-start", gap: 10, marginBottom: 20, ...style }}>
-      {n ? <span style={{ fontFamily: F, fontSize: 12, fontWeight: 600, letterSpacing: 1, color, opacity: 0.6 }}>{n}</span> : null}
+      {n ? <span style={{ ...LABEL, letterSpacing: "0.04em", color, opacity: 0.7 }}>{n}</span> : null}
       <span aria-hidden style={{ width: n ? 18 : 6, height: n ? 1 : 6, borderRadius: n ? 0 : "50%", background: color }} />
-      <span style={{ fontFamily: F, fontSize: 12, letterSpacing: 2.4, textTransform: "uppercase", color, fontWeight: 600 }}>{children}</span>
+      <span style={{ ...LABEL, color }}>{children}</span>
     </div>
   );
 }
 
-export function H2({ children, style }) {
-  return <h2 className="display" style={{ fontFamily: F, fontSize: "clamp(34px, 5vw, 68px)", fontWeight: 300, letterSpacing: "-0.035em", lineHeight: 1.04, margin: "0 0 24px", maxWidth: 980, ...style }}>{children}</h2>;
+export function H2({ children, style, className = "t-h2" }) {
+  return <h2 className={`display ${className}`} style={{ margin: "0 0 24px", maxWidth: 980, ...style }}>{children}</h2>;
 }
 
 export function Lead({ children, style }) {
-  return <p style={{ fontFamily: F, fontSize: "clamp(17px, 1.5vw, 20px)", lineHeight: 1.6, maxWidth: 720, margin: "0 0 56px", opacity: 0.72, ...style }}>{children}</p>;
+  return <p className="t-lead" style={{ maxWidth: 680, margin: "0 0 56px", ...style }}>{children}</p>;
 }
 
 export function TextLink({ href, children, color = C.dark, onClick }) {
   return (
-    <a href={href} onClick={onClick} className="text-link" style={{ fontFamily: F, fontSize: 15, fontWeight: 600, color, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 10 }}>
+    <a href={href} onClick={onClick} className="text-link" style={{ fontFamily: F, fontSize: T.base, fontWeight: 600, color, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 10 }}>
       <span>{children}</span><span aria-hidden className="arrow">→</span>
     </a>
   );
 }
 
 export function Button({ href, onClick, children, color = C.dark, variant = "solid", ...rest }) {
-  const base = { fontFamily: F, fontSize: 14, fontWeight: 600, letterSpacing: 0.2, padding: "15px 28px", borderRadius: 999, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 10, cursor: "pointer", border: "1px solid transparent", transition: "transform .25s, background .25s, color .25s, border-color .25s" };
+  const base = { fontFamily: F, fontSize: T.sm, fontWeight: 600, letterSpacing: "0.01em", padding: "15px 28px", borderRadius: 999, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 10, cursor: "pointer", border: "1px solid transparent", transition: "transform .25s, background .25s, color .25s, border-color .25s" };
   const look = variant === "solid" ? { background: color, color: "#fff" } : { background: "transparent", color: "inherit", borderColor: "currentColor" };
   const Tag = href ? "a" : "button";
   return <Tag href={href} onClick={onClick} className={`btn btn-${variant}`} style={{ ...base, ...look }} {...rest}>{children}<span aria-hidden className="arrow">→</span></Tag>;
@@ -91,15 +91,13 @@ export function Picture({ name, widths, sizes = "100vw", alt = "", style, imgSty
   );
 }
 
-export function Wordmark({ size = 15, sub, light }) {
+// Brand wordmark: "In" silver (medium) + "Ventures" gold (semibold), tight and round; ".at" optional.
+export function Wordmark({ size = 22, at = true, light, style }) {
   return (
-    <span style={{ display: "inline-flex", flexDirection: "column", lineHeight: 1 }}>
-      <span style={{ display: "inline-flex", alignItems: "baseline", gap: 4 }}>
-        <span style={{ fontFamily: F, fontSize: size, fontWeight: 500, color: light ? "#B9C3CC" : C.silver, letterSpacing: size * 0.14 }}>IN</span>
-        <span style={{ fontFamily: F, fontSize: size, fontWeight: 700, color: C.gold, letterSpacing: size * 0.16 }}>VENTURES</span>
-        <span style={{ fontFamily: F, fontSize: size * 0.6, letterSpacing: 1.5, color: C.gold }}>.at</span>
-      </span>
-      {sub && <span className="wm-sub" style={{ fontFamily: F, fontSize: 8.5, letterSpacing: 1.2, color: C.goldDeep, textTransform: "uppercase", marginTop: 4, whiteSpace: "nowrap" }}>{sub}</span>}
+    <span className="wordmark" style={{ fontSize: size, ...style }}>
+      <span style={{ color: light ? "#B9C3CC" : C.silver, fontWeight: 500 }}>In</span>
+      <span style={{ color: C.gold, fontWeight: 600 }}>Ventures</span>
+      {at && <span className="wm-at">.at</span>}
     </span>
   );
 }

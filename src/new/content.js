@@ -38,7 +38,7 @@ en: {
         facts: [{ v: "€600m+", l: "Transactions" }, { v: "€45m+", l: "Capital raised" }, { v: "€12m+", l: "Research grants" }] },
       { ...PEOPLE.philip, role: "Managing Partner, Technology", focus: "Architecture · Security · Delivery",
         bio: "Enterprise architect and CTO. 25+ years of large IT programmes for government, health, education and telecom — from customs to a national health insurance.",
-        facts: [{ v: "10+", l: "Years in government projects" }, { v: "100+", l: "Mobile operators, 15 countries" }, { v: "30+", l: "Systems integrated" }] },
+        facts: [{ v: "10+", l: "Years in government projects" }, { v: "12", l: "Direct client mandates" }, { v: "30+", l: "Systems integrated" }] },
     ],
     bondsLabel: "What we combine",
     bonds: [
@@ -91,7 +91,7 @@ en: {
     h1: ["Deep Analysis.", "Fast Execution.", "High Impact."],
     heroP: "AI transformation, agentic AI and platforms for regulated markets. Measurable results in 6–9 months.",
     ctaA: "Services", ctaB: "Team",
-    stats: [{ v: "€45m+", l: "Capital raised" }, { v: "€12m+", l: "Research grants" }, { v: "10+", l: "Years in government projects" }, { v: "100+", l: "Mobile operators integrated" }, { v: "40+", l: "Projects DACH & MENA" }, { v: "50+", l: "Years of combined experience" }],
+    stats: [{ v: "€45m+", l: "Capital raised" }, { v: "€12m+", l: "Research grants" }, { v: "10+", l: "Years in government projects" }, { v: "30+", l: "Systems integrated" }, { v: "40+", l: "Projects DACH & MENA" }, { v: "50+", l: "Years of combined experience" }],
     partnerTitle: "Clients & partners",
     teamLabel: "Team", teamTitle: "Law, capital, technology. One team.", teamIntro: "",
     profiles: [
@@ -102,9 +102,9 @@ en: {
         cards: [["Telecom & Data", "Deutsche Telekom, A1, Orange, Zain, Viettel, Huawei, Ericsson"], ["Science & Education", "European Stroke Organisation, Sigmund Freud University, Danube University Krems"], ["Real Estate", "Wiener Privatbank, EPI Immobilien, UNIQA"], ["Legal", "Lansky, Ganzger & Partner, Herbst Kinsky"], ["Hospitality", "EPI Hospitality, Ibis, Arcotel"], ["Social Impact", "Integrationshaus Wien, ORF, Red Bull, vidid"]] },
       { ...PEOPLE.philip, role: "Managing Partner, Technology", focus: "Architecture · Security · Delivery",
         paras: ["Enterprise architect, programme manager and CTO. 25+ years of large IT programmes — focus on public sector, finance and education.",
-          "National health insurance Qatar (with McKinsey), customs imports at the Austrian Ministry of Finance, ePassport and border control, 100+ mobile operators in 15 countries. CTO & co-founder of OptInk, MD of Merkit Consulting. MSc TU Wien, IPMA Level C."],
+          "National health insurance Qatar (with McKinsey), customs imports at the Austrian Ministry of Finance, ePassport and border control. CTO & co-founder of OptInk, MD of Merkit Consulting. MSc TU Wien, IPMA Level C."],
         quote: "Thinking in systems. Building pragmatically. Running reliably.",
-        cards: [["Public Sector", "Ministry of Finance / customs, ePassport, border control"], ["Health", "National health insurance Qatar (McKinsey)"], ["Education", "Untis — IAM & SSO for schools; TU Wien"], ["Finance & Payments", "Global Blue, Arthur D. Little, core banking"], ["Telecom", "Telekom Austria, VeriSign — 100+ operators"], ["Ventures", "OptInk, Merkit Consulting, Porsche Informatik, RISE"]] },
+        cards: [["Public Sector", "Ministry of Finance / customs, ePassport, border control"], ["Health", "National health insurance Qatar (McKinsey)"], ["Education", "Untis — IAM & SSO for schools; TU Wien"], ["Finance & Payments", "Global Blue, Arthur D. Little, core banking"], ["Telecom", "Telekom Austria, VeriSign / 3united"], ["Ventures", "OptInk, Merkit Consulting, Porsche Informatik, RISE"]] },
     ],
     comp: {
       label: "Data Protection & Security", title: "GDPR, AI Act, ISO 27001 — from day one.",
@@ -202,7 +202,7 @@ de: {
         facts: [{ v: "€600m+", l: "Transaktionen" }, { v: "€45m+", l: "Kapital mobilisiert" }, { v: "€12m+", l: "Forschungsförderung" }] },
       { ...PEOPLE.philip, role: "Managing Partner, Technology", focus: "Architektur · Sicherheit · Delivery",
         bio: "Enterprise Architect und CTO. 25+ Jahre IT-Großprojekte für Behörden, Gesundheit, Bildung und Telekom – vom Zoll bis zur nationalen Krankenversicherung.",
-        facts: [{ v: "10+", l: "Jahre Regierungsprojekte" }, { v: "100+", l: "Mobilfunkbetreiber, 15 Länder" }, { v: "30+", l: "Systeme integriert" }] },
+        facts: [{ v: "10+", l: "Jahre Regierungsprojekte" }, { v: "12", l: "Direkte Kundenmandate" }, { v: "30+", l: "Systeme integriert" }] },
     ],
     bondsLabel: "Was wir verbinden",
     bonds: [
@@ -255,7 +255,7 @@ de: {
     h1: ["Tiefe Analyse.", "Schnelle Umsetzung.", "Hoher Impact."],
     heroP: "AI-Transformation, Agentic AI und Plattformen für regulierte Märkte. Messbare Ergebnisse in 6–9 Monaten.",
     ctaA: "Leistungen", ctaB: "Team",
-    stats: [{ v: "€45m+", l: "Kapital mobilisiert" }, { v: "€12m+", l: "Forschungsförderung" }, { v: "10+", l: "Jahre Regierungsprojekte" }, { v: "100+", l: "Mobilfunkbetreiber integriert" }, { v: "40+", l: "Projekte DACH & MENA" }, { v: "50+", l: "Jahre Erfahrung, gemeinsam" }],
+    stats: [{ v: "€45m+", l: "Kapital mobilisiert" }, { v: "€12m+", l: "Forschungsförderung" }, { v: "10+", l: "Jahre Regierungsprojekte" }, { v: "30+", l: "Systeme integriert" }, { v: "40+", l: "Projekte DACH & MENA" }, { v: "50+", l: "Jahre Erfahrung, gemeinsam" }],
     partnerTitle: "Kunden & Partner",
     teamLabel: "Team", teamTitle: "Recht, Kapital, Technologie. Ein Team.", teamIntro: "",
     profiles: [
@@ -266,9 +266,9 @@ de: {
         cards: [["Telekom & Data", "Deutsche Telekom, A1, Orange, Zain, Viettel, Huawei, Ericsson"], ["Wissenschaft & Bildung", "European Stroke Organisation, Sigmund Freud PrivatUniversität, Donau-Universität Krems"], ["Immobilien", "Wiener Privatbank, EPI Immobilien, UNIQA"], ["Legal", "Lansky, Ganzger & Partner, Herbst Kinsky"], ["Hospitality", "EPI Hospitality, Ibis, Arcotel"], ["Social Impact", "Integrationshaus Wien, ORF, Red Bull, vidid"]] },
       { ...PEOPLE.philip, role: "Managing Partner, Technology", focus: "Architektur · Sicherheit · Delivery",
         paras: ["Enterprise Architect, Programm-Manager und CTO. 25+ Jahre IT-Großprojekte – Schwerpunkt öffentliche Hand, Finanz und Bildung.",
-          "Nationale Krankenversicherung Katar (mit McKinsey), Zoll-Import im Finanzministerium, ePassport und Grenzkontrolle, 100+ Mobilfunkbetreiber in 15 Ländern. CTO & Co-Founder OptInk, GF Merkit Consulting. MSc TU Wien, IPMA Level C."],
+          "Nationale Krankenversicherung Katar (mit McKinsey), Zoll-Import im Finanzministerium, ePassport und Grenzkontrolle. CTO & Co-Founder OptInk, GF Merkit Consulting. MSc TU Wien, IPMA Level C."],
         quote: "Systemisch denkend. Pragmatisch bauend. Verlässlich betreibend.",
-        cards: [["Öffentliche Hand", "BMF / Zoll, ePassport, Grenzkontrolle"], ["Gesundheit", "Nationale Krankenversicherung Katar (McKinsey)"], ["Bildung", "Untis – IAM & SSO für Schulen; TU Wien"], ["Finanz & Payments", "Global Blue, Arthur D. Little, Core Banking"], ["Telekom", "Telekom Austria, VeriSign – 100+ Betreiber"], ["Ventures", "OptInk, Merkit Consulting, Porsche Informatik, RISE"]] },
+        cards: [["Öffentliche Hand", "BMF / Zoll, ePassport, Grenzkontrolle"], ["Gesundheit", "Nationale Krankenversicherung Katar (McKinsey)"], ["Bildung", "Untis – IAM & SSO für Schulen; TU Wien"], ["Finanz & Payments", "Global Blue, Arthur D. Little, Core Banking"], ["Telekom", "Telekom Austria, VeriSign / 3united"], ["Ventures", "OptInk, Merkit Consulting, Porsche Informatik, RISE"]] },
     ],
     comp: {
       label: "Datenschutz & Sicherheit", title: "DSGVO, AI Act, ISO 27001 – ab Tag eins.",
@@ -366,7 +366,7 @@ cn: {
         facts: [{ v: "€600m+", l: "交易额" }, { v: "€45m+", l: "募集资本" }, { v: "€12m+", l: "研究资助" }] },
       { ...PEOPLE.philip, role: "技术管理合伙人", focus: "架构 · 安全 · 交付",
         bio: "企业架构师兼CTO。25年以上为政府、医疗、教育和电信主导大型IT项目——从海关系统到国家医疗保险。",
-        facts: [{ v: "10+", l: "年政府项目经验" }, { v: "100+", l: "移动运营商，15国" }, { v: "30+", l: "系统集成" }] },
+        facts: [{ v: "10+", l: "年政府项目经验" }, { v: "12", l: "直接客户委托" }, { v: "30+", l: "系统集成" }] },
     ],
     bondsLabel: "我们的结合",
     bonds: [
@@ -419,7 +419,7 @@ cn: {
     h1: ["深度分析。", "快速执行。", "高效成果。"],
     heroP: "AI转型、智能体AI与受监管市场平台。6至9个月内取得可衡量成果。",
     ctaA: "服务", ctaB: "团队",
-    stats: [{ v: "€45m+", l: "募集资本" }, { v: "€12m+", l: "研究资助" }, { v: "10+", l: "年政府项目经验" }, { v: "100+", l: "移动运营商集成" }, { v: "40+", l: "DACH与中东北非项目" }, { v: "50+", l: "年合计经验" }],
+    stats: [{ v: "€45m+", l: "募集资本" }, { v: "€12m+", l: "研究资助" }, { v: "10+", l: "年政府项目经验" }, { v: "30+", l: "系统集成" }, { v: "40+", l: "DACH与中东北非项目" }, { v: "50+", l: "年合计经验" }],
     partnerTitle: "客户与合作伙伴",
     teamLabel: "团队", teamTitle: "法律、资本、技术。同一团队。", teamIntro: "",
     profiles: [
@@ -428,9 +428,9 @@ cn: {
         quote: "以法律思维思考。以企业家方式行动。以成效付诸实施。",
         cards: [["电信与数据", "德国电信、A1、Orange、Zain、Viettel、华为、爱立信"], ["科研与教育", "欧洲卒中组织、西格蒙德·弗洛伊德私立大学、多瑙大学克雷姆斯"], ["房地产", "维也纳私人银行、EPI不动产、UNIQA"], ["法律", "Lansky, Ganzger & Partner、Herbst Kinsky"], ["酒店业", "EPI Hospitality、Ibis、Arcotel"], ["社会公益", "维也纳融合之家、ORF、红牛、vidid"]] },
       { ...PEOPLE.philip, role: "技术管理合伙人", focus: "架构 · 安全 · 交付",
-        paras: ["企业架构师、项目集经理及CTO。25年以上大型IT项目经验——专注公共部门、金融与教育。", "卡塔尔国家医疗保险（与麦肯锡）、奥地利财政部海关进口、电子护照与边境管控、15国100多家移动运营商。OptInk首席技术官兼联合创始人，Merkit Consulting总经理。维也纳技术大学硕士，IPMA C级。"],
+        paras: ["企业架构师、项目集经理及CTO。25年以上大型IT项目经验——专注公共部门、金融与教育。", "卡塔尔国家医疗保险（与麦肯锡）、奥地利财政部海关进口、电子护照与边境管控。OptInk首席技术官兼联合创始人，Merkit Consulting总经理。维也纳技术大学硕士，IPMA C级。"],
         quote: "系统化思考。务实地构建。可靠地运行。",
-        cards: [["公共部门", "财政部／海关、电子护照、边境管控"], ["医疗", "卡塔尔国家医疗保险（麦肯锡）"], ["教育", "Untis——学校身份管理与单点登录；维也纳技术大学"], ["金融与支付", "Global Blue、理特咨询、核心银行"], ["电信", "奥地利电信、VeriSign——100多家运营商"], ["创业", "OptInk、Merkit Consulting、保时捷信息技术、RISE"]] },
+        cards: [["公共部门", "财政部／海关、电子护照、边境管控"], ["医疗", "卡塔尔国家医疗保险（麦肯锡）"], ["教育", "Untis——学校身份管理与单点登录；维也纳技术大学"], ["金融与支付", "Global Blue、理特咨询、核心银行"], ["电信", "奥地利电信、VeriSign / 3united"], ["创业", "OptInk、Merkit Consulting、保时捷信息技术、RISE"]] },
     ],
     comp: {
       label: "数据保护与安全", title: "GDPR、AI法案、ISO 27001——从第一天起。",
