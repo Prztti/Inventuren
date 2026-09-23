@@ -46,7 +46,7 @@ en: {
     intro: "We combine law, capital and company building with architecture, security and delivery — with a proven history of working together.",
     people: [
       { ...PEOPLE.david, role: "Founder & Managing Partner", focus: "Legal · Capital · Company Building",
-        bio: "Trained as a lawyer, founder and serial CEO. 25+ years of operational responsibility, EUR 600m+ in transactions, founder of geolad. GDPR and EU AI Act in practice.",
+        bio: "Trained as a lawyer (full law degree, Mag. iur.), founder and serial CEO. 25+ years of operational responsibility, EUR 600m+ in transactions, founder of geolad. GDPR and EU AI Act in practice.",
         facts: [{ v: "€600m+", l: "Transaction volume" }, { v: "€45m+", l: "Capital mobilised" }, { v: "€12m+", l: "Research grants" }] },
       { ...PEOPLE.philip, role: "Managing Partner, Technology", focus: "Architecture · Security · Delivery",
         bio: "Enterprise architect and CTO. 25+ years of large IT programmes for government, health, education and telecom — from customs to a national health insurance system.",
@@ -114,7 +114,7 @@ en: {
     teamLabel: "Team", teamTitle: "Law, capital, technology. One team.", teamIntro: "",
     profiles: [
       { ...PEOPLE.david, role: "Founder & Managing Partner", focus: "Legal · Capital · Company Building",
-        paras: ["Trained as a lawyer, startup founder and serial CEO. 25+ years of operational experience, EUR 600m+ in transactions across two sectors.",
+        paras: ["Trained as a lawyer (full law degree, Mag. iur.), startup founder and serial CEO. 25+ years of operational experience, EUR 600m+ in transactions across two sectors.",
           "Pioneer mandate from Deutsche Telekom and A1 in 2015. Founder and CEO of geolad (30+ staff, EU & Asia). GDPR and EU AI Act in practice."],
         quote: "Thinking like a lawyer. Acting like an entrepreneur. Executing with impact.",
         cards: [["Telecom & Data", "Deutsche Telekom, A1, Orange, Zain, Viettel, Huawei, Ericsson"], ["Science & Education", "European Stroke Organisation, World Stroke Organization, Danube University Krems, Sigmund Freud University Vienna (in preparation)"], ["Real Estate", "Wiener Privatbank, EPI Immobilien, UNIQA"], ["Legal", "Lansky, Ganzger & Partner, Herbst Kinsky"], ["Hospitality", "EPI Hospitality, Ibis, Arcotel"], ["Social Impact", "Integrationshaus Wien, ORF, Red Bull, vidid"]] },
@@ -163,7 +163,7 @@ en: {
     partnerTitle: "Project experience",
     profileLabel: "Founder & Managing Partner",
     profile: { ...PEOPLE.david, role: "Founder & Managing Partner", focus: "Legal · Transactions · Real Estate",
-      paras: ["Serial CEO, trained as a lawyer. 25+ years in real estate and hospitality, EUR 600m+ in transactions.", "Partner to institutional investors, family offices and developers in Austria, CEE and Spain."],
+      paras: ["Serial CEO, trained as a lawyer (full law degree, Mag. iur.). 25+ years in real estate and hospitality, EUR 600m+ in transactions.", "Partner to institutional investors, family offices and developers in Austria, CEE and Spain."],
       quote: "Thinking like a lawyer. Acting like an entrepreneur. Executing with impact.",
       cards: [["Residential", "EPI Immobilien, Trimmobilien, Conwert, Akkadia"], ["Commercial & Office", "Acquisitions and disposals"], ["Hotel & Hospitality", "EPI Hospitality, Ibis, Arcotel"], ["Retail & Mixed Use", "Advisory and structuring"], ["Development", "Feasibility, permits, project management"], ["Sale & Acquisition", "Buy-side and sell-side mandates"]] },
     tLabel: "Real Estate Expertise", tTitle: "From analysis to closing.", tP: "Market knowledge, legal precision, hands-on execution.",
