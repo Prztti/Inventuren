@@ -30,9 +30,9 @@ export const reNews = [
 // Own articles (InVentures View), each on its own page under /insights/<slug>.
 export const articles = [
   { slug: "agentic-ai", track: "tech", date: "2026-09",
-    title: { de: "Die stille Disruption: Wie Agentic AI Unternehmen verändert", en: "The silent disruption: how agentic AI is reshaping organisations", cn: "无声的颠覆：智能体AI如何重塑企业" },
-    teaser: { de: "Was Agentic AI von Copiloten unterscheidet, wo kleine und mittlere Unternehmen stehen und was jetzt zu tun ist.", en: "What sets agentic AI apart from copilots, where small and mid-sized companies stand and what to do now.", cn: "智能体AI与AI助手有何不同、中小企业现状如何，以及现在应采取的行动。" } },
+    title: { de: "Die stille Disruption: Agentic AI ist im Einsatz – die Aufsicht hinkt nach", en: "The silent disruption: agentic AI is in use — oversight is lagging behind", cn: "无声的颠覆：智能体AI已投入使用，监管却相对滞后" },
+    teaser: { de: "Agenten im Einsatz, Governance-Lücken, AI Act seit August 2026 in Durchsetzung – und was Unternehmen jetzt tun sollten.", en: "Agents in use, governance gaps, the AI Act enforced since August 2026 — and what companies should do now.", cn: "智能体已投入使用、治理存在缺口、AI法案自2026年8月起执行——企业现在应采取的行动。" } },
   { slug: "real-estate-after-the-correction", track: "re", date: "2026-09",
-    title: { de: "Nach der Korrektur: Wo der europäische Immobilienmarkt jetzt Chancen bietet", en: "After the correction: where Europe's real estate market offers opportunities now", cn: "调整之后：欧洲房地产市场的新机会" },
-    teaser: { de: "Wohnen, Büro, Logistik und Hotels – eine Einordnung nach der Bewertungskorrektur.", en: "Residential, office, logistics and hotels — an assessment after the valuation correction.", cn: "住宅、办公、物流与酒店——估值调整后的市场研判。" } },
+    title: { de: "Nach der Korrektur: Wo der Immobilienmarkt trotz steigender Zinsen Chancen bietet", en: "After the correction: where real estate still offers opportunities as rates rise again", cn: "调整之后：利率回升下房地产市场的机会" },
+    teaser: { de: "Kapital kehrt zurück, die EZB erhöht wieder: Wohnen, Büro, Hotels und AI in der Immobilienwirtschaft im Herbst 2026.", en: "Capital returns while the ECB raises rates again: residential, office, hotels and AI in real estate in autumn 2026.", cn: "资本回流、欧洲央行再度加息：2026年秋季的住宅、办公、酒店与房地产AI。" } },
 ];

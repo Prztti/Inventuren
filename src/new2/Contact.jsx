@@ -98,12 +98,12 @@ export function ContactForm({ l, accent, defaultTopic = "" }) {
   );
 }
 
-export function ContactSection({ t, tc, ch, track }) {
+export function ContactSection({ t, tc, ch, track, philipFirst }) {
   const c = t.contact;
   const p = track ? t[track].contactP : c.p;
   const defaultTopic = track === "tech" ? c.form.topics[0] : track === "re" ? c.form.topics[1] : "";
   const rows = [
-    { k: c.people, v: c.peopleV },
+    { k: c.people, v: philipFirst ? [...c.peopleV].reverse() : c.peopleV },
     { k: c.mail, v: MAIL, h: `mailto:${MAIL}` },
     { k: c.loc, v: c.locV },
   ];

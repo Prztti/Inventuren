@@ -85,7 +85,7 @@ export default function Home({ t, lang }) {
       <Regulated t={t} ch={ch[3]} />
       <References t={t} ch={ch[4]} />
       <Timeline t={t} lang={lang} ch={ch[5]} />
-      <ContactSection t={t} tc={TRACK.tech} ch={ch[6]} />
+      <ContactSection t={t} tc={TRACK.tech} ch={ch[6]} philipFirst />
     </main>
   );
 }

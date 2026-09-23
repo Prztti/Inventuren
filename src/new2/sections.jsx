@@ -92,6 +92,15 @@ export function Regulated({ t, ch }) {
             </Reveal>
           ))}
         </div>
+        {r.telecom && (
+          <Reveal delay={0.05}>
+            <div style={{ margin: "clamp(56px, 7vw, 88px) 0 0", padding: "4px 0 4px clamp(20px, 2.4vw, 32px)", borderLeft: `2px solid ${C.gold}`, maxWidth: 860 }}>
+              <div style={{ ...LABEL, color: C.gold, marginBottom: 12 }}>{r.telecom.label}</div>
+              <p className="t-h3" style={{ margin: "0 0 10px" }}>{r.telecom.claim}</p>
+              <p className="t-body" style={{ margin: 0, opacity: 0.74 }}>{r.telecom.p}</p>
+            </div>
+          </Reveal>
+        )}
         <Reveal delay={0.1}>
           <p className="t-stat" style={{ fontWeight: 400, letterSpacing: "-0.02em", lineHeight: 1.25, margin: "clamp(56px, 7vw, 96px) 0 0", maxWidth: 900 }}>
             <span style={{ color: C.gold }}>— </span>{r.closing}
@@ -268,10 +277,6 @@ export function Clients({ t, scope = "home", title, id = "partner", ch }) {
         ))}
       </div>
       <ul className="sr-only">{names.map((n) => <li key={n}>{n}</li>)}</ul>
-      <Container>
-        <p className="t-small" style={{ color: C.muted, margin: "24px 0 0" }}>{t.clients.fo}</p>
-        <p className="t-small" style={{ color: C.muted, margin: "4px 0 0" }}>{t.ui.refNote} <Link to="/impressum#referenzen" className="u-link" style={{ color: C.dim, textDecoration: "none", fontWeight: 600 }}>{t.ui.refLink}</Link></p>
-      </Container>
     </Panel>
   );
 }
@@ -340,7 +345,7 @@ export function Compliance({ c , ch }) {
             <Reveal key={col.t} delay={ci * 0.1}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 12, flexWrap: "wrap", marginBottom: 8 }}>
                 <h3 className="t-h3" style={{ margin: 0 }}>{col.t}</h3>
-                <span style={{ ...LABEL, color: ci ? "#A9B6C2" : C.gold }}>{col.who}</span>
+                <span style={{ ...LABEL, color: col.who.startsWith("David") ? C.gold : "#A9B6C2" }}>{col.who}</span>
               </div>
               <ol style={{ listStyle: "none", margin: 0, padding: 0 }}>
                 {col.items.map((it, i) => (

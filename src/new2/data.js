@@ -85,10 +85,10 @@ export const TIMELINE = [
 export const CLIENT_GROUPS = [
   { key: "telecom", tracks: ["home", "tech"], names: ["Deutsche Telekom", "A1 Group", "Telekom Austria", "Orange", "Zain Group", "Viettel", "Huawei", "Ericsson", "VeriSign"] },
   { key: "public", tracks: ["home", "tech"], names: ["Bundesministerium für Finanzen", "Supreme Council of Health (Qatar)", "McKinsey & Company", "European Stroke Organisation"] },
-  { key: "edu", tracks: ["home", "tech"], names: ["Sigmund Freud PrivatUniversität Wien", "Donau-Universität Krems", "Untis"] },
+  { key: "edu", tracks: ["home", "tech"], names: ["Donau-Universität Krems", "Untis"] },
   { key: "finance", tracks: ["home", "tech", "re"], names: ["Raiffeisen Bank International", "Wiener Privatbank SE", "Uniqa Versicherung", "Global Blue", "Arthur D. Little"] },
   { key: "industry", tracks: ["home", "tech"], names: ["Porsche Informatik (Volkswagen)", "RISE", "Match Maker Ventures"] },
-  { key: "re", tracks: ["home", "re"], names: ["EPI Immobilien Group", "Conwert AG", "Trimmobilien Gruppe", "Akkadia Immobilien", "EPI Hospitality", "Arcotel Hotels", "Ibis Group", "Stadt Wien"] },
+  { key: "re", tracks: ["home", "re"], names: ["EPI Immobilien Group", "Conwert AG", "Trimmobilien Gruppe", "Akkadia Immobilien", "EPI Hospitality", "Arcotel Hotels", "Ibis Group", "Stadt Wien", "Sigmund Freud PrivatUniversität Wien"] },
   { key: "legal", tracks: ["home", "tech", "re"], names: ["Lansky, Ganzger & Partner", "Herbst Kinsky RAe", "DSC Rechtsanwälte", "ORF", "Integrationshaus Wien"] },
 ];
 
