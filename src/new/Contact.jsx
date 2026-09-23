@@ -98,7 +98,7 @@ export function ContactForm({ l, accent }) {
   );
 }
 
-export function ContactSection({ t, tc }) {
+export function ContactSection({ t, tc, ch }) {
   const c = t.contact;
   const rows = [
     { k: c.web, v: "inventures.at", h: "https://inventures.at" },
@@ -106,9 +106,9 @@ export function ContactSection({ t, tc }) {
     { k: c.loc, v: c.locV },
   ];
   return (
-    <Panel id="kontakt" tone="white">
+    <Panel id="kontakt" tone="white" chapter={ch}>
       <Container>
-        <Reveal><Eyebrow color={tc.at}>{c.label}</Eyebrow></Reveal>
+        <Reveal><Eyebrow color={tc.at} n={ch?.n}>{c.label}</Eyebrow></Reveal>
         <Reveal delay={0.05}><H2 style={{ fontSize: "clamp(44px, 7vw, 104px)" }}>{c.title}</H2></Reveal>
         <Reveal delay={0.1}><Lead>{c.p}</Lead></Reveal>
         <div className="split-2 wide-gap" style={{ alignItems: "start" }}>

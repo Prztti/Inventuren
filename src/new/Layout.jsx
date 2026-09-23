@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { C, F, TRACK, MAXW } from "./tokens";
 import { LANGS } from "./content";
 import { Wordmark, Panel, Container, H2 } from "./ui";
@@ -108,5 +108,39 @@ export function NotFound({ t }) {
         </Container>
       </Panel>
     </main>
+  );
+}
+
+// Fixed chapter index on the right edge (desktop): shows where you are in the story.
+export function ChapterRail({ lang }) {
+  const { pathname } = useLocation();
+  const [items, setItems] = useState([]);
+  const [active, setActive] = useState(-1);
+  useEffect(() => {
+    let raf = 0;
+    const els = () => [...document.querySelectorAll("[data-chapter-n]")];
+    const collect = () => setItems(els().map((e) => ({ n: e.dataset.chapterN, name: e.dataset.chapterName, id: e.id })));
+    const update = () => {
+      raf = 0;
+      const probe = window.innerHeight * 0.45;
+      let idx = -1;
+      els().forEach((e, i) => { if (e.getBoundingClientRect().top <= probe) idx = i; });
+      setActive(idx);
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+    const t = setTimeout(() => { collect(); update(); }, 120);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => { clearTimeout(t); window.removeEventListener("scroll", onScroll); if (raf) cancelAnimationFrame(raf); };
+  }, [pathname, lang]);
+  if (!items.length) return null;
+  return (
+    <nav aria-label="Chapters" className={`rail ${active >= 0 ? "is-on" : ""}`}>
+      {items.map((it, i) => (
+        <a key={it.n + it.id} href={`#${it.id}`} className={`rail-item ${i === active ? "is-active" : ""}`} aria-current={i === active ? "true" : undefined}>
+          <span className="rail-name">{it.name}</span>
+          <span className="rail-n">{it.n}</span>
+        </a>
+      ))}
+    </nav>
   );
 }

@@ -59,21 +59,26 @@ export default function Track({ t, lang, track }) {
   const d = t[track];
   const tc = TRACK[track];
   const isTech = track === "tech";
+  const c = Object.fromEntries(d.chapters.map((name, i) => [i, { n: String(i + 1).padStart(2, "0"), name }]));
+  const at = (i) => c[i];
+  // chapter order: tech = team, compliance, transformation, services, network, process, contact, insights
+  //                re   = profile, expertise, services, network, process, contact, insights
+  const k = isTech ? { team: 0, comp: 1, exp: 2, serv: 3, net: 4, proc: 5, contact: 6, insights: 7 } : { team: 0, exp: 1, serv: 2, net: 3, proc: 4, contact: 5, insights: 6 };
   return (
     <main>
       <Hero t={t} d={d} track={track} tc={tc} />
       <Clients t={t} scope={track} title={d.partnerTitle} id="partner" />
       {isTech
-        ? <Profiles id="team" label={d.teamLabel} title={d.teamTitle} intro={d.teamIntro} profiles={d.profiles} tc={tc} />
-        : <Profiles id="profil" label={d.profileLabel} profiles={[d.profile]} tc={tc} />}
-      {isTech && <Compliance c={d.comp} />}
-      <Expertise id={isTech ? "transformation" : "expertise"} d={d} tc={tc}
+        ? <Profiles id="team" label={d.teamLabel} title={d.teamTitle} intro={d.teamIntro} profiles={d.profiles} tc={tc} ch={at(k.team)} ui={t.ui} />
+        : <Profiles id="profil" label={d.profileLabel} title={d.profileTitle} profiles={[d.profile]} tc={tc} ch={at(k.team)} ui={t.ui} />}
+      {isTech && <Compliance c={d.comp} ch={at(k.comp)} />}
+      <Expertise id={isTech ? "transformation" : "expertise"} d={d} tc={tc} ch={at(k.exp)}
         image={isTech ? { name: "ai-expertise-visual", widths: [800, 1600] } : { name: "re-expertise-reference-clean", widths: [800, 1280] }} />
-      <Services d={d} tc={tc} />
-      <Network d={d} tc={tc} />
-      <Process d={d} tc={tc} />
-      <ContactSection t={t} tc={tc} />
-      <Insights t={t} lang={lang} track={track} tc={tc} />
+      <Services d={d} tc={tc} ch={at(k.serv)} />
+      <Network d={d} tc={tc} ch={at(k.net)} />
+      <Process d={d} tc={tc} ch={at(k.proc)} />
+      <ContactSection t={t} tc={tc} ch={at(k.contact)} />
+      <Insights t={t} lang={lang} track={track} tc={tc} ch={at(k.insights)} />
       <ArticleFold t={t} track={track} lang={lang} />
     </main>
   );

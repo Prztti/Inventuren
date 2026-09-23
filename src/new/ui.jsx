@@ -33,10 +33,10 @@ const TONES = {
   warm: { bg: "#EFEDE8", fg: C.dark },
   dark: { bg: "#15171A", fg: "#F2F1EE" },
 };
-export function Panel({ id, tone = "light", children, first, style, innerStyle, className = "" }) {
+export function Panel({ id, tone = "light", children, first, style, innerStyle, className = "", chapter }) {
   const t = TONES[tone];
   return (
-    <section id={id} className={`panel ${first ? "panel-first" : ""} tone-${tone} ${className}`} style={{ background: t.bg, color: t.fg, ...style }}>
+    <section id={id} data-chapter-n={chapter?.n} data-chapter-name={chapter?.name} data-tone={tone} className={`panel ${first ? "panel-first" : ""} tone-${tone} ${className}`} style={{ background: t.bg, color: t.fg, ...style }}>
       <div className="panel-inner" style={innerStyle}>{children}</div>
     </section>
   );
@@ -46,10 +46,11 @@ export function Container({ children, style, wide }) {
   return <div style={{ maxWidth: wide ? 1320 : MAXW, margin: "0 auto", padding: "0 clamp(20px, 5vw, 56px)", position: "relative", ...style }}>{children}</div>;
 }
 
-export function Eyebrow({ children, color = C.silver, center, style }) {
+export function Eyebrow({ children, color = C.silver, center, style, n }) {
   return (
     <div style={{ display: "flex", alignItems: "center", justifyContent: center ? "center" : "flex-start", gap: 10, marginBottom: 20, ...style }}>
-      <span aria-hidden style={{ width: 6, height: 6, borderRadius: "50%", background: color }} />
+      {n ? <span style={{ fontFamily: F, fontSize: 12, fontWeight: 600, letterSpacing: 1, color, opacity: 0.6 }}>{n}</span> : null}
+      <span aria-hidden style={{ width: n ? 18 : 6, height: n ? 1 : 6, borderRadius: n ? 0 : "50%", background: color }} />
       <span style={{ fontFamily: F, fontSize: 12, letterSpacing: 2.4, textTransform: "uppercase", color, fontWeight: 600 }}>{children}</span>
     </div>
   );

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { C, F, TRACK } from "./tokens";
 import { Reveal, Panel, Container, Eyebrow, H2, Lead, TextLink, Button, Picture } from "./ui";
 import { TIMELINE, CLIENT_GROUPS, LOGOS } from "./data";
-import { techNews, reNews } from "../newsData";
+import { techNews, reNews } from "./news";
 
 const accentOf = (a) => (a === "gold" ? { line: C.gold, text: C.goldDeep } : { line: C.silverLine, text: C.silver });
 const NAMES = { david: "David Brainin", philip: "Philip Kügler" };
@@ -28,10 +28,10 @@ export function Portrait({ person, sizes = "(max-width: 760px) 50vw, 480px", sty
   );
 }
 
-export function TeamCards({ t }) {
+export function TeamCards({ t, ch }) {
   const tm = t.team;
   return (
-    <Panel id="team" tone="white">
+    <Panel id="team" tone="white" chapter={ch}>
       <Container>
         <div className="team-grid">
           <Reveal className="pair">
@@ -42,7 +42,7 @@ export function TeamCards({ t }) {
             ))}
           </Reveal>
           <div>
-            <Reveal><Eyebrow>{tm.label}</Eyebrow></Reveal>
+            <Reveal><Eyebrow n={ch?.n}>{tm.label}</Eyebrow></Reveal>
             <Reveal delay={0.05}><H2 style={{ fontSize: "clamp(34px, 4.4vw, 60px)" }}>{tm.title}</H2></Reveal>
             <Reveal delay={0.1}><Lead style={{ marginBottom: 40 }}>{tm.intro}</Lead></Reveal>
             {tm.people.map((p, i) => {
@@ -84,12 +84,12 @@ export function TeamCards({ t }) {
 }
 
 // ── Landing: regulated ventures (dark block) ────────────────────────────────
-export function Regulated({ t }) {
+export function Regulated({ t, ch }) {
   const r = t.regulated;
   return (
-    <Panel id="regulated" tone="dark">
+    <Panel id="regulated" tone="dark" chapter={ch}>
       <Container>
-        <Reveal><Eyebrow color={C.gold}>{r.label}</Eyebrow></Reveal>
+        <Reveal><Eyebrow color={C.gold} n={ch?.n}>{r.label}</Eyebrow></Reveal>
         <Reveal delay={0.05}><H2>{r.title}</H2></Reveal>
         <Reveal delay={0.1}><Lead>{r.intro}</Lead></Reveal>
         <div className="cols-4">
@@ -98,27 +98,37 @@ export function Regulated({ t }) {
               <Num i={i} color="rgba(242,241,238,.45)" />
               <h3 style={{ fontFamily: F, fontSize: 21, fontWeight: 400, letterSpacing: "-0.01em", margin: "14px 0 8px" }}>{p.t}</h3>
               <div style={{ fontFamily: F, fontSize: 12, fontWeight: 600, letterSpacing: 1.2, textTransform: "uppercase", color: p.who.startsWith("David") ? C.gold : "#A9B6C2", marginBottom: 12 }}>{p.who}</div>
-              <p style={{ fontFamily: F, fontSize: 15, lineHeight: 1.7, margin: 0, opacity: 0.68 }}>{p.d}</p>
+              <p style={{ fontFamily: F, fontSize: 15, lineHeight: 1.65, margin: 0, opacity: 0.68 }}>{p.d}</p>
             </Reveal>
           ))}
         </div>
-        <div style={{ marginTop: "clamp(72px, 9vw, 112px)" }}>
-          <Reveal><div style={{ fontFamily: F, fontSize: 12, letterSpacing: 2.4, textTransform: "uppercase", fontWeight: 600, opacity: 0.5, marginBottom: 28 }}>{r.fieldsLabel}</div></Reveal>
-          <div className="cols-4">
-            {r.fields.map((f, i) => (
-              <Reveal key={f.t} delay={i * 0.06}>
-                <h3 style={{ fontFamily: F, fontSize: 15, fontWeight: 600, margin: "0 0 14px", color: "#fff" }}>{f.t}</h3>
-                <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
-                  {f.items.map((it) => <li key={it} style={{ fontFamily: F, fontSize: 15, lineHeight: 1.55, marginBottom: 12, opacity: 0.68 }}>{it}</li>)}
-                </ul>
-              </Reveal>
-            ))}
-          </div>
-          <Reveal delay={0.1}>
-            <p style={{ fontFamily: F, fontSize: "clamp(24px, 3vw, 40px)", fontWeight: 300, letterSpacing: "-0.02em", lineHeight: 1.25, margin: "clamp(56px, 7vw, 96px) 0 0", maxWidth: 900 }}>
-              <span style={{ color: C.gold }}>— </span>{r.closing}
-            </p>
-          </Reveal>
+        <Reveal delay={0.1}>
+          <p style={{ fontFamily: F, fontSize: "clamp(24px, 3vw, 40px)", fontWeight: 300, letterSpacing: "-0.02em", lineHeight: 1.25, margin: "clamp(56px, 7vw, 96px) 0 0", maxWidth: 900 }}>
+            <span style={{ color: C.gold }}>— </span>{r.closing}
+          </p>
+        </Reveal>
+      </Container>
+    </Panel>
+  );
+}
+
+export function References({ t, ch }) {
+  const r = t.regulated;
+  return (
+    <Panel id="referenzen" tone="warm" chapter={ch}>
+      <Container>
+        <Reveal><Eyebrow color={C.goldDeep} n={ch?.n}>{r.refLabel}</Eyebrow></Reveal>
+        <Reveal delay={0.05}><H2>{r.refTitle}</H2></Reveal>
+        <Reveal delay={0.1}><Lead>{r.refIntro}</Lead></Reveal>
+        <div className="cols-4">
+          {r.fields.map((f, i) => (
+            <Reveal key={f.t} delay={i * 0.06} className="rule-top">
+              <h3 style={{ fontFamily: F, fontSize: 19, fontWeight: 500, margin: "0 0 14px" }}>{f.t}</h3>
+              <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
+                {f.items.map((it) => <li key={it} style={{ fontFamily: F, fontSize: 15, lineHeight: 1.5, marginBottom: 10, color: C.dim }}>{it}</li>)}
+              </ul>
+            </Reveal>
+          ))}
         </div>
       </Container>
     </Panel>
@@ -166,12 +176,14 @@ function JointLabel({ ev, lang }) {
   );
 }
 
-export function Timeline({ t, lang }) {
+export function Timeline({ t, lang, ch }) {
   const tx = t.timeline;
+  const [all, setAll] = useState(false);
+  const source = all ? TIMELINE : TIMELINE.filter((e) => e.key || e.who === "both");
   // One row per lane-year; joint entries get their own row that spans both lanes.
   const rows = [];
-  for (const year of [...new Set(TIMELINE.map((e) => e.year))]) {
-    const evs = TIMELINE.filter((e) => e.year === year);
+  for (const year of [...new Set(source.map((e) => e.year))]) {
+    const evs = source.filter((e) => e.year === year);
     const joints = evs.filter((e) => e.who === "both");
     const david = evs.find((e) => e.who === "david");
     const philip = evs.find((e) => e.who === "philip");
@@ -179,10 +191,10 @@ export function Timeline({ t, lang }) {
     if (david || philip) rows.push({ type: "lane", year, david, philip, showYear: joints.length === 0 });
   }
   return (
-    <Panel id="track-record" tone="light">
+    <Panel id="track-record" tone="light" chapter={ch}>
       <Container>
         <div style={{ textAlign: "center", marginBottom: 56 }}>
-          <Reveal><Eyebrow color={C.goldDeep} center>{tx.label}</Eyebrow></Reveal>
+          <Reveal><Eyebrow color={C.goldDeep} center n={ch?.n}>{tx.label}</Eyebrow></Reveal>
           <Reveal delay={0.05}><H2 style={{ margin: "0 auto 20px" }}>{tx.title}</H2></Reveal>
           <Reveal delay={0.1}><Lead style={{ margin: "0 auto" }}>{tx.sub}</Lead></Reveal>
         </div>
@@ -225,6 +237,9 @@ export function Timeline({ t, lang }) {
             );
           })}
         </ol>
+        <div style={{ textAlign: "center", marginTop: 40 }}>
+          <Button variant="ghost" onClick={() => setAll(!all)}>{all ? tx.less : `${tx.more} (${TIMELINE.length})`}</Button>
+        </div>
       </Container>
     </Panel>
   );
@@ -242,15 +257,16 @@ function LogoItem({ name, dup }) {
   );
 }
 
-export function Clients({ t, scope = "home", title, id = "partner" }) {
+export function Clients({ t, scope = "home", title, id = "partner", ch }) {
   const names = [...new Set(CLIENT_GROUPS.filter((g) => g.tracks.includes(scope)).flatMap((g) => g.names))];
   const withLogo = names.filter((n) => LOGOS[n]);
   const words = names.filter((n) => !LOGOS[n]);
   const rows = [withLogo, words].filter((r) => r.length);
   return (
-    <Panel id={id} tone="white" className="panel-tight">
+    <Panel id={id} tone="white" className="panel-tight" chapter={ch}>
       <Container>
-        <Reveal><Eyebrow>{title || t.clients.label}</Eyebrow></Reveal>
+        <Reveal><Eyebrow n={ch?.n}>{title || t.clients.label}</Eyebrow></Reveal>
+        <Reveal delay={0.05}><H2 style={{ fontSize: "clamp(28px, 3.6vw, 48px)", marginBottom: 36 }}>{t.clients.title}</H2></Reveal>
       </Container>
       <div className="marquees" aria-hidden>
         {rows.map((row, i) => (
@@ -268,11 +284,12 @@ export function Clients({ t, scope = "home", title, id = "partner" }) {
 }
 
 // ── Track: management profiles ──────────────────────────────────────────────
-export function Profiles({ id, label, title, intro, profiles, tc }) {
+export function Profiles({ id, label, title, intro, profiles, tc, ch, ui }) {
+  const [open, setOpen] = useState({});
   return (
-    <Panel id={id} tone="white">
+    <Panel id={id} tone="white" chapter={ch}>
       <Container>
-        <Reveal><Eyebrow color={tc.at}>{label}</Eyebrow></Reveal>
+        <Reveal><Eyebrow color={tc.at} n={ch?.n}>{label}</Eyebrow></Reveal>
         {title && <Reveal delay={0.05}><H2>{title}</H2></Reveal>}
         {intro && <Reveal delay={0.1}><Lead>{intro}</Lead></Reveal>}
         {profiles.map((p, idx) => {
@@ -294,14 +311,19 @@ export function Profiles({ id, label, title, intro, profiles, tc }) {
                   <p style={{ fontFamily: F, fontSize: "clamp(20px, 2vw, 26px)", fontWeight: 300, fontStyle: "italic", lineHeight: 1.4, letterSpacing: "-0.01em", margin: "28px 0 0", paddingLeft: 20, borderLeft: `2px solid ${a.line}` }}>{p.quote}</p>
                 </Reveal>
                 <Reveal delay={0.12}>
-                  <dl style={{ margin: 0 }}>
-                    {p.cards.map(([h, d]) => (
-                      <div key={h} className="row-line">
-                        <dt style={{ fontFamily: F, fontSize: 12, letterSpacing: 1.4, textTransform: "uppercase", color: a.text, fontWeight: 600, marginBottom: 4 }}>{h}</dt>
-                        <dd style={{ fontFamily: F, fontSize: 15, color: C.dim, lineHeight: 1.55, margin: 0 }}>{d}</dd>
-                      </div>
-                    ))}
-                  </dl>
+                  <button type="button" className="disclose" aria-expanded={!!open[p.key]} onClick={() => setOpen({ ...open, [p.key]: !open[p.key] })}>
+                    {open[p.key] ? ui.hideRefs : ui.showRefs}<span aria-hidden className="disclose-icon">{open[p.key] ? "−" : "+"}</span>
+                  </button>
+                  {open[p.key] && (
+                    <dl style={{ margin: 0 }}>
+                      {p.cards.map(([h, d]) => (
+                        <div key={h} className="row-line">
+                          <dt style={{ fontFamily: F, fontSize: 12, letterSpacing: 1.4, textTransform: "uppercase", color: a.text, fontWeight: 600, marginBottom: 4 }}>{h}</dt>
+                          <dd style={{ fontFamily: F, fontSize: 15, color: C.dim, lineHeight: 1.55, margin: 0 }}>{d}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                  )}
                 </Reveal>
               </div>
             </div>
@@ -313,11 +335,11 @@ export function Profiles({ id, label, title, intro, profiles, tc }) {
 }
 
 // ── Tech: data protection & security (dark block) ───────────────────────────
-export function Compliance({ c }) {
+export function Compliance({ c , ch }) {
   return (
-    <Panel id="compliance" tone="dark">
+    <Panel id="compliance" tone="dark" chapter={ch}>
       <Container>
-        <Reveal><Eyebrow color={C.gold}>{c.label}</Eyebrow></Reveal>
+        <Reveal><Eyebrow color={C.gold} n={ch?.n}>{c.label}</Eyebrow></Reveal>
         <Reveal delay={0.05}><H2>{c.title}</H2></Reveal>
         <Reveal delay={0.1}><Lead>{c.p}</Lead></Reveal>
         <div className="split-2">
@@ -344,7 +366,7 @@ export function Compliance({ c }) {
 }
 
 // ── Track: transformation / expertise block ─────────────────────────────────
-export function Expertise({ id, d, tc, image }) {
+export function Expertise({ id, d, tc, image , ch }) {
   const List = ({ title, items, color }) => (
     <div>
       <h3 style={{ fontFamily: F, fontSize: 22, fontWeight: 400, margin: "0 0 8px", color }}>{title}</h3>
@@ -354,9 +376,9 @@ export function Expertise({ id, d, tc, image }) {
     </div>
   );
   return (
-    <Panel id={id} tone="light">
+    <Panel id={id} tone="light" chapter={ch}>
       <Container>
-        <Reveal><Eyebrow color={tc.at}>{d.tLabel}</Eyebrow></Reveal>
+        <Reveal><Eyebrow color={tc.at} n={ch?.n}>{d.tLabel}</Eyebrow></Reveal>
         <Reveal delay={0.05}><H2>{d.tTitle}</H2></Reveal>
         <Reveal delay={0.1}><Lead>{d.tP}</Lead></Reveal>
       </Container>
@@ -385,11 +407,11 @@ export function Expertise({ id, d, tc, image }) {
   );
 }
 
-export function Services({ d, tc }) {
+export function Services({ d, tc , ch }) {
   return (
-    <Panel id="leistungen" tone="white">
+    <Panel id="leistungen" tone="white" chapter={ch}>
       <Container>
-        <Reveal><Eyebrow color={tc.at}>{d.sLabel}</Eyebrow></Reveal>
+        <Reveal><Eyebrow color={tc.at} n={ch?.n}>{d.sLabel}</Eyebrow></Reveal>
         <Reveal delay={0.05}><H2 style={{ marginBottom: 56 }}>{d.sTitle}</H2></Reveal>
         <ol style={{ listStyle: "none", margin: 0, padding: 0 }}>
           {d.serv.map((s, i) => (
@@ -408,11 +430,11 @@ export function Services({ d, tc }) {
   );
 }
 
-export function Network({ d, tc }) {
+export function Network({ d, tc , ch }) {
   return (
-    <Panel id="netzwerk" tone="warm">
+    <Panel id="netzwerk" tone="warm" chapter={ch}>
       <Container>
-        <Reveal><Eyebrow color={tc.at}>{d.netLabel}</Eyebrow></Reveal>
+        <Reveal><Eyebrow color={tc.at} n={ch?.n}>{d.netLabel}</Eyebrow></Reveal>
         <Reveal delay={0.05}><H2>{d.netTitle}</H2></Reveal>
         <Reveal delay={0.1}><Lead>{d.netP}</Lead></Reveal>
         <div className="cols-5">
@@ -429,11 +451,11 @@ export function Network({ d, tc }) {
   );
 }
 
-export function Process({ d, tc }) {
+export function Process({ d, tc , ch }) {
   return (
-    <Panel id="prozess" tone="light">
+    <Panel id="prozess" tone="light" chapter={ch}>
       <Container>
-        <Reveal><Eyebrow color={tc.at}>{d.pLabel}</Eyebrow></Reveal>
+        <Reveal><Eyebrow color={tc.at} n={ch?.n}>{d.pLabel}</Eyebrow></Reveal>
         <Reveal delay={0.05}><H2 style={{ marginBottom: 56 }}>{d.pTitle}</H2></Reveal>
         <ol className="proc" style={{ listStyle: "none", margin: 0, padding: 0 }}>
           {d.proc.map((s, i) => {
@@ -464,14 +486,14 @@ const fmtDate = (s, lang) => {
   return `${(MONTHS[lang] || MONTHS.en)[parseInt(m, 10) - 1]} ${y}`;
 };
 
-export function Insights({ t, lang, track, tc }) {
+export function Insights({ t, lang, track, tc , ch }) {
   const all = [...(track === "re" ? reNews : techNews)].sort((a, b) => String(b.date).localeCompare(String(a.date)));
   const [count, setCount] = useState(6);
   const ix = t.insights;
   return (
-    <Panel id="insights" tone="light">
+    <Panel id="insights" tone="light" chapter={ch}>
       <Container>
-        <Reveal><Eyebrow color={tc.at}>{ix.label}</Eyebrow></Reveal>
+        <Reveal><Eyebrow color={tc.at} n={ch?.n}>{ix.label}</Eyebrow></Reveal>
         <Reveal delay={0.05}><H2>{ix.title}</H2></Reveal>
         <Reveal delay={0.1}><Lead>{ix.sub}</Lead></Reveal>
         <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
@@ -481,6 +503,7 @@ export function Insights({ t, lang, track, tc }) {
                 <span style={{ fontFamily: F, fontSize: 13, color: C.muted }}>{fmtDate(n.date, lang)}</span>
                 <span>
                   <span style={{ display: "block", fontFamily: F, fontSize: "clamp(18px, 1.8vw, 22px)", fontWeight: 400, color: C.dark, lineHeight: 1.3, letterSpacing: "-0.01em" }}>{n.title}</span>
+                  <span style={{ display: "block", fontFamily: F, fontSize: 14, color: C.dim, lineHeight: 1.5, marginTop: 6 }}>{n.summary}</span>
                   <span style={{ display: "block", fontFamily: F, fontSize: 13, color: tc.at, fontWeight: 600, marginTop: 6 }}>{n.source}</span>
                 </span>
                 <span aria-hidden className="arrow" style={{ fontSize: 20, color: C.dark }}>↗</span>

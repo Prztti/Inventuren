@@ -3,7 +3,7 @@ import { Routes, Route, useLocation, useMatch } from "react-router-dom";
 import { TX, HTML_LANG } from "./content";
 import { C, F } from "./tokens";
 import { useStack } from "./ui";
-import { Nav, Footer, NotFound } from "./Layout";
+import { Nav, Footer, NotFound, ChapterRail } from "./Layout";
 import Home from "./Home";
 import Track from "./Track";
 import CookieConsent from "../CookieConsent";
@@ -143,6 +143,18 @@ li:last-child>.news-row{border-bottom:1px solid rgba(0,0,0,.1)}
 .logo-item img.dark{filter:grayscale(1) brightness(.55);opacity:.7}
 .marquee-words .logo-word{font-size:clamp(18px,2vw,26px)}
 
+/* chapter rail */
+.rail{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:90;display:flex;flex-direction:column;gap:2px;padding:10px 8px;border-radius:999px;background:rgba(245,244,241,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 6px 24px -12px rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:opacity .4s}
+.rail.is-on{opacity:1;pointer-events:auto}
+.rail-item{position:relative;display:flex;align-items:center;justify-content:center;width:30px;height:24px;text-decoration:none;font-family:${F};font-size:10.5px;font-weight:600;color:${C.muted};border-radius:999px;transition:color .3s,background .3s}
+.rail-item:hover,.rail-item.is-active{color:${C.dark}}
+.rail-item.is-active{background:#fff}
+.rail-name{position:absolute;right:40px;white-space:nowrap;font-size:12px;font-weight:600;letter-spacing:.4px;color:${C.dark};background:rgba(255,255,255,.92);padding:5px 10px;border-radius:999px;box-shadow:0 4px 16px -8px rgba(0,0,0,.3);opacity:0;transform:translateX(6px);transition:opacity .3s,transform .3s;pointer-events:none}
+.rail-item.is-active .rail-name,.rail-item:hover .rail-name{opacity:1;transform:none}
+/* disclosure */
+.disclose{display:inline-flex;align-items:center;gap:12px;font-family:${F};font-size:14px;font-weight:600;color:${C.dark};background:none;border:none;border-bottom:1px solid rgba(0,0,0,.2);padding:6px 0;cursor:pointer;margin-bottom:12px}
+.disclose-icon{font-size:18px;line-height:1;color:${C.muted}}
+
 /* timeline */
 .tl-legend{display:grid;grid-template-columns:1fr 64px 1fr;margin:0 0 28px;font-family:${F};font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:600}
 .tl-legend>span:first-child{justify-self:end;padding-right:36px}
@@ -167,6 +179,9 @@ li:last-child>.news-row{border-bottom:1px solid rgba(0,0,0,.1)}
 .nav-desk{display:flex}
 .nav-mob{display:none}
 
+@media (max-width:1280px){
+  .rail{display:none}
+}
 @media (max-width:1120px){
   .nav-desk{display:none}
   .nav-mob{display:flex}
@@ -249,6 +264,7 @@ export default function NewApp() {
       <style>{CSS}</style>
       <ScrollManager />
       <Nav t={t} lang={lang} setLang={setLang} track={track} links={links} />
+      <ChapterRail lang={lang} />
       <Routes>
         <Route path="/" element={<Home t={t} lang={lang} />} />
         <Route path="/tech" element={<Track key="tech" t={t} lang={lang} track="tech" />} />

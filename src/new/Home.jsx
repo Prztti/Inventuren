@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { C, F, TRACK } from "./tokens";
 import { Picture, Panel, Container, Reveal, Eyebrow } from "./ui";
-import { TeamCards, Regulated, Timeline, Clients } from "./sections";
+import { TeamCards, Regulated, References, Timeline, Clients } from "./sections";
+import { H2 } from "./ui";
 import { ContactSection } from "./Contact";
 
 function TrackTile({ to, img, overlay, eyebrow, label, sub, tags, cta, delay }) {
@@ -25,6 +26,7 @@ function TrackTile({ to, img, overlay, eyebrow, label, sub, tags, cta, delay }) 
 
 export default function Home({ t, lang }) {
   const h = t.home;
+  const ch = h.chapters.map((name, i) => ({ n: String(i + 1).padStart(2, "0"), name }));
   const navigate = useNavigate();
   const { hash } = useLocation();
   // Old share links used #tech / #re on the overview — send them to the real routes.
@@ -55,13 +57,10 @@ export default function Home({ t, lang }) {
         </Container>
       </Panel>
 
-      <Panel id="bereiche" tone="white" className="panel-tight">
+      <Panel id="bereiche" tone="white" className="panel-tight" chapter={ch[0]}>
         <Container wide>
-          <Reveal>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 16, flexWrap: "wrap", marginBottom: 28 }}>
-              <Eyebrow style={{ marginBottom: 0 }}>{h.selectTitle}</Eyebrow>
-            </div>
-          </Reveal>
+          <Reveal><Eyebrow n={ch[0].n}>{ch[0].name}</Eyebrow></Reveal>
+          <Reveal delay={0.05}><H2 style={{ fontSize: "clamp(28px, 3.6vw, 48px)", marginBottom: 32 }}>{h.selectTitle}</H2></Reveal>
           <div className="split-tiles">
             <TrackTile to="/tech" img={{ name: "hero-tech", widths: [800, 1400] }} overlay="linear-gradient(180deg, rgba(14,18,24,0.1) 0%, rgba(14,18,24,0.35) 45%, rgba(14,18,24,0.85) 100%)" eyebrow={t.ui.since15} {...h.tracks.tech} />
             <TrackTile to="/real-estate" img={{ name: "hero-re", widths: [800, 1280] }} overlay="linear-gradient(180deg, rgba(34,22,8,0.1) 0%, rgba(34,22,8,0.35) 45%, rgba(34,22,8,0.85) 100%)" eyebrow={t.ui.since06} {...h.tracks.re} delay={0.1} />
@@ -69,11 +68,12 @@ export default function Home({ t, lang }) {
         </Container>
       </Panel>
 
-      <Clients t={t} scope="home" id="kunden" />
-      <TeamCards t={t} />
-      <Regulated t={t} />
-      <Timeline t={t} lang={lang} />
-      <ContactSection t={t} tc={TRACK.tech} />
+      <Clients t={t} scope="home" id="kunden" title={ch[1].name} ch={ch[1]} />
+      <TeamCards t={t} ch={ch[2]} />
+      <Regulated t={t} ch={ch[3]} />
+      <References t={t} ch={ch[4]} />
+      <Timeline t={t} lang={lang} ch={ch[5]} />
+      <ContactSection t={t} tc={TRACK.tech} ch={ch[6]} />
     </main>
   );
 }
