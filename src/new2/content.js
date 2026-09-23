@@ -70,7 +70,7 @@ en: {
       { t: "Company Building & Capital", who: "David Brainin", d: "Incorporation, governance, go-to-market. €45m+ capital, €12m+ grants." },
       { t: "Legal & Compliance", who: "David Brainin", d: "Art. 9 GDPR, impact assessments, AI Act classification." },
     ],
-    telecom: { label: "Telecommunications law", claim: "Trained where data protection is strictest: in telecommunications law.", p: "Both partners have worked with telecom data for years — under the telecommunications laws of several countries, which are more detailed, stricter and more closely supervised than the GDPR alone." },
+    telecom: { label: "Telecommunications law", claim: "Schooled where the GDPR is only the baseline: in telecommunications law.", p: "Both partners have worked with telecom data in several countries for years — under confidentiality of communications, strict purpose limits and deletion duties beyond the GDPR." },
     fieldsLabel: "References",
     fields: [
       { t: "Health & Science", items: ["National health insurance Qatar (with McKinsey)", "European Stroke Organisation", "World Stroke Organization"] },
@@ -126,7 +126,7 @@ en: {
     ],
     comp: {
       label: "Data Protection & Security", title: "GDPR, telecom law, AI Act, ISO 27001 — from day one.",
-      p: "Legal assessment and technical implementation from one team — trained on the telecommunications laws of several countries, which are stricter and more closely supervised than the GDPR alone.",
+      p: "Legal assessment and technical implementation from one team — schooled in the telecommunications laws of several countries, where the GDPR is only the baseline.",
       cols: [
         { t: "Security & Architecture", who: "Philip Kügler", items: ["Security requirements per ISO 27001 and BSI and ITIL processes implemented in projects", "IAM & SSO: Keycloak, OIDC/SAML", "Secure international data transfer", "High availability, backup, failover", "Privacy by design and AI governance"] },
         { t: "Legal & Regulatory", who: "David Brainin", items: ["Telecommunications law in several countries, incl. the Austrian TKG", "8 years of GDPR practice across four industries", "Art. 9 GDPR: health data and consent", "Impact assessments for AI systems", "AI Act: risk classes, conformity, documentation", "Data transfers EU, MENA, ASEAN (Schrems II)"] },
@@ -245,7 +245,7 @@ de: {
       { t: "Company Building & Kapital", who: "David Brainin", d: "Gründung, Governance, Go-to-Market. Über 45 Mio. € Kapital, über 12 Mio. € Förderungen." },
       { t: "Recht & Compliance", who: "David Brainin", d: "Art. 9 DSGVO, Folgenabschätzung, AI-Act-Klassifizierung." },
     ],
-    telecom: { label: "Telekommunikationsrecht", claim: "Gelernt, wo Datenschutz am strengsten ist: im Telekommunikationsrecht.", p: "Beide Partner arbeiten seit Jahren mit Telekom-Daten – unter den Telekommunikationsgesetzen mehrerer Länder, die differenzierter, strenger und enger überwacht sind als die DSGVO allein." },
+    telecom: { label: "Telekommunikationsrecht", claim: "Gelernt, wo die DSGVO nur die Grundlage ist: im Telekommunikationsrecht.", p: "Beide Partner arbeiten seit Jahren mit Telekom-Daten in mehreren Ländern – unter Kommunikationsgeheimnis, strenger Zweckbindung und Löschpflichten, die über die DSGVO hinausgehen." },
     fieldsLabel: "Referenzen",
     fields: [
       { t: "Gesundheit & Wissenschaft", items: ["Nationale Krankenversicherung Katar (mit McKinsey)", "European Stroke Organisation", "World Stroke Organization"] },
@@ -301,7 +301,7 @@ de: {
     ],
     comp: {
       label: "Datenschutz & Sicherheit", title: "DSGVO, Telekom-Recht, AI Act, ISO 27001 – ab Tag eins.",
-      p: "Rechtliche Bewertung und technische Umsetzung aus einem Team – geschult am Telekommunikationsrecht mehrerer Länder, das strenger reguliert und enger überwacht ist als die DSGVO allein.",
+      p: "Rechtliche Bewertung und technische Umsetzung aus einem Team – geschult am Telekommunikationsrecht mehrerer Länder, in dem die DSGVO nur die Grundlage ist.",
       cols: [
         { t: "Sicherheit & Architektur", who: "Philip Kügler", items: ["Sicherheitsanforderungen nach ISO 27001 und BSI sowie ITIL-Prozesse in Projekten umgesetzt", "IAM & SSO: Keycloak, OIDC/SAML", "Sichere internationale Datenübertragung", "Hochverfügbarkeit, Backup, Failover", "Privacy by Design und AI-Governance"] },
         { t: "Recht & Regulierung", who: "David Brainin", items: ["Telekommunikationsrecht mehrerer Länder, u. a. TKG", "8 Jahre DSGVO-Praxis in vier Branchen", "Art. 9 DSGVO: Gesundheitsdaten und Einwilligung", "Folgenabschätzung für AI-Systeme", "AI Act: Risikoklassen, Konformität, Dokumentation", "Datentransfers EU, MENA, ASEAN (Schrems II)"] },
@@ -420,7 +420,7 @@ cn: {
       { t: "公司建设与资本", who: "David Brainin", d: "设立、治理、市场进入。4500万欧元以上资本，1200万欧元以上资助。" },
       { t: "法律与合规", who: "David Brainin", d: "GDPR第9条、影响评估、AI法案分级。" },
     ],
-    telecom: { label: "电信法", claim: "在数据保护最严格的领域历练：电信法。", p: "两位合伙人多年来在多个国家的电信法框架下处理电信数据——这些法律比GDPR本身更细致、更严格，监管也更密切。" },
+    telecom: { label: "电信法", claim: "在GDPR只是底线的领域历练：电信法。", p: "两位合伙人多年来在多国处理电信数据——遵循超越GDPR的通信保密、严格的目的限制与删除义务。" },
     fieldsLabel: "参考项目",
     fields: [
       { t: "医疗与科研", items: ["卡塔尔国家医疗保险（与麦肯锡）", "欧洲卒中组织", "世界卒中组织"] },
@@ -474,7 +474,7 @@ cn: {
     ],
     comp: {
       label: "数据保护与安全", title: "GDPR、电信法、AI法案、ISO 27001——从第一天起。",
-      p: "法律评估与技术实施由同一团队完成——历经多国电信法的锤炼，其监管比GDPR本身更严格、更密切。",
+      p: "法律评估与技术实施由同一团队完成——历经多国电信法的锤炼，在那里GDPR只是底线。",
       cols: [
         { t: "安全与架构", who: "Philip Kügler", items: ["在项目中落实ISO 27001与BSI安全要求及ITIL流程", "身份管理与单点登录：Keycloak、OIDC/SAML", "安全的国际数据传输", "高可用、备份、故障切换", "隐私设计与AI治理"] },
         { t: "法律与监管", who: "David Brainin", items: ["多国电信法，包括奥地利TKG", "四大行业8年GDPR实践", "GDPR第9条：健康数据与同意", "AI系统影响评估", "AI法案：风险等级、合规、文档", "欧盟、中东北非、东盟数据传输（Schrems II）"] },
