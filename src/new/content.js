@@ -20,7 +20,7 @@ en: {
   homeNav: [["team", "Team"], ["regulated", "Regulated Ventures"], ["track-record", "Track Record"], ["kontakt", "Contact"]],
   home: {
     brandSub: "Venture Building in AI & Real Estate",
-    brandP: "We build ventures in regulated markets — law, capital and technology from one team.",
+    brandP: "We build ventures in the most regulated markets, combining law, capital and technology in one team.",
     chapters: ["Areas", "Clients", "Team", "Expertise", "References", "Track Record", "Contact"],
     claim: ["Analysis.", "Execution.", "Impact."],
     selectTitle: "Two disciplines. One platform.", selectSub: "Choose your area",
@@ -50,6 +50,7 @@ en: {
   },
   regulated: {
     label: "Regulated Ventures", title: "Sensitive data needs more than software.",
+    focus: "GDPR in the most sensitive areas: personal telecom, health and education data.",
     intro: "A legal basis, a secure architecture, funding — and partners who have done it before.",
     pillars: [
       { t: "Company Building & Capital", who: "David Brainin", d: "Incorporation, governance, go-to-market. €45m+ capital, €12m+ grants." },
@@ -184,7 +185,7 @@ de: {
   homeNav: [["team", "Team"], ["regulated", "Regulated Ventures"], ["track-record", "Track Record"], ["kontakt", "Kontakt"]],
   home: {
     brandSub: "Venture Building in AI & Real Estate",
-    brandP: "Wir bauen Ventures in regulierten Märkten – mit Recht, Kapital und Technologie aus einem Team.",
+    brandP: "Wir bauen Ventures in den am stärksten regulierten Märkten – mit Recht, Kapital und Technologie aus einem Team.",
     chapters: ["Bereiche", "Kunden", "Team", "Kompetenz", "Referenzen", "Track Record", "Kontakt"],
     claim: ["Analysis.", "Execution.", "Impact."],
     selectTitle: "Zwei Disziplinen. Eine Plattform.", selectSub: "Bereich wählen",
@@ -214,6 +215,7 @@ de: {
   },
   regulated: {
     label: "Regulated Ventures", title: "Sensible Daten brauchen mehr als Software.",
+    focus: "DSGVO in den sensibelsten Bereichen: personenbezogene Telekom-, Gesundheits- und Bildungsdaten.",
     intro: "Rechtsgrundlage, sichere Architektur, Finanzierung – und Partner, die das schon gemacht haben.",
     pillars: [
       { t: "Company Building & Kapital", who: "David Brainin", d: "Gründung, Governance, Go-to-Market. €45m+ Kapital, €12m+ Förderungen." },
@@ -348,7 +350,7 @@ cn: {
   homeNav: [["team", "团队"], ["regulated", "受监管领域"], ["track-record", "发展历程"], ["kontakt", "联系"]],
   home: {
     brandSub: "AI 与房地产领域的 Venture Building",
-    brandP: "我们在受监管市场中打造创业项目——法律、资本与技术，由同一团队提供。",
+    brandP: "我们在监管最严格的市场中打造创业项目——法律、资本与技术，由同一团队提供。",
     chapters: ["领域", "客户", "团队", "能力", "参考", "历程", "联系"],
     claim: ["Analysis.", "Execution.", "Impact."],
     selectTitle: "两大领域，一个平台。", selectSub: "选择领域",
@@ -378,6 +380,7 @@ cn: {
   },
   regulated: {
     label: "受监管领域", title: "敏感数据需要的不只是软件。",
+    focus: "在最敏感的领域落实GDPR：个人电信、健康与教育数据。",
     intro: "法律基础、安全架构、资金保障——以及有经验的合作伙伴。",
     pillars: [
       { t: "公司建设与资本", who: "David Brainin", d: "设立、治理、市场进入。4500万欧元以上资本，1200万欧元以上资助。" },

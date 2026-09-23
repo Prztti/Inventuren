@@ -91,6 +91,7 @@ export function Regulated({ t, ch }) {
       <Container>
         <Reveal><Eyebrow color={C.gold} n={ch?.n}>{r.label}</Eyebrow></Reveal>
         <Reveal delay={0.05}><H2>{r.title}</H2></Reveal>
+        {r.focus && <Reveal delay={0.08}><p className="t-h3" style={{ color: C.gold, margin: "0 0 20px", maxWidth: 820 }}>{r.focus}</p></Reveal>}
         <Reveal delay={0.1}><Lead>{r.intro}</Lead></Reveal>
         <div className="cols-4">
           {r.pillars.map((p, i) => (
