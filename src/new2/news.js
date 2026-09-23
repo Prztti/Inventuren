@@ -30,8 +30,8 @@ export const reNews = [
 // Own articles (InVentures View), each on its own page under /insights/<slug>.
 export const articles = [
   { slug: "agentic-ai", track: "tech", date: "2026-09",
-    title: { de: "Die stille Disruption: Agentic AI ist im Einsatz – die Aufsicht hinkt nach", en: "The silent disruption: agentic AI is in use — oversight is lagging behind", cn: "无声的颠覆：智能体AI已投入使用，监管却相对滞后" },
-    teaser: { de: "Agenten im Einsatz, Governance-Lücken, AI Act seit August 2026 in Durchsetzung – und was Unternehmen jetzt tun sollten.", en: "Agents in use, governance gaps, the AI Act enforced since August 2026 — and what companies should do now.", cn: "智能体已投入使用、治理存在缺口、AI法案自2026年8月起执行——企业现在应采取的行动。" } },
+    title: { de: "Wann sich KI lohnt: Was die Forschung zeigt – und worauf es jetzt ankommt", en: "When AI pays off: what the research shows — and what matters now", cn: "AI何时带来回报：研究结论与当下关键" },
+    teaser: { de: "Produktivität, Softwareentwicklung, Kosten, Kontrolle und AI Act – was belegt ist und wie Unternehmen den Nutzen sicher heben.", en: "Productivity, software development, costs, oversight and the AI Act — what the evidence shows and how companies can capture the benefits safely.", cn: "生产力、软件开发、成本、人工监督与AI法案——研究证据以及企业如何稳妥获取收益。" } },
   { slug: "real-estate-after-the-correction", track: "re", date: "2026-09",
     title: { de: "Nach der Korrektur: Wo der Immobilienmarkt trotz steigender Zinsen Chancen bietet", en: "After the correction: where real estate still offers opportunities as rates rise again", cn: "调整之后：利率回升下房地产市场的机会" },
     teaser: { de: "Kapital kehrt zurück, die EZB erhöht wieder: Wohnen, Büro, Hotels und AI in der Immobilienwirtschaft im Herbst 2026.", en: "Capital returns while the ECB raises rates again: residential, office, hotels and AI in real estate in autumn 2026.", cn: "资本回流、欧洲央行再度加息：2026年秋季的住宅、办公、酒店与房地产AI。" } },

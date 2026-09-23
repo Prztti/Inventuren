@@ -21,6 +21,69 @@ function H3({ children, color = C.dark }) {
 }
 
 // ── AI ARTICLE ──────────────────────────────────────────────────────────────
+function Rules({ items }) {
+  return (
+    <ol style={{ margin: "0 0 20px", paddingLeft: 22, maxWidth: 680 }}>
+      {items.map(([h, d]) => (
+        <li key={h} className="t-body" style={{ color: TC.text, lineHeight: 1.7, marginBottom: 10 }}>
+          <strong style={{ fontWeight: 600 }}>{h}</strong> {d}
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+// Source list with links; `groups` = [[heading, [[text, url], …]], …]
+function Sources({ groups, note, color }) {
+  return (
+    <div style={{ marginTop: 40, paddingTop: 24, borderTop: "1px solid #EAE8E4", maxWidth: 720 }}>
+      {groups.map(([h, items]) => (
+        <div key={h} style={{ marginBottom: 16 }}>
+          <div className="t-small" style={{ fontWeight: 600, color, marginBottom: 6 }}>{h}</div>
+          <ul style={{ margin: 0, paddingLeft: 18 }}>
+            {items.map(([text, url]) => (
+              <li key={text} className="t-small" style={{ color: C.dim, marginBottom: 4 }}>
+                {url ? <a href={url} target="_blank" rel="noopener noreferrer" className="u-link" style={{ color: C.dim, textDecoration: "none" }}>{text}</a> : text}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+      {note && <p className="t-small" style={{ color: C.dim, margin: "12px 0 0" }}>{note}</p>}
+    </div>
+  );
+}
+
+const AI_SOURCES = (de) => [
+  [de ? "Begutachtete Studien" : "Peer-reviewed studies", [
+    ["Brynjolfsson, Li & Raymond (2025): Generative AI at Work. Quarterly Journal of Economics 140(2)", "https://doi.org/10.1093/qje/qjae044"],
+    ["Noy & Zhang (2023): Experimental evidence on the productivity effects of generative artificial intelligence. Science 381(6654)", "https://doi.org/10.1126/science.adh2586"],
+    ["Dell’Acqua et al. (2026): Navigating the Jagged Technological Frontier. Organization Science", "https://doi.org/10.1287/orsc.2025.21838"],
+    ["Cui, Demirer, Jaffe, Musolff, Peng & Salz (2026): The Effects of Generative AI on High-Skilled Work. Management Science", "https://doi.org/10.1287/mnsc.2025.00535"],
+    ["Vaccaro, Almaatouq & Malone (2024): When combinations of humans and AI are useful. Nature Human Behaviour 8", "https://doi.org/10.1038/s41562-024-02024-1"],
+    ["Brynjolfsson, Rock & Syverson (2021): The Productivity J-Curve. American Economic Journal: Macroeconomics 13(1)", "https://doi.org/10.1257/mac.20180386"],
+  ]],
+  [de ? "Preprints, Forschungsberichte und Daten" : "Preprints, research reports and data", [
+    ["Becker, Rush, Barnes & Rein (2025): Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity. Preprint", "https://arxiv.org/abs/2507.09089"],
+    ["METR (Februar 2026): We are Changing our Developer Productivity Experiment Design", "https://metr.org/blog/2026-02-24-uplift-update/"],
+    ["Challapally, Pease, Raskar & Chari (2025): The GenAI Divide: State of AI in Business 2025. " + (de ? "Vorläufiger Bericht" : "Preliminary report"), "https://airnd.center/v0.1_State_of_AI_in_Business_2025_Report.pdf"],
+    ["Stanford HAI (2025): AI Index Report 2025, " + (de ? "Kapitel 1" : "chapter 1"), "https://hai.stanford.edu/assets/files/hai_ai-index-report-2025_chapter1_final.pdf"],
+    ["Cottier et al. (2025): The rising costs of training frontier AI models. Preprint", "https://arxiv.org/abs/2405.21015"],
+    ["Gmyrek et al. (2025): Generative AI and Jobs: A Refined Global Index of Occupational Exposure. ILO Working Paper 140", "https://doi.org/10.54394/HETP0387"],
+    ["KPMG (" + (de ? "März" : "March") + " 2026): Global AI Pulse Survey", "https://kpmg.com/xx/en/media/press-releases/2026/03/kpmg-global-ai-pulse-survey.html"],
+    ["EY (September 2026): " + (de ? "Umfrage zur AI-Governance" : "AI governance survey"), "https://www.ey.com/en_us/newsroom/2026/09/ey-survey-finds-that-autonomous-ai-implementation-outpaces-oversight-yielding-an-ai-governance-gap"],
+    ["IBM (" + (de ? "Juli" : "July") + " 2026): Cost of a Data Breach Report 2026", "https://newsroom.ibm.com/2026-07-29-ibm-study-one-in-four-malicious-breaches-are-ai-enabled,-costing-companies-6-million-on-average"],
+    [(de ? "Europäische Kommission (Juli 2026): Durchsetzung des AI Act ab 2. August 2026" : "European Commission (July 2026): AI Act enforcement from 2 August 2026"), "https://digital-strategy.ec.europa.eu/en/news/commission-starts-enforcing-ai-act-rules-and-new-transparency-requirements-2-august"],
+    [(de ? "Europäisches Parlament (Mai 2026): Einigung zur Vereinfachung des AI Act" : "European Parliament (May 2026): agreement on simplifying the AI Act"), "https://www.europarl.europa.eu/news/en/press-room/20260427IPR42011/ai-act-deal-on-simplification-measures-ban-on-nudifier-apps"],
+    [(de ? "WHO/Europe (April 2026): KI im Gesundheitswesen der EU-Mitgliedstaaten" : "WHO/Europe (April 2026): AI in health care across EU Member States"), "https://www.who.int/europe/news/item/20-04-2026-new-who-europe-report-provides-first-ever-snapshot-of-ai-in-health-care-across-european-union-member-states"],
+    [(de ? "Statistik Austria (Juni 2026): IKT-Einsatz in Unternehmen 2025" : "Statistik Austria (June 2026): ICT usage in enterprises 2025"), "https://www.statistik.at/fileadmin/announcement/2026/06/20260624IKTU2025.pdf"],
+  ]],
+  [de ? "Unternehmensangaben" : "Company information", [
+    ["Klarna (" + (de ? "Februar" : "February") + " 2024): Klarna AI assistant handles two-thirds of customer service chats in its first month", "https://www.klarna.com/international/press/klarna-ai-assistant-handles-two-thirds-of-customer-service-chats-in-its-first-month/"],
+    ["Klarna Group plc (2026): " + (de ? "Geschäftsbericht (Form 20-F) 2025, S. 184" : "Annual report (Form 20-F) 2025, p. 184"), "https://s205.q4cdn.com/644747736/files/doc_financials/2025/q4/Klarna-Group-plc-20-F-2025.pdf#page=188"],
+  ]],
+];
+
 function AIArticle({ lang }) {
   const isDE = lang === "de";
   return (
@@ -37,8 +100,8 @@ function AIArticle({ lang }) {
 
       <h2 className="t-stat" style={{ color: C.dark, lineHeight: 1.2, margin: "0 0 12px", maxWidth: 720 }}>
         {isDE
-          ? "Die stille Disruption: Agentic AI ist im Einsatz – die Aufsicht hinkt nach"
-          : "The silent disruption: agentic AI is in use — oversight is lagging behind"}
+          ? "Wann sich KI lohnt: Was die Forschung zeigt – und worauf es jetzt ankommt"
+          : "When AI pays off: what the research shows — and what matters now"}
       </h2>
       <p style={{ ...LABEL, fontWeight: 500, color: C.dim, margin: "0 0 32px" }}>
         InVentures Advisory — September 2026
@@ -46,55 +109,105 @@ function AIArticle({ lang }) {
 
       <Body>
         {isDE
-          ? "Vor zweieinhalb Jahren galt LLM-Know-how als seltene Ressource; Unternehmen zahlten Prämien für Prompt Engineers und KI-Strategen. Im Herbst 2026 stellt sich eine andere Frage: nicht mehr, ob KI eingesetzt wird, sondern wer die Kontrolle behält, wenn Systeme eigenständig planen und handeln."
-          : "Two and a half years ago, LLM know-how was a rare commodity; companies paid premiums for prompt engineers and AI strategists. In autumn 2026 the question has changed: no longer whether AI is used, but who stays in control when systems plan and act on their own."}
+          ? "Vor zweieinhalb Jahren galt LLM-Know-how als seltene Ressource. Heute ist KI in vielen Unternehmen im Einsatz – und die Forschung liefert belastbare Antworten: Generative KI kann Arbeit spürbar beschleunigen und ihre Qualität verbessern. Der Nutzen stellt sich aber nicht bei jeder Aufgabe von selbst ein. Entscheidend sind die konkrete Tätigkeit, die Fähigkeiten des Systems und die Gestaltung der Arbeitsabläufe. Das ist eine gute Nachricht, denn alle drei lassen sich steuern."
+          : "Two and a half years ago, LLM know-how was a rare commodity. Today AI is in use at many companies — and research provides solid answers: generative AI can noticeably speed up work and improve its quality. But the benefit does not appear by itself for every task. What matters is the specific activity, the capabilities of the system and the design of the workflow. That is good news, because all three can be managed."}
       </Body>
-
-      <H3 color={C.silver}>{isDE ? "Vom Werkzeug zum Kollegen – zum Vorstand" : "From tool to colleague — to board member"}</H3>
 
       <Body>
         {isDE
-          ? "Die erste Welle der KI-Adoption – Copiloten, Chatbots, Zusammenfassungen – hat Routineaufgaben beschleunigt. Die zweite Welle, Agentic AI, ist qualitativ anders: Systeme, die eigenständig planen, ausführen, rückmelden und iterieren. Laut dem Global AI Pulse von KPMG (März 2026, 2.110 Führungskräfte) setzen 32 % der Unternehmen KI-Agenten bereits ein und skalieren sie, weitere 27 % steuern mehrere Agenten im Verbund; 74 % wollen KI selbst in einer Rezession als Investitionspriorität halten. McKinsey sieht das theoretische Potenzial, Tätigkeiten zu automatisieren, die 60–70 % der Arbeitszeit beanspruchen – ein Potenzial, keine gemessene Leistung. Nach unserer Einschätzung verkürzen Agenten heute vor allem die Entwurfsphase; die fachliche Prüfung bleibt beim Menschen."
-          : "The first wave of AI adoption — copilots, chatbots, summaries — accelerated routine tasks. The second wave, agentic AI, is qualitatively different: systems that independently plan, execute, report and iterate. According to KPMG's Global AI Pulse (March 2026, 2,110 executives), 32% of companies are already deploying and scaling AI agents and a further 27% orchestrate multiple agents; 74% intend to keep AI a top investment priority even in a recession. McKinsey sees the theoretical potential to automate activities that absorb 60–70% of working time — a potential, not a measured result. In our assessment, agents today mainly shorten the drafting stage; expert review stays with people."}
+          ? "Die entscheidende Frage lautet deshalb nicht, ob ein Unternehmen KI einführt, sondern: Verbessert das System den gesamten Arbeitsprozess – einschließlich Prüfung, Korrektur, Kosten und Verantwortung? Wer diese Frage sauber beantwortet, kann KI schneller und sicherer skalieren."
+          : "The decisive question is therefore not whether a company introduces AI, but: does the system improve the entire workflow — including review, correction, cost and accountability? Those who answer this question properly can scale AI faster and more safely."}
+      </Body>
+
+      <H3 color={C.silver}>{isDE ? "Der Nutzen ist belegt – unter klaren Bedingungen" : "The benefit is proven — under clear conditions"}</H3>
+
+      <Body>
+        {isDE
+          ? "Eine 2025 im Quarterly Journal of Economics veröffentlichte Studie untersuchte die schrittweise Einführung eines KI-Assistenten bei 5.172 Beschäftigten im Kundenservice: Die Zahl gelöster Anliegen pro Arbeitsstunde stieg im Schnitt um rund 15 %, am stärksten bei weniger erfahrenen Beschäftigten; bei den erfahrensten waren die Zeitgewinne gering, die Qualität ging leicht zurück. Die KI unterstützte dabei Menschen, die für das Gespräch verantwortlich blieben. In einem randomisierten Experiment mit 453 akademisch ausgebildeten Berufstätigen sank die Bearbeitungszeit abgegrenzter beruflicher Schreibaufgaben mit ChatGPT um durchschnittlich 40 %, während die bewertete Qualität um 18 % stieg (Science, 2023). Beide Studien messen bestimmte Aufgaben – nicht einen ganzen Arbeitstag und nicht die Wirkung auf Beschäftigung."
+          : "A study published in the Quarterly Journal of Economics in 2025 examined the staggered introduction of an AI assistant among 5,172 customer-support agents: issues resolved per hour rose by around 15% on average, most strongly among less experienced agents; for the most experienced, time savings were small and quality declined slightly. The AI supported people who remained responsible for the conversation. In a randomised experiment with 453 college-educated professionals, the time needed for defined professional writing tasks fell by 40% on average with ChatGPT, while rated quality rose by 18% (Science, 2023). Both studies measure specific tasks — not an entire working day and not the effect on employment."}
+      </Body>
+
+      <Body>
+        {isDE
+          ? "Wie sehr es auf die Passung ankommt, zeigt ein Experiment mit 758 Unternehmensberatern: Bei Aufgaben innerhalb der Fähigkeiten des Systems erledigten sie mit KI mehr Aufgaben, schneller und in höherer Qualität. Bei einer gezielt gewählten Aufgabe außerhalb dieser Grenze sank der Anteil korrekter Lösungen dagegen um rund 19 Prozentpunkte (Organization Science, 2026; Experiment mit GPT-4 aus dem Jahr 2023). Diese Grenze verschiebt sich mit jeder Modellgeneration – umso wertvoller ist es, sie für die eigenen Aufgaben zu kennen."
+          : "An experiment with 758 management consultants shows how much fit matters: on tasks within the system's capabilities, they completed more tasks, faster and at higher quality with AI. On a deliberately chosen task outside that frontier, however, the share of correct solutions fell by around 19 percentage points (Organization Science, 2026; experiment with GPT-4 in 2023). This frontier shifts with every model generation — which makes it all the more valuable to know it for your own tasks."}
+      </Body>
+
+      <Body>
+        {isDE
+          ? "Unternehmen setzen auf diesen Nutzen: Laut dem Global AI Pulse von KPMG (März 2026, 2.110 Führungskräfte) setzen 32 % KI-Agenten bereits ein und skalieren sie, weitere 27 % steuern mehrere Agenten im Verbund; 74 % wollen KI selbst in einer Rezession als Investitionspriorität halten."
+          : "Companies are acting on this: according to KPMG's Global AI Pulse (March 2026, 2,110 executives), 32% are already deploying and scaling AI agents and a further 27% orchestrate multiple agents; 74% intend to keep AI a top investment priority even in a recession."}
       </Body>
 
       <PullQuote
         color={C.silver}
         text={isDE
-          ? "Wer heute glaubt, KI sei ein Produktivitätstool, wird morgen feststellen, dass KI sein Unternehmen ist."
-          : "Those who today believe AI is a productivity tool will tomorrow discover that AI is their company."}
+          ? "KI lohnt sich dort, wo sie den ganzen Arbeitsprozess verbessert – nicht nur den ersten Entwurf."
+          : "AI pays off where it improves the whole workflow — not just the first draft."}
       />
 
-      <H3 color={C.silver}>{isDE ? "Die Governance-Lücke" : "The governance gap"}</H3>
+      <H3 color={C.silver}>{isDE ? "Softwareentwicklung: messen statt vermuten" : "Software development: measure, don't assume"}</H3>
 
       <Body>
         {isDE
-          ? "Mit dem Tempo wächst das Risiko. In einer EY-Befragung vom September 2026 unter 202 KI-Verantwortlichen börsennotierter US-Unternehmen mit mehr als einer Milliarde Dollar Umsatz haben 98 % formale AI-Governance-Richtlinien – doch 47 % räumen ein, sie bei dringenden Einführungen schon umgangen zu haben. Laut IBM Cost of a Data Breach Report 2026 war jeder vierte böswillige Datenvorfall KI-gestützt, 56 % mehr als im Vorjahr; solche Vorfälle kosteten im Schnitt 6 Mio. US-Dollar, rund eine Million mehr als der weltweite Durchschnitt. Mehr als 20 % der Unternehmen meldeten Angriffe auf ihre KI-Modelle oder -Anwendungen selbst. Unsere Folgerung: Richtlinien auf Papier reichen nicht. Freigaben, Protokollierung und Zugriffsrechte gehören in die Architektur."
-          : "Risk grows with speed. In an EY survey from September 2026 of 202 senior AI decision-makers at US-listed companies with more than a billion dollars in revenue, 98% have formal AI governance policies — yet 47% admit to having bypassed them for urgent deployments. According to IBM's Cost of a Data Breach Report 2026, one in four malicious breaches was AI-enabled, up 56% on the previous year; such breaches cost USD 6 million on average, around a million more than the global average. More than 20% of organisations reported attacks on their AI models or applications themselves. Our conclusion: policies on paper are not enough. Approvals, logging and access rights belong in the architecture."}
+          ? "Beim Programmieren gehen die Befunde auseinander – und genau das ist lehrreich. In einem randomisierten METR-Experiment aus dem Jahr 2025 bearbeiteten 16 erfahrene Entwicklerinnen und Entwickler 246 reale Aufgaben in ihnen vertrauten Open-Source-Projekten; mit den damaligen KI-Werkzeugen brauchten sie im Schnitt 19 % mehr Zeit (Preprint). Drei randomisierte Feldexperimente mit insgesamt 4.867 Entwicklern berichten dagegen rund 26 % mehr erledigte Aufgaben für jene, deren KI-Nutzung durch das Experiment ausgelöst wurde (Management Science, 2026). Ein METR-Folgeexperiment vom Februar 2026 deutete auf günstigere Effekte hin; die Forschenden halten diese Werte wegen Auswahl- und Messproblemen aber selbst nicht für belastbar."
+          : "In programming, the findings diverge — and that is instructive. In a randomised METR experiment from 2025, 16 experienced developers worked on 246 real tasks in open-source projects they knew well; with the AI tools of the time they needed 19% more time on average (preprint). Three randomised field experiments with a total of 4,867 developers, by contrast, report around 26% more completed tasks for those whose AI use was triggered by the experiment (Management Science, 2026). A METR follow-up in February 2026 pointed to more favourable effects, but the researchers themselves consider these figures unreliable because of selection and measurement problems."}
       </Body>
 
-      <H3 color={C.silver}>{isDE ? "Was seit 2. August 2026 gilt" : "What applies since 2 August 2026"}</H3>
-
       <Body>
         {isDE
-          ? "Seit 2. August 2026 setzen das AI Office der Europäischen Kommission und die nationalen Behörden den AI Act durch. Chatbots müssen offenlegen, dass Nutzer mit einer KI sprechen; Deepfakes sind zu kennzeichnen, KI-generierte Inhalte maschinenlesbar zu markieren. Für Hochrisiko-Anwendungen – etwa in Bildung, Beschäftigung, kritischer Infrastruktur, Strafverfolgung und Grenzmanagement – gelten die Pflichten nach der im Mai 2026 vereinbarten Vereinfachung ab 2. Dezember 2027, für Sicherheitskomponenten ab 2. August 2028. Im Gesundheitswesen ist KI längst Alltag: Laut WHO/Europe nutzen 74 % der EU-Mitgliedstaaten KI in der Diagnostik. Wer heute in Gesundheit, Bildung oder Verwaltung baut, gewinnt Zeit – aber keinen Aufschub für eine saubere Architektur."
-          : "Since 2 August 2026, the European Commission's AI Office and national authorities have been enforcing the AI Act. Chatbots must disclose that users are talking to an AI; deepfakes must be labelled and AI-generated content marked in machine-readable form. For high-risk uses — including education, employment, critical infrastructure, law enforcement and border management — the obligations apply from 2 December 2027 under the simplification agreed in May 2026, and from 2 August 2028 for safety components. In health care, AI is already routine: according to WHO/Europe, 74% of EU Member States use AI in diagnostics. Anyone building in health, education or public administration today gains time — but no reprieve from a clean architecture."}
+          ? "Die Studien messen unterschiedliche Aufgaben, Erfahrungsstufen, Werkzeuge und Erfolgsgrößen. Ihre Prozentwerte lassen sich nicht zu einer allgemeinen „KI-Produktivität“ verrechnen. Für ein Unternehmen zählt, ob eine Änderung nach Prüfung und Integration schneller und in ausreichender Qualität einsatzbereit ist – und genau das lässt sich im eigenen Team messen."
+          : "The studies measure different tasks, experience levels, tools and outcome measures. Their percentages cannot be combined into a general \"AI productivity\" figure. What counts for a company is whether a change is ready for use faster and in sufficient quality after review and integration — and that is exactly what can be measured in your own team."}
       </Body>
 
-      <H3 color={C.silver}>{isDE ? "Der blinde Fleck: kleine und mittlere Unternehmen" : "The blind spot: small and mid-sized companies"}</H3>
+      <H3 color={C.silver}>{isDE ? "Schlagzeilen ersetzen keinen Business Case" : "Headlines are no business case"}</H3>
 
       <Body>
         {isDE
-          ? "Börsennotierte Konzerne haben Boards, Investoren und Analysten, die auf AI-Readiness drängen. Kleine und mittlere private Unternehmen haben diesen externen Druck nicht. Laut Statistik Austria nutzten 2025 rund 30 % der österreichischen Unternehmen mit mindestens 10 Beschäftigten künstliche Intelligenz – 2023 waren es 10,8 %. Das ist mehr als der EU-Schnitt, aber weiterhin eine Minderheit. Wie schnell sich Arbeitsweisen ändern, zeigen frühe Beispiele: Harvey unterstützt Anwältinnen und Anwälte bei Allen & Overy und weiteren Magic-Circle-Kanzleien bei Vertragsanalyse und Due Diligence, jedes Ergebnis wird anwaltlich geprüft; Klarna meldete schon im Februar 2024, dass sein KI-Assistent im Kundenservice ein Arbeitsvolumen entsprechend 700 Vollzeitkräften erledigt. Nach unserer Einschätzung entstehen daraus binnen 12 bis 24 Monaten Vorsprünge, die schwer aufzuholen sind."
-          : "Listed corporations have boards, investors and analysts pushing AI readiness. Small and mid-sized private companies lack this external pressure. According to Statistik Austria, around 30% of Austrian companies with 10 or more employees used artificial intelligence in 2025, up from 10.8% in 2023 — above the EU average, but still a minority. Early examples show how fast ways of working change: Harvey supports lawyers at Allen & Overy and other Magic Circle firms in contract analysis and due diligence, with every output reviewed by a lawyer; as early as February 2024 Klarna reported that its AI assistant handled a customer-service workload equivalent to 700 full-time agents. In our assessment, this creates leads within 12 to 24 months that are hard to close."}
+          ? "Die oft wiederholte Aussage, 95 % aller KI-Projekte scheiterten, ist nicht als allgemeine Quote abgesichert. Der zugrunde liegende NANDA-Bericht von 2025 spricht davon, dass 95 % der Organisationen aus ihren GenAI-Vorhaben bislang keinen messbaren Ertrag sehen. Er stützt sich auf 52 Interviews, eine Befragung von 153 Führungskräften und über 300 öffentlich dokumentierte Initiativen, bezeichnet seine Ergebnisse selbst als vorläufig und wechselt zwischen Organisationen, Pilotprojekten und wirtschaftlichen Wirkungen als Bezugsgröße. Eine repräsentative Ausfallquote lässt sich daraus nicht ableiten."
+          : "The frequently repeated claim that 95% of all AI projects fail is not established as a general rate. The underlying NANDA report from 2025 states that 95% of organisations are so far seeing no measurable return from their GenAI initiatives. It draws on 52 interviews, a survey of 153 senior leaders and more than 300 publicly documented initiatives, describes its own findings as preliminary and switches between organisations, pilots and financial impact as its reference point. No representative failure rate can be derived from it."}
       </Body>
 
-      <H3 color={C.silver}>{isDE ? "Das Extremszenario: Geklonte Vorstände" : "The extreme scenario: cloned boards"}</H3>
+      <Body>
+        {isDE
+          ? "Auch Klarna taugt weder als Beleg für den vollständigen Ersatz von Menschen noch für ein Scheitern. Schon die Meldung vom Februar 2024 betonte, dass Kundinnen und Kunden weiterhin menschliche Ansprechpartner wählen konnten; die damals genannten 40 Mio. US-Dollar waren eine erwartete Ergebnisverbesserung für 2024. Im Geschäftsbericht für 2025 nennt Klarna rund 59 Mio. US-Dollar Kosteneinsparungen durch den Assistenten – bei weiterhin verfügbarem menschlichem Support. Das sind Unternehmensangaben, keine unabhängige Evaluation. Belastbar wird eine Aussage erst, wenn Kosten, Qualität und Leistung unter nachvollziehbaren Bedingungen verglichen werden."
+          : "Nor is Klarna evidence of either the complete replacement of people or of failure. Its announcement in February 2024 already stressed that customers could still choose to talk to a human; the USD 40 million mentioned at the time was an expected profit improvement for 2024. In its annual report for 2025, Klarna reports around USD 59 million in cost savings from the assistant — with human support still available. These are company figures, not an independent evaluation. A claim becomes robust only when cost, quality and performance are compared under transparent conditions."}
+      </Body>
+
+      <H3 color={C.silver}>{isDE ? "Wirtschaftlichkeit entsteht im ganzen Prozess" : "Economics are decided across the whole process"}</H3>
 
       <Body>
         {isDE
-          ? "Digital Twins von Führungskräften – trainiert auf Entscheidungshistorie, Kommunikation und strategische Präferenzen – werden als „Decision Prediction Engines“ ernsthaft diskutiert; Anbieter wie Synthesia und D-ID ermöglichen bereits überzeugende Video-Avatare von Executives. Die Forschung zu KI-gestützten Managemententscheidungen zeigt ein gemischtes Bild: Bei klar strukturierten Aufgaben entscheiden Sprachmodelle konsistenter als Menschen, bei mehrdeutigen zeigen sie ähnliche Verzerrungen. Der eigentliche Vorteil liegt nach unserer Einschätzung in der Unabhängigkeit von Tagesform und Müdigkeit – nicht in Objektivität an sich."
-          : "Digital twins of executives — trained on their decision history, communication and strategic preferences — are seriously discussed as \"decision prediction engines\"; providers such as Synthesia and D-ID already enable convincing video avatars of executives. Research on AI-supported management decisions paints a mixed picture: on clearly structured tasks, language models decide more consistently than people; in ambiguous ones, they show similar biases. In our assessment, the real advantage is independence from mood and fatigue — not objectivity as such."}
+          ? "KI-Nutzung ist dramatisch günstiger geworden: Laut Stanford AI Index 2025 sank der API-Preis für eine Leistung mindestens auf GPT-3.5-Niveau im Wissenstest MMLU zwischen November 2022 und Oktober 2024 um mehr als das 280-Fache – obwohl die Trainingskosten der Spitzenmodelle Schätzungen zufolge seit 2016 um rund das 2,4-Fache pro Jahr gestiegen sind. Der Nutzungspreis ist allerdings nur ein Teil der Rechnung: Datenaufbereitung, Integration, Schulung, Betrieb, menschliche Prüfung und Nacharbeit gehören ebenso dazu."
+          : "Using AI has become dramatically cheaper: according to the Stanford AI Index 2025, the API price for performance at least at GPT-3.5 level on the MMLU knowledge test fell more than 280-fold between November 2022 and October 2024 — even though frontier-model training costs are estimated to have grown by around 2.4-fold per year since 2016. The usage price, however, is only part of the bill: data preparation, integration, training, operation, human review and rework belong to it as well."}
+      </Body>
+
+      <Body>
+        {isDE
+          ? "Zeitgewinne können wertvoll sein, auch wenn sie nicht als geringere Personalkosten sichtbar werden – etwa, wenn sie zusätzliche Kapazität oder bessere Betreuung ermöglichen. Die Forschung zur Produktivitäts-J-Kurve erklärt zudem, warum neue Basistechnologien ergänzende Investitionen in Wissen und Organisation brauchen, bevor sich ihr Nutzen in Kennzahlen zeigt. Das erklärt Anlaufzeiten – es ist keine Garantie für jedes Projekt."
+          : "Time savings can be valuable even when they do not show up as lower staff costs — for example when they create additional capacity or better service. Research on the productivity J-curve also explains why new general-purpose technologies need complementary investment in knowledge and organisation before their benefit appears in the figures. That explains start-up periods — it is no guarantee for every project."}
+      </Body>
+
+      <H3 color={C.silver}>{isDE ? "Kontrolle, die wirkt" : "Oversight that works"}</H3>
+
+      <Body>
+        {isDE
+          ? "Menschliche Kontrolle ist wichtig – sie wirkt aber nicht automatisch. Eine Metaanalyse von 106 experimentellen Studien in Nature Human Behaviour fand: Kombinationen aus Mensch und KI schnitten im Schnitt besser ab als Menschen allein, aber schlechter als die jeweils bessere Einzelleistung von Mensch oder KI. Bei Entscheidungsaufgaben verloren die Kombinationen an Leistung, bei der Erstellung von Inhalten – dem Kerngebiet generativer KI – fielen die Gewinne deutlich größer aus. Die Studien stammen aus den Jahren 2020 bis Mitte 2023. Die Lehre daraus: Zusammenarbeit wirkt, wenn sie zur Aufgabe passt und bewusst gestaltet wird."
+          : "Human oversight matters — but it does not work automatically. A meta-analysis of 106 experimental studies in Nature Human Behaviour found that human–AI combinations performed better on average than humans alone, but worse than the better of the two working alone. In decision tasks the combinations lost performance, while in content creation — the core domain of generative AI — the gains were significantly larger. The studies date from 2020 to mid-2023. The lesson: collaboration works when it fits the task and is deliberately designed."}
+      </Body>
+
+      <Body>
+        {isDE
+          ? "Wer Ergebnisse prüfen soll, braucht Fachwissen, die richtigen Informationen, ausreichend Zeit und die Möglichkeit, eine fehlerhafte Ausgabe tatsächlich zu korrigieren oder zurückzuweisen. Für Systeme mit mehreren KI-Agenten gilt derselbe Maßstab: Jeder zusätzliche Agent sollte einen nachweisbaren Beitrag leisten, der seinen Koordinations-, Prüf- und Kostenaufwand rechtfertigt. Begrenzte Zuständigkeiten, überprüfbare Zwischenergebnisse und klare Übergaben an Menschen sind sinnvolle Gestaltungsprinzipien – eine universell überlegene Architektur gibt es nicht."
+          : "Anyone expected to review results needs expertise, the right information, enough time and the real ability to correct or reject a faulty output. The same standard applies to systems with several AI agents: each additional agent should make a demonstrable contribution that justifies its coordination, review and cost overhead. Limited responsibilities, verifiable intermediate results and clear hand-offs to people are sensible design principles — there is no universally superior architecture."}
+      </Body>
+
+      <H3 color={C.silver}>{isDE ? "Die Governance-Lücke schließen" : "Closing the governance gap"}</H3>
+
+      <Body>
+        {isDE
+          ? "Mit dem Tempo wächst das Risiko. In einer EY-Befragung vom September 2026 unter 202 KI-Verantwortlichen börsennotierter US-Unternehmen mit mehr als einer Milliarde Dollar Umsatz haben 98 % formale AI-Governance-Richtlinien – doch 47 % räumen ein, sie bei dringenden Einführungen schon umgangen zu haben. Laut IBM Cost of a Data Breach Report 2026 war jeder vierte böswillige Datenvorfall KI-gestützt, 56 % mehr als im Vorjahr; solche Vorfälle kosteten im Schnitt 6 Mio. US-Dollar, rund eine Million mehr als der weltweite Durchschnitt. Unsere Folgerung: Richtlinien auf Papier reichen nicht. Gehören Freigaben, Protokollierung und Zugriffsrechte zur Architektur, wird Governance vom Bremsklotz zur Voraussetzung für Tempo."
+          : "Risk grows with speed. In an EY survey from September 2026 of 202 senior AI decision-makers at US-listed companies with more than a billion dollars in revenue, 98% have formal AI governance policies — yet 47% admit to having bypassed them for urgent deployments. According to IBM's Cost of a Data Breach Report 2026, one in four malicious breaches was AI-enabled, up 56% on the previous year; such breaches cost USD 6 million on average, around a million more than the global average. Our conclusion: policies on paper are not enough. When approvals, logging and access rights are part of the architecture, governance turns from a brake into a precondition for speed."}
       </Body>
 
       <PullQuote
@@ -104,21 +217,69 @@ function AIArticle({ lang }) {
           : "The question is not whether AI makes decisions. The question is whose values are encoded in it."}
       />
 
+      <H3 color={C.silver}>{isDE ? "Was seit 2. August 2026 gilt" : "What applies since 2 August 2026"}</H3>
+
+      <Body>
+        {isDE
+          ? "Seit 2. August 2026 setzen das AI Office der Europäischen Kommission und die nationalen Behörden den AI Act durch. Chatbots müssen offenlegen, dass Nutzer mit einer KI sprechen; Deepfakes sind zu kennzeichnen, KI-generierte Inhalte maschinenlesbar zu markieren. Für Hochrisiko-Anwendungen – etwa in Bildung, Beschäftigung, kritischer Infrastruktur, Strafverfolgung und Grenzmanagement – gelten die Pflichten nach der im Mai 2026 vereinbarten Vereinfachung ab 2. Dezember 2027, für Sicherheitskomponenten ab 2. August 2028. Im Gesundheitswesen ist KI längst Alltag: Laut WHO/Europe nutzen 74 % der EU-Mitgliedstaaten KI in der Diagnostik. Wer heute in Gesundheit, Bildung oder Verwaltung baut, gewinnt Zeit – und kann sie für eine saubere Architektur nutzen."
+          : "Since 2 August 2026, the European Commission's AI Office and national authorities have been enforcing the AI Act. Chatbots must disclose that users are talking to an AI; deepfakes must be labelled and AI-generated content marked in machine-readable form. For high-risk uses — including education, employment, critical infrastructure, law enforcement and border management — the obligations apply from 2 December 2027 under the simplification agreed in May 2026, and from 2 August 2028 for safety components. In health care, AI is already routine: according to WHO/Europe, 74% of EU Member States use AI in diagnostics. Anyone building in health, education or public administration today gains time — and can use it for a clean architecture."}
+      </Body>
+
+      <H3 color={C.silver}>{isDE ? "Die Chance für den Mittelstand" : "The opportunity for mid-sized companies"}</H3>
+
+      <Body>
+        {isDE
+          ? "Laut Statistik Austria nutzten 2025 rund 30 % der österreichischen Unternehmen mit mindestens 10 Beschäftigten künstliche Intelligenz – 2023 waren es 10,8 %. Das ist mehr als der EU-Schnitt, aber weiterhin eine Minderheit. Für kleine und mittlere Unternehmen liegt darin eine Chance: Wer jetzt mit messbaren Anwendungsfällen beginnt, baut Erfahrung und Vorsprung auf."
+          : "According to Statistik Austria, around 30% of Austrian companies with 10 or more employees used artificial intelligence in 2025, up from 10.8% in 2023 — above the EU average, but still a minority. For small and mid-sized companies this is an opportunity: those who start now with measurable use cases build experience and a lead."}
+      </Body>
+
+      <Body>
+        {isDE
+          ? "Auch die Beschäftigungsfrage verdient Genauigkeit. Laut dem globalen Expositionsindex der Internationalen Arbeitsorganisation arbeitet rund jede vierte erwerbstätige Person in einem Beruf, der in Teilen durch generative KI verändert werden kann; 3,3 % der Beschäftigung fallen in die höchste Kategorie. Weil die meisten Berufe Aufgaben enthalten, die menschliches Zutun erfordern, hält die ILO die Veränderung von Tätigkeiten für die wahrscheinlichste Wirkung – nicht den Wegfall von Arbeitsplätzen. Ob Ersatz, Entlastung oder zusätzliche Arbeit entsteht, hängt davon ab, wie Unternehmen KI einführen."
+          : "The employment question also deserves precision. According to the International Labour Organization's global exposure index, around one in four workers is in an occupation with some exposure to generative AI; 3.3% of employment falls into the highest category. Because most occupations include tasks that require human input, the ILO sees the transformation of jobs — not job loss — as the most likely impact. Whether AI replaces, relieves or creates additional work depends on how companies introduce it."}
+      </Body>
+
       <H3 color={C.silver}>{isDE ? "Was jetzt zu tun ist" : "What to do now"}</H3>
 
       <Body>
         {isDE
-          ? "InVentures begleitet Unternehmen bei der strukturierten AI-Readiness-Analyse: welche Prozesse durch KI automatisierbar sind, welche human-in-the-loop bleiben müssen und wo gezielte Adoption echte Marktvorteile schafft. Dazu gehört jetzt die Einordnung nach dem AI Act – bevor die Hochrisiko-Pflichten Ende 2027 greifen – und eine Architektur, in der Freigaben, Protokollierung und Datenschutz von Beginn an mitgebaut sind. Unsere Schule dafür ist das Telekommunikationsrecht, das seit Jahren strenger ist als die DSGVO allein. Wir arbeiten nicht mit Hype – wir arbeiten mit Szenarien, Timelines und messbaren Ergebnissen."
-          : "InVentures accompanies companies through structured AI readiness analysis: which processes can be automated by AI, which must remain human-in-the-loop, and where targeted adoption creates genuine market advantages. This now includes classification under the AI Act — before the high-risk obligations apply at the end of 2027 — and an architecture with approvals, logging and data protection built in from the start. Our school for this is telecommunications law, which has been stricter than the GDPR alone for years. We don't work with hype — we work with scenarios, timelines and measurable outcomes."}
+          ? "Aus der Forschung lassen sich fünf praktische Prüfregeln ableiten. Mit ihnen setzen wir Projekte auf:"
+          : "Five practical checks can be derived from the research. We use them to set up projects:"}
       </Body>
 
-      <div style={{ marginTop: 16 }}>
-        <span className="t-small" style={{ color: C.silver }}>
-          {isDE
-            ? "Quellen: KPMG, Global AI Pulse Survey (März 2026); EY, Umfrage zur AI-Governance (September 2026); IBM, Cost of a Data Breach Report 2026 (Juli 2026); Europäische Kommission, Durchsetzung des AI Act ab 2. August 2026 (Juli 2026); Europäisches Parlament, Einigung zur Vereinfachung des AI Act (Mai 2026); WHO/Europe, KI im Gesundheitswesen der EU-Mitgliedstaaten (April 2026); Statistik Austria, IKT-Einsatz in Unternehmen 2025 (Juni 2026); McKinsey Global Institute, The Economic Potential of Generative AI (2023); Allen & Overy, Partnerschaft mit Harvey (2023); Klarna, Pressemitteilung zum KI-Assistenten (Februar 2024); Chen et al., A Manager and an AI Walk into a Bar, Manufacturing & Service Operations Management (2025). Aussagen „nach unserer Einschätzung“ sind Bewertungen von InVentures."
-            : "Sources: KPMG, Global AI Pulse Survey (March 2026); EY, AI governance survey (September 2026); IBM, Cost of a Data Breach Report 2026 (July 2026); European Commission, AI Act enforcement from 2 August 2026 (July 2026); European Parliament, agreement on simplifying the AI Act (May 2026); WHO/Europe, AI in health care across EU Member States (April 2026); Statistik Austria, ICT usage in enterprises 2025 (June 2026); McKinsey Global Institute, The Economic Potential of Generative AI (2023); Allen & Overy, Harvey partnership (2023); Klarna, press release on its AI assistant (February 2024); Chen et al., A Manager and an AI Walk into a Bar, Manufacturing & Service Operations Management (2025). Statements marked \"in our assessment\" are InVentures' own views."}
-        </span>
-      </div>
+      <Rules items={isDE ? [
+        ["Anwendungsfall eingrenzen.", "Vorab festlegen, welche Aufgabe das System übernimmt und woran ein korrektes Ergebnis erkennbar ist."],
+        ["Mit dem bisherigen Verfahren vergleichen.", "Möglichst vergleichbare Aufgaben und Gruppen untersuchen; Veränderungen an Personal oder Prozessen mitberücksichtigen."],
+        ["Die vollständige Bearbeitung erfassen.", "Vorbereitung, Prüfung, Rückfragen und Korrekturen ebenso messen wie die eigentliche Erstellung."],
+        ["Qualität und Kosten gemeinsam bewerten.", "Etwa Kosten pro korrekt gelöstem Kundenanliegen oder pro abgenommener Softwareänderung. Tokenverbrauch und Textmenge messen Aktivität, nicht Nutzen."],
+        ["Nach wesentlichen Änderungen neu prüfen.", "Neue Modelle, Aufgaben oder Abläufe können frühere Ergebnisse verändern."],
+      ] : [
+        ["Narrow the use case.", "Define up front which task the system takes on and how a correct result can be recognised."],
+        ["Compare with the previous process.", "Examine tasks and groups that are as comparable as possible; account for changes in staff or processes."],
+        ["Capture the full effort.", "Measure preparation, review, follow-up questions and corrections as well as the actual creation."],
+        ["Assess quality and cost together.", "For example, cost per correctly resolved customer issue or per accepted software change. Token consumption and text volume measure activity, not value."],
+        ["Re-test after significant changes.", "New models, tasks or workflows can change earlier results."],
+      ]} />
+
+      <Body>
+        {isDE
+          ? "Diese Regeln sind eine praktische Ableitung aus der Forschung, kein einheitlich validierter Standard. Dazu gehört jetzt die Einordnung nach dem AI Act – bevor die Hochrisiko-Pflichten Ende 2027 greifen – und eine Architektur, in der Freigaben, Protokollierung und Datenschutz von Beginn an mitgebaut sind. Unsere Schule dafür ist das Telekommunikationsrecht, das seit Jahren strenger ist als die DSGVO allein."
+          : "These checks are a practical derivation from the research, not a uniformly validated standard. They now go hand in hand with classification under the AI Act — before the high-risk obligations apply at the end of 2027 — and with an architecture that has approvals, logging and data protection built in from the start. Our school for this is telecommunications law, which has been stricter than the GDPR alone for years."}
+      </Body>
+
+      <Body>
+        {isDE
+          ? "Eine tragfähige KI-Strategie beginnt mit überprüfbaren Verbesserungen konkreter Arbeit. Bleiben sie im vollständigen Prozess bestehen, ist das die Grundlage für den nächsten Automatisierungsschritt. Wir arbeiten nicht mit Hype – wir arbeiten mit Szenarien, Timelines und messbaren Ergebnissen."
+          : "A sustainable AI strategy starts with verifiable improvements to concrete work. If they hold across the whole process, they are the basis for the next step in automation. We don't work with hype — we work with scenarios, timelines and measurable outcomes."}
+      </Body>
+
+      <Sources
+        color={C.silver}
+        groups={AI_SOURCES(isDE)}
+        note={isDE
+          ? "Stand: 23. September 2026. Quellenbasierte Einordnung, kein systematischer Literaturreview. Die Kernaussagen stützen sich auf begutachtete Studien und eine Metaanalyse; Preprints, Berichte und Unternehmensangaben sind als solche gekennzeichnet. Veröffentlichungsjahr und untersuchte Technologie können auseinanderliegen – historische Effekte sind keine Leistungswerte aktueller Systeme. Aussagen „unsere Folgerung“ und Schlussfolgerungen zu Vorgehen und Architektur sind Bewertungen von InVentures."
+          : "As of 23 September 2026. A source-based assessment, not a systematic literature review. The core statements rest on peer-reviewed studies and a meta-analysis; preprints, reports and company figures are marked as such. Publication year and the technology studied can differ — historical effects are not performance figures of current systems. \"Our conclusion\" and conclusions on approach and architecture are InVentures' own assessments."}
+      />
     </div>
   );
 }
