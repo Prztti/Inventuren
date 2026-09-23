@@ -255,6 +255,35 @@ function AIArticle({ lang }) {
 }
 
 // ── RE ARTICLE ──────────────────────────────────────────────────────────────
+const RE_SOURCES = (de) => [
+  [de ? "Studie" : "Peer-reviewed study", [
+    ["Eichholtz, Kok & Sun (2026): The impact of minimum energy performance standards on the commercial real estate market. Nature Communications 17", "https://doi.org/10.1038/s41467-026-70684-w"],
+  ]],
+  [de ? "Notenbanken und amtliche Statistik" : "Central banks and official statistics", [
+    [(de ? "EZB (10. September 2026): Geldpolitische Beschlüsse" : "ECB (10 September 2026): Monetary policy decisions"), "https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp260910~314e508016.en.html"],
+    [(de ? "OeNB (April 2026): Finanzmarktstabilität, Pressemitteilung" : "OeNB (April 2026): Financial stability, press release"), "https://www.oenb.at/Presse/Pressearchiv/2026/20260422.html"],
+    [(de ? "OeNB (Juli 2026): Neuer Preisindex für Gewerbeimmobilien" : "OeNB (July 2026): New commercial property price index"), "https://www.oenb.at/Presse/oenb-blog/2026/2026-07-22-neuer-preisindex-fuer-mehr-transparenz-am-oesterreichischen-gewerbeimmobilienmarkt.html"],
+    [(de ? "Statistik Austria (Jänner 2026): Nächtigungen 2025" : "Statistics Austria (January 2026): Overnight stays 2025"), "https://www.statistik.at/fileadmin/announcement/2026/01/20260130AnkuenfteNaechtigungenDezember2025.pdf"],
+    [(de ? "Statistik Austria: Ankünfte und Nächtigungen" : "Statistics Austria: Arrivals and overnight stays"), "https://www.statistik.at/statistiken/tourismus-und-verkehr/tourismus/beherbergung/ankuenfte-naechtigungen"],
+  ]],
+  [de ? "Recht" : "Law", [
+    [(de ? "Richtlinie (EU) 2024/1275 über die Gesamtenergieeffizienz von Gebäuden (Neufassung)" : "Directive (EU) 2024/1275 on the energy performance of buildings (recast)"), de ? "https://eur-lex.europa.eu/eli/dir/2024/1275/oj/deu" : "https://eur-lex.europa.eu/eli/dir/2024/1275/oj/eng"],
+    [(de ? "Europäische Kommission (Juli 2026): Vertragsverletzungsverfahren zur Gebäuderichtlinie" : "European Commission (July 2026): Infringement procedures on the buildings directive"), "https://energy.ec.europa.eu/news/commission-calls-eu-countries-transpose-reinforced-rules-energy-performance-buildings-2026-07-15_en"],
+    [(de ? "Sozialministerium: Neuerungen im Mietrecht ab 1. 1. 2026" : "Austrian Ministry of Social Affairs: Changes to rental law from 1 January 2026"), "https://www.konsumentenfragen.at/konsumentenfragen/Bauen__Wohnen_und_Versorgungsleistungen/Wohnen/Rund_um_die_Miete/Neuerungen-im-Mietrecht-ab-1.1.2026.html"],
+  ]],
+  [de ? "Marktberichte und Befragungen" : "Market reports and surveys", [
+    ["CBRE (" + (de ? "Juli" : "July") + " 2026): European Real Estate Investment Figures Q2 2026", "https://www.cbre.com/insights/figures/european-real-estate-investment-figures-q2-2026"],
+    ["JLL (August 2026): EMEA living investment Q2 2026", "https://www.jll.com/en-uk/newsroom/emea-living-investment-jumps-in-second-quarter"],
+    ["EHL (2026): Investment Marktupdate H1 2026", "https://publikationen.ehl.at/view/309470442/"],
+    ["EHL (Juli 2026): Wiener Wohnungsmarkt Marktupdate H1 2026", "https://publikationen.ehl.at/view/114388338"],
+    ["CBRE Austria (September 2026): Büromarktbericht Österreich 2026", "https://www.cbre.at/insights/figures/b%C3%BCromarktbericht-%C3%B6sterreich-2026"],
+    ["CBRE Austria (Juni 2026): Hotelmarktbericht Wien 2026", "https://www.cbre.at/insights/figures/hotelmarktbericht-wien-2026"],
+    ["Cushman & Wakefield (" + (de ? "März" : "March") + " 2026): " + (de ? "Hotelinvestments Europa 2025, vorläufig" : "European hotel investment 2025, preliminary"), "https://www.cushmanwakefield.com/en/germany/news/2026/03/hotel-investment-emea"],
+    ["CBRE (" + (de ? "Mai" : "May") + " 2026): European Hotel Investor Intentions Survey 2026", "https://www.cbre.com/insights/reports/european-hotel-investor-intentions-survey-2026"],
+    ["RICS (August 2026): AI in commercial property and construction report 2026", "https://www.rics.org/news-insights/ai-in-commercial-property-and-construction-report-2026"],
+  ]],
+];
+
 function REArticle({ lang }) {
   const isDE = lang === "de";
   return (
@@ -271,8 +300,8 @@ function REArticle({ lang }) {
 
       <h2 className="t-stat" style={{ color: C.dark, lineHeight: 1.2, margin: "0 0 12px", maxWidth: 720 }}>
         {isDE
-          ? "Nach der Korrektur: Wo der Immobilienmarkt trotz steigender Zinsen Chancen bietet"
-          : "After the correction: where real estate still offers opportunities as rates rise again"}
+          ? "Nach der Korrektur: Wo der Immobilienmarkt in den nächsten 24 Monaten Chancen bietet"
+          : "After the correction: where real estate offers opportunities over the next 24 months"}
       </h2>
       <p style={{ ...LABEL, fontWeight: 500, color: C.dim, margin: "0 0 32px" }}>
         InVentures Advisory — September 2026
@@ -280,77 +309,116 @@ function REArticle({ lang }) {
 
       <Body>
         {isDE
-          ? "Zwischen 2022 und 2024 hat der europäische Immobilienmarkt eine der schärfsten Bewertungskorrekturen der Nachkriegszeit durchlaufen: Der europäische Gewerbeimmobilien-Preisindex von Green Street lag 2024 rund 25 % unter seinem Höchststand von 2022, deutsche Gewerbeimmobilien verloren laut VDP-Index rund 17 %. Seither kehrt das Kapital zurück. CBRE zählte im zweiten Quartal 2026 europaweit 59,1 Mrd. € Investitionen, 10 % mehr als im Vorjahr; Wohnen ist seit drei Quartalen das aktivste Segment. In EMEA flossen laut JLL 17,4 Mrd. € in Wohnimmobilien – das höchste Quartalsvolumen seit 2022."
-          : "Between 2022 and 2024, the European real estate market went through one of the sharpest valuation corrections since the post-war period: Green Street's pan-European commercial property price index stood around 25% below its 2022 peak in 2024, and German commercial property lost roughly 17% according to the VDP index. Since then, capital has been returning. CBRE counted €59.1bn of European investment in the second quarter of 2026, 10% more than a year earlier; living has been the most active sector for three quarters. According to JLL, €17.4bn went into EMEA living assets — the highest quarterly volume since 2022."}
+          ? "Die Preiskorrektur nach der Zinswende ist in Österreich weitgehend verarbeitet. Laut dem neuen Gewerbeimmobilien-Preisindex der OeNB fielen die Preise von 2022 bis Ende 2024 um rund 10\u00a0% und blieben 2025 nahezu stabil. Doch die Erholung verläuft ungleich. Europaweit stiegen die Immobilieninvestitionen im zweiten Quartal 2026 um 10\u00a0% auf 59,1\u00a0Mrd.\u00a0€ (CBRE). In Österreich dagegen lag das Volumen im ersten Halbjahr mit 1,15\u00a0Mrd.\u00a0€ praktisch auf dem Niveau des Vorjahres (EHL)."
+          : "In Austria, the price correction after the interest-rate turn has largely worked its way through. According to the OeNB's new commercial property price index, prices fell by around 10% from 2022 to the end of 2024 and held almost steady in 2025. But the recovery is uneven. Across Europe, real estate investment rose by 10% to €59.1 billion in the second quarter of 2026 (CBRE). In Austria, by contrast, first-half volume of €1.15 billion was practically unchanged on the previous year (EHL)."}
       </Body>
 
       <Body>
         {isDE
-          ? "Doch die Finanzierung wird wieder teurer. Die EZB hat am 10. September 2026 die Leitzinsen um 0,25 Prozentpunkte angehoben; die Inflation dürfte wegen hoher Energiepreise noch länger über 2 % liegen und erst gegen Ende 2027 zum Ziel zurückkehren. Gleichzeitig beobachtet die OeNB die Banken genau: Gewerbeimmobilien machen 43 % der Unternehmenskredite österreichischer Banken aus, die Quote notleidender Kredite in diesem Segment stieg auf 8,3 %. Nach unserer Einschätzung bleibt das Einstiegsfenster offen – aber vor allem für Käufer mit starker Eigenkapitalbasis und einer Finanzierung, die auch höhere Zinsen trägt."
-          : "Financing, however, is becoming more expensive again. On 10 September 2026 the ECB raised its key interest rates by 0.25 percentage points; because of high energy prices, inflation is expected to stay above 2% for some time and to return to target only towards the end of 2027. At the same time, the Austrian National Bank is watching lenders closely: commercial real estate accounts for 43% of Austrian banks' corporate loans, and the share of non-performing loans in this segment has risen to 8.3%. In our assessment, the entry window remains open — but mainly for buyers with a strong equity base and financing that can carry higher rates."}
+          ? "Auch die Schlagzeilen über zurückkehrendes Kapital verdienen einen zweiten Blick. Im Wohnsegment stiegen die Investitionen in Europa, dem Nahen Osten und Afrika im selben Quartal um 49\u00a0% – die Zahl der Transaktionen sank aber um 19\u00a0% (JLL). Das Wachstum tragen wenige große Abschlüsse, nicht ein breiter Markt. Daraus folgt unsere zentrale These für die nächsten 24 Monate: Es beginnt keine allgemeine Aufwärtsbewegung, sondern eine Phase der Auslese. Chancen entstehen dort, wo Cashflow, Rechtsrahmen und Finanzierung zusammenpassen."
+          : "Headlines about returning capital also deserve a second look. In residential, investment across Europe, the Middle East and Africa rose by 49% in the same quarter — but the number of transactions fell by 19% (JLL). The growth is carried by a few large deals, not by a broad market. This leads to our central thesis for the next 24 months: what lies ahead is not a general upswing but a phase of selection. Opportunities arise where cash flow, legal framework and financing fit together."}
       </Body>
 
-      <H3 color={C.gold}>{isDE ? "Wohnimmobilien: Die Nachfrage übersteigt das Angebot weiter" : "Residential: demand continues to outstrip supply"}</H3>
+      <H3 color={C.gold}>{isDE ? "Finanzierung: kein Rückenwind von den Zinsen" : "Financing: no tailwind from interest rates"}</H3>
 
       <Body>
         {isDE
-          ? "In Wien schrumpft das Neubauvolumen deutlich. EHL Immobilien beziffert die Fertigstellungen 2025 auf 9.688 Einheiten – erstmals seit rund zehn Jahren unter 10.000 und 32 % weniger als 2023; 2026 werden nur noch rund 60 % des Niveaus von 2023 erreicht. EHL erwartet für 2026 Mietsteigerungen von durchschnittlich sieben bis acht Prozent, CBRE Spitzenmieten auf Rekordniveau von 20,30 € pro Quadratmeter. Für Investoren heißt das aus unserer Sicht: Bestandsimmobilien mit Repositionierungspotenzial können risikoadjustierte Renditen bieten, die Neubauprojekte kaum erreichen – wenn Lage, Zustand und Einstiegspreis stimmen."
-          : "In Vienna, new-build volumes are shrinking markedly. EHL Immobilien puts 2025 completions at 9,688 units — the first figure below 10,000 in around a decade and 32% fewer than in 2023; in 2026 completions will reach only around 60% of the 2023 level. EHL expects average rent increases of seven to eight percent in 2026, and CBRE expects prime rents to hit a record €20.30 per square metre. In our view, existing stock with repositioning potential can therefore offer risk-adjusted returns that new-build projects will struggle to match — provided location, condition and entry price are right."}
+          ? "Die Zinswende ist keine Einbahnstraße. Am 10.\u00a0September 2026 hob die EZB ihre Leitzinsen um 0,25 Prozentpunkte an; der Einlagensatz liegt seit 16.\u00a0September bei 2,50\u00a0%. Ihre Fachleute erwarten 3,0\u00a0% Inflation für 2026 und 2,5\u00a0% für 2027, auf einen Zinspfad legt sich die Notenbank nicht fest. Wer ein Investment auf sinkende Zinsen baut, baut auf eine Annahme, die die EZB selbst nicht trifft."
+          : "The rate turn is not a one-way street. On 10 September 2026 the ECB raised its key interest rates by 0.25 percentage points; since 16 September the deposit rate has stood at 2.50%. Its staff expect inflation of 3.0% in 2026 and 2.5% in 2027, and the central bank does not commit to a rate path. Anyone building an investment on falling rates is building on an assumption the ECB itself does not make."}
+      </Body>
+
+      <Body>
+        {isDE
+          ? "Zugleich steigt das Kreditrisiko in den Bankbilanzen. Gewerbeimmobilien machen 43\u00a0% der Unternehmenskredite österreichischer Banken aus. Der Anteil notleidender Kredite in diesem Segment stieg binnen eines Jahres von 6,3\u00a0% auf 8,3\u00a0%, im gewerblichen Wohnen auf über 14\u00a0% (OeNB, Stand Ende 2025). Für die nächsten zwei Jahre heißt das: Anschlussfinanzierungen werden zum Nadelöhr – und eigenkapitalstarke Käufer dürften Gelegenheiten dort finden, wo Eigentümer refinanzieren müssen, es aber nicht können."
+          : "At the same time, credit risk on bank balance sheets is rising. Commercial real estate accounts for 43% of Austrian banks' corporate loans. The share of non-performing loans in this segment rose within one year from 6.3% to 8.3%, and to over 14% in commercial residential (OeNB, end-2025). For the next two years this means refinancing becomes the bottleneck — and equity-rich buyers are likely to find opportunities where owners have to refinance but cannot."}
+      </Body>
+
+      <H3 color={C.gold}>{isDE ? "Wohnen: knappes Angebot, gedeckelte Mieten" : "Residential: scarce supply, capped rents"}</H3>
+
+      <Body>
+        {isDE
+          ? "Am Wiener Wohnungsmarkt öffnet sich eine Schere. Auf der einen Seite schrumpft das Angebot: EHL zählte 2025 rund 9.250 fertiggestellte Wohnungen und erwartet für 2026 nur noch rund 8.300. Auf der anderen Seite begrenzt das Mietrecht seit Jänner 2026 die Wertsicherung von Wohnungsmieten, auch in bestehenden Verträgen: Richtwert- und Kategoriemieten dürfen 2026 um höchstens 1\u00a0% und 2027 um höchstens 2\u00a0% steigen; bei den übrigen Verträgen wird Inflation bis 3\u00a0% voll, darüber nur zur Hälfte weitergegeben."
+          : "In Vienna's housing market, a gap is opening. On one side, supply is shrinking: EHL counted around 9,250 completed homes in 2025 and expects only around 8,300 in 2026. On the other, since January 2026 Austrian rental law has limited the indexation of residential rents, including in existing contracts: regulated rents (Richtwert and Kategorie) may rise by at most 1% in 2026 and 2% in 2027; for other contracts, inflation is passed on in full up to 3%, and only by half above that."}
+      </Body>
+
+      <Body>
+        {isDE
+          ? "Neuvermietungen dürften mit der Knappheit teurer werden, laufende Mieten steigen nur noch gebremst. Der Wert eines Bestandsobjekts hängt damit weniger an der Marktmiete als an der rechtlich erzielbaren Miete – und daran, wann und wie sich Flächen neu vermieten oder aufwerten lassen. Genau hier liegen nach unserer Einschätzung die Chancen der nächsten zwei Jahre: in Beständen mit tragfähigem Sanierungs- oder Repositionierungsplan, deren Kaufpreis die rechtlichen Grenzen bereits abbildet."
+          : "New lettings are likely to become more expensive as supply tightens, while rents in existing contracts rise only in a controlled way. The value of an existing building therefore depends less on market rent than on the rent that can legally be achieved — and on when and how space can be re-let or upgraded. This, in our assessment, is where the opportunities of the next two years lie: in existing stock with a viable refurbishment or repositioning plan whose purchase price already reflects the legal limits."}
       </Body>
 
       <PullQuote
         color={C.gold}
         text={isDE
-          ? "Die Korrektur hat nicht den Bedarf reduziert – sie hat nur das Angebot eingefroren. Das schafft seltene Einstiegsfenster."
-          : "The correction did not reduce demand — it only froze supply. That creates rare entry windows."}
+          ? "Entscheidend ist nicht die Marktmiete, sondern die Miete, die sich rechtlich erzielen lässt."
+          : "What counts is not the market rent, but the rent that can legally be achieved."}
       />
 
-      <H3 color={C.gold}>{isDE ? "Büro, Logistik und Energieeffizienz: selektiv" : "Office, logistics and energy efficiency: selective"}</H3>
+      <H3 color={C.gold}>{isDE ? "Büro: niedriger Leerstand, vorsichtige Nutzer" : "Office: low vacancy, cautious occupiers"}</H3>
 
       <Body>
         {isDE
-          ? "Im Wiener Büromarkt liegt der Leerstand laut EHL bei rund 3,8 %, Spitzenmieten erreichen bis zu rund 29,50 €/m² (Frühjahr 2026). Die Qualitätsspaltung setzt sich fort: Gefragt sind moderne, gut angebundene Flächen, B-Lagen bauen zunehmend strukturellen Leerstand auf. Dazu kommt Regulierung: Weil keiner der Mitgliedstaaten die neugefasste EU-Gebäuderichtlinie bis 29. Mai 2026 vollständig umgesetzt hat, leitete die EU-Kommission im Juli 2026 Vertragsverletzungsverfahren gegen alle 27 ein. Unsere These: Energieeffizienz und ESG-Qualität werden vom Imagefaktor zur Finanzierungs- und Wertfrage – dort kann ein Mietaufschlag zur Rendite beitragen. Logistik bleibt eine der widerstandsfähigsten Asset-Klassen; CBRE erwartet für 2026 eine Konsolidierung bei stabilen bis leicht steigenden Mieten in den Regionen Wien, Linz und Graz."
-          : "In Vienna's office market, vacancy is around 3.8% according to EHL, with prime rents of up to around €29.50/m² (spring 2026). The quality split continues: modern, well-connected space is in demand, while B-locations are increasingly building structural vacancy. Regulation adds to this: because no Member State had fully transposed the recast EU buildings directive by 29 May 2026, the European Commission opened infringement procedures against all 27 in July 2026. Our thesis: energy efficiency and ESG quality are turning from an image factor into a question of financing and value — there, a rent premium can contribute to returns. Logistics remains one of the most resilient asset classes; for 2026, CBRE expects consolidation with stable to slightly rising rents in the Vienna, Linz and Graz regions."}
+          ? "Der Wiener Büromarkt zeigt zwei Gesichter. Der Leerstand ist mit 3,9\u00a0% niedrig, die Spitzenmiete lag im ersten Halbjahr 2026 bei 28,50\u00a0€ pro Quadratmeter und Monat; bis Jahresende erwartet CBRE rund 29,50\u00a0€. Vermietet wurden dagegen 74.650 Quadratmeter, 5\u00a0% weniger als im Vorjahr. Knappes Angebot trifft auf vorsichtige Nutzer. Nach unserer Einschätzung konzentriert sich die Nachfrage deshalb weiter auf moderne, gut angebundene und energetisch zukunftsfähige Flächen – und die Lücke zu veralteten Beständen wächst."
+          : "Vienna's office market has two faces. Vacancy is low at 3.9%, and prime rent stood at €28.50 per square metre per month in the first half of 2026; CBRE expects around €29.50 by year-end. Take-up, however, was 74,650 square metres, 5% less than a year earlier. Scarce supply meets cautious occupiers. In our assessment, demand will therefore continue to concentrate on modern, well-connected and energy-efficient space — and the gap to outdated stock will widen."}
+      </Body>
+
+      <H3 color={C.gold}>{isDE ? "Energie: Wert statt Mietaufschlag" : "Energy: value, not a rent premium"}</H3>
+
+      <Body>
+        {isDE
+          ? "Energieeffizienz wird in den nächsten Jahren zum Bewertungsfaktor. Die neugefasste EU-Gebäuderichtlinie hätte bis 29.\u00a0Mai 2026 in nationales Recht umgesetzt sein müssen; am 15.\u00a0Juli leitete die Kommission Vertragsverletzungsverfahren gegen alle 27 Mitgliedstaaten ein. Für Nichtwohngebäude sieht die Richtlinie Mindeststandards vor: Die energetisch schlechtesten 16\u00a0% des Bestands müssen bis 2030 verbessert werden, die schlechtesten 26\u00a0% bis 2033."
+          : "Energy efficiency will become a valuation factor in the coming years. The recast EU Energy Performance of Buildings Directive should have been transposed into national law by 29 May 2026; on 15 July the Commission opened infringement procedures against all 27 Member States. For non-residential buildings, the directive sets minimum standards: the worst-performing 16% of the stock must be improved by 2030, the worst 26% by 2033."}
+      </Body>
+
+      <Body>
+        {isDE
+          ? "Was das wirtschaftlich bedeutet, zeigt eine 2026 in Nature Communications veröffentlichte Studie zu niederländischen Büros, für die ein Mindest-Energielabel vorgeschrieben wurde: Gebäude, die den Standard erfüllten, erzielten danach deutlich höhere Kaufpreise als andere – ihre Mieten blieben dagegen weitgehend gleich (Eichholtz, Kok und Sun). Energetische Qualität wirkt also auf Wert und Verkäuflichkeit, nicht automatisch auf die Miete. Eine Sanierung muss sich deshalb auch ohne Mietaufschlag rechnen – über Betriebskosten, Finanzierbarkeit und Exit."
+          : "A study published in Nature Communications in 2026 shows what this means economically. It examined Dutch offices after a minimum energy label became mandatory: buildings that met the standard achieved significantly higher sale prices than others — while their rents remained largely unchanged (Eichholtz, Kok and Sun). Energy quality thus affects value and marketability, not automatically rent. A refurbishment therefore has to pay off without a rent premium — through operating costs, financeability and exit."}
       </Body>
 
       <H3 color={C.gold}>{isDE ? "Hotels: Kostendruck hinter den Rekordzahlen" : "Hotels: cost pressure behind the record numbers"}</H3>
 
       <Body>
         {isDE
-          ? "Der österreichische Tourismus verzeichnete 2025 mit rund 157 Millionen Nächtigungen einen neuen Höchstwert, und Investoren kehren in den Sektor zurück: Laut Cushman & Wakefield überstieg das europäische Hoteltransaktionsvolumen 2025 27 Mrd. € – das stärkste Jahr seit 2019. In der European Hotel Investor Intentions Survey 2026 von CBRE wollen über 90 % der Investoren ihre Hotelallokation halten oder erhöhen. Auf Betreiberseite sieht es anders aus: CBRE Austria beobachtet sinkende Margen, weil Personal- und Betriebskosten schneller steigen als die erzielbaren Zimmerpreise. Nach unserer Einschätzung kann dieser Kostendruck – verstärkt durch wieder steigende Zinsen – bei Betrieben mit auslaufenden Finanzierungen und ohne Preissetzungsmacht zu Distressed-Asset-Situationen führen."
-          : "Austrian tourism reached a new high of around 157 million overnight stays in 2025, and investors are returning to the sector: according to Cushman & Wakefield, European hotel transactions exceeded €27bn in 2025 — the strongest year since 2019. In CBRE's European Hotel Investor Intentions Survey 2026, more than 90% of investors plan to hold or increase their hotel allocation. On the operator side, the picture differs: CBRE Austria observes shrinking margins, as staff and operating costs rise faster than achievable room rates. In our assessment, this cost pressure — amplified by rising rates — may lead to distressed-asset situations for operators with maturing financing and limited pricing power."}
+          ? "Die Nachfrage ist so stark wie nie. Österreich verzeichnete 2025 mit 157 Millionen Nächtigungen ein Allzeithoch; Wien überschritt erstmals die Marke von 20 Millionen – ein Plus von 6,5\u00a0% gegenüber 1,9\u00a0% im Bundesschnitt. Der Sommer 2026 liegt mit 41,9 Millionen Nächtigungen von Mai bis Juli 3,2\u00a0% über dem Vorjahr. Auch Investoren kehren zurück: Europaweit wechselten 2025 Hotels für über 27\u00a0Mrd.\u00a0€ den Besitzer, so viel wie seit 2019 nicht mehr, und über 90\u00a0% der von CBRE befragten Investoren wollen ihr Hotelengagement halten oder ausbauen."
+          : "Demand has never been stronger. Austria recorded an all-time high of 157 million overnight stays in 2025; Vienna passed the 20 million mark for the first time — up 6.5%, against 1.9% nationally. Summer 2026 is running 3.2% above last year, with 41.9 million overnight stays from May to July. Investors are returning too: across Europe, hotels worth more than €27 billion changed hands in 2025, the most since 2019, and over 90% of investors surveyed by CBRE intend to maintain or increase their hotel allocation."}
       </Body>
 
-      <PullQuote
+      <Body>
+        {isDE
+          ? "Hinter den Rekordzahlen steigen jedoch die Kosten. CBRE beobachtet in Wien vor allem bei Full-Service-Hotels Druck durch hohe Personal- und Betriebskosten. Rekordnachfrage ist deshalb noch kein Beleg für Rekordmargen. Nach unserer Einschätzung entstehen in den nächsten zwei Jahren selektive Gelegenheiten dort, wo Betrieb, Investitionsbedarf und Refinanzierung zusammenfallen – für Käufer, die Betrieb und Immobilie getrennt bewerten."
+          : "Behind the record numbers, however, costs are rising. CBRE sees pressure from high staff and operating costs in Vienna, especially for full-service hotels. Record demand is therefore no proof of record margins. In our assessment, the next two years will bring selective opportunities where operations, capital needs and refinancing coincide — for buyers who assess the operating business and the property separately."}
+      </Body>
+
+      <H3 color={C.gold}>{isDE ? "KI: von der Nutzung zum Nachweis" : "AI: from use to proof"}</H3>
+
+      <Body>
+        {isDE
+          ? "Auch in der Immobilienwirtschaft ist KI angekommen. In einer RICS-Befragung mit über 3.100 Antworten aus Immobilien- und Bauwirtschaft gaben mehr als drei Viertel der Gewerbeimmobilien-Fachleute an, KI in irgendeiner Form zu nutzen – meist allerdings noch im Pilotstadium. Den Weg in den Betrieb finden nach unserer Einschätzung zuerst eng umrissene, überprüfbare Aufgaben: Mietverträge mit Quellenverweis auswerten, Datenräume auf Vollständigkeit prüfen, Widersprüche für die fachliche Prüfung markieren. Der Nutzen zeigt sich an gesparter Zeit und vermiedenen Fehlern, nicht an der Menge erzeugter Texte."
+          : "AI has arrived in real estate as well. In a RICS survey with more than 3,100 responses from property and construction, more than three quarters of commercial property professionals said they use AI in some form — mostly still at pilot stage. In our assessment, the first applications to reach day-to-day operations will be narrowly defined, verifiable tasks: extracting lease terms with source references, checking data rooms for completeness, flagging inconsistencies for professional review. The benefit shows in time saved and errors avoided, not in the volume of text produced."}
+      </Body>
+
+      <H3 color={C.gold}>{isDE ? "Die Perspektive" : "The outlook"}</H3>
+
+      <Body>
+        {isDE
+          ? "Was ist für die nächsten sechs bis 24 Monate realistisch? Die Zinsen bleiben kein Rückenwind, die Banken prüfen strenger, und Anschlussfinanzierungen dürften Objekte auf den Markt bringen, die vor zwei Jahren nicht zu haben waren. Im Wohnen wächst die Lücke zwischen Neuvermietung und Bestand, im Büro jene zwischen modernen und veralteten Flächen. Mit den Fristen 2030 und 2033 rückt der energetische Zustand in jede Bewertung. Hotels bleiben gefragt – entscheiden werden die Margen."
+          : "So what is realistic for the next six to 24 months? Interest rates will not provide a tailwind, banks will look more closely, and refinancing is likely to bring properties to market that were not available two years ago. In residential, the gap between new lettings and existing contracts widens; in office, the gap between modern and outdated space. With the 2030 and 2033 deadlines approaching, energy performance enters every valuation. Hotels remain in demand — margins will decide."}
+      </Body>
+
+      <Body>
+        {isDE
+          ? "Die nächsten zwei Jahre belohnen deshalb nicht den Kauf am Tiefpunkt, sondern das Urteil im Einzelfall. Es geht nicht darum, die Korrektur zu kaufen – sondern das richtige Objekt zu Bedingungen, die auch die nächste überstehen."
+          : "The next two years will therefore reward not buying at the bottom, but judgement case by case. The point is not to buy the correction — it is to buy the right asset on terms that can withstand the next one."}
+      </Body>
+
+      <Sources
         color={C.gold}
-        text={isDE
-          ? "Rekordauslastung allein sichert keine Profitabilität. Sinkende Margen können Restrukturierungen erforderlich machen."
-          : "Record occupancy alone does not secure profitability. Shrinking margins can make restructuring necessary."}
+        groups={RE_SOURCES(isDE)}
+        note={isDE
+          ? "Stand: 23. September 2026. Marktberichte und Befragungen von Maklerhäusern sind als solche gekennzeichnet; Prognosen sind keine gemessenen Ergebnisse, und Daten verschiedener Anbieter sind nicht direkt vergleichbar. Einschätzungen zu Chancen und den nächsten 24 Monaten sind Bewertungen von InVentures. Allgemeiner Marktkommentar – keine Bewertung einzelner Objekte und keine Anlageempfehlung."
+          : "As of 23 September 2026. Broker market reports and surveys are marked as such; forecasts are not measured results, and data from different providers are not directly comparable. Assessments of opportunities and the next 24 months are InVentures' own. General market commentary — not a valuation of individual properties and not investment advice."}
       />
-
-      <H3 color={C.gold}>{isDE ? "AI in der Immobilienwirtschaft: vom Pilot in den Betrieb" : "AI in real estate: from pilot to operation"}</H3>
-
-      <Body>
-        {isDE
-          ? "Laut RICS setzen über drei Viertel der Befragten aus der Gewerbeimmobilienbranche bereits AI ein – die meisten noch im Pilotstadium. Nach unserer Einschätzung liegt der Wert dort, wo Daten, Verträge und Prozesse zusammenkommen: bei Due Diligence, Portfolio-Analyse und Asset Management. Wer diesen Schritt geht, braucht beides – Immobilienerfahrung und eine sichere technische Umsetzung."
-          : "According to RICS, more than three quarters of respondents from the commercial property sector already use AI — most of them still at pilot stage. In our assessment, the value lies where data, contracts and processes meet: in due diligence, portfolio analysis and asset management. Taking this step requires both real estate experience and secure technical delivery."}
-      </Body>
-
-      <H3 color={C.gold}>{isDE ? "Wie InVentures positioniert ist" : "How InVentures is positioned"}</H3>
-
-      <Body>
-        {isDE
-          ? "Wir beobachten den Hotelmarkt mit unserem Netzwerk aus Betreibern, Finanzierern und institutionellen Eigentümern genau – mit dem Ziel, unsere Kunden auf selektive Akquisitionen und Expansionen vorzubereiten. Gleichzeitig begleiten wir Investoren bei der Identifikation und Strukturierung von Wohn- und Gewerbeimmobilien, die von der Post-Korrektur-Dynamik profitieren – mit Finanzierungsstrukturen, die auch steigende Zinsen tragen. Unser Ansatz: nicht Timing, sondern Qualität – die richtigen Assets in den richtigen Lagen mit der richtigen Kapitalstruktur."
-          : "We monitor the hotel market closely through our network of operators, financiers and institutional owners — to prepare our clients for selective acquisitions and expansions. At the same time, we support investors in identifying and structuring residential and commercial assets that benefit from post-correction dynamics — with financing structures that can carry rising rates. Our approach: not timing, but quality — the right assets in the right locations with the right capital structure."}
-      </Body>
-
-      <div style={{ marginTop: 16 }}>
-        <span className="t-small" style={{ color: C.dim }}>
-          {isDE
-            ? "Quellen: CBRE, European Real Estate Investment Figures Q2 2026 (Juli 2026); JLL, EMEA Living Investment Q2 2026 (August 2026); EZB, geldpolitische Beschlüsse vom 10. September 2026; OeNB, Pressemitteilung zur Finanzmarktstabilität (April 2026); EHL Immobilien, Der Wohnungsmarkt Wien 2026 (Februar 2026), Wiener Wohnungsmarkt – Rückblick 2025 & Ausblick 2026 (Jänner 2026) und Büromarktbericht Frühjahr 2026; CBRE Austria, Immobilienwirtschaft 2026 (Jänner 2026) und Logistikmarktbericht 2025; Europäische Kommission, Umsetzung der Gebäuderichtlinie (Juli 2026); Statistik Austria, Ankünfte und Nächtigungen 2025 (Jänner 2026); Cushman & Wakefield, Hotelinvestments in EMEA (März 2026); CBRE, European Hotel Investor Intentions Survey 2026 (Mai 2026); RICS, AI in Commercial Property and Construction Report 2026 (August 2026); Green Street, Pan-European Commercial Property Price Index (2024); VDP-Immobilienpreisindex (2024). Aussagen „nach unserer Einschätzung“ und „unsere These“ sind Bewertungen von InVentures."
-            : "Sources: CBRE, European Real Estate Investment Figures Q2 2026 (July 2026); JLL, EMEA living investment Q2 2026 (August 2026); ECB, monetary policy decisions of 10 September 2026; Austrian National Bank, financial stability press release (April 2026); EHL Immobilien, Vienna Housing Market 2026 (February 2026), Vienna Housing Market Review 2025 & Outlook 2026 (January 2026) and Office Market Report Spring 2026; CBRE Austria, Real Estate Outlook 2026 (January 2026) and Logistics Market Report 2025; European Commission, transposition of the buildings directive (July 2026); Statistik Austria, arrivals and overnight stays 2025 (January 2026); Cushman & Wakefield, EMEA hotel investment (March 2026); CBRE, European Hotel Investor Intentions Survey 2026 (May 2026); RICS, AI in Commercial Property and Construction Report 2026 (August 2026); Green Street, Pan-European Commercial Property Price Index (2024); VDP property price index (2024). Statements marked \"in our view\", \"in our assessment\" or \"our thesis\" are InVentures' own views."}
-        </span>
-      </div>
     </div>
   );
 }
