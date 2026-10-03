@@ -74,23 +74,27 @@ button,input,select,textarea{font-family:inherit}
 .article-card:hover .arrow{transform:translateX(5px)}
 ::selection{background:${C.dark};color:#fff}
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid ${C.silver};outline-offset:3px}
+/* touch targets of at least 44 px without changing the look */
+.hit,.text-link,.back-link,.disclose{position:relative}
+.hit::after,.text-link::after,.back-link::after,.disclose::after{content:"";position:absolute;left:50%;top:50%;width:max(100%,44px);height:max(100%,44px);transform:translate(-50%,-50%)}
 .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .cform input:focus,.cform select:focus,.cform textarea:focus{outline:none;border-bottom-color:${C.dark}!important}
 
 /* reveal + hero entrance */
-.reveal{opacity:0;transform:translate3d(0,28px,0);filter:blur(6px);transition:opacity 1s ${EASE},transform 1.1s ${EASE},filter 1s ${EASE}}
-.reveal.is-in{opacity:1;transform:none;filter:none}
-@keyframes heroIn{from{opacity:0;transform:translate3d(0,36px,0);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
-.hero-in{animation:heroIn 1.3s ${EASE} both}
+/* short and calm: no blur, a small rise, 0.6 s */
+.reveal{opacity:0;transform:translate3d(0,12px,0);transition:opacity .6s ${EASE},transform .6s ${EASE}}
+.reveal.is-in{opacity:1;transform:none}
+@keyframes heroIn{from{opacity:0;transform:translate3d(0,12px,0)}to{opacity:1;transform:none}}
+.hero-in{animation:heroIn .7s ${EASE} both}
 /* room for descenders (g, p, y): animated layers are clipped to the element box in some browsers */
 .hero-in,.t-display{padding-bottom:.14em}
-.hero-in.d1{animation-delay:.12s}.hero-in.d2{animation-delay:.24s}.hero-in.d3{animation-delay:.36s}.hero-in.d4{animation-delay:.5s}
+.hero-in.d1{animation-delay:.06s}.hero-in.d2{animation-delay:.12s}.hero-in.d3{animation-delay:.18s}.hero-in.d4{animation-delay:.24s}
 
 /* stacking panels: each sticks, the next one slides over it */
-.panel{position:sticky;top:0;overflow:hidden;border-radius:32px 32px 0 0;box-shadow:0 -30px 60px -30px rgba(0,0,0,.28)}
+.panel{position:sticky;top:0;overflow:hidden;overflow:clip;border-radius:32px 32px 0 0;box-shadow:0 -30px 60px -30px rgba(0,0,0,.28)}
 .panel-first{border-radius:0;box-shadow:none}
-.panel::after{content:"";position:absolute;inset:0;background:#0B0C0E;opacity:calc(var(--cover,0) * .38);pointer-events:none;border-radius:inherit}
-.panel-inner{position:relative;padding:clamp(96px,12vw,168px) 0;transform:scale(calc(1 - var(--cover,0) * .045));transform-origin:50% 100%}
+.panel::after{content:"";position:absolute;inset:0;background:#0B0C0E;opacity:calc(var(--cover,0) * .14);pointer-events:none;border-radius:inherit}
+.panel-inner{position:relative;padding:clamp(96px,12vw,168px) 0}
 .panel-tight>.panel-inner{padding:clamp(64px,8vw,112px) 0}
 .panel-flush>.panel-inner,.panel-first>.panel-inner{padding:0}
 .tone-dark .display,.tone-dark h3{color:#F7F6F3}
@@ -122,7 +126,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .btn:hover{transform:translateY(-1px)}
 .btn .arrow,.text-link .arrow,.tile-cta .arrow,.news-row .arrow{display:inline-block;transition:transform .35s ${EASE}}
 .btn:hover .arrow,.text-link:hover .arrow,.track-tile:hover .arrow,.news-row:hover .arrow{transform:translateX(5px)}
-.btn-ghost:hover{background:${C.dark}!important;color:#fff!important;border-color:${C.dark}!important}
+.btn-ghost:hover{background:var(--btn-fill,${C.dark})!important;color:#fff!important;border-color:var(--btn-fill,${C.dark})!important}
+/* overview hero: primary action + two equal area buttons */
+.hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.hero-tracks{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.hero-ctas .btn{justify-content:center}
 .nav-link,.u-link{background-image:linear-gradient(currentColor,currentColor);background-repeat:no-repeat;background-position:0 100%;background-size:0 1px;transition:background-size .4s ${EASE};padding-bottom:3px}
 .nav-link:hover,.u-link:hover{background-size:100% 1px}
 .track-tile .track-img img{transform:scale(1.02);transition:transform 1.4s ${EASE}}
@@ -151,7 +159,7 @@ li:last-child>.news-row{border-bottom:1px solid rgba(0,0,0,.1)}
 .marquee+.marquee{margin-top:clamp(18px,2.4vw,30px)}
 .marquee-track{display:flex;width:max-content;will-change:transform}
 .logo-item{flex:none;display:flex;align-items:center;padding:0 clamp(26px,3.6vw,52px)}
-.logo-word{font-family:var(--font);font-size:var(--t-2xl);font-weight:500;letter-spacing:-.025em;color:#858B92;white-space:nowrap;transition:color .4s}
+.logo-word{font-family:var(--font);font-size:var(--t-2xl);font-weight:500;letter-spacing:-.025em;color:${C.muted};white-space:nowrap;transition:color .4s}
 .logo-item:hover .logo-word{color:${C.dark}}
 .logo-item img{transition:filter .4s,opacity .4s}
 .logo-item:hover img{filter:none;opacity:1}
@@ -189,7 +197,7 @@ li:last-child>.news-row{border-bottom:1px solid rgba(0,0,0,.1)}
 .disclose-icon{font-size:18px;line-height:1;color:${C.muted}}
 
 /* timeline */
-.tl-legend{display:grid;grid-template-columns:1fr 64px 1fr;margin:0 0 28px;font-family:var(--font);font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+.tl-legend{display:grid;grid-template-columns:1fr 64px 1fr;margin:0 0 28px;font-family:var(--font);font-size:var(--t-sm);font-weight:600}
 .tl-legend>span:first-child{justify-self:end;padding-right:36px}
 .tl-legend>span:last-child{padding-left:36px}
 .tl-row{display:grid;grid-template-columns:1fr 64px 1fr;align-items:start}
@@ -200,6 +208,8 @@ li:last-child>.news-row{border-bottom:1px solid rgba(0,0,0,.1)}
 .tl-card{padding:0 0 36px}
 .tl-card-david{text-align:right}
 .tl-mob{display:none}
+/* the lanes are named in the legend; the name per entry is shown only in the single-column phone layout */
+.tl-left .tl-name,.tl-desk .tl-name{display:none}
 .tl-minor{width:11px;height:11px;border-radius:50%;margin-top:18px;flex-shrink:0}
 .tl-row-joint{grid-template-rows:56px auto}
 .tl-row-joint .tl-spine{grid-column:2;grid-row:1/span 2}
@@ -228,7 +238,6 @@ li:last-child>.news-row{border-bottom:1px solid rgba(0,0,0,.1)}
   .panel{position:relative!important;top:auto!important;border-radius:24px 24px 0 0;margin-top:-24px}
   .panel-first{margin-top:0}
   .panel::after{display:none}
-  .panel-inner{transform:none!important}
   .duo,.split-2,.split-tiles,.cols-3,.cols-4{grid-template-columns:minmax(0,1fr)}
   .duo-col:first-child{padding:0 0 56px}
   .duo-col+.duo-col{padding:56px 0 0;border-left:none;border-top:1px solid rgba(0,0,0,.1)}
@@ -253,13 +262,15 @@ li:last-child>.news-row{border-bottom:1px solid rgba(0,0,0,.1)}
   .tl-row-joint{grid-template-rows:auto}
   .tl-row-joint .tl-spine{grid-column:1;grid-row:1}
   .tl-jcard{grid-column:2;grid-row:1;justify-self:stretch;width:auto;margin:4px 0 32px 18px;text-align:left;padding:18px 18px 20px}
-  .tl-jcard .tl-jlabel{justify-content:flex-start}
+  .tl-jcard .tl-jlabel{justify-content:flex-start;flex-direction:column;gap:2px}
   .track-pill{display:none!important}
   .legal-row{grid-template-columns:minmax(0,1fr)}
   .lang-btn{min-height:44px;min-width:40px}
 }
 @media (max-width:760px){ .t-h2,.t-display{hyphens:auto;-webkit-hyphens:auto} }
 @media (max-width:560px){
+  .hero-ctas{flex-direction:column;align-items:stretch;max-width:340px;margin-left:auto;margin-right:auto}
+  .hero-tracks{grid-template-columns:minmax(0,1fr)}
   .bio .facts{grid-template-columns:minmax(0,1fr);gap:8px}
   .facts>div{display:flex;align-items:baseline;gap:14px}
   .facts>div>div:first-child{min-width:4.2em}
@@ -267,10 +278,9 @@ li:last-child>.news-row{border-bottom:1px solid rgba(0,0,0,.1)}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .reveal,.hero-in{opacity:1!important;transform:none!important;filter:none!important;transition:none!important;animation:none!important}
+  .reveal,.hero-in{opacity:1!important;transform:none!important;transition:none!important;animation:none!important}
   .panel{position:relative!important;top:auto!important}
   .panel::after{display:none}
-  .panel-inner{transform:none!important}
   .marquee{-webkit-mask-image:none;mask-image:none}
   .marquee-track{animation:none;flex-wrap:wrap;width:auto;row-gap:18px}
   .logo-item.dup{display:none}

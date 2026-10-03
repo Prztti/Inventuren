@@ -8,6 +8,7 @@ export const C = {
   line: "#E6E3DE",
   border: "rgba(0,0,0,0.07)",
   dark: "#1A1A1A",
+  darkBg: "#1A1A1A", // CI dark: background of the dark sections
   text: "#2A2D31",
   dim: "#5F6670",
   muted: "#646B74",
@@ -33,7 +34,9 @@ export const F = "'Figtree Variable', Figtree, system-ui, -apple-system, 'Segoe 
 // Type scale: 8 fluid steps (mobile -> desktop), defined as CSS variables in NewApp.jsx.
 // xs 12 · sm 14 · base 16–17 · lg 18–20 · xl 20–24 · x2 28–40 · x3 34–60 · x4 44–80
 export const T = { xs: "var(--t-xs)", sm: "var(--t-sm)", base: "var(--t-base)", lg: "var(--t-lg)", xl: "var(--t-xl)", x2: "var(--t-2xl)", x3: "var(--t-3xl)", x4: "var(--t-4xl)" };
-// Small caps label (eyebrows, meta labels, tags)
+// Upper-case label: only for chapter labels above headings. The brand name never appears in upper case.
 export const LABEL = { fontFamily: F, fontSize: T.xs, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", lineHeight: 1.4 };
+// Meta label in normal case: names, form labels, footer links, tags, dates.
+export const META = { fontFamily: F, fontSize: T.sm, fontWeight: 600, lineHeight: 1.4 };
 export const MAXW = 1100;
 export const SECTION_PAD = "clamp(56px, 8vw, 96px) clamp(16px, 4vw, 40px)";

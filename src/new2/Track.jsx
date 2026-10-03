@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { C, F, T, LABEL, TRACK } from "./tokens";
+import { C, F, T, LABEL, META, TRACK } from "./tokens";
 import { Picture, Button, Panel, Container, TextLink } from "./ui";
 import { Clients, Profiles, Compliance, Expertise, Services, Network, Process, Insights } from "./sections";
 import { ContactSection } from "./Contact";
@@ -47,9 +47,9 @@ function Hero({ t, d, track, tc }) {
 // Tech hero: a small architecture sketch instead of a decorative image — governance wraps every layer.
 function TechVisual({ v }) {
   return (
-    <div role="img" aria-label={`${v.label}: ${v.layers.map((l) => l[0]).join(", ")}`} style={{ position: "absolute", inset: 0, background: "#15171A", color: "#F2F1EE", padding: "clamp(22px, 2.4vw, 32px)", display: "flex", flexDirection: "column", justifyContent: "center", gap: 18 }}>
+    <div role="img" aria-label={`${v.label}: ${v.layers.map((l) => l[0]).join(", ")}`} style={{ position: "absolute", inset: 0, background: C.darkBg, color: "#F2F1EE", padding: "clamp(22px, 2.4vw, 32px)", display: "flex", flexDirection: "column", justifyContent: "center", gap: 18 }}>
       <div aria-hidden style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px)", backgroundSize: "28px 28px" }} />
-      <div style={{ ...LABEL, color: C.gold, position: "relative" }}>{v.label}</div>
+      <div style={{ ...META, color: C.gold, position: "relative" }}>{v.label}</div>
       <div style={{ position: "relative", border: "1px solid rgba(184,148,75,.45)", borderRadius: 18, padding: 14, display: "flex", flexDirection: "column", gap: 10 }}>
         {v.layers.map(([h, d], i) => (
           <div key={h} style={{ background: "#1F2226", border: "1px solid rgba(255,255,255,.08)", borderRadius: 12, padding: "14px 16px" }}>
@@ -58,7 +58,7 @@ function TechVisual({ v }) {
           </div>
         ))}
         <div style={{ display: "flex", flexWrap: "wrap", gap: 6, paddingTop: 4 }}>
-          {v.chips.map((c) => <span key={c} style={{ ...LABEL, letterSpacing: "0.06em", color: C.gold, border: "1px solid rgba(184,148,75,.5)", borderRadius: 999, padding: "5px 10px" }}>{c}</span>)}
+          {v.chips.map((c) => <span key={c} style={{ ...META, color: C.gold, border: "1px solid rgba(184,148,75,.5)", borderRadius: 999, padding: "5px 10px" }}>{c}</span>)}
         </div>
       </div>
       <p className="t-small" style={{ position: "relative", color: "rgba(242,241,238,.62)", margin: 0 }}>{v.caption}</p>
@@ -80,12 +80,13 @@ export default function Track({ t, lang, track }) {
       <Hero t={t} d={d} track={track} tc={tc} />
       <Clients t={t} scope={track} title={d.partnerTitle} id="partner" />
       {isTech
-        ? <Profiles id="team" label={d.teamLabel} title={d.teamTitle} intro={d.teamIntro} profiles={d.profiles} tc={tc} ch={at(k.team)} ui={t.ui} />
-        : <Profiles id="profil" label={d.profileLabel} title={d.profileTitle} profiles={[d.profile]} tc={tc} ch={at(k.team)} ui={t.ui} />}
+        ? <Profiles id="team" label={d.teamLabel} title={d.teamTitle} intro={d.teamIntro} profiles={d.profiles} tc={tc} ch={at(k.team)} ui={t.ui} tone="light" />
+        : <Profiles id="profil" label={d.profileLabel} title={d.profileTitle} profiles={[d.profile]} tc={tc} ch={at(k.team)} ui={t.ui} tone="light" />}
       {isTech && <Compliance c={d.comp} ch={at(k.comp)} />}
-      <Expertise id={isTech ? "transformation" : "expertise"} d={d} tc={tc} ch={at(k.exp)}
+      {/* tones alternate light / white; Real Estate has no dark block, so its middle sections swap */}
+      <Expertise id={isTech ? "transformation" : "expertise"} d={d} tc={tc} ch={at(k.exp)} tone={isTech ? "light" : "white"}
         image={isTech ? { name: "ai-expertise-visual", widths: [800, 1600] } : { name: "re-expertise-reference-clean", widths: [800, 1280] }} />
-      <Services d={d} tc={tc} ch={at(k.serv)} />
+      <Services d={d} tc={tc} ch={at(k.serv)} tone={isTech ? "white" : "light"} />
       <Network d={d} tc={tc} ch={at(k.net)} />
       <Process d={d} tc={tc} ch={at(k.proc)} />
       <ContactSection t={t} tc={tc} ch={at(k.contact)} track={track} />

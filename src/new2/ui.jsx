@@ -16,22 +16,23 @@ export function useInView(threshold = 0.15) {
   return [ref, seen];
 }
 
-// Fade + rise + un-blur when the element enters the viewport.
+// Fade + small rise when the element enters the viewport; the stagger is capped at 0.1 s.
 export function Reveal({ children, delay = 0, style, as: Tag = "div", className = "" }) {
   const [ref, seen] = useInView();
   return (
-    <Tag ref={ref} className={`reveal ${seen ? "is-in" : ""} ${className}`} style={{ transitionDelay: `${delay}s`, ...style }}>
+    <Tag ref={ref} className={`reveal ${seen ? "is-in" : ""} ${className}`} style={{ transitionDelay: `${Math.min(delay, 0.1)}s`, ...style }}>
       {children}
     </Tag>
   );
 }
 
 // Full-width block that sticks while the next panel slides over it (see useStack).
+// Pages alternate light and white, so neighbouring sections never share a tone.
 const TONES = {
   light: { bg: C.bg, fg: C.dark },
-  white: { bg: "#FFFFFF", fg: C.dark },
-  warm: { bg: "#EFEDE8", fg: C.dark },
-  dark: { bg: "#15171A", fg: "#F2F1EE" },
+  white: { bg: C.card, fg: C.dark },
+  warm: { bg: C.surface, fg: C.dark },
+  dark: { bg: C.darkBg, fg: "#F2F1EE" },
 };
 export function Panel({ id, tone = "light", children, first, style, innerStyle, className = "", chapter }) {
   const t = TONES[tone];
@@ -72,9 +73,10 @@ export function TextLink({ href, children, color = C.dark, onClick, size = T.bas
   );
 }
 
-export function Button({ href, to, onClick, children, color = C.dark, variant = "solid", ...rest }) {
+// tint (ghost only): text and border colour, also the fill on hover
+export function Button({ href, to, onClick, children, color = C.dark, tint, variant = "solid", ...rest }) {
   const base = { fontFamily: F, fontSize: T.sm, fontWeight: 600, letterSpacing: "0.01em", padding: "15px 28px", borderRadius: 999, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 10, cursor: "pointer", border: "1px solid transparent", transition: "transform .25s, background .25s, color .25s, border-color .25s" };
-  const look = variant === "solid" ? { background: color, color: "#fff" } : { background: "transparent", color: "inherit", borderColor: "currentColor" };
+  const look = variant === "solid" ? { background: color, color: "#fff" } : { background: "transparent", color: tint || "inherit", borderColor: "currentColor", "--btn-fill": tint || C.dark };
   if (to) return <Link to={to} onClick={onClick} className={`btn btn-${variant}`} style={{ ...base, ...look }} {...rest}>{children}<span aria-hidden className="arrow">→</span></Link>;
   const Tag = href ? "a" : "button";
   return <Tag href={href} onClick={onClick} className={`btn btn-${variant}`} style={{ ...base, ...look }} {...rest}>{children}<span aria-hidden className="arrow">→</span></Tag>;

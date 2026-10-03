@@ -1,4 +1,4 @@
-import { F, T, LABEL, C as TC } from "./tokens";
+import { F, T, META, C as TC } from "./tokens";
 
 const C = { dark: TC.dark, gold: TC.goldDeep, goldText: TC.gold, silver: TC.silverInk, cream: TC.bg, dim: TC.dim };
 
@@ -90,7 +90,7 @@ function AIArticle({ lang }) {
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
         <div style={{ width: 24, height: 1, background: C.silver }} />
-        <span style={{ ...LABEL, color: C.silver }}>InVentures View · September 2026</span>
+        <span style={{ ...META, color: C.silver }}>InVentures View · September 2026</span>
       </div>
 
       <h2 className="t-stat" style={{ color: C.dark, lineHeight: 1.2, margin: "0 0 12px", maxWidth: 720 }}>
@@ -98,7 +98,7 @@ function AIArticle({ lang }) {
           ? "Vom Assistenten zum Agenten: Was die Forschung für die nächsten 24 Monate erwarten lässt"
           : "From assistant to agent: what research suggests for the next 24 months"}
       </h2>
-      <p style={{ ...LABEL, fontWeight: 500, color: C.dim, margin: "0 0 32px" }}>
+      <p style={{ ...META, fontWeight: 500, color: C.dim, margin: "0 0 32px" }}>
         InVentures Advisory — September 2026
       </p>
 
@@ -295,7 +295,7 @@ function REArticle({ lang }) {
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
         <div style={{ width: 24, height: 1, background: C.gold }} />
-        <span style={{ ...LABEL, color: C.gold }}>InVentures View · September 2026</span>
+        <span style={{ ...META, color: C.gold }}>InVentures View · September 2026</span>
       </div>
 
       <h2 className="t-stat" style={{ color: C.dark, lineHeight: 1.2, margin: "0 0 12px", maxWidth: 720 }}>
@@ -303,7 +303,7 @@ function REArticle({ lang }) {
           ? "Nach der Korrektur: Wo der Immobilienmarkt in den nächsten 24 Monaten Chancen bietet"
           : "After the correction: where real estate offers opportunities over the next 24 months"}
       </h2>
-      <p style={{ ...LABEL, fontWeight: 500, color: C.dim, margin: "0 0 32px" }}>
+      <p style={{ ...META, fontWeight: 500, color: C.dim, margin: "0 0 32px" }}>
         InVentures Advisory — September 2026
       </p>
 

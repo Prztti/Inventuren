@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { C, F, T, LABEL, TRACK, MAXW } from "./tokens";
+import { C, F, T, LABEL, META, TRACK, MAXW } from "./tokens";
 import { LANGS } from "./content";
 import { Wordmark, Panel, Container, H2, Rich } from "./ui";
 
@@ -26,13 +26,23 @@ function NavLink({ to, children, style, className, onClick }) {
 export function Nav({ t, lang, setLang, track, links }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [markOn, setMarkOn] = useState(true);
+  const { pathname } = useLocation();
   const tc = TRACK[track] || TRACK.tech;
   useEffect(() => {
-    const h = () => setScrolled(window.scrollY > 40);
+    const h = () => {
+      setScrolled(window.scrollY > 40);
+      // On the overview the large hero wordmark is the logo; the small one appears once the large one has
+      // scrolled away (phones) or the next panel has slid over it (desktop, where the hero panel sticks).
+      const big = pathname === "/" ? document.querySelector(".hero-mark") : null;
+      const next = big?.closest(".panel")?.nextElementSibling;
+      const b = big?.getBoundingClientRect().bottom;
+      setMarkOn(!big || b < 64 || (next && next.getBoundingClientRect().top < b));
+    };
     h();
     window.addEventListener("scroll", h, { passive: true });
     return () => window.removeEventListener("scroll", h);
-  }, []);
+  }, [pathname]);
   useEffect(() => setOpen(false), [track]);
   const solid = scrolled || open;
   const linkStyle = { fontFamily: F, fontSize: T.sm, color: C.text, textDecoration: "none", fontWeight: 500, whiteSpace: "nowrap" };
@@ -41,12 +51,12 @@ export function Nav({ t, lang, setLang, track, links }) {
     <header style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, background: solid ? "rgba(245,244,241,0.82)" : "transparent", backdropFilter: solid ? "saturate(1.4) blur(20px)" : "none", WebkitBackdropFilter: solid ? "saturate(1.4) blur(20px)" : "none", borderBottom: scrolled ? `1px solid ${C.border}` : "1px solid transparent", transition: "background .4s, padding .4s", padding: scrolled ? "12px 0" : "22px 0" }}>
       <nav aria-label="Main" style={{ maxWidth: 1320, margin: "0 auto", padding: "0 clamp(20px, 5vw, 56px)", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 16 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 14, minWidth: 0 }}>
-          <Link to="/" aria-label="InVentures" style={{ textDecoration: "none", display: "inline-flex" }}><Wordmark size={22} /></Link>
+          <Link to="/" aria-label="InVentures" className="hit" style={{ textDecoration: "none", display: "inline-flex", opacity: markOn || open ? 1 : 0, visibility: markOn || open ? "visible" : "hidden", transition: "opacity .4s, visibility .4s" }}><Wordmark size={22} /></Link>
           {track && (
             <span className="track-pill" style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "5px 8px 5px 12px", background: tc.as, borderRadius: 999 }}>
               <span aria-hidden style={{ width: 5, height: 5, borderRadius: "50%", background: tc.a }} />
-              <span style={{ ...LABEL, letterSpacing: "0.08em", color: tc.at, whiteSpace: "nowrap" }}>{track === "re" ? t.ui.trackRe : t.ui.trackTech}</span>
-              <Link to="/" aria-label={t.ui.switchTrack} title={t.ui.switchTrack} style={{ color: C.dim, fontSize: 12, textDecoration: "none", padding: "0 4px" }}>✕</Link>
+              <span style={{ ...META, color: tc.at, whiteSpace: "nowrap" }}>{track === "re" ? t.ui.trackRe : t.ui.trackTech}</span>
+              <Link to="/" aria-label={t.ui.switchTrack} title={t.ui.switchTrack} className="hit" style={{ color: C.dim, fontSize: 12, textDecoration: "none", padding: "0 4px" }}>✕</Link>
             </span>
           )}
         </div>
@@ -56,7 +66,6 @@ export function Nav({ t, lang, setLang, track, links }) {
           <LangSwitch lang={lang} setLang={setLang} tc={tc} />
         </div>
         <div className="nav-mob" style={{ alignItems: "center", gap: 8 }}>
-          <LangSwitch lang={lang} setLang={setLang} tc={tc} />
           <button type="button" aria-label={t.ui.menu} aria-expanded={open} onClick={() => setOpen(!open)} style={{ background: "none", border: "none", cursor: "pointer", width: 44, height: 44, padding: 11, display: "flex", flexDirection: "column", justifyContent: "center", gap: 5 }}>
             {[0, 1, 2].map((i) => (
               <span key={i} style={{ width: 22, height: 2, background: C.dark, transition: "all .3s", opacity: open && i === 1 ? 0 : 1, transform: open ? (i === 0 ? "rotate(45deg) translate(5px,5px)" : i === 2 ? "rotate(-45deg) translate(5px,-5px)" : "none") : "none" }} />
@@ -68,6 +77,8 @@ export function Nav({ t, lang, setLang, track, links }) {
         <div className="nav-mob" style={{ flexDirection: "column", gap: 4, padding: "12px 20px 18px", borderTop: `1px solid ${C.border}` }}>
           {links.map(([id, label]) => <NavLink key={id} to={id} onClick={() => setOpen(false)} style={{ ...linkStyle, fontSize: T.lg, padding: "10px 0" }}>{label}</NavLink>)}
           {track && <Link to="/" onClick={() => setOpen(false)} style={{ fontFamily: F, fontSize: T.base, fontWeight: 500, color: tc.at, textDecoration: "none", paddingTop: 10, marginTop: 6, borderTop: `1px solid ${C.border}` }}>← {t.ui.back}</Link>}
+          {/* on small screens the language choice lives in the menu, so the bar keeps only logo and menu */}
+          <div style={{ paddingTop: 12, marginTop: 6, borderTop: `1px solid ${C.border}` }}><div style={{ marginLeft: -9 }}><LangSwitch lang={lang} setLang={setLang} tc={tc} /></div></div>
         </div>
       )}
     </header>
@@ -75,7 +86,7 @@ export function Nav({ t, lang, setLang, track, links }) {
 }
 
 export function Footer({ t, track }) {
-  const small = { ...LABEL, letterSpacing: "0.08em", color: C.dim, textDecoration: "none", background: "none", border: "none", padding: 0, cursor: "pointer" };
+  const small = { ...META, color: C.dim, textDecoration: "none", background: "none", border: "none", padding: 0, cursor: "pointer" };
   return (
     <footer style={{ position: "relative", zIndex: 50, background: C.bg, padding: "48px clamp(20px, 5vw, 56px) 40px" }}>
       <div style={{ maxWidth: 1320, margin: "0 auto", display: "flex", flexDirection: "column", gap: 22 }}>
@@ -85,15 +96,15 @@ export function Footer({ t, track }) {
             <div className="t-small" style={{ color: C.dim, marginTop: 8 }}><Rich text={t.ui.entityLong} /></div>
           </div>
           <div style={{ display: "flex", gap: 8 }}>
-            {track !== "tech" && <Link to="/tech" style={{ ...small, color: C.silverInk, background: C.silverSoft, padding: "8px 14px", borderRadius: 999 }}>{t.ui.trackTech}</Link>}
-            {track !== "re" && <Link to="/real-estate" style={{ ...small, color: C.goldDeep, background: C.goldSoft, padding: "8px 14px", borderRadius: 999 }}>{t.ui.trackRe}</Link>}
+            {track !== "tech" && <Link to="/tech" className="hit" style={{ ...small, color: C.silverInk, background: C.silverSoft, padding: "8px 14px", borderRadius: 999 }}>{t.ui.trackTech}</Link>}
+            {track !== "re" && <Link to="/real-estate" className="hit" style={{ ...small, color: C.goldDeep, background: C.goldSoft, padding: "8px 14px", borderRadius: 999 }}>{t.ui.trackRe}</Link>}
           </div>
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12, paddingTop: 14, borderTop: `1px solid ${C.border}` }}>
           <div style={{ display: "flex", gap: 16, flexWrap: "wrap", alignItems: "center" }}>
-            <Link to="/impressum" style={small}>{t.ui.imprint}</Link>
-            <Link to="/datenschutz" style={small}>{t.ui.privacy}</Link>
-            <Link to="/insights" style={small}>{t.insights.label}</Link>
+            <Link to="/impressum" className="hit" style={small}>{t.ui.imprint}</Link>
+            <Link to="/datenschutz" className="hit" style={small}>{t.ui.privacy}</Link>
+            <Link to="/insights" className="hit" style={small}>{t.insights.label}</Link>
           </div>
           <span className="t-small" style={{ color: C.dim }}>2006–2026 InVentures</span>
         </div>

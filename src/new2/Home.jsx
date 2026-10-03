@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { C, F, T, LABEL, TRACK } from "./tokens";
-import { Picture, Panel, Container, Reveal, Eyebrow, Wordmark, Button, TextLink } from "./ui";
+import { Picture, Panel, Container, Reveal, Eyebrow, Wordmark, Button } from "./ui";
 import { TeamCards, Regulated, References, Timeline, Clients } from "./sections";
 import { H2 } from "./ui";
 import { ContactSection } from "./Contact";
@@ -38,24 +38,29 @@ export default function Home({ t, lang }) {
   return (
     <main>
       <Panel first tone="light" className="hero" innerStyle={{ minHeight: "100svh", display: "flex", alignItems: "center" }}>
-        <div aria-hidden style={{ position: "absolute", inset: 0, opacity: 0.16, overflow: "hidden" }}>
+        <div aria-hidden style={{ position: "absolute", inset: 0, opacity: 0.12, overflow: "hidden" }}>
           <Picture name="hero-landing" widths={[800, 1600]} sizes="100vw" priority parallax="0.25" style={{ position: "absolute", inset: 0, top: "-9%" }} />
         </div>
-        <div aria-hidden style={{ position: "absolute", inset: 0, background: `linear-gradient(180deg, rgba(245,244,241,0) 55%, ${C.bg} 100%)` }} />
+        {/* the image stays visible at the edges and fades towards the background behind the text */}
+        <div aria-hidden style={{ position: "absolute", inset: 0, background: `radial-gradient(ellipse 60% 55% at 50% 50%, rgba(245,244,241,.72) 0%, rgba(245,244,241,0) 72%), linear-gradient(180deg, rgba(245,244,241,0) 55%, ${C.bg} 100%)` }} />
         <Container style={{ textAlign: "center", paddingTop: 120, paddingBottom: 96 }}>
-          <div className="hero-in" aria-hidden style={{ lineHeight: 0.9 }}>
+          <div className="hero-in hero-mark" aria-hidden style={{ lineHeight: 0.9 }}>
             <Wordmark size="clamp(48px, 8vw, 104px)" at={false} style={{ letterSpacing: "-0.04em" }} />
           </div>
-          <p className="hero-in d1" style={{ fontSize: T.lg, fontWeight: 500, margin: "18px 0 0" }}>
+          {/* 24 px counts as large text, so the CI silver and gold meet the 3:1 contrast minimum */}
+          <p className="hero-in d1" style={{ fontSize: "1.5rem", fontWeight: 500, margin: "18px 0 0" }}>
             <span>{h.claim[0]}</span>{" "}<span style={{ color: C.silver }}>{h.claim[1]}</span>{" "}<span style={{ color: C.goldText }}>{h.claim[2]}</span>
           </p>
           <h1 className="hero-in d2 t-h2" style={{ margin: "clamp(32px, 5vw, 48px) auto 0", maxWidth: 920 }}>{h.h1}</h1>
           <p className="hero-in d3 t-lead" style={{ maxWidth: 640, margin: "20px auto 0" }}>{h.brandP}</p>
-          <div className="hero-in d4" style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginTop: 36 }}>
-            <Button to="/tech" color="#4A5866">{h.tracks.tech.label}</Button>
-            <Button to="/real-estate" color={C.goldDeep}>{h.tracks.re.label.replace("\n", " ")}</Button>
+          {/* one primary action (contact), the two areas as equal outline buttons */}
+          <div className="hero-in d4 hero-ctas" style={{ marginTop: 36 }}>
+            <Button href="#kontakt">{t.ui.discuss}</Button>
+            <div className="hero-tracks">
+              <Button to="/tech" variant="ghost" tint={C.silverInk}>{h.tracks.tech.label}</Button>
+              <Button to="/real-estate" variant="ghost" tint={C.goldDeep}>{h.tracks.re.label.replace("\n", " ")}</Button>
+            </div>
           </div>
-          <div className="hero-in d4" style={{ marginTop: 22 }}><TextLink href="#kontakt">{t.ui.discuss}</TextLink></div>
         </Container>
       </Panel>
 
@@ -80,7 +85,7 @@ export default function Home({ t, lang }) {
         </Container>
       </Panel>
 
-      <Clients t={t} scope="home" id="kunden" title={ch[1].name} ch={ch[1]} />
+      <Clients t={t} scope="home" id="kunden" title={ch[1].name} ch={ch[1]} tone="light" />
       <TeamCards t={t} ch={ch[2]} />
       <Regulated t={t} ch={ch[3]} />
       <References t={t} ch={ch[4]} />
