@@ -1,18 +1,21 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { C, F, T, LABEL, META, TRACK, MAXW } from "./tokens";
+import { C, F, T, LABEL, META, TRACK, MAXW, GLASS } from "./tokens";
 import { LANGS } from "./content";
 import { Wordmark, Panel, Container, H2, Rich } from "./ui";
 
-function LangSwitch({ lang, setLang, tc }) {
+function LangSwitch({ lang, setLang, tc, onDark }) {
   return (
     <div role="group" aria-label="Language" style={{ display: "flex", gap: 2 }}>
-      {LANGS.map(([code, label]) => (
-        <button key={code} type="button" aria-pressed={lang === code} onClick={() => setLang(code)}
-          className="lang-btn" style={{ fontFamily: F, fontSize: T.xs, letterSpacing: "0.04em", whiteSpace: "nowrap", fontWeight: lang === code ? 600 : 500, color: lang === code ? tc.at : C.dim, background: lang === code ? tc.as : "transparent", border: "none", padding: "6px 9px", cursor: "pointer", borderRadius: 6 }}>
-          {label}
-        </button>
-      ))}
+      {LANGS.map(([code, label]) => {
+        const on = lang === code;
+        return (
+          <button key={code} type="button" aria-pressed={on} onClick={() => setLang(code)}
+            className="lang-btn" style={{ fontFamily: F, fontSize: T.xs, letterSpacing: "0.04em", whiteSpace: "nowrap", fontWeight: on ? 600 : 500, color: onDark ? C.onDark : on ? tc.at : C.text, background: on ? (onDark ? GLASS.dark.selected : tc.as) : "transparent", border: "none", padding: "6px 9px", cursor: "pointer", borderRadius: 999 }}>
+            {label}
+          </button>
+        );
+      })}
     </div>
   );
 }
@@ -23,70 +26,91 @@ function NavLink({ to, children, style, className, onClick }) {
   return <a href={`#${to}`} className={className} style={style} onClick={onClick}>{children}</a>;
 }
 
+// Dark content behind the bar: there the bar turns into dark glass, as Liquid Glass adapts to what it floats over.
+const DARK_BEHIND = ".tone-dark, .track-tile, .portrait, [data-glass-dark]";
+
 export function Nav({ t, lang, setLang, track, links }) {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [markOn, setMarkOn] = useState(true);
+  const [onDark, setOnDark] = useState(false);
   const { pathname } = useLocation();
   const tc = TRACK[track] || TRACK.tech;
   useEffect(() => {
-    const h = () => {
-      setScrolled(window.scrollY > 40);
+    let raf = 0;
+    const update = () => {
+      raf = 0;
       // On the overview the large hero wordmark is the logo; the small one appears once the large one has
       // scrolled away (phones) or the next panel has slid over it (desktop, where the hero panel sticks).
       const big = pathname === "/" ? document.querySelector(".hero-mark") : null;
       const next = big?.closest(".panel")?.nextElementSibling;
       const b = big?.getBoundingClientRect().bottom;
       setMarkOn(!big || b < 64 || (next && next.getBoundingClientRect().top < b));
+      // What is behind the bar: probe three points along its middle line.
+      const dark = [0.2, 0.5, 0.8].filter((f) => {
+        const el = document.elementsFromPoint(window.innerWidth * f, 36).find((e) => !e.closest("header"));
+        return el && el.closest(DARK_BEHIND);
+      }).length;
+      setOnDark(dark >= 2);
     };
-    h();
-    window.addEventListener("scroll", h, { passive: true });
-    return () => window.removeEventListener("scroll", h);
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, [pathname]);
   useEffect(() => setOpen(false), [track]);
-  const solid = scrolled || open;
-  const linkStyle = { fontFamily: F, fontSize: T.sm, color: C.text, textDecoration: "none", fontWeight: 500, whiteSpace: "nowrap" };
+  const ink = onDark ? { text: C.onDark, line: GLASS.dark.border } : { text: C.text, line: C.border };
+  const linkStyle = { fontFamily: F, fontSize: T.sm, color: ink.text, textDecoration: "none", fontWeight: 500, whiteSpace: "nowrap" };
 
   return (
-    <header style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, background: solid ? "rgba(245,244,241,0.82)" : "transparent", backdropFilter: solid ? "saturate(1.4) blur(20px)" : "none", WebkitBackdropFilter: solid ? "saturate(1.4) blur(20px)" : "none", borderBottom: scrolled ? `1px solid ${C.border}` : "1px solid transparent", transition: "background .4s, padding .4s", padding: scrolled ? "12px 0" : "22px 0" }}>
-      <nav aria-label="Main" style={{ maxWidth: 1320, margin: "0 auto", padding: "0 clamp(20px, 5vw, 56px)", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 16 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 14, minWidth: 0 }}>
-          <Link to="/" aria-label="InVentures" className="hit" style={{ textDecoration: "none", display: "inline-flex", opacity: markOn || open ? 1 : 0, visibility: markOn || open ? "visible" : "hidden", transition: "opacity .4s, visibility .4s" }}><Wordmark size={22} /></Link>
-          {track && (
-            <span className="track-pill" style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "5px 8px 5px 12px", background: tc.as, borderRadius: 999 }}>
-              <span aria-hidden style={{ width: 5, height: 5, borderRadius: "50%", background: tc.a }} />
-              <span style={{ ...META, color: tc.at, whiteSpace: "nowrap" }}>{track === "re" ? t.ui.trackRe : t.ui.trackTech}</span>
-              <Link to="/" aria-label={t.ui.switchTrack} title={t.ui.switchTrack} className="hit" style={{ color: C.dim, fontSize: 12, textDecoration: "none", padding: "0 4px" }}>✕</Link>
-            </span>
-          )}
-        </div>
-        <div className="nav-desk" style={{ alignItems: "center", gap: 26 }}>
-          {links.map(([id, label]) => <NavLink key={id} to={id} className="nav-link" style={linkStyle}>{label}</NavLink>)}
-          <span aria-hidden style={{ width: 1, height: 14, background: "rgba(0,0,0,0.12)" }} />
-          <LangSwitch lang={lang} setLang={setLang} tc={tc} />
-        </div>
-        <div className="nav-mob" style={{ alignItems: "center", gap: 8 }}>
-          <button type="button" aria-label={t.ui.menu} aria-expanded={open} onClick={() => setOpen(!open)} style={{ background: "none", border: "none", cursor: "pointer", width: 44, height: 44, padding: 11, display: "flex", flexDirection: "column", justifyContent: "center", gap: 5 }}>
-            {[0, 1, 2].map((i) => (
-              <span key={i} style={{ width: 22, height: 2, background: C.dark, transition: "all .3s", opacity: open && i === 1 ? 0 : 1, transform: open ? (i === 0 ? "rotate(45deg) translate(5px,5px)" : i === 2 ? "rotate(-45deg) translate(5px,-5px)" : "none") : "none" }} />
-            ))}
-          </button>
-        </div>
-      </nav>
-      {open && (
-        <div className="nav-mob" style={{ flexDirection: "column", gap: 4, padding: "12px 20px 18px", borderTop: `1px solid ${C.border}` }}>
-          {links.map(([id, label]) => <NavLink key={id} to={id} onClick={() => setOpen(false)} style={{ ...linkStyle, fontSize: T.lg, padding: "10px 0" }}>{label}</NavLink>)}
-          {track && <Link to="/" onClick={() => setOpen(false)} style={{ fontFamily: F, fontSize: T.base, fontWeight: 500, color: tc.at, textDecoration: "none", paddingTop: 10, marginTop: 6, borderTop: `1px solid ${C.border}` }}>← {t.ui.back}</Link>}
-          {/* on small screens the language choice lives in the menu, so the bar keeps only logo and menu */}
-          <div style={{ paddingTop: 12, marginTop: 6, borderTop: `1px solid ${C.border}` }}><div style={{ marginLeft: -9 }}><LangSwitch lang={lang} setLang={setLang} tc={tc} /></div></div>
-        </div>
-      )}
+    <header className="nav-shell">
+      {/* on the overview the glass surface appears together with the small wordmark (scroll-edge behaviour) */}
+      <div className={`nav-bar glass ${onDark ? "glass-dark" : ""} ${open ? "is-open" : ""} ${markOn || open ? "" : "is-bare"}`}>
+        <nav aria-label="Main">
+          <div style={{ display: "flex", alignItems: "center", gap: 14, minWidth: 0 }}>
+            <Link to="/" aria-label="InVentures" className="hit" style={{ textDecoration: "none", display: "inline-flex", opacity: markOn || open ? 1 : 0, visibility: markOn || open ? "visible" : "hidden", transition: "opacity .4s, visibility .4s" }}><Wordmark size={22} /></Link>
+            {track && (
+              <span className="track-pill" style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "5px 8px 5px 12px", background: `linear-gradient(${tc.as}, ${tc.as}), ${GLASS.inset}`, borderRadius: 999 }}>
+                <span aria-hidden style={{ width: 5, height: 5, borderRadius: "50%", background: tc.a }} />
+                <span style={{ ...META, color: tc.at, whiteSpace: "nowrap" }}>{track === "re" ? t.ui.trackRe : t.ui.trackTech}</span>
+                <Link to="/" aria-label={t.ui.switchTrack} title={t.ui.switchTrack} className="hit" style={{ color: C.dim, fontSize: 12, textDecoration: "none", padding: "0 4px" }}>✕</Link>
+              </span>
+            )}
+          </div>
+          <div className="nav-desk" style={{ alignItems: "center", gap: 2 }}>
+            {links.map(([id, label]) => <NavLink key={id} to={id} className="nav-link" style={linkStyle}>{label}</NavLink>)}
+            <span aria-hidden style={{ width: 1, height: 14, background: ink.line, margin: "0 10px" }} />
+            <LangSwitch lang={lang} setLang={setLang} tc={tc} onDark={onDark} />
+          </div>
+          <div className="nav-mob" style={{ alignItems: "center" }}>
+            <button type="button" aria-label={t.ui.menu} aria-expanded={open} onClick={() => setOpen(!open)} style={{ background: "none", border: "none", cursor: "pointer", width: 44, height: 44, padding: 11, display: "flex", flexDirection: "column", justifyContent: "center", gap: 5 }}>
+              {[0, 1, 2].map((i) => (
+                <span key={i} style={{ width: 22, height: 2, background: onDark ? C.onDark : C.dark, transition: "all .3s", opacity: open && i === 1 ? 0 : 1, transform: open ? (i === 0 ? "rotate(45deg) translate(5px,5px)" : i === 2 ? "rotate(-45deg) translate(5px,-5px)" : "none") : "none" }} />
+              ))}
+            </button>
+          </div>
+        </nav>
+        {/* phone menu: opens inside the same glass surface */}
+        {open && (
+          <div className="nav-mob" style={{ flexDirection: "column", gap: 4, padding: "4px 20px 18px", borderTop: `1px solid ${ink.line}` }}>
+            {links.map(([id, label]) => <NavLink key={id} to={id} onClick={() => setOpen(false)} style={{ ...linkStyle, fontSize: T.lg, padding: "10px 0" }}>{label}</NavLink>)}
+            {track && <Link to="/" onClick={() => setOpen(false)} style={{ fontFamily: F, fontSize: T.base, fontWeight: 500, color: onDark ? C.onDark : tc.at, textDecoration: "none", paddingTop: 10, marginTop: 6, borderTop: `1px solid ${ink.line}` }}>← {t.ui.back}</Link>}
+            {/* on small screens the language choice lives in the menu, so the bar keeps only logo and menu */}
+            <div style={{ paddingTop: 12, marginTop: 6, borderTop: `1px solid ${ink.line}` }}><div style={{ marginLeft: -9 }}><LangSwitch lang={lang} setLang={setLang} tc={tc} onDark={onDark} /></div></div>
+          </div>
+        )}
+      </div>
     </header>
   );
 }
 
 export function Footer({ t, track }) {
   const small = { ...META, color: C.dim, textDecoration: "none", background: "none", border: "none", padding: 0, cursor: "pointer" };
+  const pill = { ...META, textDecoration: "none", padding: "8px 14px", borderRadius: GLASS.radius }; // glass capsules to the two areas
   return (
     <footer style={{ position: "relative", zIndex: 50, background: C.bg, padding: "48px clamp(20px, 5vw, 56px) 40px" }}>
       <div style={{ maxWidth: 1320, margin: "0 auto", display: "flex", flexDirection: "column", gap: 22 }}>
@@ -96,8 +120,8 @@ export function Footer({ t, track }) {
             <div className="t-small" style={{ color: C.dim, marginTop: 8 }}><Rich text={t.ui.entityLong} /></div>
           </div>
           <div style={{ display: "flex", gap: 8 }}>
-            {track !== "tech" && <Link to="/tech" className="hit" style={{ ...small, color: C.silverInk, background: C.silverSoft, padding: "8px 14px", borderRadius: 999 }}>{t.ui.trackTech}</Link>}
-            {track !== "re" && <Link to="/real-estate" className="hit" style={{ ...small, color: C.goldDeep, background: C.goldSoft, padding: "8px 14px", borderRadius: 999 }}>{t.ui.trackRe}</Link>}
+            {track !== "tech" && <Link to="/tech" className="hit glass glass-press" style={{ ...pill, color: C.silverInk }}>{t.ui.trackTech}</Link>}
+            {track !== "re" && <Link to="/real-estate" className="hit glass glass-press" style={{ ...pill, color: C.goldDeep }}>{t.ui.trackRe}</Link>}
           </div>
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12, paddingTop: 14, borderTop: `1px solid ${C.border}` }}>
@@ -125,39 +149,5 @@ export function NotFound({ t }) {
         </Container>
       </Panel>
     </main>
-  );
-}
-
-// Fixed chapter index on the right edge (desktop): shows where you are in the story.
-export function ChapterRail({ lang }) {
-  const { pathname } = useLocation();
-  const [items, setItems] = useState([]);
-  const [active, setActive] = useState(-1);
-  useEffect(() => {
-    let raf = 0;
-    const els = () => [...document.querySelectorAll("[data-chapter-n]")];
-    const collect = () => setItems(els().map((e) => ({ n: e.dataset.chapterN, name: e.dataset.chapterName, id: e.id })));
-    const update = () => {
-      raf = 0;
-      const probe = window.innerHeight * 0.45;
-      let idx = -1;
-      els().forEach((e, i) => { if (e.getBoundingClientRect().top <= probe) idx = i; });
-      setActive(idx);
-    };
-    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
-    const t = setTimeout(() => { collect(); update(); }, 120);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => { clearTimeout(t); window.removeEventListener("scroll", onScroll); if (raf) cancelAnimationFrame(raf); };
-  }, [pathname, lang]);
-  if (!items.length) return null;
-  return (
-    <nav aria-label="Chapters" className={`rail ${active >= 0 ? "is-on" : ""}`}>
-      {items.map((it, i) => (
-        <a key={it.n + it.id} href={`#${it.id}`} className={`rail-item ${i === active ? "is-active" : ""}`} aria-current={i === active ? "true" : undefined}>
-          <span className="rail-name">{it.name}</span>
-          <span className="rail-n">{it.n}</span>
-        </a>
-      ))}
-    </nav>
   );
 }

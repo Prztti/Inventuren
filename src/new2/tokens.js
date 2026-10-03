@@ -9,6 +9,7 @@ export const C = {
   border: "rgba(0,0,0,0.07)",
   dark: "#1A1A1A",
   darkBg: "#1A1A1A", // CI dark: background of the dark sections
+  onDark: "#F2F1EE", // text on dark surfaces
   text: "#2A2D31",
   dim: "#5F6670",
   muted: "#646B74",
@@ -21,6 +22,51 @@ export const C = {
   goldDeep: "#7A602C",
   goldLine: "#A88A4E",
   goldSoft: "rgba(184,148,75,0.12)",
+};
+
+// "#RRGGBB" + alpha -> "rgba(r,g,b,a)", so every glass value derives from a CI colour above
+const rgba = (hex, a) => { const n = parseInt(hex.slice(1), 16); return `rgba(${n >> 16},${(n >> 8) & 255},${n & 255},${a})`; };
+
+// Liquid Glass for the control layer only: navigation, buttons, pills, menus and cards over images.
+// Body text, articles, legal texts and forms stay on solid surfaces.
+// light = on light sections, dark = on dark sections, clear = over photos (they carry their own dimming).
+// solid = fallback without backdrop-filter and for reduced transparency / increased contrast.
+export const GLASS = {
+  blur: "20px",
+  saturate: "180%",
+  radius: 999, // capsules
+  radiusCard: 24, // menu surface, cards
+  spring: "cubic-bezier(.34,1.56,.64,1)", // hover / press
+  inset: rgba(C.card, 0.92), // nearly solid pill inside a bar (track pill), keeps its text legible over any content
+  glow: { silver: rgba(C.silver, 0.28), gold: rgba(C.gold, 0.22) }, // soft light behind glass on dark surfaces
+  light: {
+    bg: rgba(C.bg, 0.72),
+    solid: rgba(C.bg, 0.96),
+    border: rgba(C.card, 0.75),
+    edge: `inset 0 1px 0 ${rgba(C.card, 0.9)}`,
+    shadow: `0 8px 28px -12px ${rgba(C.dark, 0.25)}, 0 1px 3px ${rgba(C.dark, 0.06)}`,
+    sheen: rgba(C.card, 0.45),
+    fg: C.text,
+  },
+  dark: {
+    bg: rgba(C.darkBg, 0.66),
+    solid: rgba(C.darkBg, 0.94),
+    border: rgba(C.card, 0.16),
+    edge: `inset 0 1px 0 ${rgba(C.card, 0.18)}`,
+    shadow: `0 10px 30px -12px ${rgba(C.dark, 0.6)}`,
+    sheen: rgba(C.card, 0.1),
+    selected: rgba(C.card, 0.16), // chosen item inside a dark bar
+    fg: C.onDark,
+  },
+  clear: {
+    bg: rgba(C.darkBg, 0.3),
+    solid: rgba(C.darkBg, 0.78),
+    border: rgba(C.card, 0.26),
+    edge: `inset 0 1px 0 ${rgba(C.card, 0.28)}`,
+    shadow: `0 16px 40px -20px ${rgba(C.dark, 0.6)}`,
+    sheen: rgba(C.card, 0.12),
+    fg: C.card,
+  },
 };
 
 export const TRACK = {

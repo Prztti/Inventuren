@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { C, F, T, TRACK } from "./tokens";
+import { C, F, T, TRACK, GLASS } from "./tokens";
 import { Panel, Container, Eyebrow, Reveal } from "./ui";
 import { NewsRow, ArticleCard, newsFor } from "./sections";
 import { articles } from "./news";
@@ -44,7 +44,7 @@ export function ArticlePage({ t, lang }) {
     <main>
       <Panel first tone="white" innerStyle={{ padding: "clamp(104px, 12vw, 140px) 0 0" }}>
         <Container style={{ maxWidth: 900 }}>
-          <Link to="/insights" className="back-link" style={{ fontFamily: F, fontSize: T.sm, fontWeight: 500, color: C.dim, textDecoration: "none" }}>← {t.insights.back}</Link>
+          <Link to="/insights" className="back-link glass glass-press" style={{ fontFamily: F, fontSize: T.sm, fontWeight: 500, color: C.dim, textDecoration: "none", display: "inline-flex", padding: "9px 16px", borderRadius: GLASS.radius }}>← {t.insights.back}</Link>
         </Container>
         <Article track={a.track} lang={lang} />
       </Panel>

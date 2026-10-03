@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Routes, Route, useLocation, useMatch } from "react-router-dom";
 import { TX, HTML_LANG } from "./content";
-import { C, F } from "./tokens";
+import { C, F, GLASS as G } from "./tokens";
 import { useStack } from "./ui";
-import { Nav, Footer, NotFound, ChapterRail } from "./Layout";
+import { Nav, Footer, NotFound } from "./Layout";
 import Home from "./Home";
 import Track from "./Track";
 import LegalPage from "./Legal";
@@ -129,10 +129,13 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .btn-ghost:hover{background:var(--btn-fill,${C.dark})!important;color:#fff!important;border-color:var(--btn-fill,${C.dark})!important}
 /* overview hero: primary action + two equal area buttons */
 .hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.hero-tracks{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.hero-tracks{display:grid;grid-template-columns:1fr 1fr;gap:12px;position:relative}
+/* soft silver and gold light behind the two capsules, so the glass has something to pick up */
+.hero-tracks::before{content:"";position:absolute;inset:-28px -48px;z-index:0;pointer-events:none;background:radial-gradient(closest-side at 28% 50%,${C.silverSoft},transparent),radial-gradient(closest-side at 72% 50%,${C.goldSoft},transparent)}
+.hero-tracks>*{position:relative}
 .hero-ctas .btn{justify-content:center}
-.nav-link,.u-link{background-image:linear-gradient(currentColor,currentColor);background-repeat:no-repeat;background-position:0 100%;background-size:0 1px;transition:background-size .4s ${EASE};padding-bottom:3px}
-.nav-link:hover,.u-link:hover{background-size:100% 1px}
+.u-link{background-image:linear-gradient(currentColor,currentColor);background-repeat:no-repeat;background-position:0 100%;background-size:0 1px;transition:background-size .4s ${EASE};padding-bottom:3px}
+.u-link:hover{background-size:100% 1px}
 .track-tile .track-img img{transform:scale(1.02);transition:transform 1.4s ${EASE}}
 .track-tile:hover .track-img img{transform:scale(1.08)}
 .track-tile:hover .tile-cta{background:rgba(255,255,255,.26)!important}
@@ -184,16 +187,8 @@ li:last-child>.news-row{border-bottom:1px solid rgba(0,0,0,.1)}
 .logo-item img.dark{filter:grayscale(1) brightness(.55);opacity:.7}
 .marquees .logo-word{font-size:var(--t-xl)}
 
-/* chapter rail */
-.rail{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:90;display:flex;flex-direction:column;gap:2px;padding:10px 8px;border-radius:999px;background:rgba(245,244,241,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 6px 24px -12px rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:opacity .4s}
-.rail.is-on{opacity:1;pointer-events:auto}
-.rail-item{position:relative;display:flex;align-items:center;justify-content:center;width:30px;height:24px;text-decoration:none;font-family:var(--font);font-size:var(--t-xs);font-weight:600;font-variant-numeric:tabular-nums;color:${C.muted};border-radius:999px;transition:color .3s,background .3s}
-.rail-item:hover,.rail-item.is-active{color:${C.dark}}
-.rail-item.is-active{background:#fff}
-.rail-name{position:absolute;right:40px;white-space:nowrap;font-size:var(--t-xs);font-weight:600;letter-spacing:.02em;color:${C.dark};background:rgba(255,255,255,.92);padding:5px 10px;border-radius:999px;box-shadow:0 4px 16px -8px rgba(0,0,0,.3);opacity:0;transform:translateX(6px);transition:opacity .3s,transform .3s;pointer-events:none}
-.rail-item.is-active .rail-name,.rail-item:hover .rail-name{opacity:1;transform:none}
-/* disclosure */
-.disclose{display:inline-flex;align-items:center;gap:12px;font-family:var(--font);font-size:var(--t-sm);font-weight:600;color:${C.dark};background:none;border:none;border-bottom:1px solid rgba(0,0,0,.2);padding:6px 0;cursor:pointer;margin-bottom:12px}
+/* disclosure: a glass capsule (surface from .glass) */
+.disclose{display:inline-flex;align-items:center;gap:12px;font-family:var(--font);font-size:var(--t-sm);font-weight:600;color:${C.dark};padding:9px 16px;border-radius:999px;cursor:pointer;margin-bottom:12px}
 .disclose-icon{font-size:18px;line-height:1;color:${C.muted}}
 
 /* timeline */
@@ -218,13 +213,39 @@ li:last-child>.news-row{border-bottom:1px solid rgba(0,0,0,.1)}
 .tl-jbar{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,${C.gold},${C.silverLine})}
 .tl-row-joint.is-final .tl-jcard{margin-bottom:0;padding:28px 36px 30px}
 
-/* nav */
+/* Liquid Glass (values: GLASS in tokens.js). A solid surface first; glass only where backdrop-filter works. */
+.glass{--g-bg:${G.light.bg};--g-solid:${G.light.solid};--g-border:${G.light.border};--g-edge:${G.light.edge};--g-shadow:${G.light.shadow};--g-sheen:${G.light.sheen};background-color:var(--g-solid);border:1px solid var(--g-border);box-shadow:var(--g-edge),var(--g-shadow)}
+.glass.glass-dark{--g-bg:${G.dark.bg};--g-solid:${G.dark.solid};--g-border:${G.dark.border};--g-edge:${G.dark.edge};--g-shadow:${G.dark.shadow};--g-sheen:${G.dark.sheen}}
+.glass.glass-clear{--g-bg:${G.clear.bg};--g-solid:${G.clear.solid};--g-border:${G.clear.border};--g-edge:${G.clear.edge};--g-shadow:${G.clear.shadow};--g-sheen:${G.clear.sheen}}
+@supports ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+  .glass{background-color:var(--g-bg);-webkit-backdrop-filter:blur(${G.blur}) saturate(${G.saturate});backdrop-filter:blur(${G.blur}) saturate(${G.saturate})}
+}
+@media (prefers-reduced-transparency:reduce),(prefers-contrast:more){
+  .glass{background-color:var(--g-solid);-webkit-backdrop-filter:none;backdrop-filter:none}
+}
+/* liquid feedback, only on glass: a soft spring and a light sheen on hover, a short squeeze on press */
+.glass-press,.tile-card{transition:transform .5s ${G.spring},background-color .3s,border-color .3s,box-shadow .3s}
+@media (hover:hover){
+  .glass-press:hover{transform:translateY(-1px) scale(1.03);background-image:linear-gradient(var(--g-sheen),var(--g-sheen))}
+  .track-tile:hover .tile-card{transform:translateY(-3px);background-image:linear-gradient(var(--g-sheen),var(--g-sheen))}
+  .nav-link:hover{background-color:var(--g-sheen)}
+}
+.glass-press:active{transform:scale(.97);transition-duration:.15s}
+.track-tile:active .tile-card{transform:scale(.985);transition-duration:.15s}
+@media (prefers-reduced-motion:reduce){
+  .glass-press,.glass-press:hover,.glass-press:active,.tile-card,.track-tile:hover .tile-card,.track-tile:active .tile-card{transform:none!important;transition:background-color .2s!important}
+}
+
+/* nav: a floating glass bar with space to the edges; light or dark glass depending on what is behind it */
+.nav-shell{position:fixed;top:0;left:0;right:0;z-index:100;padding:12px clamp(12px,3vw,24px) 0;pointer-events:none}
+.nav-bar{max-width:1320px;margin:0 auto;pointer-events:auto;border-radius:${G.radius}px;transition:border-radius .35s ${EASE},background-color .3s,border-color .3s,box-shadow .3s}
+.nav-bar.is-open{border-radius:${G.radiusCard}px}
+.nav-bar.is-bare{background-color:transparent;border-color:transparent;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+.nav-bar>nav{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:6px 6px 6px 20px}
+.nav-link{padding:9px 14px;border-radius:999px;transition:background-color .25s}
 .nav-desk{display:flex}
 .nav-mob{display:none}
 
-@media (max-width:1280px){
-  .rail{display:none}
-}
 @media (max-width:1120px){
   .nav-desk{display:none}
   .nav-mob{display:flex}
@@ -271,6 +292,7 @@ li:last-child>.news-row{border-bottom:1px solid rgba(0,0,0,.1)}
 @media (max-width:560px){
   .hero-ctas{flex-direction:column;align-items:stretch;max-width:340px;margin-left:auto;margin-right:auto}
   .hero-tracks{grid-template-columns:minmax(0,1fr)}
+  .hero-tracks::before{inset:-24px -16px;background:radial-gradient(closest-side at 50% 28%,${C.silverSoft},transparent),radial-gradient(closest-side at 50% 72%,${C.goldSoft},transparent)}
   .bio .facts{grid-template-columns:minmax(0,1fr);gap:8px}
   .facts>div{display:flex;align-items:baseline;gap:14px}
   .facts>div>div:first-child{min-width:4.2em}
@@ -326,7 +348,6 @@ export default function NewApp() {
       <style>{CSS}</style>
       <ScrollManager />
       <Nav t={t} lang={lang} setLang={setLang} track={track} links={links} />
-      <ChapterRail lang={lang} />
       <Routes>
         <Route path="/" element={<Home t={t} lang={lang} />} />
         <Route path="/tech" element={<Track key="tech" t={t} lang={lang} track="tech" />} />

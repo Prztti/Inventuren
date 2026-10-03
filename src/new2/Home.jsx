@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { C, F, T, LABEL, TRACK } from "./tokens";
+import { C, F, T, LABEL, TRACK, GLASS } from "./tokens";
 import { Picture, Panel, Container, Reveal, Eyebrow, Wordmark, Button } from "./ui";
 import { TeamCards, Regulated, References, Timeline, Clients } from "./sections";
 import { H2 } from "./ui";
@@ -9,14 +9,15 @@ import { ContactSection } from "./Contact";
 function TrackTile({ to, img, overlay, eyebrow, label, sub, tags, cta, delay }) {
   return (
     <Reveal delay={delay} style={{ height: "100%" }}>
-      <Link to={to} className="track-tile" style={{ position: "relative", overflow: "hidden", display: "flex", flexDirection: "column", justifyContent: "flex-end", height: "100%", minHeight: "clamp(420px, 62vh, 640px)", padding: "clamp(28px, 4vw, 52px)", borderRadius: 20, textDecoration: "none", color: "#fff" }}>
+      <Link to={to} className="track-tile" style={{ position: "relative", overflow: "hidden", display: "flex", flexDirection: "column", justifyContent: "flex-end", height: "100%", minHeight: "clamp(420px, 62vh, 640px)", padding: "clamp(12px, 1.6vw, 20px)", borderRadius: 20, textDecoration: "none", color: "#fff" }}>
         <div className="track-img" style={{ position: "absolute", inset: 0 }}><Picture {...img} sizes="(max-width: 760px) 100vw, 50vw" /></div>
+        {/* dimming under the clear glass keeps the white text legible on bright parts of the photo */}
         <div aria-hidden style={{ position: "absolute", inset: 0, background: overlay }} />
-        <div style={{ position: "relative" }}>
+        <div className="glass glass-clear tile-card" style={{ position: "relative", borderRadius: GLASS.radiusCard, padding: "clamp(22px, 2.6vw, 32px)" }}>
           <div style={{ ...LABEL, opacity: 0.9, marginBottom: 16 }}>{eyebrow}</div>
           <h2 className="t-h2" style={{ lineHeight: 1.02, whiteSpace: "pre-line", margin: "0 0 16px" }}>{label}</h2>
           <p className="t-body" style={{ opacity: 0.86, maxWidth: 420, margin: "0 0 28px" }}>{tags.join(" · ")}</p>
-          <span className="tile-cta" style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: F, fontSize: T.sm, fontWeight: 600, padding: "13px 22px", borderRadius: 999, background: "rgba(255,255,255,0.14)", backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)", border: "1px solid rgba(255,255,255,0.28)" }}>{cta} <span aria-hidden className="arrow">→</span></span>
+          <span className="tile-cta" style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: F, fontSize: T.sm, fontWeight: 600, padding: "13px 22px", borderRadius: 999, background: GLASS.clear.sheen, border: `1px solid ${GLASS.clear.border}` }}>{cta} <span aria-hidden className="arrow">→</span></span>
           <span className="sr-only">{sub}</span>
         </div>
       </Link>
@@ -53,12 +54,12 @@ export default function Home({ t, lang }) {
           </p>
           <h1 className="hero-in d2 t-h2" style={{ margin: "clamp(32px, 5vw, 48px) auto 0", maxWidth: 920 }}>{h.h1}</h1>
           <p className="hero-in d3 t-lead" style={{ maxWidth: 640, margin: "20px auto 0" }}>{h.brandP}</p>
-          {/* one primary action (contact), the two areas as equal outline buttons */}
+          {/* one primary action (contact), the two areas as equal glass capsules */}
           <div className="hero-in d4 hero-ctas" style={{ marginTop: 36 }}>
             <Button href="#kontakt">{t.ui.discuss}</Button>
             <div className="hero-tracks">
-              <Button to="/tech" variant="ghost" tint={C.silverInk}>{h.tracks.tech.label}</Button>
-              <Button to="/real-estate" variant="ghost" tint={C.goldDeep}>{h.tracks.re.label.replace("\n", " ")}</Button>
+              <Button to="/tech" variant="glass" tint={C.silverInk}>{h.tracks.tech.label}</Button>
+              <Button to="/real-estate" variant="glass" tint={C.goldDeep}>{h.tracks.re.label.replace("\n", " ")}</Button>
             </div>
           </div>
         </Container>

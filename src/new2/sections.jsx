@@ -238,7 +238,7 @@ export function Timeline({ t, lang, ch }) {
           })}
         </ol>
         <div style={{ textAlign: "center", marginTop: 40 }}>
-          <Button variant="ghost" onClick={() => setAll(!all)}>{all ? tx.less : `${tx.more} (${TIMELINE.length})`}</Button>
+          <Button variant="glass" onClick={() => setAll(!all)}>{all ? tx.less : `${tx.more} (${TIMELINE.length})`}</Button>
         </div>
       </Container>
     </Panel>
@@ -437,7 +437,7 @@ export function Profiles({ id, label, title, intro, profiles, tc, ch, ui, tone =
                 <Reveal delay={0.12}>
                   {/* quote sits in the right column, so it is not empty while the references are closed */}
                   <p className="t-h3" style={{ fontWeight: 400, lineHeight: 1.4, margin: "0 0 28px", paddingLeft: 20, borderLeft: `2px solid ${a.line}` }}>{p.quote}</p>
-                  <button type="button" className="disclose" aria-expanded={!!open[p.key]} onClick={() => setOpen({ ...open, [p.key]: !open[p.key] })}>
+                  <button type="button" className="disclose glass glass-press" aria-expanded={!!open[p.key]} onClick={() => setOpen({ ...open, [p.key]: !open[p.key] })}>
                     {open[p.key] ? ui.hideRefs : ui.showRefs}<span aria-hidden className="disclose-icon">{open[p.key] ? "−" : "+"}</span>
                   </button>
                   {open[p.key] && (
@@ -661,7 +661,7 @@ export function Insights({ t, lang, track, tc, ch }) {
         <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
           {newsFor(track).slice(0, 3).map((n) => <NewsRow key={n.id} n={n} lang={lang} t={t} accent={tc.at} />)}
         </ul>
-        <div style={{ marginTop: 32 }}><Button to="/insights" variant="ghost">{t.ui.allInsights}</Button></div>
+        <div style={{ marginTop: 32 }}><Button to="/insights" variant="glass">{t.ui.allInsights}</Button></div>
       </Container>
     </Panel>
   );

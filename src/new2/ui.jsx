@@ -73,13 +73,17 @@ export function TextLink({ href, children, color = C.dark, onClick, size = T.bas
   );
 }
 
-// tint (ghost only): text and border colour, also the fill on hover
+// variant: solid (filled) · ghost (outline) · glass (Liquid Glass capsule, surface and feedback from .glass / .glass-press)
+// tint (ghost, glass): text colour; ghost also uses it for the border and the fill on hover
 export function Button({ href, to, onClick, children, color = C.dark, tint, variant = "solid", ...rest }) {
   const base = { fontFamily: F, fontSize: T.sm, fontWeight: 600, letterSpacing: "0.01em", padding: "15px 28px", borderRadius: 999, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 10, cursor: "pointer", border: "1px solid transparent", transition: "transform .25s, background .25s, color .25s, border-color .25s" };
-  const look = variant === "solid" ? { background: color, color: "#fff" } : { background: "transparent", color: tint || "inherit", borderColor: "currentColor", "--btn-fill": tint || C.dark };
-  if (to) return <Link to={to} onClick={onClick} className={`btn btn-${variant}`} style={{ ...base, ...look }} {...rest}>{children}<span aria-hidden className="arrow">→</span></Link>;
+  const look = variant === "solid" ? { background: color, color: "#fff" }
+    : variant === "glass" ? { color: tint || "inherit", border: undefined, transition: undefined }
+    : { background: "transparent", color: tint || "inherit", borderColor: "currentColor", "--btn-fill": tint || C.dark };
+  const cls = variant === "glass" ? "btn btn-glass glass glass-press" : `btn btn-${variant}`;
+  if (to) return <Link to={to} onClick={onClick} className={cls} style={{ ...base, ...look }} {...rest}>{children}<span aria-hidden className="arrow">→</span></Link>;
   const Tag = href ? "a" : "button";
-  return <Tag href={href} onClick={onClick} className={`btn btn-${variant}`} style={{ ...base, ...look }} {...rest}>{children}<span aria-hidden className="arrow">→</span></Tag>;
+  return <Tag href={href} onClick={onClick} className={cls} style={{ ...base, ...look }} {...rest}>{children}<span aria-hidden className="arrow">→</span></Tag>;
 }
 
 // Responsive image: WebP + JPEG fallback from /images/opt/<name>-<width>.(webp|jpg)
