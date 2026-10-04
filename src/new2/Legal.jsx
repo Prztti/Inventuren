@@ -3,7 +3,7 @@ import { C, F, T, LABEL, GLASS } from "./tokens";
 import { Panel, Container, Rich } from "./ui";
 import { LEGAL } from "./legalText";
 
-// Impressum / Datenschutz inside /new. German is binding; EN (and 中文) show the English version.
+// Impressum / Datenschutz inside /new. German is binding; EN shows the English version.
 export default function LegalPage({ kind, lang }) {
   const L = lang === "de" ? LEGAL.de : LEGAL.en;
   const d = L[kind];
