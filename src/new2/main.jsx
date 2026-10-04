@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import NewApp from "./NewApp.jsx";
 
-import "@fontsource-variable/figtree";
+import "@fontsource-variable/dm-sans/opsz.css";
 
 // Links to the previous site pointed at its two areas with a hash (/#tech, /#re).
 const LEGACY_HASH = { "#tech": "/tech", "#re": "/real-estate" };

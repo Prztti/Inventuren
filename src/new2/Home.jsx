@@ -1,23 +1,25 @@
 import { useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { C, F, T, LABEL, TRACK, GLASS } from "./tokens";
-import { Picture, Panel, Container, Reveal, Eyebrow, Wordmark, Button } from "./ui";
+import { Picture, Panel, Container, Reveal, Eyebrow } from "./ui";
 import { TeamCards, Regulated, References, Timeline, Clients } from "./sections";
 import { H2 } from "./ui";
 import { ContactSection } from "./Contact";
+import HeroEditorial from "./HeroEditorial";
 
 function TrackTile({ to, img, overlay, eyebrow, label, sub, tags, cta, delay }) {
   return (
     <Reveal delay={delay} style={{ height: "100%" }}>
-      <Link to={to} className="track-tile" style={{ position: "relative", overflow: "hidden", display: "flex", flexDirection: "column", justifyContent: "flex-end", height: "100%", minHeight: "clamp(420px, 62vh, 640px)", padding: "clamp(12px, 1.6vw, 20px)", borderRadius: 20, textDecoration: "none", color: "#fff" }}>
+      <Link to={to} className="track-tile" style={{ position: "relative", overflow: "hidden", display: "flex", flexDirection: "column", justifyContent: "flex-end", height: "100%", minHeight: "clamp(420px, 62vh, 640px)", padding: "clamp(24px, 3.4vw, 44px)", borderRadius: 20, textDecoration: "none", color: "#fff" }}>
         <div className="track-img" style={{ position: "absolute", inset: 0 }}><Picture {...img} sizes="(max-width: 760px) 100vw, 50vw" /></div>
-        {/* dimming under the clear glass keeps the white text legible on bright parts of the photo */}
+        {/* the photo stays open at the top; a soft dimming at the bottom carries the white text */}
         <div aria-hidden style={{ position: "absolute", inset: 0, background: overlay }} />
-        <div className="glass glass-clear tile-card" style={{ position: "relative", borderRadius: GLASS.radiusCard, padding: "clamp(22px, 2.6vw, 32px)" }}>
-          <div style={{ ...LABEL, opacity: 0.9, marginBottom: 16 }}>{eyebrow}</div>
-          <h2 className="t-h2" style={{ lineHeight: 1.02, whiteSpace: "pre-line", margin: "0 0 16px" }}>{label}</h2>
-          <p className="t-body" style={{ opacity: 0.86, maxWidth: 420, margin: "0 0 28px" }}>{tags.join(" · ")}</p>
-          <span className="tile-cta" style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: F, fontSize: T.sm, fontWeight: 600, padding: "13px 22px", borderRadius: 999, background: GLASS.clear.sheen, border: `1px solid ${GLASS.clear.border}` }}>{cta} <span aria-hidden className="arrow">→</span></span>
+        <div style={{ position: "relative" }}>
+          <div style={{ ...LABEL, opacity: 0.9, marginBottom: 14 }}>{eyebrow}</div>
+          <h2 style={{ fontSize: T.x2, fontWeight: 500, letterSpacing: "-0.018em", lineHeight: 1.08, whiteSpace: "pre-line", margin: "0 0 12px" }}>{label}</h2>
+          <p className="t-body" style={{ opacity: 0.9, maxWidth: 420, margin: "0 0 24px" }}>{tags.join(" · ")}</p>
+          {/* only the button is glass (a control), so the picture is not covered */}
+          <span className="tile-cta glass glass-clear" style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: F, fontSize: T.sm, fontWeight: 600, padding: "13px 22px", borderRadius: GLASS.radius }}>{cta} <span aria-hidden className="arrow">→</span></span>
           <span className="sr-only">{sub}</span>
         </div>
       </Link>
@@ -38,40 +40,15 @@ export default function Home({ t, lang }) {
 
   return (
     <main>
-      <Panel first tone="light" className="hero" innerStyle={{ minHeight: "100svh", display: "flex", alignItems: "center" }}>
-        <div aria-hidden style={{ position: "absolute", inset: 0, opacity: 0.12, overflow: "hidden" }}>
-          <Picture name="hero-landing" widths={[800, 1600]} sizes="100vw" priority parallax="0.25" style={{ position: "absolute", inset: 0, top: "-9%" }} />
-        </div>
-        {/* the image stays visible at the edges and fades towards the background behind the text */}
-        <div aria-hidden style={{ position: "absolute", inset: 0, background: `radial-gradient(ellipse 60% 55% at 50% 50%, rgba(245,244,241,.72) 0%, rgba(245,244,241,0) 72%), linear-gradient(180deg, rgba(245,244,241,0) 55%, ${C.bg} 100%)` }} />
-        <Container style={{ textAlign: "center", paddingTop: 120, paddingBottom: 96 }}>
-          <div className="hero-in hero-mark" aria-hidden style={{ lineHeight: 0.9 }}>
-            <Wordmark size="clamp(48px, 8vw, 104px)" at={false} style={{ letterSpacing: "-0.04em" }} />
-          </div>
-          {/* 24 px counts as large text, so the CI silver and gold meet the 3:1 contrast minimum */}
-          <p className="hero-in d1" style={{ fontSize: "1.5rem", fontWeight: 500, margin: "18px 0 0" }}>
-            <span>{h.claim[0]}</span>{" "}<span style={{ color: C.silver }}>{h.claim[1]}</span>{" "}<span style={{ color: C.goldText }}>{h.claim[2]}</span>
-          </p>
-          <h1 className="hero-in d2 t-h2" style={{ margin: "clamp(32px, 5vw, 48px) auto 0", maxWidth: 920 }}>{h.h1}</h1>
-          <p className="hero-in d3 t-lead" style={{ maxWidth: 640, margin: "20px auto 0" }}>{h.brandP}</p>
-          {/* one primary action (contact), the two areas as equal glass capsules */}
-          <div className="hero-in d4 hero-ctas" style={{ marginTop: 36 }}>
-            <Button href="#kontakt">{t.ui.discuss}</Button>
-            <div className="hero-tracks">
-              <Button to="/tech" variant="glass" tint={C.silverInk}>{h.tracks.tech.label}</Button>
-              <Button to="/real-estate" variant="glass" tint={C.goldDeep}>{h.tracks.re.label.replace("\n", " ")}</Button>
-            </div>
-          </div>
-        </Container>
-      </Panel>
+      <HeroEditorial t={t} />
 
       <Panel id="bereiche" tone="white" className="panel-tight" chapter={ch[0]}>
         <Container wide>
           <Reveal><Eyebrow n={ch[0].n}>{ch[0].name}</Eyebrow></Reveal>
           <Reveal delay={0.05}><H2 style={{ marginBottom: 40 }}>{h.selectTitle}</H2></Reveal>
           <div className="split-tiles">
-            <TrackTile to="/tech" img={{ name: "hero-tech", widths: [800, 1400] }} overlay="linear-gradient(180deg, rgba(14,18,24,0.1) 0%, rgba(14,18,24,0.35) 45%, rgba(14,18,24,0.85) 100%)" eyebrow={t.ui.since15} {...h.tracks.tech} />
-            <TrackTile to="/real-estate" img={{ name: "hero-re", widths: [800, 1280] }} overlay="linear-gradient(180deg, rgba(34,22,8,0.1) 0%, rgba(34,22,8,0.35) 45%, rgba(34,22,8,0.85) 100%)" eyebrow={t.ui.since06} {...h.tracks.re} delay={0.1} />
+            <TrackTile to="/tech" img={{ name: "hero-tech", widths: [800, 1400] }} overlay="linear-gradient(180deg, rgba(14,18,24,0) 0%, rgba(14,18,24,0.05) 30%, rgba(14,18,24,0.5) 52%, rgba(14,18,24,0.8) 72%, rgba(14,18,24,0.92) 100%)" eyebrow={t.ui.since15} {...h.tracks.tech} />
+            <TrackTile to="/real-estate" img={{ name: "hero-re", widths: [800, 1280] }} overlay="linear-gradient(180deg, rgba(34,22,8,0) 0%, rgba(34,22,8,0.05) 30%, rgba(34,22,8,0.5) 52%, rgba(34,22,8,0.8) 72%, rgba(34,22,8,0.92) 100%)" eyebrow={t.ui.since06} {...h.tracks.re} delay={0.1} />
           </div>
           <Reveal><div style={{ ...LABEL, color: C.muted, margin: "clamp(56px, 7vw, 88px) 0 24px" }}>{h.waysLabel}</div></Reveal>
           <div className="cols-3">

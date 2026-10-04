@@ -73,14 +73,17 @@ export function TextLink({ href, children, color = C.dark, onClick, size = T.bas
   );
 }
 
-// variant: solid (filled) · ghost (outline) · glass (Liquid Glass capsule, surface and feedback from .glass / .glass-press)
+// variant: solid (filled; in the default dark it is tinted "prominent" glass) · ghost (outline)
+//          · glass (Liquid Glass capsule, surface and feedback from .glass / .glass-press)
 // tint (ghost, glass): text colour; ghost also uses it for the border and the fill on hover
 export function Button({ href, to, onClick, children, color = C.dark, tint, variant = "solid", ...rest }) {
   const base = { fontFamily: F, fontSize: T.sm, fontWeight: 600, letterSpacing: "0.01em", padding: "15px 28px", borderRadius: 999, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 10, cursor: "pointer", border: "1px solid transparent", transition: "transform .25s, background .25s, color .25s, border-color .25s" };
-  const look = variant === "solid" ? { background: color, color: "#fff" }
+  const prominent = variant === "solid" && color === C.dark;
+  const look = prominent ? { color: "#fff", border: undefined, transition: undefined }
+    : variant === "solid" ? { background: color, color: "#fff" }
     : variant === "glass" ? { color: tint || "inherit", border: undefined, transition: undefined }
     : { background: "transparent", color: tint || "inherit", borderColor: "currentColor", "--btn-fill": tint || C.dark };
-  const cls = variant === "glass" ? "btn btn-glass glass glass-press" : `btn btn-${variant}`;
+  const cls = prominent ? "btn btn-solid glass glass-prominent glass-press" : variant === "glass" ? "btn btn-glass glass glass-press" : `btn btn-${variant}`;
   if (to) return <Link to={to} onClick={onClick} className={cls} style={{ ...base, ...look }} {...rest}>{children}<span aria-hidden className="arrow">→</span></Link>;
   const Tag = href ? "a" : "button";
   return <Tag href={href} onClick={onClick} className={cls} style={{ ...base, ...look }} {...rest}>{children}<span aria-hidden className="arrow">→</span></Tag>;
@@ -147,7 +150,14 @@ export function useStack() {
       panels = [...document.querySelectorAll(".panel")];
       parallax = [...document.querySelectorAll("[data-parallax]")];
       const vh = window.innerHeight;
-      const tops = panels.map((p) => Math.min(0, vh - p.offsetHeight));
+      const tops = panels.map((p) => {
+        const top = Math.min(0, vh - p.offsetHeight);
+        // [data-stick-mark="y"]: keep scrolling until that element has reached y px from the top, then stick
+        const mark = p.querySelector("[data-stick-mark]");
+        if (!mark) return top;
+        const rel = mark.getBoundingClientRect().top - p.getBoundingClientRect().top;
+        return Math.min(top, parseFloat(mark.dataset.stickMark) - rel);
+      });
       panels.forEach((p, i) => { p.style.top = `${tops[i]}px`; p.style.zIndex = String(i + 1); });
       frame();
     };

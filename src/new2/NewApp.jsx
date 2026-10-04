@@ -19,7 +19,7 @@ function initialLang() {
     if (saved && TX[saved]) return saved;
   } catch { /* storage unavailable */ }
   const nav = (navigator.language || "en").toLowerCase();
-  return nav.startsWith("de") ? "de" : nav.startsWith("zh") ? "cn" : "en";
+  return nav.startsWith("de") ? "de" : "en";
 }
 
 // Scroll to top on route change, or to the #anchor once the new page has rendered.
@@ -38,7 +38,7 @@ function ScrollManager() {
 
 const EASE = "cubic-bezier(.16,1,.3,1)";
 const CSS = `
-/* type scale: 8 fluid steps, mobile -> desktop (see T in tokens.js) */
+/* type scale: 8 fluid steps, mobile -> desktop (see T in tokens.js); tracking set for DM Sans */
 :root{
   --font:${F};
   --t-xs:.75rem;
@@ -56,11 +56,11 @@ body{margin:0;background:${C.bg};color:${C.dark};font-family:var(--font);font-si
 h1,h2,h3{text-wrap:balance}
 p,li,dd{text-wrap:pretty}
 button,input,select,textarea{font-family:inherit}
-.t-display{font-size:var(--t-4xl);font-weight:500;letter-spacing:-.035em;line-height:1.02}
-.t-h2{font-size:var(--t-3xl);font-weight:500;letter-spacing:-.03em;line-height:1.06}
-.t-h3{font-size:var(--t-xl);font-weight:500;letter-spacing:-.012em;line-height:1.3}
+.t-display{font-size:var(--t-4xl);font-weight:500;letter-spacing:-.028em;line-height:1.02}
+.t-h2{font-size:var(--t-3xl);font-weight:500;letter-spacing:-.022em;line-height:1.06}
+.t-h3{font-size:var(--t-xl);font-weight:500;letter-spacing:-.008em;line-height:1.3}
 .t-title{font-size:var(--t-lg);font-weight:500;letter-spacing:-.006em;line-height:1.35}
-.t-stat{font-size:var(--t-2xl);font-weight:500;letter-spacing:-.025em;line-height:1.1;font-variant-numeric:lining-nums tabular-nums}
+.t-stat{font-size:var(--t-2xl);font-weight:500;letter-spacing:-.018em;line-height:1.1;font-variant-numeric:lining-nums tabular-nums}
 .t-lead{font-size:var(--t-lg);line-height:1.55;opacity:.74}
 .t-body{font-size:var(--t-base);line-height:1.65}
 .t-small{font-size:var(--t-sm);line-height:1.55}
@@ -118,6 +118,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .row-line:last-child{border-bottom:1px solid rgba(0,0,0,.1)}
 .row-light{border-color:rgba(255,255,255,.12)!important}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:64px;align-items:center}
+.hero-grid-flow{grid-template-columns:minmax(0,1fr) minmax(0,540px)}
+.hero-flow svg{display:block;width:100%;height:auto;max-height:min(78vh,720px)}
 /* figure labels: long German compounds carry soft hyphens in the copy; this only prevents overflow */
 .facts .t-small,.stats-row dd{overflow-wrap:break-word}
 .stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:28px 40px;margin:clamp(56px,7vw,88px) 0 0;padding-top:28px;border-top:1px solid rgba(0,0,0,.12)}
@@ -127,18 +129,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .btn .arrow,.text-link .arrow,.tile-cta .arrow,.news-row .arrow{display:inline-block;transition:transform .35s ${EASE}}
 .btn:hover .arrow,.text-link:hover .arrow,.track-tile:hover .arrow,.news-row:hover .arrow{transform:translateX(5px)}
 .btn-ghost:hover{background:var(--btn-fill,${C.dark})!important;color:#fff!important;border-color:var(--btn-fill,${C.dark})!important}
-/* overview hero: primary action + two equal area buttons */
-.hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.hero-tracks{display:grid;grid-template-columns:1fr 1fr;gap:12px;position:relative}
-/* soft silver and gold light behind the two capsules, so the glass has something to pick up */
-.hero-tracks::before{content:"";position:absolute;inset:-28px -48px;z-index:0;pointer-events:none;background:radial-gradient(closest-side at 28% 50%,${C.silverSoft},transparent),radial-gradient(closest-side at 72% 50%,${C.goldSoft},transparent)}
-.hero-tracks>*{position:relative}
-.hero-ctas .btn{justify-content:center}
 .u-link{background-image:linear-gradient(currentColor,currentColor);background-repeat:no-repeat;background-position:0 100%;background-size:0 1px;transition:background-size .4s ${EASE};padding-bottom:3px}
 .u-link:hover{background-size:100% 1px}
 .track-tile .track-img img{transform:scale(1.02);transition:transform 1.4s ${EASE}}
 .track-tile:hover .track-img img{transform:scale(1.08)}
-.track-tile:hover .tile-cta{background:rgba(255,255,255,.26)!important}
 .scroll-cue .cue-line{width:1px;height:48px;background:linear-gradient(${C.muted},transparent);transform-origin:top;animation:cue 2.2s ${EASE} infinite}
 @keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
 
@@ -171,6 +165,8 @@ li:last-child>.news-row{border-bottom:1px solid rgba(0,0,0,.1)}
 .team-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(40px,6vw,96px);align-items:start}
 .team-grid>.pair{position:sticky;top:110px}
 .pair{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.pair figure{transition:opacity .6s ${EASE},filter .6s ${EASE}}
+.pair figure.is-dim{opacity:.32;filter:grayscale(1)}
 .bio{padding:22px 0;border-top:1px solid rgba(0,0,0,.1)}
 .bio .facts{gap:16px}
 .portrait img{transition:transform 1.4s cubic-bezier(.16,1,.3,1)}
@@ -214,33 +210,56 @@ li:last-child>.news-row{border-bottom:1px solid rgba(0,0,0,.1)}
 .tl-row-joint.is-final .tl-jcard{margin-bottom:0;padding:28px 36px 30px}
 
 /* Liquid Glass (values: GLASS in tokens.js). A solid surface first; glass only where backdrop-filter works. */
-.glass{--g-bg:${G.light.bg};--g-solid:${G.light.solid};--g-border:${G.light.border};--g-edge:${G.light.edge};--g-shadow:${G.light.shadow};--g-sheen:${G.light.sheen};background-color:var(--g-solid);border:1px solid var(--g-border);box-shadow:var(--g-edge),var(--g-shadow)}
-.glass.glass-dark{--g-bg:${G.dark.bg};--g-solid:${G.dark.solid};--g-border:${G.dark.border};--g-edge:${G.dark.edge};--g-shadow:${G.dark.shadow};--g-sheen:${G.dark.sheen}}
-.glass.glass-clear{--g-bg:${G.clear.bg};--g-solid:${G.clear.solid};--g-border:${G.clear.border};--g-edge:${G.clear.edge};--g-shadow:${G.clear.shadow};--g-sheen:${G.clear.sheen}}
+.glass{--g-bg:${G.light.bg};--g-solid:${G.light.solid};--g-border:${G.light.border};--g-edge:${G.light.edge};--g-shadow:${G.light.shadow};--g-sheen:${G.light.sheen};--g-rim:${G.light.rim};--g-glint:${G.light.glint};background-color:var(--g-solid);border:1px solid var(--g-border);box-shadow:var(--g-edge),var(--g-shadow)}
+.glass.glass-dark{--g-bg:${G.dark.bg};--g-solid:${G.dark.solid};--g-border:${G.dark.border};--g-edge:${G.dark.edge};--g-shadow:${G.dark.shadow};--g-sheen:${G.dark.sheen};--g-rim:${G.dark.rim};--g-glint:${G.dark.glint}}
+.glass.glass-prominent{--g-bg:${G.prominent.bg};--g-solid:${G.prominent.solid};--g-border:${G.prominent.border};--g-edge:${G.prominent.edge};--g-shadow:${G.prominent.shadow};--g-sheen:${G.prominent.sheen};--g-rim:${G.prominent.rim};--g-glint:${G.prominent.glint}}
+.glass.glass-clear{--g-bg:${G.clear.bg};--g-solid:${G.clear.solid};--g-border:${G.clear.border};--g-edge:${G.clear.edge};--g-shadow:${G.clear.shadow};--g-sheen:${G.clear.sheen};--g-rim:${G.clear.rim};--g-glint:${G.clear.glint}}
+/* the edge catches light: a gradient rim drawn over the border (strongest top left, like a lens) */
+.glass{position:relative}
+.glass::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:var(--g-rim);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);pointer-events:none}
 @supports ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
   .glass{background-color:var(--g-bg);-webkit-backdrop-filter:blur(${G.blur}) saturate(${G.saturate});backdrop-filter:blur(${G.blur}) saturate(${G.saturate})}
 }
 @media (prefers-reduced-transparency:reduce),(prefers-contrast:more){
   .glass{background-color:var(--g-solid);-webkit-backdrop-filter:none;backdrop-filter:none}
+  .glass::before,.scroll-edge{display:none}
 }
 /* liquid feedback, only on glass: a soft spring and a light sheen on hover, a short squeeze on press */
-.glass-press,.tile-card{transition:transform .5s ${G.spring},background-color .3s,border-color .3s,box-shadow .3s}
+.glass-press,.tile-cta{transition:transform .5s ${G.spring},background-color .3s,border-color .3s,box-shadow .3s}
 @media (hover:hover){
-  .glass-press:hover{transform:translateY(-1px) scale(1.03);background-image:linear-gradient(var(--g-sheen),var(--g-sheen))}
-  .track-tile:hover .tile-card{transform:translateY(-3px);background-image:linear-gradient(var(--g-sheen),var(--g-sheen))}
-  .nav-link:hover{background-color:var(--g-sheen)}
+  /* a highlight follows the pointer across glass (--mx/--my set in NewApp) */
+  .glass-press:hover{transform:translateY(-1px) scale(1.03);background-image:radial-gradient(140px circle at var(--mx,50%) var(--my,0%),var(--g-glint),transparent 70%),linear-gradient(var(--g-sheen),var(--g-sheen))}
+  .nav-bar:hover{background-image:radial-gradient(240px circle at var(--mx,50%) var(--my,50%),var(--g-sheen),transparent 70%)}
+  .track-tile:hover .tile-cta{transform:translateY(-1px) scale(1.03);background-image:linear-gradient(var(--g-sheen),var(--g-sheen))}
 }
-.glass-press:active{transform:scale(.97);transition-duration:.15s}
-.track-tile:active .tile-card{transform:scale(.985);transition-duration:.15s}
+/* press: glass gives a little, like a liquid surface */
+.glass-press:active{transform:scale(.96);transition-duration:.15s}
+.track-tile:active .tile-cta{transform:scale(.97);transition-duration:.15s}
 @media (prefers-reduced-motion:reduce){
-  .glass-press,.glass-press:hover,.glass-press:active,.tile-card,.track-tile:hover .tile-card,.track-tile:active .tile-card{transform:none!important;transition:background-color .2s!important}
+  .nav-bar,.nav-bar>nav,.nav-lens,.nav-menu{transition:none!important}
+  .glass-press,.glass-press:hover,.glass-press:active,.tile-cta,.track-tile:hover .tile-cta,.track-tile:active .tile-cta{transform:none!important;transition:background-color .2s!important}
 }
 
 /* nav: a floating glass bar with space to the edges; light or dark glass depending on what is behind it */
 .nav-shell{position:fixed;top:0;left:0;right:0;z-index:100;padding:12px clamp(12px,3vw,24px) 0;pointer-events:none}
 .nav-bar{max-width:1320px;margin:0 auto;pointer-events:auto;border-radius:${G.radius}px;transition:border-radius .35s ${EASE},background-color .3s,border-color .3s,box-shadow .3s}
 .nav-bar.is-open{border-radius:${G.radiusCard}px}
-.nav-bar.is-bare{background-color:transparent;border-color:transparent;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+.nav-bar{transition:border-radius .35s ${EASE},max-width .6s ${EASE},background-color .3s,border-color .3s,box-shadow .3s}
+.nav-bar>nav{transition:padding .6s ${EASE}}
+@media (min-width:1121px){
+  .nav-bar.is-compact{max-width:1040px}
+  .nav-bar.is-compact>nav{padding-top:3px;padding-bottom:3px}
+}
+/* scroll edge effect: content under the floating bar softens, so the bar stays distinct (HIG scroll views) */
+.scroll-edge{position:fixed;top:0;left:0;right:0;height:92px;pointer-events:none;opacity:0;transition:opacity .4s;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);-webkit-mask-image:linear-gradient(#000 35%,transparent);mask-image:linear-gradient(#000 35%,transparent)}
+.scroll-edge.is-on{opacity:1}
+/* glass lens that glides to the hovered link (concentric with the bar: a capsule inside a capsule) */
+.nav-lens{position:absolute;left:0;top:50%;height:36px;margin-top:-18px;border-radius:999px;background:var(--g-sheen);box-shadow:inset 0 1px 0 var(--g-sheen),0 2px 10px -4px rgba(0,0,0,.18);pointer-events:none;transition:transform .5s ${G.spring},width .5s ${G.spring},opacity .25s}
+.nav-desk .nav-link{position:relative;z-index:1}
+/* phone menu grows open instead of appearing */
+.nav-menu{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s ${EASE}}
+.nav-menu.is-open{grid-template-rows:1fr}
+@media (min-width:1121px){.nav-menu{display:none}}
 .nav-bar>nav{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:6px 6px 6px 20px}
 .nav-link{padding:9px 14px;border-radius:999px;transition:background-color .25s}
 .nav-desk{display:flex}
@@ -252,6 +271,9 @@ li:last-child>.news-row{border-bottom:1px solid rgba(0,0,0,.1)}
   .cols-4{grid-template-columns:repeat(2,minmax(0,1fr))}
   .cols-5{grid-template-columns:repeat(3,minmax(0,1fr))}
   .hero-grid{grid-template-columns:minmax(0,1fr) 300px;gap:40px}
+  .hero-grid-flow{grid-template-columns:minmax(0,1fr);gap:56px}
+  .hero-flow{max-width:560px}
+  .hero-flow svg{max-height:none}
   .proc{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:40px}
   .proc::before{display:none}
 }
@@ -290,9 +312,6 @@ li:last-child>.news-row{border-bottom:1px solid rgba(0,0,0,.1)}
 }
 @media (max-width:760px){ .t-h2,.t-display{hyphens:auto;-webkit-hyphens:auto} }
 @media (max-width:560px){
-  .hero-ctas{flex-direction:column;align-items:stretch;max-width:340px;margin-left:auto;margin-right:auto}
-  .hero-tracks{grid-template-columns:minmax(0,1fr)}
-  .hero-tracks::before{inset:-24px -16px;background:radial-gradient(closest-side at 50% 28%,${C.silverSoft},transparent),radial-gradient(closest-side at 50% 72%,${C.goldSoft},transparent)}
   .bio .facts{grid-template-columns:minmax(0,1fr);gap:8px}
   .facts>div{display:flex;align-items:baseline;gap:14px}
   .facts>div>div:first-child{min-width:4.2em}
@@ -306,7 +325,7 @@ li:last-child>.news-row{border-bottom:1px solid rgba(0,0,0,.1)}
   .marquee{-webkit-mask-image:none;mask-image:none}
   .marquee-track{animation:none;flex-wrap:wrap;width:auto;row-gap:18px}
   .logo-item.dup{display:none}
-  .track-tile .track-img img,.service-row h3,.btn .arrow{transition:none}
+  .track-tile .track-img img,.service-row h3,.btn .arrow,.pair figure{transition:none}
 }
 `;
 
@@ -322,6 +341,20 @@ export default function NewApp() {
   const track = tech ? "tech" : re ? "re" : null;
   const page = track || (home ? "home" : insights ? "insights" : imprint ? "impressum" : privacy ? "datenschutz" : "notFound");
   useStack();
+
+  // Liquid Glass reacts to the pointer: the hovered glass element gets its position as --mx / --my for a moving highlight.
+  useEffect(() => {
+    if (!window.matchMedia("(hover: hover)").matches || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
+    const onMove = (e) => {
+      const el = e.target.closest?.(".glass-press, .nav-bar");
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      el.style.setProperty("--mx", `${Math.round(e.clientX - r.left)}px`);
+      el.style.setProperty("--my", `${Math.round(e.clientY - r.top)}px`);
+    };
+    document.addEventListener("pointermove", onMove, { passive: true });
+    return () => document.removeEventListener("pointermove", onMove);
+  }, []);
 
   const setLang = (l) => {
     setLangState(l);

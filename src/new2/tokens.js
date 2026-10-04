@@ -31,21 +31,24 @@ const rgba = (hex, a) => { const n = parseInt(hex.slice(1), 16); return `rgba(${
 // Body text, articles, legal texts and forms stay on solid surfaces.
 // light = on light sections, dark = on dark sections, clear = over photos (they carry their own dimming).
 // solid = fallback without backdrop-filter and for reduced transparency / increased contrast.
+// rim = light caught by the edge (strongest top left), glint = highlight that follows the pointer on hover.
+// prominent = tinted glass for the one primary action of a view (HIG: prominent button, accent on the background).
 export const GLASS = {
-  blur: "20px",
-  saturate: "180%",
+  blur: "24px",
+  saturate: "200%",
   radius: 999, // capsules
   radiusCard: 24, // menu surface, cards
   spring: "cubic-bezier(.34,1.56,.64,1)", // hover / press
   inset: rgba(C.card, 0.92), // nearly solid pill inside a bar (track pill), keeps its text legible over any content
-  glow: { silver: rgba(C.silver, 0.28), gold: rgba(C.gold, 0.22) }, // soft light behind glass on dark surfaces
   light: {
-    bg: rgba(C.bg, 0.72),
+    bg: rgba(C.bg, 0.66),
     solid: rgba(C.bg, 0.96),
-    border: rgba(C.card, 0.75),
-    edge: `inset 0 1px 0 ${rgba(C.card, 0.9)}`,
+    border: rgba(C.card, 0.6),
+    edge: `inset 0 1px 0 ${rgba(C.card, 0.9)}, inset 0 -1px 0 ${rgba(C.dark, 0.05)}`,
     shadow: `0 8px 28px -12px ${rgba(C.dark, 0.25)}, 0 1px 3px ${rgba(C.dark, 0.06)}`,
     sheen: rgba(C.card, 0.45),
+    rim: `linear-gradient(135deg, ${rgba(C.card, 0.95)}, ${rgba(C.card, 0.25)} 35%, ${rgba(C.card, 0.05)} 60%, ${rgba(C.card, 0.6)})`,
+    glint: rgba(C.card, 0.65),
     fg: C.text,
   },
   dark: {
@@ -55,6 +58,8 @@ export const GLASS = {
     edge: `inset 0 1px 0 ${rgba(C.card, 0.18)}`,
     shadow: `0 10px 30px -12px ${rgba(C.dark, 0.6)}`,
     sheen: rgba(C.card, 0.1),
+    rim: `linear-gradient(135deg, ${rgba(C.card, 0.38)}, ${rgba(C.card, 0.08)} 40%, ${rgba(C.card, 0.02)} 62%, ${rgba(C.card, 0.22)})`,
+    glint: rgba(C.card, 0.16),
     selected: rgba(C.card, 0.16), // chosen item inside a dark bar
     fg: C.onDark,
   },
@@ -65,6 +70,19 @@ export const GLASS = {
     edge: `inset 0 1px 0 ${rgba(C.card, 0.28)}`,
     shadow: `0 16px 40px -20px ${rgba(C.dark, 0.6)}`,
     sheen: rgba(C.card, 0.12),
+    rim: `linear-gradient(135deg, ${rgba(C.card, 0.55)}, ${rgba(C.card, 0.1)} 40%, ${rgba(C.card, 0.04)} 62%, ${rgba(C.card, 0.32)})`,
+    glint: rgba(C.card, 0.2),
+    fg: C.card,
+  },
+  prominent: {
+    bg: rgba(C.dark, 0.86),
+    solid: C.dark,
+    border: rgba(C.card, 0.14),
+    edge: `inset 0 1px 0 ${rgba(C.card, 0.24)}, inset 0 -1px 0 ${rgba(C.dark, 0.5)}`,
+    shadow: `0 10px 24px -10px ${rgba(C.dark, 0.55)}`,
+    sheen: rgba(C.card, 0.08),
+    rim: `linear-gradient(135deg, ${rgba(C.card, 0.45)}, ${rgba(C.card, 0.08)} 40%, ${rgba(C.card, 0.02)} 62%, ${rgba(C.card, 0.2)})`,
+    glint: rgba(C.card, 0.22),
     fg: C.card,
   },
 };
@@ -74,11 +92,14 @@ export const TRACK = {
   re: { a: C.goldLine, at: C.goldDeep, as: C.goldSoft },
 };
 
-// One family for everything (Figtree, self-hosted). CJK falls back to the system fonts.
-export const F = "'Figtree Variable', Figtree, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif";
+// One family for everything (DM Sans per CI, self-hosted, with optical sizes).
+export const F = "'DM Sans Variable', 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif";
 
 // Type scale: 8 fluid steps (mobile -> desktop), defined as CSS variables in NewApp.jsx.
 // xs 12 · sm 14 · base 16–17 · lg 18–20 · xl 20–24 · x2 28–40 · x3 34–60 · x4 44–80
+// Serif for the overview headline only (Newsreader, self-hosted, with optical sizes).
+export const SERIF = "'Newsreader Variable', Newsreader, Georgia, 'Times New Roman', serif";
+
 export const T = { xs: "var(--t-xs)", sm: "var(--t-sm)", base: "var(--t-base)", lg: "var(--t-lg)", xl: "var(--t-xl)", x2: "var(--t-2xl)", x3: "var(--t-3xl)", x4: "var(--t-4xl)" };
 // Upper-case label: only for chapter labels above headings. The brand name never appears in upper case.
 export const LABEL = { fontFamily: F, fontSize: T.xs, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", lineHeight: 1.4 };

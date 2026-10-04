@@ -27,24 +27,26 @@ function NavLink({ to, children, style, className, onClick }) {
 }
 
 // Dark content behind the bar: there the bar turns into dark glass, as Liquid Glass adapts to what it floats over.
-const DARK_BEHIND = ".tone-dark, .track-tile, .portrait, [data-glass-dark]";
+const DARK_BEHIND = ".tone-dark, .track-tile, .portrait";
 
 export function Nav({ t, lang, setLang, track, links }) {
   const [open, setOpen] = useState(false);
-  const [markOn, setMarkOn] = useState(true);
   const [onDark, setOnDark] = useState(false);
+  const [scrolled, setScrolled] = useState(false); // content runs under the bar: scroll edge effect
+  const [compact, setCompact] = useState(false); // scrolling down: the bar minimises (HIG tab bars), scrolling up restores it
+  const [lens, setLens] = useState(null); // glass lens that glides to the hovered link
   const { pathname } = useLocation();
   const tc = TRACK[track] || TRACK.tech;
   useEffect(() => {
     let raf = 0;
+    let lastY = window.scrollY;
     const update = () => {
       raf = 0;
-      // On the overview the large hero wordmark is the logo; the small one appears once the large one has
-      // scrolled away (phones) or the next panel has slid over it (desktop, where the hero panel sticks).
-      const big = pathname === "/" ? document.querySelector(".hero-mark") : null;
-      const next = big?.closest(".panel")?.nextElementSibling;
-      const b = big?.getBoundingClientRect().bottom;
-      setMarkOn(!big || b < 64 || (next && next.getBoundingClientRect().top < b));
+      const y = window.scrollY;
+      setScrolled(y > 8);
+      if (y < 160 || y < lastY - 6) setCompact(false);
+      else if (y > lastY + 6) setCompact(true);
+      if (Math.abs(y - lastY) > 6) lastY = y;
       // What is behind the bar: probe three points along its middle line.
       const dark = [0.2, 0.5, 0.8].filter((f) => {
         const el = document.elementsFromPoint(window.innerWidth * f, 36).find((e) => !e.closest("header"));
@@ -68,11 +70,11 @@ export function Nav({ t, lang, setLang, track, links }) {
 
   return (
     <header className="nav-shell">
-      {/* on the overview the glass surface appears together with the small wordmark (scroll-edge behaviour) */}
-      <div className={`nav-bar glass ${onDark ? "glass-dark" : ""} ${open ? "is-open" : ""} ${markOn || open ? "" : "is-bare"}`}>
+      <div aria-hidden className={`scroll-edge ${scrolled ? "is-on" : ""}`} />
+      <div className={`nav-bar glass ${onDark ? "glass-dark" : ""} ${open ? "is-open" : ""} ${compact && !open ? "is-compact" : ""}`}>
         <nav aria-label="Main">
           <div style={{ display: "flex", alignItems: "center", gap: 14, minWidth: 0 }}>
-            <Link to="/" aria-label="InVentures" className="hit" style={{ textDecoration: "none", display: "inline-flex", opacity: markOn || open ? 1 : 0, visibility: markOn || open ? "visible" : "hidden", transition: "opacity .4s, visibility .4s" }}><Wordmark size={22} /></Link>
+            <Link to="/" aria-label="InVentures" className="hit" style={{ textDecoration: "none", display: "inline-flex" }}><Wordmark size={22} /></Link>
             {track && (
               <span className="track-pill" style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "5px 8px 5px 12px", background: `linear-gradient(${tc.as}, ${tc.as}), ${GLASS.inset}`, borderRadius: 999 }}>
                 <span aria-hidden style={{ width: 5, height: 5, borderRadius: "50%", background: tc.a }} />
@@ -81,7 +83,10 @@ export function Nav({ t, lang, setLang, track, links }) {
               </span>
             )}
           </div>
-          <div className="nav-desk" style={{ alignItems: "center", gap: 2 }}>
+          <div className="nav-desk" style={{ alignItems: "center", gap: 2, position: "relative" }}
+            onMouseOver={(e) => { const a = e.target.closest(".nav-link"); if (a) setLens({ x: a.offsetLeft, w: a.offsetWidth }); }}
+            onMouseLeave={() => setLens((l) => l && { ...l, off: true })}>
+            <span aria-hidden className="nav-lens" style={lens ? { transform: `translateX(${lens.x}px)`, width: lens.w, opacity: lens.off ? 0 : 1 } : { opacity: 0 }} />
             {links.map(([id, label]) => <NavLink key={id} to={id} className="nav-link" style={linkStyle}>{label}</NavLink>)}
             <span aria-hidden style={{ width: 1, height: 14, background: ink.line, margin: "0 10px" }} />
             <LangSwitch lang={lang} setLang={setLang} tc={tc} onDark={onDark} />
@@ -94,15 +99,17 @@ export function Nav({ t, lang, setLang, track, links }) {
             </button>
           </div>
         </nav>
-        {/* phone menu: opens inside the same glass surface */}
-        {open && (
-          <div className="nav-mob" style={{ flexDirection: "column", gap: 4, padding: "4px 20px 18px", borderTop: `1px solid ${ink.line}` }}>
+        {/* phone menu: grows out of the same glass surface */}
+        <div className={`nav-menu ${open ? "is-open" : ""}`} inert={open ? undefined : ""}>
+          <div style={{ minHeight: 0, overflow: "hidden" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 4, padding: "4px 20px 18px", borderTop: `1px solid ${ink.line}` }}>
             {links.map(([id, label]) => <NavLink key={id} to={id} onClick={() => setOpen(false)} style={{ ...linkStyle, fontSize: T.lg, padding: "10px 0" }}>{label}</NavLink>)}
             {track && <Link to="/" onClick={() => setOpen(false)} style={{ fontFamily: F, fontSize: T.base, fontWeight: 500, color: onDark ? C.onDark : tc.at, textDecoration: "none", paddingTop: 10, marginTop: 6, borderTop: `1px solid ${ink.line}` }}>← {t.ui.back}</Link>}
             {/* on small screens the language choice lives in the menu, so the bar keeps only logo and menu */}
             <div style={{ paddingTop: 12, marginTop: 6, borderTop: `1px solid ${ink.line}` }}><div style={{ marginLeft: -9 }}><LangSwitch lang={lang} setLang={setLang} tc={tc} onDark={onDark} /></div></div>
           </div>
-        )}
+          </div>
+        </div>
       </div>
     </header>
   );

@@ -31,18 +31,57 @@ export function Portrait({ person, sizes = "(max-width: 760px) 50vw, 480px", sty
 
 export function TeamCards({ t, ch }) {
   const tm = t.team;
+  // Whose name has reached the bottom edge of the portraits (desktop, where they stay in view): the other one greys out.
+  const [active, setActive] = useState(null);
+  // Room under the last bio, so the portraits stay in place until the last name has reached their top edge.
+  const [tail, setTail] = useState(0);
+  useEffect(() => {
+    let raf = 0;
+    const parts = () => {
+      const root = document.getElementById("team");
+      return root && { pair: root.querySelector(".pair"), col: root.querySelector(".team-text"), names: [...root.querySelectorAll(".bio h3")] };
+    };
+    const check = () => {
+      raf = 0;
+      const q = parts();
+      if (!q?.pair) return;
+      const edge = q.pair.getBoundingClientRect().bottom;
+      let hit = null;
+      q.names.forEach((h, i) => { if (h.getBoundingClientRect().top <= edge) hit = tm.people[i]?.key; });
+      setActive(hit);
+    };
+    const fit = () => {
+      const q = parts();
+      if (!q?.pair || !q.names.length) return;
+      if (getComputedStyle(q.pair).position !== "sticky") { setTail(0); return; } // phones: portraits above the text
+      const pad = parseFloat(q.col.style.paddingBottom) || 0;
+      const below = q.col.getBoundingClientRect().bottom - pad - q.names[q.names.length - 1].getBoundingClientRect().top;
+      setTail(Math.max(0, Math.ceil(q.pair.offsetHeight - below)));
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(check); };
+    const onResize = () => { fit(); onScroll(); };
+    const start = setTimeout(onResize, 60);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onResize);
+    return () => {
+      clearTimeout(start);
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onResize);
+    };
+  }, [tm.people]);
   return (
     <Panel id="team" tone="white" chapter={ch}>
       <Container>
         <div className="team-grid">
           <Reveal className="pair">
             {tm.people.map((p) => (
-              <figure key={p.key} style={{ margin: 0 }}>
+              <figure key={p.key} className={active && active !== p.key ? "is-dim" : ""} style={{ margin: 0 }}>
                 <Portrait person={p} sizes="(max-width: 760px) 50vw, 280px" />
               </figure>
             ))}
           </Reveal>
-          <div>
+          <div className="team-text" style={{ paddingBottom: tail }}>
             <Reveal><Eyebrow n={ch?.n}>{tm.label}</Eyebrow></Reveal>
             <Reveal delay={0.05}><H2>{tm.title}</H2></Reveal>
             <Reveal delay={0.1}><Lead style={{ marginBottom: 40 }}>{tm.intro}</Lead></Reveal>
@@ -50,7 +89,8 @@ export function TeamCards({ t, ch }) {
               const a = accentOf(p.accent);
               return (
                 <Reveal key={p.key} delay={0.12 + i * 0.06} className="bio">
-                  <h3 className="t-h3" style={{ margin: "0 0 4px" }}><Rich text={p.name} /></h3>
+                  {/* the last name marks how far the panel scrolls before the next one slides over it (see useStack) */}
+                  <h3 className="t-h3" style={{ margin: "0 0 4px" }} data-stick-mark={i === tm.people.length - 1 ? 100 : undefined}><Rich text={p.name} /></h3>
                   <div className="t-small" style={{ marginBottom: 12 }}><span style={{ color: a.text, fontWeight: 600 }}>{p.role}</span><span style={{ color: C.muted }}> · {p.focus}</span></div>
                   <p className="t-body" style={{ color: C.text, margin: "0 0 18px" }}>{p.bio}</p>
                   <div className="facts">
@@ -101,11 +141,13 @@ export function Regulated({ t, ch }) {
             </div>
           </Reveal>
         )}
-        <Reveal delay={0.1}>
-          <p className="t-stat" style={{ fontWeight: 400, letterSpacing: "-0.02em", lineHeight: 1.25, margin: "clamp(56px, 7vw, 96px) 0 0", maxWidth: 900 }}>
-            <span style={{ color: C.gold }}>— </span>{r.closing}
-          </p>
-        </Reveal>
+        {r.closing && (
+          <Reveal delay={0.1}>
+            <p className="t-stat" style={{ fontWeight: 400, letterSpacing: "-0.02em", lineHeight: 1.25, margin: "clamp(56px, 7vw, 96px) 0 0", maxWidth: 900 }}>
+              <span style={{ color: C.gold }}>— </span>{r.closing}
+            </p>
+          </Reveal>
+        )}
       </Container>
     </Panel>
   );
@@ -608,7 +650,6 @@ const MONTHS = { en: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "S
 export const fmtDate = (s, lang) => {
   const [y, m] = String(s).split("-");
   if (!m) return y;
-  if (lang === "cn") return `${y}年${parseInt(m, 10)}月`;
   return `${(MONTHS[lang] || MONTHS.en)[parseInt(m, 10) - 1]} ${y}`;
 };
 const byDate = (list) => [...list].sort((a, b) => String(b.date).localeCompare(String(a.date)));
@@ -616,7 +657,7 @@ export const newsFor = (track) => byDate(track === "re" ? reNews : techNews);
 
 // One external report: date, original title, summary in the page language, source.
 export function NewsRow({ n, lang, t, accent }) {
-  const summary = (lang === "de" && n.summary_de) || (lang === "cn" && n.summary_cn) || n.summary;
+  const summary = (lang === "de" && n.summary_de) || n.summary;
   const srcLang = n.lang || "en";
   const hint = srcLang !== lang ? t.ui.langHint?.[srcLang] : null;
   return (
@@ -636,7 +677,7 @@ export function NewsRow({ n, lang, t, accent }) {
 
 // Card for an own article (InVentures View) that links to its page.
 export function ArticleCard({ a, lang, t, accent }) {
-  const l = lang === "de" ? "de" : lang === "cn" ? "cn" : "en";
+  const l = lang === "de" ? "de" : "en";
   return (
     <Link to={`/insights/${a.slug}`} className="article-card" style={{ display: "block", textDecoration: "none", color: C.dark, padding: "26px 28px", borderRadius: 18, background: "#fff", boxShadow: "0 1px 0 rgba(0,0,0,.06), 0 18px 40px -28px rgba(0,0,0,.35)" }}>
       <div style={{ ...META, color: accent, marginBottom: 10 }}>{t.insights.view} · {fmtDate(a.date, lang)}</div>
