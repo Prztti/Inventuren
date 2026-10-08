@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { C, F, T, LABEL, TRACK, GLASS } from "./tokens";
-import { Picture, Button, Panel, Container, TextLink } from "./ui";
+import { Picture, Button, Panel, Container, TextLink, Words } from "./ui";
 import { Clients, Profiles, Compliance, Expertise, Services, Network, Process, Insights } from "./sections";
 import { ContactSection } from "./Contact";
 import TechFlow from "./TechFlow";
@@ -16,13 +16,14 @@ function Hero({ t, d, track, tc }) {
             {/* the back link is a control: a small glass capsule (the wrapper carries the entrance animation) */}
             <div className="hero-in" style={{ marginBottom: 40 }}><Link to="/" className="back-link glass glass-press" style={{ fontFamily: F, fontSize: T.sm, fontWeight: 500, color: C.dim, textDecoration: "none", display: "inline-flex", gap: 8, padding: "9px 16px", borderRadius: GLASS.radius }}>← {t.ui.back}</Link></div>
             <div className="hero-in" style={{ ...LABEL, color: tc.at, marginBottom: 20 }}>{track === "re" ? t.ui.since06 : t.ui.since15}</div>
-            <h1 className="hero-in d1 t-h2" style={{ margin: "0 0 24px", lineHeight: 1.04 }}>
-              <span style={{ display: "block" }}>{d.h1[0]}</span>
-              <span style={{ display: "block", color: C.silver }}>{d.h1[1]}</span>
-              <span style={{ display: "block", color: C.goldText }}>{d.h1[2]}</span>
+            {/* the headline builds up line by line, word by word; the lead follows, then the actions */}
+            <h1 className="hero-in words-load t-h2" style={{ margin: "0 0 24px", lineHeight: 1.04 }}>
+              <span style={{ display: "block" }}><Words step={0.2}>{d.h1[0]}</Words></span>
+              <span style={{ display: "block", color: C.silver }}><Words step={0.2}>{d.h1[1]}</Words></span>
+              <span style={{ display: "block", color: C.goldText }}><Words step={0.2}>{d.h1[2]}</Words></span>
             </h1>
-            <p className="hero-in d2 t-lead" style={{ maxWidth: 600, margin: "0 0 40px" }}>{d.heroP}</p>
-            <div className="hero-in d3" style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
+            <p className="hero-in words-load t-lead" style={{ maxWidth: 600, margin: "0 0 40px" }}><Words>{d.heroP}</Words></p>
+            <div className="hero-in" style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center", animationDelay: "1.6s" }}>
               <Button href="#kontakt" color={C.dark}>{t.ui.discuss}</Button>
               <Button href="#leistungen" variant="glass">{d.ctaA}</Button>
               <span style={{ marginLeft: 8 }}><TextLink href={track === "re" ? "#profil" : "#team"} size={T.sm}>{d.ctaB}</TextLink></span>
@@ -36,7 +37,8 @@ function Hero({ t, d, track, tc }) {
             <div className="hero-flow hero-in d2"><TechFlow /></div>
           )}
         </div>
-        <dl className="stats-row hero-in d4">
+        {/* the key figures keep scrolling with the page until they are near the top; only then does the next panel slide over them */}
+        <dl className="stats-row hero-in" data-stick-mark={110} style={{ animationDelay: "1.2s" }}>
           {d.stats.map((s) => (
             <div key={s.l}>
               <dt className="t-stat" style={{ color: C.dark, whiteSpace: "nowrap" }}>{s.v}</dt>

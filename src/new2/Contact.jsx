@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { C, F, T, META } from "./tokens";
-import { Reveal, Panel, Container, Eyebrow, H2, Lead, Rich } from "./ui";
+import { Reveal, Panel, Container, Eyebrow, H2, Lead, Rich, Words } from "./ui";
 
 const MAIL = "info@inventures.at";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -116,7 +116,7 @@ export function ContactSection({ t, tc, ch, track, philipFirst }) {
         <div className="split-2 wide-gap" style={{ alignItems: "start" }}>
           <Reveal delay={0.1}><ContactForm l={c.form} accent={tc.at} defaultTopic={defaultTopic} /></Reveal>
           <Reveal delay={0.18}>
-            <p className="t-body" style={{ color: C.text, margin: "0 0 24px" }}>{c.first}</p>
+            <p className="t-body" style={{ color: C.text, margin: "0 0 24px" }}><Words>{c.first}</Words></p>
             <dl style={{ margin: "0 0 36px" }}>
               {rows.map((r) => (
                 <div key={r.k} className="row-line" style={Array.isArray(r.v) ? { display: "block" } : { display: "flex", justifyContent: "space-between", gap: 16 }}>

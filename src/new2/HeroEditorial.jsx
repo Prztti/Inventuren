@@ -1,6 +1,6 @@
 import "@fontsource-variable/newsreader/opsz.css";
 import { C, F, SERIF } from "./tokens";
-import { Panel, Container, Button } from "./ui";
+import { Panel, Container, Button, Words } from "./ui";
 
 // Very faint paper grain: a small SVG noise tile (a data: URI, allowed by the CSP), multiplied onto the background.
 const GRAIN = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`;
@@ -35,6 +35,7 @@ const CSS = `
 export default function HeroEditorial({ t }) {
   const h = t.home;
   const x = h.hero;
+  const brand = /^(Ventures) (in) (.+)$/.exec(x.h1);
   return (
     <Panel first tone="light" className="hero hv-a" style={{ background: C.warm }} innerStyle={{ minHeight: "100svh", display: "flex" }}>
       <style>{CSS}</style>
@@ -42,9 +43,18 @@ export default function HeroEditorial({ t }) {
       <Container wide style={{ width: "100%", display: "flex", flexDirection: "column", justifyContent: "center", paddingTop: "clamp(112px, 16vh, 160px)", paddingBottom: "clamp(56px, 9vh, 96px)" }}>
         <div className="hv-a-grid">
           <span aria-hidden className="hv-a-rule hero-in" />
-          <h1 className="hv-a-h1 hero-in d1">{x.h1}</h1>
-          <p className="hv-a-sub hero-in d2">{x.sub}</p>
-          <div className="hv-a-actions hero-in d3">
+          <h1 className="hv-a-h1 hero-in words-load">
+            {brand ? (
+              <>
+                {/* "Ventures in" mirrors the wordmark InVentures: Ventures gold, in silver */}
+                <span style={{ color: C.goldText }}><Words step={0.2}>{brand[1]}</Words></span>{" "}
+                <span style={{ color: C.silver }}><Words step={0.2}>{brand[2]}</Words></span>{" "}
+                <Words step={0.2}>{brand[3]}</Words>
+              </>
+            ) : <Words step={0.2}>{x.h1}</Words>}
+          </h1>
+          <p className="hv-a-sub hero-in words-load"><Words>{x.sub}</Words></p>
+          <div className="hv-a-actions hero-in" style={{ animationDelay: "1.6s" }}>
             <Button href="#kontakt">{t.ui.discuss}</Button>
             <Button to="/tech" variant="glass" tint={C.silverInk}>{h.tracks.tech.label}</Button>
             <Button to="/real-estate" variant="glass" tint={C.goldDeep}>{h.tracks.re.label.replace("\n", " ")}</Button>

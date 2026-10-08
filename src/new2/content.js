@@ -44,14 +44,14 @@ en: {
   },
   team: {
     label: "Team", title: "Two partners. 50+ years of experience.",
-    intro: "The two have worked together since 2016, most recently on prax.net.",
+    intro: "A close-knit team for over 10 years.",
     people: [
       { ...PEOPLE.david, role: "Founder & Managing Partner", focus: "Legal · Capital · Company Building",
         bio: "Trained as a lawyer (full law degree, Mag. iur.), founder of geolad and CEO of several companies. 25+ years of operational responsibility, GDPR and EU AI Act in daily practice.",
-        facts: [{ v: "€600m+", l: "Transaction volume" }, { v: "€45m+", l: "Capital mobilised" }, { v: "€12m+", l: "Research grants" }] },
+        facts: [{ v: "€600m+", l: "Transaction volume" }, { v: "€95m+", l: "Capital mobilised" }, { v: "€12m+", l: "Research grants" }] },
       { ...PEOPLE.philip, role: "Managing Partner, Technology", focus: "Architecture · Security · Delivery",
         bio: "Enterprise architect and CTO. 25+ years of large IT programmes in government, health, education and telecom, from Austrian customs to Qatar's national health insurance.",
-        facts: [{ v: "4", l: "National government IT programmes" }, { v: "€10m+", l: "Programme stream managed (customs)" }, { v: "5", l: "Years of identity management for authorities and schools" }] },
+        facts: [{ v: "4", l: "National government IT programmes" }, { v: "€10m+", l: "Customs IT programme, Ministry of Finance" }, { v: "30+", l: "Connected systems in the customs programme" }] },
     ],
     bondsLabel: "What we combine",
     bonds: [
@@ -68,7 +68,7 @@ en: {
     pillars: [
       { t: "Security by Design", who: "Philip Kügler", d: "Security requirements per ISO 27001 and BSI, identity and access management." },
       { t: "Architecture & Operations", who: "Philip Kügler", d: "Highly available national registries and platforms, through to live operation." },
-      { t: "Company Building & Capital", who: "David Brainin", d: "Incorporation, governance, go-to-market. €45m+ capital, €12m+ grants." },
+      { t: "Company Building & Capital", who: "David Brainin", d: "Incorporation, governance, go-to-market. €95m+ capital, €12m+ grants." },
       { t: "Legal & Compliance", who: "David Brainin", d: "Art. 9 GDPR, impact assessments, AI Act classification." },
     ],
     telecom: { label: "Telecommunications law", claim: "In telecommunications, the GDPR is only the starting point.", p: "Both partners have worked with telecom data in several countries for years — under confidentiality of communications, strict purpose limits and deletion duties beyond the GDPR." },
@@ -109,7 +109,7 @@ en: {
     ctaA: "Services", ctaB: "Team",
     contactP: "An AI project, a platform or a venture in a regulated market: let's discuss your plans.",
     visual: { label: "Compliance by design", layers: [["Use cases", "AI agents, automation, new services"], ["Integration & operations", "Interfaces, identity, monitoring"], ["Data & systems", "Registries, ERP, data platforms"]], chips: ["GDPR", "AI Act", "ISO 27001", "BSI"], caption: "Law, security and technology in one architecture." },
-    stats: [{ v: "€45m+", l: "Capital mobilised" }, { v: "€12m+", l: "Research grants" }, { v: "4", l: "National government IT programmes" }, { v: "€10m+", l: "Programme stream managed (customs)" }, { v: "40+", l: "Projects DACH & MENA" }, { v: "50+", l: "Years of combined experience" }],
+    stats: [{ v: "€95m+", l: "Capital mobilised" }, { v: "€12m+", l: "Research grants" }, { v: "4", l: "National government IT programmes" }, { v: "€10m+", l: "Customs IT programme, Ministry of Finance" }, { v: "40+", l: "Projects DACH & MENA" }, { v: "50+", l: "Years of combined experience" }],
     partnerTitle: "Project experience",
     teamLabel: "Team", teamTitle: "Law and technology in one team.", teamIntro: "",
     profiles: [
@@ -219,14 +219,14 @@ de: {
   },
   team: {
     label: "Team", title: "Zwei Partner. Über 50 Jahre Erfahrung.",
-    intro: "Seit 2016 arbeiten die beiden an gemeinsamen Projekten, zuletzt an prax.net.",
+    intro: "Seit über 10 Jahren ein eingespieltes Team.",
     people: [
       { ...PEOPLE_DE.david, role: "Founder & Managing Partner", focus: "Recht · Kapital · Company Building",
         bio: "Jurist, Gründer der geolad und CEO mehrerer Unternehmen. Über 25 Jahre operative Verantwortung, DSGVO und EU AI Act aus der Praxis.",
-        facts: [{ v: "600+", l: "Mio. € Transaktions\u00advolumen" }, { v: "45+", l: "Mio. € Kapital mobilisiert" }, { v: "12+", l: "Mio. € Forschungs\u00adförderung" }] },
+        facts: [{ v: "600+", l: "Mio. € Transaktions\u00advolumen" }, { v: "95+", l: "Mio. € Kapital mobilisiert" }, { v: "12+", l: "Mio. € Forschungs\u00adförderung" }] },
       { ...PEOPLE_DE.philip, role: "Managing Partner, Technology", focus: "Architektur · Sicherheit · Umsetzung",
         bio: "Enterprise-Architekt und CTO. 25+ Jahre IT-Großprojekte für Verwaltung, Gesundheit, Bildung und Telekom, vom Zoll bis zur Krankenversicherung.",
-        facts: [{ v: "4", l: "Staatliche IT-Programme" }, { v: "10+", l: "Mio. € Verantwortung im Zollprogramm" }, { v: "5", l: "Jahre Identity-Management für Behörden und Schulen" }] },
+        facts: [{ v: "4", l: "Staatliche IT-Programme" }, { v: "10+", l: "Mio. € Zoll-IT-Programm, Finanzministerium" }, { v: "30+", l: "Angebundene Systeme im Zollprogramm" }] },
     ],
     bondsLabel: "Was wir verbinden",
     bonds: [
@@ -243,7 +243,7 @@ de: {
     pillars: [
       { t: "Security by Design", who: "Philip Kügler", d: "Sicherheitsanforderungen nach ISO 27001 und BSI, Identity- & Access-Management." },
       { t: "Architektur & Betrieb", who: "Philip Kügler", d: "Hochverfügbare nationale Register und Plattformen, bis in den laufenden Betrieb." },
-      { t: "Company Building & Kapital", who: "David Brainin", d: "Gründung, Governance, Go-to-Market. Über 45 Mio. € Kapital, über 12 Mio. € Förderungen." },
+      { t: "Company Building & Kapital", who: "David Brainin", d: "Gründung, Governance, Go-to-Market. Über 95 Mio. € Kapital, über 12 Mio. € Förderungen." },
       { t: "Recht & Compliance", who: "David Brainin", d: "Art. 9 DSGVO, Folgenabschätzung, AI-Act-Klassifizierung." },
     ],
     telecom: { label: "Telekommunikationsrecht", claim: "In der Telekommunikation ist die DSGVO erst der Anfang.", p: "Beide Partner arbeiten seit Jahren mit Telekom-Daten in mehreren Ländern – unter Kommunikationsgeheimnis, strenger Zweckbindung und Löschpflichten, die über die DSGVO hinausgehen." },
@@ -284,7 +284,7 @@ de: {
     ctaA: "Leistungen", ctaB: "Team",
     contactP: "AI-Projekt, Plattform oder Venture in einem regulierten Markt: Besprechen wir Ihr Vorhaben.",
     visual: { label: "Compliance by Design", layers: [["Anwendungsfälle", "AI-Agenten, Automatisierung, neue Services"], ["Integration & Betrieb", "Schnittstellen, Identity, Monitoring"], ["Daten & Systeme", "Register, ERP, Datenplattformen"]], chips: ["DSGVO", "AI Act", "ISO 27001", "BSI"], caption: "Recht, Sicherheit und Technik in einer Architektur." },
-    stats: [{ v: "45+", l: "Mio. € Kapital mobilisiert" }, { v: "12+", l: "Mio. € Forschungs\u00adförderung" }, { v: "4", l: "Staatliche IT-Programme" }, { v: "10+", l: "Mio. € Verantwortung im Zollprogramm" }, { v: "40+", l: "Projekte DACH & MENA" }, { v: "50+", l: "Jahre Erfahrung, zusammen\u00adgerechnet" }],
+    stats: [{ v: "95+", l: "Mio. € Kapital mobilisiert" }, { v: "12+", l: "Mio. € Forschungs\u00adförderung" }, { v: "4", l: "Staatliche IT-Programme" }, { v: "10+", l: "Mio. € Zoll-IT-Programm, Finanzministerium" }, { v: "40+", l: "Projekte DACH & MENA" }, { v: "50+", l: "Jahre Erfahrung, zusammen\u00adgerechnet" }],
     partnerTitle: "Projekterfahrung",
     teamLabel: "Team", teamTitle: "Recht und Technologie in einem Team.", teamIntro: "",
     profiles: [

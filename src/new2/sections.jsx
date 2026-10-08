@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { C, F, T, LABEL, META, TRACK } from "./tokens";
-import { Reveal, Panel, Container, Eyebrow, H2, Lead, TextLink, Button, Picture, Rich, plain } from "./ui";
+import { Reveal, Panel, Container, Eyebrow, H2, Lead, TextLink, Button, Picture, Rich, plain, Words } from "./ui";
 import { TIMELINE, REFERENCES, LOGOS } from "./data";
 import { techNews, reNews, articles } from "./news";
 
@@ -92,7 +92,7 @@ export function TeamCards({ t, ch }) {
                   {/* the last name marks how far the panel scrolls before the next one slides over it (see useStack) */}
                   <h3 className="t-h3" style={{ margin: "0 0 4px" }} data-stick-mark={i === tm.people.length - 1 ? 100 : undefined}><Rich text={p.name} /></h3>
                   <div className="t-small" style={{ marginBottom: 12 }}><span style={{ color: a.text, fontWeight: 600 }}>{p.role}</span><span style={{ color: C.muted }}> · {p.focus}</span></div>
-                  <p className="t-body" style={{ color: C.text, margin: "0 0 18px" }}>{p.bio}</p>
+                  <p className="t-body" style={{ color: C.text, margin: "0 0 18px" }}><Words>{p.bio}</Words></p>
                   <div className="facts">
                     {p.facts.map((f) => (
                       <div key={f.v}>
@@ -128,7 +128,7 @@ export function Regulated({ t, ch }) {
               <Num i={i} color="rgba(242,241,238,.45)" />
               <h3 className="t-h3" style={{ margin: "14px 0 8px" }}>{p.t}</h3>
               <div style={{ ...META, color: p.who.startsWith("David") ? C.gold : "#A9B6C2", marginBottom: 12 }}>{p.who}</div>
-              <p className="t-body" style={{ margin: 0, opacity: 0.74 }}>{p.d}</p>
+              <p className="t-body" style={{ margin: 0, opacity: 0.74 }}><Words>{p.d}</Words></p>
             </Reveal>
           ))}
         </div>
@@ -136,8 +136,8 @@ export function Regulated({ t, ch }) {
           <Reveal delay={0.05}>
             <div style={{ margin: "clamp(56px, 7vw, 88px) 0 0", padding: "4px 0 4px clamp(20px, 2.4vw, 32px)", borderLeft: `2px solid ${C.gold}`, maxWidth: 860 }}>
               <div style={{ ...LABEL, color: C.gold, marginBottom: 12 }}>{r.telecom.label}</div>
-              <p className="t-h3" style={{ margin: "0 0 10px" }}>{r.telecom.claim}</p>
-              <p className="t-body" style={{ margin: 0, opacity: 0.74, maxWidth: "68ch" }}>{r.telecom.p}</p>
+              <p className="t-h3" style={{ margin: "0 0 10px" }}><Words step={0.2}>{r.telecom.claim}</Words></p>
+              <p className="t-body" style={{ margin: 0, opacity: 0.74, maxWidth: "68ch" }}><Words>{r.telecom.p}</Words></p>
             </div>
           </Reveal>
         )}
@@ -474,7 +474,7 @@ export function Profiles({ id, label, title, intro, profiles, tc, ch, ui, tone =
               </Reveal>
               <div className="split-2">
                 <Reveal delay={0.05}>
-                  {p.paras.map((x) => <p key={x.slice(0, 24)} className="t-body" style={{ color: C.text, lineHeight: 1.7, margin: "0 0 18px" }}>{x}</p>)}
+                  {p.paras.map((x) => <p key={x.slice(0, 24)} className="t-body" style={{ color: C.text, lineHeight: 1.7, margin: "0 0 18px" }}><Words>{x}</Words></p>)}
                 </Reveal>
                 <Reveal delay={0.12}>
                   {/* quote sits in the right column, so it is not empty while the references are closed */}
@@ -587,7 +587,7 @@ export function Services({ d, tc, ch, tone = "white" }) {
               <Num i={i} color={tc.at} />
               <h3 className="t-h3" style={{ margin: 0, lineHeight: 1.25 }}>{s.t}</h3>
               <div>
-                <p className="t-body" style={{ color: C.dim, margin: "0 0 10px" }}>{s.d}</p>
+                <p className="t-body" style={{ color: C.dim, margin: "0 0 10px" }}><Words>{s.d}</Words></p>
                 <div style={{ ...META, color: tc.at }}>{s.tags.join(" · ")}</div>
               </div>
             </Reveal>

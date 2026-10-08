@@ -3,7 +3,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { C, F, T, LABEL, TRACK, GLASS } from "./tokens";
 import { Picture, Panel, Container, Reveal, Eyebrow } from "./ui";
 import { TeamCards, Regulated, References, Timeline, Clients } from "./sections";
-import { H2 } from "./ui";
+import { H2, Words } from "./ui";
 import { ContactSection } from "./Contact";
 import HeroEditorial from "./HeroEditorial";
 
@@ -56,7 +56,7 @@ export default function Home({ t, lang }) {
               <Reveal key={w.t} delay={i * 0.08} className="rule-top">
                 <span className="t-small" style={{ fontWeight: 600, fontVariantNumeric: "tabular-nums", color: i === 2 ? C.goldDeep : C.silverInk }}>{String(i + 1).padStart(2, "0")}</span>
                 <h3 className="t-h3" style={{ margin: "12px 0 8px" }}>{w.t}</h3>
-                <p className="t-body" style={{ color: C.dim, margin: 0 }}>{w.d}</p>
+                <p className="t-body" style={{ color: C.dim, margin: 0 }}><Words>{w.d}</Words></p>
               </Reveal>
             ))}
           </div>

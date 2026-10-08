@@ -84,6 +84,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 /* short and calm: no blur, a small rise, 0.6 s */
 .reveal{opacity:0;transform:translate3d(0,12px,0);transition:opacity .6s ${EASE},transform .6s ${EASE}}
 .reveal.is-in{opacity:1;transform:none}
+/* text that builds up: the whole text is there as a faint shadow from the start, so readers see that more is
+   coming, and the words light up one after another once the block is in view (see Words in ui.jsx) */
+.w{display:inline-block}
+.words .w{opacity:.16;transition:opacity .45s ${EASE}}
+.words.is-on .w{opacity:1;transition-delay:calc(var(--wait,0s) + var(--d,0s))}
+.hero-in.words-load{animation:none}
 @keyframes heroIn{from{opacity:0;transform:translate3d(0,12px,0)}to{opacity:1;transform:none}}
 .hero-in{animation:heroIn .7s ${EASE} both}
 /* room for descenders (g, p, y): animated layers are clipped to the element box in some browsers */
@@ -319,7 +325,7 @@ li:last-child>.news-row{border-bottom:1px solid rgba(0,0,0,.1)}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .reveal,.hero-in{opacity:1!important;transform:none!important;transition:none!important;animation:none!important}
+  .reveal,.hero-in,.w{opacity:1!important;transform:none!important;transition:none!important;animation:none!important}
   .panel{position:relative!important;top:auto!important}
   .panel::after{display:none}
   .marquee{-webkit-mask-image:none;mask-image:none}
