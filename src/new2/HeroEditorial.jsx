@@ -1,6 +1,6 @@
 import "@fontsource-variable/newsreader/opsz.css";
 import { C, F, SERIF } from "./tokens";
-import { Panel, Container, Button, Words } from "./ui";
+import { Panel, Container, Button, Words, HEAD_PACE } from "./ui";
 
 // Very faint paper grain: a small SVG noise tile (a data: URI, allowed by the CSP), multiplied onto the background.
 const GRAIN = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`;
@@ -47,11 +47,11 @@ export default function HeroEditorial({ t }) {
             {brand ? (
               <>
                 {/* "Ventures in" mirrors the wordmark InVentures: Ventures gold, in silver */}
-                <span style={{ color: C.goldText }}><Words step={0.2}>{brand[1]}</Words></span>{" "}
-                <span style={{ color: C.silver }}><Words step={0.2}>{brand[2]}</Words></span>{" "}
-                <Words step={0.2}>{brand[3]}</Words>
+                <span style={{ color: C.goldText }}><Words step={HEAD_PACE} lead>{brand[1]}</Words></span>{" "}
+                <span style={{ color: C.silver }}><Words step={HEAD_PACE}>{brand[2]}</Words></span>{" "}
+                <Words step={HEAD_PACE}>{brand[3]}</Words>
               </>
-            ) : <Words step={0.2}>{x.h1}</Words>}
+            ) : <Words step={HEAD_PACE} lead>{x.h1}</Words>}
           </h1>
           <p className="hv-a-sub hero-in words-load"><Words>{x.sub}</Words></p>
           <div className="hv-a-actions hero-in" style={{ animationDelay: "1.6s" }}>
