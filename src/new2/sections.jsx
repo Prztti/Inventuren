@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { C, F, T, LABEL, TRACK } from "./tokens";
+import { C, F, T, LABEL, META, TRACK } from "./tokens";
 import { Reveal, Panel, Container, Eyebrow, H2, Lead, TextLink, Button, Picture, Rich, plain } from "./ui";
 import { TIMELINE, REFERENCES, LOGOS } from "./data";
 import { techNews, reNews, articles } from "./news";
@@ -23,7 +23,7 @@ const Num = ({ i, color = C.muted }) => <span style={{ fontFamily: F, fontSize: 
 // ── Landing: the two partners ───────────────────────────────────────────────
 export function Portrait({ person, sizes = "(max-width: 760px) 50vw, 480px", style }) {
   return (
-    <div className="portrait" style={{ borderRadius: 18, overflow: "hidden", aspectRatio: "4 / 5", background: "#16171A", ...style }}>
+    <div className="portrait" style={{ borderRadius: 18, overflow: "hidden", aspectRatio: "4 / 5", background: C.darkBg, ...style }}>
       <Picture name={person.photo} widths={[480, 960]} sizes={sizes} alt={plain(person.name)} />
     </div>
   );
@@ -31,18 +31,57 @@ export function Portrait({ person, sizes = "(max-width: 760px) 50vw, 480px", sty
 
 export function TeamCards({ t, ch }) {
   const tm = t.team;
+  // Whose name has reached the bottom edge of the portraits (desktop, where they stay in view): the other one greys out.
+  const [active, setActive] = useState(null);
+  // Room under the last bio, so the portraits stay in place until the last name has reached their top edge.
+  const [tail, setTail] = useState(0);
+  useEffect(() => {
+    let raf = 0;
+    const parts = () => {
+      const root = document.getElementById("team");
+      return root && { pair: root.querySelector(".pair"), col: root.querySelector(".team-text"), names: [...root.querySelectorAll(".bio h3")] };
+    };
+    const check = () => {
+      raf = 0;
+      const q = parts();
+      if (!q?.pair) return;
+      const edge = q.pair.getBoundingClientRect().bottom;
+      let hit = null;
+      q.names.forEach((h, i) => { if (h.getBoundingClientRect().top <= edge) hit = tm.people[i]?.key; });
+      setActive(hit);
+    };
+    const fit = () => {
+      const q = parts();
+      if (!q?.pair || !q.names.length) return;
+      if (getComputedStyle(q.pair).position !== "sticky") { setTail(0); return; } // phones: portraits above the text
+      const pad = parseFloat(q.col.style.paddingBottom) || 0;
+      const below = q.col.getBoundingClientRect().bottom - pad - q.names[q.names.length - 1].getBoundingClientRect().top;
+      setTail(Math.max(0, Math.ceil(q.pair.offsetHeight - below)));
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(check); };
+    const onResize = () => { fit(); onScroll(); };
+    const start = setTimeout(onResize, 60);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onResize);
+    return () => {
+      clearTimeout(start);
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onResize);
+    };
+  }, [tm.people]);
   return (
     <Panel id="team" tone="white" chapter={ch}>
       <Container>
         <div className="team-grid">
           <Reveal className="pair">
             {tm.people.map((p) => (
-              <figure key={p.key} style={{ margin: 0 }}>
+              <figure key={p.key} className={active && active !== p.key ? "is-dim" : ""} style={{ margin: 0 }}>
                 <Portrait person={p} sizes="(max-width: 760px) 50vw, 280px" />
               </figure>
             ))}
           </Reveal>
-          <div>
+          <div className="team-text" style={{ paddingBottom: tail }}>
             <Reveal><Eyebrow n={ch?.n}>{tm.label}</Eyebrow></Reveal>
             <Reveal delay={0.05}><H2>{tm.title}</H2></Reveal>
             <Reveal delay={0.1}><Lead style={{ marginBottom: 40 }}>{tm.intro}</Lead></Reveal>
@@ -50,7 +89,8 @@ export function TeamCards({ t, ch }) {
               const a = accentOf(p.accent);
               return (
                 <Reveal key={p.key} delay={0.12 + i * 0.06} className="bio">
-                  <h3 className="t-h3" style={{ margin: "0 0 4px" }}><Rich text={p.name} /></h3>
+                  {/* the last name marks how far the panel scrolls before the next one slides over it (see useStack) */}
+                  <h3 className="t-h3" style={{ margin: "0 0 4px" }} data-stick-mark={i === tm.people.length - 1 ? 100 : undefined}><Rich text={p.name} /></h3>
                   <div className="t-small" style={{ marginBottom: 12 }}><span style={{ color: a.text, fontWeight: 600 }}>{p.role}</span><span style={{ color: C.muted }}> · {p.focus}</span></div>
                   <p className="t-body" style={{ color: C.text, margin: "0 0 18px" }}>{p.bio}</p>
                   <div className="facts">
@@ -87,7 +127,7 @@ export function Regulated({ t, ch }) {
             <Reveal key={p.t} delay={i * 0.08} className="rule-top rule-light">
               <Num i={i} color="rgba(242,241,238,.45)" />
               <h3 className="t-h3" style={{ margin: "14px 0 8px" }}>{p.t}</h3>
-              <div style={{ ...LABEL, color: p.who.startsWith("David") ? C.gold : "#A9B6C2", marginBottom: 12 }}>{p.who}</div>
+              <div style={{ ...META, color: p.who.startsWith("David") ? C.gold : "#A9B6C2", marginBottom: 12 }}>{p.who}</div>
               <p className="t-body" style={{ margin: 0, opacity: 0.74 }}>{p.d}</p>
             </Reveal>
           ))}
@@ -97,15 +137,17 @@ export function Regulated({ t, ch }) {
             <div style={{ margin: "clamp(56px, 7vw, 88px) 0 0", padding: "4px 0 4px clamp(20px, 2.4vw, 32px)", borderLeft: `2px solid ${C.gold}`, maxWidth: 860 }}>
               <div style={{ ...LABEL, color: C.gold, marginBottom: 12 }}>{r.telecom.label}</div>
               <p className="t-h3" style={{ margin: "0 0 10px" }}>{r.telecom.claim}</p>
-              <p className="t-body" style={{ margin: 0, opacity: 0.74 }}>{r.telecom.p}</p>
+              <p className="t-body" style={{ margin: 0, opacity: 0.74, maxWidth: "68ch" }}>{r.telecom.p}</p>
             </div>
           </Reveal>
         )}
-        <Reveal delay={0.1}>
-          <p className="t-stat" style={{ fontWeight: 400, letterSpacing: "-0.02em", lineHeight: 1.25, margin: "clamp(56px, 7vw, 96px) 0 0", maxWidth: 900 }}>
-            <span style={{ color: C.gold }}>— </span>{r.closing}
-          </p>
-        </Reveal>
+        {r.closing && (
+          <Reveal delay={0.1}>
+            <p className="t-stat" style={{ fontWeight: 400, letterSpacing: "-0.02em", lineHeight: 1.25, margin: "clamp(56px, 7vw, 96px) 0 0", maxWidth: 900 }}>
+              <span style={{ color: C.gold }}>— </span>{r.closing}
+            </p>
+          </Reveal>
+        )}
       </Container>
     </Panel>
   );
@@ -153,7 +195,7 @@ function TlEntry({ ev, side, lang }) {
   const a = accentOf(side === "david" ? "gold" : "silver");
   return (
     <div className={`tl-card tl-card-${side}`}>
-      <div style={{ ...LABEL, color: a.text, marginBottom: 6 }}>{NAMES[side]}</div>
+      <div className="tl-name" style={{ ...META, color: a.text, marginBottom: 6 }}>{NAMES[side]}</div>
       <h3 className="t-title" style={{ margin: "0 0 6px" }}>{e.title}</h3>
       <p className="t-body" style={{ color: C.dim, lineHeight: 1.6, margin: 0 }}>{e.desc}</p>
     </div>
@@ -169,8 +211,9 @@ function JointLabel({ ev, lang }) {
     </span>
   );
   return (
-    <div style={{ ...LABEL, marginBottom: 10, display: "flex", flexWrap: "wrap", gap: "4px 14px" }} className="tl-jlabel">
-      {part("david", roles[0])}<span aria-hidden style={{ color: C.muted }}>+</span>{part("philip", roles[1])}
+    <div style={{ ...META, marginBottom: 10, display: "flex", flexWrap: "wrap", gap: "4px 14px" }} className="tl-jlabel">
+      {/* "+" travels with the second name, so on phones the two partners stack cleanly */}
+      {part("david", roles[0])}<span><span aria-hidden style={{ color: C.muted, marginRight: 14 }}>+</span>{part("philip", roles[1])}</span>
     </div>
   );
 }
@@ -237,7 +280,7 @@ export function Timeline({ t, lang, ch }) {
           })}
         </ol>
         <div style={{ textAlign: "center", marginTop: 40 }}>
-          <Button variant="ghost" onClick={() => setAll(!all)}>{all ? tx.less : `${tx.more} (${TIMELINE.length})`}</Button>
+          <Button variant="glass" onClick={() => setAll(!all)}>{all ? tx.less : `${tx.more} (${TIMELINE.length})`}</Button>
         </div>
       </Container>
     </Panel>
@@ -387,7 +430,7 @@ function Marquees({ rows }) {
   );
 }
 
-export function Clients({ t, scope = "home", title, id = "partner", ch }) {
+export function Clients({ t, scope = "home", title, id = "partner", ch, tone = "white" }) {
   const refs = REFERENCES.filter((r) => r.on.includes(scope));
   const names = refs.map((r) => r.name);
   // Two rows by theme (see REFERENCES); in each row the unseen names come first, in list order.
@@ -396,7 +439,7 @@ export function Clients({ t, scope = "home", title, id = "partner", ch }) {
     return [...own.filter((n) => !SEEN.has(n)), ...own.filter((n) => SEEN.has(n))];
   }));
   return (
-    <Panel id={id} tone="white" className="panel-tight" chapter={ch}>
+    <Panel id={id} tone={tone} className="panel-tight" chapter={ch}>
       <Container>
         <Reveal><Eyebrow n={ch?.n}>{title || t.clients.label}</Eyebrow></Reveal>
         <Reveal delay={0.05}><H2 style={{ marginBottom: 40 }}>{t.clients.title}</H2></Reveal>
@@ -408,10 +451,10 @@ export function Clients({ t, scope = "home", title, id = "partner", ch }) {
 }
 
 // ── Track: management profiles ──────────────────────────────────────────────
-export function Profiles({ id, label, title, intro, profiles, tc, ch, ui }) {
+export function Profiles({ id, label, title, intro, profiles, tc, ch, ui, tone = "white" }) {
   const [open, setOpen] = useState({});
   return (
-    <Panel id={id} tone="white" chapter={ch}>
+    <Panel id={id} tone={tone} chapter={ch}>
       <Container>
         <Reveal><Eyebrow color={tc.at} n={ch?.n}>{label}</Eyebrow></Reveal>
         {title && <Reveal delay={0.05}><H2>{title}</H2></Reveal>}
@@ -432,17 +475,18 @@ export function Profiles({ id, label, title, intro, profiles, tc, ch, ui }) {
               <div className="split-2">
                 <Reveal delay={0.05}>
                   {p.paras.map((x) => <p key={x.slice(0, 24)} className="t-body" style={{ color: C.text, lineHeight: 1.7, margin: "0 0 18px" }}>{x}</p>)}
-                  <p className="t-h3" style={{ fontWeight: 400, lineHeight: 1.4, margin: "28px 0 0", paddingLeft: 20, borderLeft: `2px solid ${a.line}` }}>{p.quote}</p>
                 </Reveal>
                 <Reveal delay={0.12}>
-                  <button type="button" className="disclose" aria-expanded={!!open[p.key]} onClick={() => setOpen({ ...open, [p.key]: !open[p.key] })}>
+                  {/* quote sits in the right column, so it is not empty while the references are closed */}
+                  <p className="t-h3" style={{ fontWeight: 400, lineHeight: 1.4, margin: "0 0 28px", paddingLeft: 20, borderLeft: `2px solid ${a.line}` }}>{p.quote}</p>
+                  <button type="button" className="disclose glass glass-press" aria-expanded={!!open[p.key]} onClick={() => setOpen({ ...open, [p.key]: !open[p.key] })}>
                     {open[p.key] ? ui.hideRefs : ui.showRefs}<span aria-hidden className="disclose-icon">{open[p.key] ? "−" : "+"}</span>
                   </button>
                   {open[p.key] && (
                     <dl style={{ margin: 0 }}>
                       {p.cards.map(([h, d]) => (
                         <div key={h} className="row-line">
-                          <dt style={{ ...LABEL, color: a.text, marginBottom: 4 }}>{h}</dt>
+                          <dt style={{ ...META, color: a.text, marginBottom: 4 }}>{h}</dt>
                           <dd className="t-body" style={{ color: C.dim, lineHeight: 1.55, margin: 0 }}>{d}</dd>
                         </div>
                       ))}
@@ -471,7 +515,7 @@ export function Compliance({ c , ch }) {
             <Reveal key={col.t} delay={ci * 0.1}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 12, flexWrap: "wrap", marginBottom: 8 }}>
                 <h3 className="t-h3" style={{ margin: 0 }}>{col.t}</h3>
-                <span style={{ ...LABEL, color: col.who.startsWith("David") ? C.gold : "#A9B6C2" }}>{col.who}</span>
+                <span style={{ ...META, color: col.who.startsWith("David") ? C.gold : "#A9B6C2" }}>{col.who}</span>
               </div>
               <ol style={{ listStyle: "none", margin: 0, padding: 0 }}>
                 {col.items.map((it, i) => (
@@ -490,7 +534,7 @@ export function Compliance({ c , ch }) {
 }
 
 // ── Track: transformation / expertise block ─────────────────────────────────
-export function Expertise({ id, d, tc, image , ch }) {
+export function Expertise({ id, d, tc, image, ch, tone = "light" }) {
   const List = ({ title, items, color }) => (
     <div>
       <h3 className="t-h3" style={{ margin: "0 0 8px", color }}>{title}</h3>
@@ -500,7 +544,7 @@ export function Expertise({ id, d, tc, image , ch }) {
     </div>
   );
   return (
-    <Panel id={id} tone="light" chapter={ch}>
+    <Panel id={id} tone={tone} chapter={ch}>
       <Container>
         <Reveal><Eyebrow color={tc.at} n={ch?.n}>{d.tLabel}</Eyebrow></Reveal>
         <Reveal delay={0.05}><H2>{d.tTitle}</H2></Reveal>
@@ -531,9 +575,9 @@ export function Expertise({ id, d, tc, image , ch }) {
   );
 }
 
-export function Services({ d, tc , ch }) {
+export function Services({ d, tc, ch, tone = "white" }) {
   return (
-    <Panel id="leistungen" tone="white" chapter={ch}>
+    <Panel id="leistungen" tone={tone} chapter={ch}>
       <Container>
         <Reveal><Eyebrow color={tc.at} n={ch?.n}>{d.sLabel}</Eyebrow></Reveal>
         <Reveal delay={0.05}><H2 style={{ marginBottom: 56 }}>{d.sTitle}</H2></Reveal>
@@ -544,7 +588,7 @@ export function Services({ d, tc , ch }) {
               <h3 className="t-h3" style={{ margin: 0, lineHeight: 1.25 }}>{s.t}</h3>
               <div>
                 <p className="t-body" style={{ color: C.dim, margin: "0 0 10px" }}>{s.d}</p>
-                <div style={{ ...LABEL, letterSpacing: "0.08em", color: tc.at }}>{s.tags.join(" · ")}</div>
+                <div style={{ ...META, color: tc.at }}>{s.tags.join(" · ")}</div>
               </div>
             </Reveal>
           ))}
@@ -588,7 +632,7 @@ export function Process({ d, tc , ch }) {
             return (
               <Reveal as="li" key={s.t} delay={i * 0.08} className="proc-step">
                 <div className="proc-dot" style={{ background: last ? C.gold : tc.a }} />
-                <div style={{ ...LABEL, color: col, marginBottom: 8 }}>{String(i + 1).padStart(2, "0")} · {s.sub}</div>
+                <div style={{ ...META, color: col, marginBottom: 8 }}>{String(i + 1).padStart(2, "0")} · {s.sub}</div>
                 <h3 className="t-title" style={{ margin: "0 0 6px" }}>{s.t}</h3>
                 <p className="t-small" style={{ color: C.dim, margin: 0 }}>{s.d}</p>
               </Reveal>
@@ -606,7 +650,6 @@ const MONTHS = { en: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "S
 export const fmtDate = (s, lang) => {
   const [y, m] = String(s).split("-");
   if (!m) return y;
-  if (lang === "cn") return `${y}年${parseInt(m, 10)}月`;
   return `${(MONTHS[lang] || MONTHS.en)[parseInt(m, 10) - 1]} ${y}`;
 };
 const byDate = (list) => [...list].sort((a, b) => String(b.date).localeCompare(String(a.date)));
@@ -614,7 +657,7 @@ export const newsFor = (track) => byDate(track === "re" ? reNews : techNews);
 
 // One external report: date, original title, summary in the page language, source.
 export function NewsRow({ n, lang, t, accent }) {
-  const summary = (lang === "de" && n.summary_de) || (lang === "cn" && n.summary_cn) || n.summary;
+  const summary = (lang === "de" && n.summary_de) || n.summary;
   const srcLang = n.lang || "en";
   const hint = srcLang !== lang ? t.ui.langHint?.[srcLang] : null;
   return (
@@ -634,10 +677,10 @@ export function NewsRow({ n, lang, t, accent }) {
 
 // Card for an own article (InVentures View) that links to its page.
 export function ArticleCard({ a, lang, t, accent }) {
-  const l = lang === "de" ? "de" : lang === "cn" ? "cn" : "en";
+  const l = lang === "de" ? "de" : "en";
   return (
     <Link to={`/insights/${a.slug}`} className="article-card" style={{ display: "block", textDecoration: "none", color: C.dark, padding: "26px 28px", borderRadius: 18, background: "#fff", boxShadow: "0 1px 0 rgba(0,0,0,.06), 0 18px 40px -28px rgba(0,0,0,.35)" }}>
-      <div style={{ ...LABEL, color: accent, marginBottom: 10 }}>{t.insights.view} · {fmtDate(a.date, lang)}</div>
+      <div style={{ ...META, color: accent, marginBottom: 10 }}>{t.insights.view} · {fmtDate(a.date, lang)}</div>
       <div className="t-h3" style={{ marginBottom: 8 }}>{a.title[l]}</div>
       <p className="t-body" style={{ color: C.dim, margin: "0 0 14px" }}>{a.teaser[l]}</p>
       <span className="t-small" style={{ fontWeight: 600 }}>{t.insights.read} <span aria-hidden className="arrow">→</span></span>
@@ -659,7 +702,7 @@ export function Insights({ t, lang, track, tc, ch }) {
         <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
           {newsFor(track).slice(0, 3).map((n) => <NewsRow key={n.id} n={n} lang={lang} t={t} accent={tc.at} />)}
         </ul>
-        <div style={{ marginTop: 32 }}><Button to="/insights" variant="ghost">{t.ui.allInsights}</Button></div>
+        <div style={{ marginTop: 32 }}><Button to="/insights" variant="glass">{t.ui.allInsights}</Button></div>
       </Container>
     </Panel>
   );

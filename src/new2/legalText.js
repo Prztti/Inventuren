@@ -1,4 +1,4 @@
-// Legal pages for the /new site (DE binding, EN translation; 中文 shows the English version).
+// Legal pages for the /new site (DE binding, EN translation).
 // Entity facts: Inside Holding & Real Estate GmbH is the legal entity behind InVentures (David Brainin, 2026-09-23).
 // Section shape: { id?, h, rows?: [[label, value, href?]], ps?: [text], list?: [text] }
 

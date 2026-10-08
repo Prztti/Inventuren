@@ -16,22 +16,23 @@ export function useInView(threshold = 0.15) {
   return [ref, seen];
 }
 
-// Fade + rise + un-blur when the element enters the viewport.
+// Fade + small rise when the element enters the viewport; the stagger is capped at 0.1 s.
 export function Reveal({ children, delay = 0, style, as: Tag = "div", className = "" }) {
   const [ref, seen] = useInView();
   return (
-    <Tag ref={ref} className={`reveal ${seen ? "is-in" : ""} ${className}`} style={{ transitionDelay: `${delay}s`, ...style }}>
+    <Tag ref={ref} className={`reveal ${seen ? "is-in" : ""} ${className}`} style={{ transitionDelay: `${Math.min(delay, 0.1)}s`, ...style }}>
       {children}
     </Tag>
   );
 }
 
 // Full-width block that sticks while the next panel slides over it (see useStack).
+// Pages alternate light and white, so neighbouring sections never share a tone.
 const TONES = {
   light: { bg: C.bg, fg: C.dark },
-  white: { bg: "#FFFFFF", fg: C.dark },
-  warm: { bg: "#EFEDE8", fg: C.dark },
-  dark: { bg: "#15171A", fg: "#F2F1EE" },
+  white: { bg: C.card, fg: C.dark },
+  warm: { bg: C.surface, fg: C.dark },
+  dark: { bg: C.darkBg, fg: "#F2F1EE" },
 };
 export function Panel({ id, tone = "light", children, first, style, innerStyle, className = "", chapter }) {
   const t = TONES[tone];
@@ -72,12 +73,20 @@ export function TextLink({ href, children, color = C.dark, onClick, size = T.bas
   );
 }
 
-export function Button({ href, to, onClick, children, color = C.dark, variant = "solid", ...rest }) {
+// variant: solid (filled; in the default dark it is tinted "prominent" glass) · ghost (outline)
+//          · glass (Liquid Glass capsule, surface and feedback from .glass / .glass-press)
+// tint (ghost, glass): text colour; ghost also uses it for the border and the fill on hover
+export function Button({ href, to, onClick, children, color = C.dark, tint, variant = "solid", ...rest }) {
   const base = { fontFamily: F, fontSize: T.sm, fontWeight: 600, letterSpacing: "0.01em", padding: "15px 28px", borderRadius: 999, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 10, cursor: "pointer", border: "1px solid transparent", transition: "transform .25s, background .25s, color .25s, border-color .25s" };
-  const look = variant === "solid" ? { background: color, color: "#fff" } : { background: "transparent", color: "inherit", borderColor: "currentColor" };
-  if (to) return <Link to={to} onClick={onClick} className={`btn btn-${variant}`} style={{ ...base, ...look }} {...rest}>{children}<span aria-hidden className="arrow">→</span></Link>;
+  const prominent = variant === "solid" && color === C.dark;
+  const look = prominent ? { color: "#fff", border: undefined, transition: undefined }
+    : variant === "solid" ? { background: color, color: "#fff" }
+    : variant === "glass" ? { color: tint || "inherit", border: undefined, transition: undefined }
+    : { background: "transparent", color: tint || "inherit", borderColor: "currentColor", "--btn-fill": tint || C.dark };
+  const cls = prominent ? "btn btn-solid glass glass-prominent glass-press" : variant === "glass" ? "btn btn-glass glass glass-press" : `btn btn-${variant}`;
+  if (to) return <Link to={to} onClick={onClick} className={cls} style={{ ...base, ...look }} {...rest}>{children}<span aria-hidden className="arrow">→</span></Link>;
   const Tag = href ? "a" : "button";
-  return <Tag href={href} onClick={onClick} className={`btn btn-${variant}`} style={{ ...base, ...look }} {...rest}>{children}<span aria-hidden className="arrow">→</span></Tag>;
+  return <Tag href={href} onClick={onClick} className={cls} style={{ ...base, ...look }} {...rest}>{children}<span aria-hidden className="arrow">→</span></Tag>;
 }
 
 // Responsive image: WebP + JPEG fallback from /images/opt/<name>-<width>.(webp|jpg)
@@ -141,7 +150,14 @@ export function useStack() {
       panels = [...document.querySelectorAll(".panel")];
       parallax = [...document.querySelectorAll("[data-parallax]")];
       const vh = window.innerHeight;
-      const tops = panels.map((p) => Math.min(0, vh - p.offsetHeight));
+      const tops = panels.map((p) => {
+        const top = Math.min(0, vh - p.offsetHeight);
+        // [data-stick-mark="y"]: keep scrolling until that element has reached y px from the top, then stick
+        const mark = p.querySelector("[data-stick-mark]");
+        if (!mark) return top;
+        const rel = mark.getBoundingClientRect().top - p.getBoundingClientRect().top;
+        return Math.min(top, parseFloat(mark.dataset.stickMark) - rel);
+      });
       panels.forEach((p, i) => { p.style.top = `${tops[i]}px`; p.style.zIndex = String(i + 1); });
       frame();
     };

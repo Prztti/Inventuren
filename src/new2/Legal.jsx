@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { C, F, T, LABEL } from "./tokens";
+import { C, F, T, LABEL, GLASS } from "./tokens";
 import { Panel, Container, Rich } from "./ui";
 import { LEGAL } from "./legalText";
 
-// Impressum / Datenschutz inside /new. German is binding; EN (and 中文) show the English version.
+// Impressum / Datenschutz inside /new. German is binding; EN shows the English version.
 export default function LegalPage({ kind, lang }) {
   const L = lang === "de" ? LEGAL.de : LEGAL.en;
   const d = L[kind];
@@ -12,7 +12,7 @@ export default function LegalPage({ kind, lang }) {
     <main>
       <Panel first tone="white" innerStyle={{ padding: "clamp(120px, 14vw, 168px) 0 clamp(72px, 9vw, 112px)" }}>
         <Container style={{ maxWidth: 860 }}>
-          <Link to="/" className="back-link" style={{ fontFamily: F, fontSize: T.sm, fontWeight: 500, color: C.dim, textDecoration: "none" }}>← {L.back}</Link>
+          <Link to="/" className="back-link glass glass-press" style={{ fontFamily: F, fontSize: T.sm, fontWeight: 500, color: C.dim, textDecoration: "none", display: "inline-flex", padding: "9px 16px", borderRadius: GLASS.radius }}>← {L.back}</Link>
           <div style={{ ...LABEL, color: C.silverInk, margin: "40px 0 16px" }}>{d.label}</div>
           <h1 className="t-h2" style={{ margin: "0 0 20px" }}>{d.title}</h1>
           {d.stand && <p className="t-small" style={{ color: C.muted, margin: "0 0 8px" }}>{d.stand}</p>}
