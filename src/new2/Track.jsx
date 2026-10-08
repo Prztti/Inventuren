@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { C, F, T, LABEL, TRACK, GLASS } from "./tokens";
-import { Picture, Button, Panel, Container, TextLink, Words } from "./ui";
+import { Picture, Button, Panel, Container, TextLink, Words, HEAD_PACE } from "./ui";
 import { Clients, Profiles, Compliance, Expertise, Services, Network, Process, Insights } from "./sections";
 import { ContactSection } from "./Contact";
 import TechFlow from "./TechFlow";
@@ -18,9 +18,9 @@ function Hero({ t, d, track, tc }) {
             <div className="hero-in" style={{ ...LABEL, color: tc.at, marginBottom: 20 }}>{track === "re" ? t.ui.since06 : t.ui.since15}</div>
             {/* the headline builds up line by line, word by word; the lead follows, then the actions */}
             <h1 className="hero-in words-load t-h2" style={{ margin: "0 0 24px", lineHeight: 1.04 }}>
-              <span style={{ display: "block" }}><Words step={0.2}>{d.h1[0]}</Words></span>
-              <span style={{ display: "block", color: C.silver }}><Words step={0.2}>{d.h1[1]}</Words></span>
-              <span style={{ display: "block", color: C.goldText }}><Words step={0.2}>{d.h1[2]}</Words></span>
+              <span style={{ display: "block" }}><Words step={HEAD_PACE} lead>{d.h1[0]}</Words></span>
+              <span style={{ display: "block", color: C.silver }}><Words step={HEAD_PACE}>{d.h1[1]}</Words></span>
+              <span style={{ display: "block", color: C.goldText }}><Words step={HEAD_PACE}>{d.h1[2]}</Words></span>
             </h1>
             <p className="hero-in words-load t-lead" style={{ maxWidth: 600, margin: "0 0 40px" }}><Words>{d.heroP}</Words></p>
             <div className="hero-in" style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center", animationDelay: "1.6s" }}>

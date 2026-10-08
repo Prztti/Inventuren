@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { C, F, T, LABEL, META, TRACK } from "./tokens";
-import { Reveal, Panel, Container, Eyebrow, H2, Lead, TextLink, Button, Picture, Rich, plain, Words } from "./ui";
+import { Reveal, Panel, Container, Eyebrow, H2, Lead, TextLink, Button, Picture, Rich, plain, Words, HEAD_PACE } from "./ui";
 import { TIMELINE, REFERENCES, LOGOS } from "./data";
 import { techNews, reNews, articles } from "./news";
 
@@ -136,7 +136,7 @@ export function Regulated({ t, ch }) {
           <Reveal delay={0.05}>
             <div style={{ margin: "clamp(56px, 7vw, 88px) 0 0", padding: "4px 0 4px clamp(20px, 2.4vw, 32px)", borderLeft: `2px solid ${C.gold}`, maxWidth: 860 }}>
               <div style={{ ...LABEL, color: C.gold, marginBottom: 12 }}>{r.telecom.label}</div>
-              <p className="t-h3" style={{ margin: "0 0 10px" }}><Words step={0.2}>{r.telecom.claim}</Words></p>
+              <p className="t-h3" style={{ margin: "0 0 10px" }}><Words step={HEAD_PACE} lead>{r.telecom.claim}</Words></p>
               <p className="t-body" style={{ margin: 0, opacity: 0.74, maxWidth: "68ch" }}><Words>{r.telecom.p}</Words></p>
             </div>
           </Reveal>

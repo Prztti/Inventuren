@@ -57,11 +57,14 @@ export function Eyebrow({ children, color = C.silverInk, center, style, n }) {
   );
 }
 
-// Text that builds up word by word, a little faster than reading pace (0.18 s per word, headings 0.2 s).
+// Text that builds up word by word, a little faster than reading pace (0.18 s per word, headings 0.15 s).
 // Blocks that come into view together take turns in document order (headline, then lead, then body),
 // so two texts never build at the same time; no block waits longer than MAX_WAIT for its turn.
+// Headings (lead) never wait: they start at once and the text below them queues up behind them,
+// whatever is still building further up the page.
 export const PACE = 0.18;
-const MAX_WAIT = 2.5;
+export const HEAD_PACE = 0.15;
+const MAX_WAIT = 1.5;
 let queueEnd = 0;
 let readIO = null;
 const onRead = new Map();
@@ -71,14 +74,14 @@ function observeRead(el, cb) {
     entries.filter((e) => e.isIntersecting)
       .sort((a, b) => (a.target.compareDocumentPosition(b.target) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1))
       .forEach((e) => { const f = onRead.get(e.target); onRead.delete(e.target); readIO.unobserve(e.target); if (f) f(); });
-  }, { rootMargin: "0px 0px -10% 0px" });
+  }, { rootMargin: "0px 0px -5% 0px" });
   onRead.set(el, cb);
   readIO.observe(el);
   return () => { onRead.delete(el); readIO.unobserve(el); };
 }
 
 // Plain strings are split, elements such as <sup> stay whole; the spaces stay real text, so lines wrap as before.
-export function Words({ children, step = PACE }) {
+export function Words({ children, step = PACE, lead = false }) {
   const ref = useRef(null);
   const [wait, setWait] = useState(null); // seconds until the first word; null = not in view yet
   let i = 0;
@@ -95,16 +98,16 @@ export function Words({ children, step = PACE }) {
     if (wait !== null || !ref.current) return undefined;
     return observeRead(ref.current, () => {
       const now = performance.now() / 1000;
-      const start = Math.min(Math.max(now, queueEnd), now + MAX_WAIT);
-      queueEnd = start + count * step;
+      const start = lead ? now : Math.min(Math.max(now, queueEnd), now + MAX_WAIT);
+      queueEnd = lead ? start + count * step : Math.max(queueEnd, start + count * step);
       setWait(start - now);
     });
-  }, [wait, count, step]);
+  }, [wait, count, step, lead]);
   return <span ref={ref} className={`words${wait === null ? "" : " is-on"}`} style={wait === null ? undefined : { "--wait": `${wait.toFixed(2)}s` }}>{parts}</span>;
 }
 
 export function H2({ children, style, className = "t-h2" }) {
-  return <h2 className={`display ${className}`} style={{ margin: "0 0 24px", maxWidth: 980, ...style }}><Words step={0.2}>{children}</Words></h2>;
+  return <h2 className={`display ${className}`} style={{ margin: "0 0 24px", maxWidth: 980, ...style }}><Words step={HEAD_PACE} lead>{children}</Words></h2>;
 }
 
 export function Lead({ children, style }) {
