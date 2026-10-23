@@ -29,9 +29,9 @@ export const reNews = [
 
 // Own articles (InVentures View), each on its own page under /insights/<slug>.
 export const articles = [
-  { slug: "agentic-ai", track: "tech", date: "2026-09",
-    title: { de: "Vom Assistenten zum Agenten: Was die Forschung für die nächsten 24 Monate erwarten lässt", en: "From assistant to agent: what research suggests for the next 24 months" },
-    teaser: { de: "Fähigkeiten, Kosten, Verbreitung, Arbeit und Vertrauen – ein forschungsbasierter Ausblick auf AI-Agenten in Unternehmen für die nächsten sechs bis 24 Monate.", en: "Capabilities, costs, adoption, work and trust — a research-based outlook on AI agents in companies over the next six to 24 months." } },
+  { slug: "stehende-uhr", track: "tech", date: "2026-10",
+    title: { de: "Die stehende Uhr geht zweimal am Tag richtig", en: "A stopped clock is right twice a day" },
+    teaser: { de: "Philip Kügler über KI-Agenten in der Praxis: wo sie glänzen, wo sie mit großer Überzeugung danebenliegen und warum der Mensch zum Engpass befördert wurde.", en: "Philip Kügler on AI agents in practice: where they shine, where they are wrong with great conviction, and why humans have been promoted to the bottleneck." } },
   { slug: "real-estate-after-the-correction", track: "re", date: "2026-09",
     title: { de: "Nach der Korrektur: Wo der Immobilienmarkt in den nächsten 24 Monaten Chancen bietet", en: "After the correction: where real estate offers opportunities over the next 24 months" },
     teaser: { de: "Finanzierung, Wohnen, Büro, Energie, Hotels und AI – ein faktenbasierter Ausblick auf den Immobilienmarkt in Österreich und Europa für die nächsten sechs bis 24 Monate.", en: "Financing, residential, office, energy, hotels and AI — a fact-based outlook on real estate in Austria and Europe over the next six to 24 months." } },

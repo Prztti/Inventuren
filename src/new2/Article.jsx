@@ -1,4 +1,5 @@
 import { F, T, META, C as TC } from "./tokens";
+import { CLOCK } from "./articleClock";
 
 const C = { dark: TC.dark, gold: TC.goldDeep, goldText: TC.gold, silver: TC.silverInk, cream: TC.bg, dim: TC.dim };
 
@@ -417,15 +418,70 @@ function REArticle({ lang }) {
   );
 }
 
+// ── CLOCK ARTICLE (InVentures View, October 2026 — Philip Kügler on AI agents) ──
+// Content lives in ./articleClock.js (bio, intro, sections; optional research notes/sources are rendered if present).
+function ResearchNote({ note }) {
+  return (
+    <aside style={{ borderLeft: `2px solid ${C.silver}`, padding: "4px 0 4px 20px", margin: "8px 0 36px", maxWidth: 600 }}>
+      <p className="t-body" style={{ color: C.dark, lineHeight: 1.6, margin: 0 }}>
+        <strong style={{ fontWeight: 600 }}>{note.t}</strong> {note.x}
+      </p>
+      <p className="t-small" style={{ color: C.dim, fontStyle: "italic", margin: "6px 0 0" }}>{note.s}</p>
+    </aside>
+  );
+}
+
+function ClockArticle({ lang }) {
+  const c = CLOCK[lang === "de" ? "de" : "en"];
+  return (
+    <div>
+      <div style={{ width: "100%", height: 300, marginBottom: 40, overflow: "hidden", borderRadius: 2, position: "relative" }}>
+        <img src="/images/opt/article-ai-disruption-1024.webp" loading="lazy" decoding="async" alt="" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 60%)" }} />
+      </div>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
+        <div style={{ width: 24, height: 1, background: C.silver }} />
+        <span style={{ ...META, color: C.silver }}>{c.kicker}</span>
+      </div>
+
+      <h2 className="t-stat" style={{ color: C.dark, lineHeight: 1.2, margin: "0 0 24px", maxWidth: 720 }}>{c.title}</h2>
+
+      <div style={{ display: "flex", alignItems: "center", gap: 14, margin: "0 0 36px" }}>
+        <img src="/images/opt/portrait-kuegler-480.webp" alt="Philip Kügler" width="48" height="48" loading="lazy" decoding="async" style={{ width: 48, height: 48, borderRadius: "50%", objectFit: "cover" }} />
+        <span className="t-small" style={{ color: C.dim }}>{c.author}</span>
+      </div>
+
+      {c.bio && <p className="t-body" style={{ color: C.dark, fontStyle: "italic", lineHeight: 1.75, margin: "0 0 28px", maxWidth: 680 }}>{c.bio}</p>}
+
+      {c.intro.map((p, i) => <Body key={i}>{p}</Body>)}
+
+      {c.sections.map((s) => (
+        <div key={s.h}>
+          <H3>{s.h}</H3>
+          {s.p.map((p, i) => <Body key={i}>{p}</Body>)}
+          {s.note && <ResearchNote note={s.note} />}
+        </div>
+      ))}
+
+      {(c.outro || []).map((p, i) => <Body key={i}>{p}</Body>)}
+
+      {c.sources
+        ? <Sources groups={[[c.sourcesTitle, c.sources]]} note={c.disclaimer} color={C.silver} />
+        : <p className="t-small" style={{ color: C.dim, fontStyle: "italic", marginTop: 32, maxWidth: 680 }}>{c.disclaimer}</p>}
+    </div>
+  );
+}
+
 // ── MAIN COMPONENT (copy of src/TrackArticle.jsx for /new: site type scale, CI colours, optimised images) ──
-export default function TrackArticle({ track, lang }) {
+// `slug` selects a specific article; AIArticle (agentic-ai, September 2026) stays in code for easy revert.
+export default function TrackArticle({ track, lang, slug }) {
   const mob = typeof window !== "undefined" && window.innerWidth < 700;
   const accentColor = track === "re" ? C.gold : C.silver;
 
   return (
     <section style={{ background: "#fff", padding: mob ? "56px 20px" : "88px 40px", borderTop: `1px solid ${accentColor}20` }}>
       <div style={{ maxWidth: 820, margin: "0 auto" }}>
-        {track === "tech" ? <AIArticle lang={lang} /> : <REArticle lang={lang} />}
+        {slug === "stehende-uhr" ? <ClockArticle lang={lang} /> : track === "tech" ? <AIArticle lang={lang} /> : <REArticle lang={lang} />}
 
         <div style={{ marginTop: 40, paddingTop: 28, borderTop: "1px solid #EAE8E4", display: "flex", gap: 16, flexWrap: "wrap", alignItems: "center" }}>
           <a

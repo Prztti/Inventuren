@@ -46,7 +46,7 @@ export function ArticlePage({ t, lang }) {
         <Container style={{ maxWidth: 900 }}>
           <Link to="/insights" className="back-link glass glass-press" style={{ fontFamily: F, fontSize: T.sm, fontWeight: 500, color: C.dim, textDecoration: "none", display: "inline-flex", padding: "9px 16px", borderRadius: GLASS.radius }}>← {t.insights.back}</Link>
         </Container>
-        <Article track={a.track} lang={lang} />
+        <Article track={a.track} lang={lang} slug={a.slug} />
       </Panel>
     </main>
   );
