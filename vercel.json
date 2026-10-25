@@ -21,6 +21,11 @@
       "source": "/new/:path*",
       "destination": "/:path*",
       "permanent": true
+    },
+    {
+      "source": "/insights/agentic-ai",
+      "destination": "/insights/stehende-uhr",
+      "permanent": false
     }
   ],
   "rewrites": [
